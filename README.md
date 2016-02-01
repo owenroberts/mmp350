@@ -19,12 +19,6 @@ Students will write HTML, CSS JavaScript and PHP using Sublime Text editor. They
 Course site: [github.com/owenroberts/mmp350](https://github.com/owenroberts/mmp350)  
 Course notes: [owenroberts.github.io/mmp350/](http://owenroberts.github.io/mmp350/)
 
-
-Textbook: Smashing WordPress: Beyond the Blog, 4th edition
-Author: Thord Daniel Hedengren
-Publisher: Wiley, John & Sons, Incorporated
-ISBN 978-1118600757; 1118600754
-
 ###Attendance
 At BMCC, the maximum number of absences is limited to one more hour than the number of hours a class meets in one week. For example, you may be enrolled in a four-hour class. In that class, you would be allowed 5 hours of absence (not 5 days). In the case of excessive absences, the instructor has the option to lower the grade or assign an F or WU grade.
 
@@ -42,7 +36,7 @@ Publisher: Wiley, John & Sons, Incorporated
 ISBN 978-1118600757; 1118600754  
 *The text book is not required
 
-Outline of Topics:
+###Outline of Topics:
 - Web site Project Planning
 - Content Management Systems
 - Interactivity through Client-Side Scripting
@@ -90,48 +84,48 @@ Responsive design
 
 ###Schedule
 
-Week 1
+**Week 1**
 - Introduction: Course, WordPress (WP) development environment and Class Project
 - [Class notes](https://owenroberts.github.io/mmp350/week1/)
 
-Week 2
+**Week 2**
 - Design, wireframing
 
-Week 3
+**Week 3**
 - Project Planning: Initial Project Proposal
 
-Week 4
+**Week 4**
 - WP Syntax and PHP Introduction
 
-Week 5
+**Week 5**
 - Working with the WP Loop
 
-Week 6
+**Week 6**
 - WP Themes
 
-Week 7
+**Week 7**
 - Create Theme from Design
 
-Week 8
+**Week 8**
 - First Draft Web Site Theme
 
-Week 9
+**Week 9**
 - Advanced Themes
 
-Week 10
+**Week 10**
 - WP as a Content Management System
 
-Week 11 
+**Week 11**
 - Typography and WordPress
 
-Week 12
+**Week 12**
 - Interactivity with JavaScript
 
-Week 13:
+**Week 3**
 - Advanced interactivity with JavaScript
 
-Week 14:
+**Week 14**
 - WP Plugins and Widgets
 
-Week 15: 
+**Week 15**
 - Final Project
