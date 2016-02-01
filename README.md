@@ -29,11 +29,11 @@ At BMCC, the maximum number of absences is limited to one more hour than the num
 
 ###Grading
 
-10% | Teacher evaluation and attendance
-30% | Assignments
-25% | Midterm Portfolio
-35% | Final Theme
-20% credit will be taken off any assignments handed in late.
+10% | Teacher evaluation and attendance  
+30% | Assignments  
+25% | Midterm Portfolio  
+35% | Final Theme  
+20% credit will be taken off any assignments handed in late.  
 
 Textbook: [Smashing WordPress: Beyond the Blog, 4th edition](http://www.amazon.com/Smashing-WordPress-Thord-Daniel-Hedengren/dp/1118600754/ref=sr_1_1?s=books&ie=UTF8&qid=1422558908&sr=1-1&keywords=smashing+wordpress+4th+edition)  
 Author: Thord Daniel Hedengren  
