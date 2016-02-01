@@ -1,0 +1,1 @@
+[Class notes](http://owenroberts.github.io/mmp350/week1/index.html)
