@@ -17,6 +17,7 @@ This course gives the students the tools to build standards-compliant, accessibl
 Students will write HTML, CSS JavaScript and PHP using Sublime Text editor. They will use image editing programs, Photoshop to create graphics for web sites. They will require a WordPress blog for each student to which they must be able to FTP files.
 
 Course site: [github.com/owenroberts/mmp350](https://github.com/owenroberts/mmp350)
+Course notes: [owenroberts.github.io/mmp350/](http://owenroberts.github.io/mmp350/)
 
 
 Textbook: Smashing WordPress: Beyond the Blog, 4th edition
