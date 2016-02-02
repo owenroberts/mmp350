@@ -86,7 +86,8 @@ Responsive design
 
 **Week 1**
 - Introduction: Course, WordPress (WP) development environment and Class Project
-- [Class notes](https://owenroberts.github.io/mmp350/week1/)
+- [Intro notes](https://owenroberts.github.io/mmp350/week1/)
+- [Portfolio Structure](http://owenroberts.github.io/mmp350/week1/portfolio.html)
 
 **Week 2**
 - Design, wireframing
