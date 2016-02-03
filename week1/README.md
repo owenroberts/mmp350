@@ -12,6 +12,7 @@
 <ul>
     <li>Choose a portfolio site</li>
     <li>Using screenshots or sketches, map out the UI flow for the site</li>
+    <li>Note each step that takes the user from the home page to individual projects</li>
     <li>This includes all of the links and different ways the site can be navigated and how information is presented</li>
     <li>Post as PDF or Text document via Blackboard</li>
 </ul>
