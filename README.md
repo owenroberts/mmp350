@@ -90,10 +90,11 @@ Responsive design
 - [Portfolio Structure](http://owenroberts.github.io/mmp350/week1/portfolio.html)
 
 **Week 2**
-- Design, wireframing
+- Project Planning: Initial Project Proposal
+- [Grid Systems](https://owenroberts.github.io/mmp350/week2/)
 
 **Week 3**
-- Project Planning: Initial Project Proposal
+- Wireframing
 
 **Week 4**
 - WP Syntax and PHP Introduction
