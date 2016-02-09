@@ -91,7 +91,7 @@ Responsive design
 
 **Week 2**
 - Project Planning: Initial Project Proposal
-- [Grid Systems](https://owenroberts.github.io/mmp350/week2/)
+- [Grid Systems](week2/README.md)
 
 **Week 3**
 - Wireframing
