@@ -91,7 +91,7 @@ Responsive design
 
 **Week 2**
 - Project Planning: Initial Project Proposal
-- [Grid Systems](week2/README.md)
+- [Grid Systems](week2/)
 
 **Week 3**
 - Wireframing
