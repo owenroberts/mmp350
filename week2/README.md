@@ -1,4 +1,8 @@
-[Grid Systems](http://owenroberts.github.io/mmp350/week2/index.html)  
+**Grid Systems**
+<li><a href="http://www.graphics.com/article-old/brief-history-grids" target="blank">History of Grids</a></li>
+<li><a href="http://vanseodesign.com/web-design/grid-types/" target="blank">Grid Types</a></li>
+<li><a href="http://vanseodesign.com/web-design/grid-choices/" target="blank">Grid Choices</a></li>
+<li><a href="http://www.thegridsystem.org/" target="blank">Grid System blog</a></li>
 
 **Wireframing**  
 - [Wirify](http://www.volkside.com/tools/wirify/)  
