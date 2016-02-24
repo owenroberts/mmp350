@@ -94,40 +94,10 @@ Responsive design
 - [Grid Systems & Wireframing](week2/)
 
 **Week 3**
-- Wireframing
+- [Wireframing](week3/)
 
-**Week 4**
-- WP Syntax and PHP Introduction
+**[Week 4**
+- [Responsive Design](week4/)
 
 **Week 5**
-- Working with the WP Loop
-
-**Week 6**
-- WP Themes
-
-**Week 7**
-- Create Theme from Design
-
-**Week 8**
-- First Draft Web Site Theme
-
-**Week 9**
-- Advanced Themes
-
-**Week 10**
-- WP as a Content Management System
-
-**Week 11**
-- Typography and WordPress
-
-**Week 12**
-- Interactivity with JavaScript
-
-**Week 3**
-- Advanced interactivity with JavaScript
-
-**Week 14**
-- WP Plugins and Widgets
-
-**Week 15**
-- Final Project
+- [Responsive development with Foundation](week5/)
