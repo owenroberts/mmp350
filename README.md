@@ -96,7 +96,7 @@ Responsive design
 **Week 3**
 - [Wireframing](week3/)
 
-**[Week 4**
+**Week 4**
 - [Responsive Design](week4/)
 
 **Week 5**
