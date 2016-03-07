@@ -5,4 +5,4 @@
 	- Draw 3 possible sketches
 	- Choose 1 sketch and create it in Photoshop (or Illustrator)
 	- Use 960 Grid System or some other grid
-- Upload JPGs of each wireframe and sketches to Blackboard
+- Upload PSDs of each wireframe and sketches to Blackboard

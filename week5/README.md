@@ -7,6 +7,9 @@ Foundation provides many features to make site design implementation faster.  We
 
 We’re going to go over the [documentation](http://foundation.zurb.com/sites/docs/grid.html) for Grid and Block Grid today and use them to implement our wireframes.
 
+We'll also take a look at the tag: `<meta name="viewport" content="width=device-width, initial-scale=1"/>`
+
+
 ##Set wpmmp server for template:
 Open FileZilla.  Use the Site Manager to connect to your wpmmp server.  This can be opened with ⌘S or File > Site Manager.
 
@@ -38,7 +41,6 @@ Now drag your template/wireframe folder over to the remote folder.
 <img src="https://raw.github.com/owenroberts/mmp350/master/week5/drag.jpg" />
 
 Next week we'll install WordPress on these servers.
-
 
 ##Assignment 5
 - Using your wireframes as an example, create a template for you website using Foundation, HTML and CSS
