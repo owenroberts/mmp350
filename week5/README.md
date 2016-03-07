@@ -15,7 +15,7 @@ Open FileZilla.  Use the Site Manager to connect to your wpmmp server.  This can
 
 Click the New Site button to create a new site.  Enter your server information.
 
-<img src="https://raw.github.com/owenroberts/mmp350/master/week5/filezilla.jpg" />
+<img src="https://raw.github.com/owenroberts/mmp350/master/week5/filezilla.png" />
 
 
 Host: **wpmmp.bmcc.cuny.edu**
@@ -30,7 +30,7 @@ Password: Your **Cunyfirst ID**.  This is an 8 digit number.  If you don’t kno
 
 Then click the **Advanced** tab and select the local and remote path for you site.  Local path should be the folder where you WordPress files are located.  Remote path should be **/home/yourusername/public_html**
 
-<img src="https://raw.github.com/owenroberts/mmp350/master/week5/advanced.jpg" />
+<img src="https://raw.github.com/owenroberts/mmp350/master/week5/advanced.png" />
 
 Leave everything else blank and hit Connect.
 
@@ -38,7 +38,7 @@ You may see a dialog box about security.  Click Ok.
 
 Now drag your template/wireframe folder over to the remote folder.
 
-<img src="https://raw.github.com/owenroberts/mmp350/master/week5/drag.jpg" />
+<img src="https://raw.github.com/owenroberts/mmp350/master/week5/drag.png" />
 
 Next week we'll install WordPress on these servers.
 
