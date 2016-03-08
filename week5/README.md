@@ -40,6 +40,8 @@ Now drag your template/wireframe folder over to the remote folder.
 
 <img src="https://raw.github.com/owenroberts/mmp350/master/week5/drag.png" />
 
+Your site template will be live at **wpmmp.bmcc.cuny.edu/~username/projectfolder/**
+
 Next week we'll install WordPress on these servers.
 
 ##Assignment 5
