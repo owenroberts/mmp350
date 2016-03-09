@@ -12,7 +12,7 @@ Let's review some of the basics of web typography through a few tutorials:
 
 To add a Google font to our theme, we need to identify a font that you want to use in the <a href="https://www.google.com/fonts#" target="_blank">Google Font library</a>.  I am going to use **Arimo** for my body font.  When you choose a font you like Google will prompt you to select the weights you want to use and give you code to add it to your HTML, CSS or JavaScript.  We want to use the CSS tag, like this one:
 
-
+<img src="https://raw.github.com/owenroberts/mmp350/master/week6/googlefont.png" />
 
 Note that you want to remove `http:` from the beginning.  Because our BMCC servers are running on a HTTPS (secure) protocol, they won't load Google Font or any external file unless it is also done on at HTTPS connection.  The easiest way to deal with this is just take out the HTTP/HTTPS header, and the browser will fill it in.
 
