@@ -101,3 +101,6 @@ Responsive design
 
 **Week 5**
 - [Responsive development with Foundation](week5/)
+
+**Week 6**
+- [Typography](week6/)
