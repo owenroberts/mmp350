@@ -93,9 +93,20 @@ a { color: $main-color; }
 ```
 Using this syntax we can change the color once and update both rules.  Any CSS style rule can be saved as a variable.
 
-For SASS to work it needs to be processed.  Our browsers can't read SASS as is, so we have to run them through a program, which will read the SASS and compile it into pure CSS.
-
 For more on SASS, check out these [tutorials](http://thesassway.com/).
+
+For SASS to work it needs to be processed.  Our browsers can't read SASS as is, so we have to run them through a program, which will read the SASS and compile it into pure CSS.  We're going to use **Scout** which is a free program.  We need to [download](https://mhs.github.io/scout-app/) it first, and walk through the install.
+
+<img src="https://raw.github.com/owenroberts/mmp350/master/week7/scout.jpg" />
+Click the plus button to create a new project.
+<img src="https://raw.github.com/owenroberts/mmp350/master/week7/create.png" />
+Set the input and output directories.  This should be the same directory for our project.  This is where Scout will find style.scss and output style.css.
+<img src="https://raw.github.com/owenroberts/mmp350/master/week7/config.png" />
+To start Scout, click the play button.  Then just leave it running and it will continue to generate style.css everytime you save change to style.scss.
+<img src="https://raw.github.com/owenroberts/mmp350/master/week7/play.png" />
+Check the output window for errors.
+<img src="https://raw.github.com/owenroberts/mmp350/master/week7/output.png" />
+
 
 **In class work**
 - Start using SASS.
