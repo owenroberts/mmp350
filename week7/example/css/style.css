@@ -1,0 +1,23 @@
+/* line 5, style.scss */
+body { color: #0a8c94; }
+
+/* line 6, style.scss */
+a { color: #0a8c94; }
+
+/* line 9, style.scss */
+#about h1 { font-family: Helvetica, sans-serif; }
+/* line 12, style.scss */
+#about p, #about a { font-family: Georgia, serif; }
+/* line 15, style.scss */
+#about ul { list-style: none; }
+/* line 18, style.scss */
+#about ul li a { text-decoration: none; }
+/* line 20, style.scss */
+#about ul li a:hover { color: #0fd4e0; }
+
+/* line 28, style.scss */
+.show-for-small-only ul { list-style: none; }
+/* line 31, style.scss */
+.show-for-small-only ul li a { font-size: 2em; font-family: Helvetica, sans-serif; }
+/* line 34, style.scss */
+.show-for-small-only ul li a:hover { color: #0fd4e0; }

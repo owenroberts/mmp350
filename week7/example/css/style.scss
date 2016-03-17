@@ -1,0 +1,40 @@
+$main-color: #0a8c94;
+$link-color: #0FD4E0;
+$main-font: Helvetica, sans-serif;
+
+body { color: $main-color; }
+a { color: $main-color; }
+
+#about {
+	h1 {
+		font-family: $main-font;
+	}	
+	p, a {
+		font-family: Georgia, serif;
+	}
+	ul {
+		list-style: none;
+		li {
+			a {
+				text-decoration: none;
+				&:hover{
+					color: $link-color;
+				}
+			}
+		}
+	}
+}
+.show-for-small-only {
+	ul {
+		list-style: none;
+		li {
+			a {
+				font-size:2em;
+				font-family: $main-font;
+				&:hover{
+					color: $link-color;
+				}
+			}
+		}
+	}
+}
