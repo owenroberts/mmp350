@@ -104,3 +104,11 @@ Responsive design
 
 **Week 6**
 - [Typography](week6/)
+
+**Week 7**
+- [Sass & color theory](week7/)
+- Midterm: Completed portfolio template
+	- Sass stylesheet with finalized typography and color scheme
+	- index, blank and single HTML page templates
+	- Foundation classes and CSS for Desktop and Mobile
+	- Uploaded to wpmmp website
