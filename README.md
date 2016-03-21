@@ -106,7 +106,8 @@ Responsive design
 - [Typography](week6/)
 
 **Week 7**
-- [Sass & color theory](week7/)
+- [Sass](week7/)
+- [Calculating color](http://owenroberts.github.io/mmp350/week7/)
 - Midterm: Completed portfolio template
 	- Sass stylesheet with finalized typography and color scheme
 	- index, blank and single HTML page templates

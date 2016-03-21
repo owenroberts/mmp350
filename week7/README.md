@@ -1,5 +1,7 @@
 #Introducing SASS
 
+[Calculating color](http://owenroberts.github.io/mmp350/week7/)
+
 Today we're going talk about using SASS and getting started with prototyping our portfolio sites.
 
 **SASS** is a CSS pre-processor.  It allows us to write CSS style documents that are more complex and more elegant by introducing some basic concepts like variables, nesting and inheritance.  It takes some time to learn but saves a lot of time in the long run.
