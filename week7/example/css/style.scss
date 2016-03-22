@@ -1,15 +1,22 @@
-$main-color: #0a8c94;
-$link-color: #0FD4E0;
+$main-color: #3653e1;
+$second-color: adjust_hue($main-color, 30);
+$third-color: adjust_hue($main-color, -30);
+
+$link-color: $main-color;
 $main-font: Helvetica, sans-serif;
 
-body { color: $main-color; }
-a { color: $main-color; }
+body { 
+    color: $second-color;
+}
+a { color: $second-color; 
+font-family:$main-font;}
 
 #about {
+    border: 10px solid $third-color;
 	h1 {
 		font-family: $main-font;
 	}	
-	p, a {
+	p {
 		font-family: Georgia, serif;
 	}
 	ul {
