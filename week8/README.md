@@ -18,7 +18,7 @@ These are all of the files that will be uploaded to the server to install WordPr
 
 Now we will connect to the server.
 
-Use the Site Manager to connect to your wpmmp server, as we set up in [week 5](week5/).
+Use the Site Manager to connect to your wpmmp server, as we set up in [week 5](https://github.com/owenroberts/mmp350/tree/master/week5).
 
 Once you have connected, use the same process to drag your new WordPress files and folder onto your server at the **public_html** directory.
 
