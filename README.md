@@ -113,3 +113,7 @@ Responsive design
 	- index, blank and single HTML page templates
 	- Foundation classes and CSS for Desktop and Mobile
 	- Uploaded to wpmmp website
+
+**Week 8**
+- [Setting up WordPress theme and Database](week8/)
+- Midterm workshop
