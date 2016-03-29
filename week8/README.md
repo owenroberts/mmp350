@@ -4,7 +4,7 @@ To get started on setting up the server, we want to make sure that our developme
 
 To start, create a directory (folder) on your computer where you will save the WordPress files.  I’m going to put mine on the Desktop.
 
-<img src="https://raw.github.com/owenroberts/mmp350/master/week8/desktop.png" />
+<img src="https://raw.github.com/owenroberts/mmp350/master/week8/install/desktop.png" />
 
 It’s important to start your project with good organization, because the files need to be transferred to the server in the correct directories for your website to work.
 
@@ -12,7 +12,7 @@ Once you have created you directory, download WordPress from the <a href="http:/
 
 When WordPress has finished downloading, unzip the package and move the files contained in the WordPress directory into your portfolio directory.  Do not move the folder itself.
 
-<img src="https://raw.github.com/owenroberts/mmp350/master/week8/download.png" />
+<img src="https://raw.github.com/owenroberts/mmp350/master/week8/install/download.png" />
 
 These are all of the files that will be uploaded to the server to install WordPress.
 
@@ -28,13 +28,13 @@ Once this is done, you will be able to set up your WordPress install online.  Go
 
 You should see this (possibly after clicking through a security warning):
 
-<img src="https://raw.github.com/owenroberts/mmp350/master/week8/wp.png" />
+<img src="https://raw.github.com/owenroberts/mmp350/master/week8/install/wp.png" />
 
 Here comes the tricky part!
 
 You will see a window like this:
 
-<img src="https://raw.github.com/owenroberts/mmp350/master/week8/db.png" />
+<img src="https://raw.github.com/owenroberts/mmp350/master/week8/install/db.png" />
 
 In order to actually install our WordPress server we need to create a database and establish a connection through MySQL.  Most modern web hosting companies will do all of this for you but we have to do a couple things ourselves.
 
@@ -44,29 +44,29 @@ Your username and password will be the same.
 
 Once you are logged in look for the MySQL Databases icon.  Click that to create a new Database.
 
-<img src="https://raw.github.com/owenroberts/mmp350/master/week8/mysql.png" />
+<img src="https://raw.github.com/owenroberts/mmp350/master/week8/install/mysql.png" />
 
 Fill in the **Create New Database** and write down the name of the database.  We can only have one, so make sure it is a generic name.  Once you have created the Database you should go to a new page.  Click “Go Back”.
 
 You will see this message:
 
-<img src="https://raw.github.com/owenroberts/mmp350/master/week8/server.png" />
+<img src="https://raw.github.com/owenroberts/mmp350/master/week8/install/server.png" />
 
 Remember the **mysqlsvr** token, we will need it in a minute.
 
 Now we need to add a user:
 
-<img src="https://raw.github.com/owenroberts/mmp350/master/week8/user.png" />
+<img src="https://raw.github.com/owenroberts/mmp350/master/week8/install/user.png" />
 
 Create your user name.  This is only for the Database, so it doesn’t have to match your regular username, but you do have to remember it.  Fill in the password and click Create User.  Click “Go Back”.  Once the user has been created you still need to add it to the Database.  **Write down the username and password**.
 
 Find “Add User to Database” and click Add.
 
-<img src="https://raw.github.com/owenroberts/mmp350/master/week8/adduser.png" />
+<img src="https://raw.github.com/owenroberts/mmp350/master/week8/install/adduser.png" />
 
 You will see a page for privileges.  Select the All Privileges button at the top:
 
-<img src="https://raw.github.com/owenroberts/mmp350/master/week8/priveleges.png" />
+<img src="https://raw.github.com/owenroberts/mmp350/master/week8/install/priveleges.png" />
 
 Click **Make Changes**.
 
@@ -76,7 +76,7 @@ Choose the language.
 
 You will then need to fill in your database information here:
 
-<img src="https://raw.github.com/owenroberts/mmp350/master/week8/info.png" />
+<img src="https://raw.github.com/owenroberts/mmp350/master/week8/install/info.png" />
 
 Again, this info is only for you database.  You will be able to choose a different username and login once the WordPress is connected.  For table prefix, use something like **wp_portfolio_**.  This is used to divide up the database so it can be used for more than one WP blog.  The under score will help make the file names easier to read and parse.
 
@@ -84,7 +84,7 @@ Click **Submit** and then click **Run the Install**.
 
 You will now see this screen:
 
-<img src="https://raw.github.com/owenroberts/mmp350/master/week8/welcome.png" />
+<img src="https://raw.github.com/owenroberts/mmp350/master/week8/install/welcome.png" />
 
 Fill in the info you want to use to actually log into your WordPress account.  Your username and password should be something you will remember.  They don’t have to be the username for FileZilla, or the Database.
 
@@ -92,7 +92,7 @@ Click **Install WordPress**.
 
 Click **Login**.  You should see this:
 
-<img src="https://raw.github.com/owenroberts/mmp350/master/week8/username.png" />
+<img src="https://raw.github.com/owenroberts/mmp350/master/week8/install/username.png" />
 
 Remember the URL of that page because this is how you will log in to WordPress in the future.
 
@@ -108,11 +108,11 @@ The may be an error with the WordPress servers which prevents uploading new cont
 
 In FileZilla, go to the root of your WordPress install and create a new folder called **tmp**.
 
-<img src="https://raw.github.com/owenroberts/mmp350/master/week8/wpinstall.png" />
+<img src="https://raw.github.com/owenroberts/mmp350/master/week8/install/wpinstall.png" />
 
-<img src="https://raw.github.com/owenroberts/mmp350/master/week8/tmp.png" />
+<img src="https://raw.github.com/owenroberts/mmp350/master/week8/install/tmp.png" />
 
-<img src="https://raw.github.com/owenroberts/mmp350/master/week8/tmpcreated.png" />
+<img src="https://raw.github.com/owenroberts/mmp350/master/week8/install/tmpcreated.png" />
 
 **Step 2**
 
@@ -128,15 +128,15 @@ Make sure to replace username with your username.
 
 Save the file as **php.ini** in your local WordPress install. 
 
-<img src="https://raw.github.com/owenroberts/mmp350/master/week8/save.png" />
+<img src="https://raw.github.com/owenroberts/mmp350/master/week8/install/ave.png" />
 
 Then upload that file using FileZilla.
 
-<img src="https://raw.github.com/owenroberts/mmp350/master/week8/ini.png" />
+<img src="https://raw.github.com/owenroberts/mmp350/master/week8/install/ini.png" />
 
 Open **wp-admin** on the remote site and upload the file again.
 
-<img src="https://raw.github.com/owenroberts/mmp350/master/week8/ini2.png" />
+<img src="https://raw.github.com/owenroberts/mmp350/master/week8/install/ini2.png" />
 
 That’s it.  You will now be able to use the Dashboard, upload media, add new themes, and begin to develop your WordPress blog.
 
