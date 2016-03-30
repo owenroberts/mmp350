@@ -1,3 +1,5 @@
+[Setting up WordPress themes](http://owenroberts.github.io/mmp350/week8/)
+
 ##Setting up WP servers and MySQL database
 
 To get started on setting up the server, we want to make sure that our development environment is ready to go.  We’re going to be editing the files for our WordPress blogs on our machines.  If you want to use your laptop or classroom computer that’s fine, at a later time we’ll go over methods for making the files available on multiple machines.
