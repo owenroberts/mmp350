@@ -117,3 +117,6 @@ Responsive design
 **Week 8**
 - [Setting up WordPress theme and Database](week8/)
 - Midterm workshop
+
+**Week 9**
+- [Building a WP Theme: index.php](http://owenroberts.github.io/mmp350/week8/)
