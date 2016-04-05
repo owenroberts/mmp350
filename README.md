@@ -119,4 +119,7 @@ Responsive design
 - Midterm workshop
 
 **Week 9**
-- [Building a WP Theme: index.php](http://owenroberts.github.io/mmp350/week8/)
+- [Building a WP Theme: index.php](http://owenroberts.github.io/mmp350/week9/)
+
+**Week 9**
+- [Building a WP Theme: header](http://owenroberts.github.io/mmp350/week10/)
