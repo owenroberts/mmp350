@@ -22,9 +22,9 @@
 			<p><a href="https://github.com/owenroberts/mmp350">MMP 350</a> > <a href="https://github.com/owenroberts/mmp350/tree/master/week10/">Week 10</a></p>
 		</div>
         <div class="slide">        
-            <p>First we’ll start with the header. &nbsp;In your local directory, create a new file called <strong>header.php</strong>.</p>
+            <p>First we’ll start with the header.  In your local directory, create a new file called <strong>header.php</strong>.</p>
             <img src="imgs/files.png">
-            <p>In this file we want to set up the header of our website, which will include the name of the site and any navigation or other aspects that we want to appear on every page. &nbsp;This will be dependent on your wireframe design. &nbsp;You may not have navigation or even a header on your pages so you may want to take these out later. &nbsp;But you will need the basic info that is required at the top of every web page.</p>
+            <p>In this file we want to set up the header of our website, which will include the name of the site and any navigation or other aspects that we want to appear on every page.  This will be dependent on your wireframe design.  You may not have navigation or even a header on your pages so you may want to take these out later.  But you will need the basic info that is required at the top of every web page.</p>
         </div>
         <div class="slide">
             <p>I’m going to copy and paste the content from <strong>index.php</strong> that I want to appear in <strong>header.php</strong>.</p>
@@ -36,18 +36,18 @@
              <p>The header includes import stuff like the CSS link and other meta information.</p>
         </div>
         <div class="slide">
-            <p>Once we’ve copied the header over, go back to <strong>index.php&nbsp;</strong>and add a line of php to retrieve the header when the page is loaded. &nbsp;WordPress provides a nice function for us to do that, get_header().</p>
+            <p>Once we’ve copied the header over, go back to <strong>index.php </strong>and add a line of php to retrieve the header when the page is loaded.  WordPress provides a nice function for us to do that, get_header().</p>
             <pre><code>&lt;?php get_header(); ?&gt;</code></pre>
         </div>
         <div class="slide">
-            <p>In our header, we will also want to have a menu for our site. &nbsp;In order to use the menu function from WordPress, we need to establish a link to the menu in our&nbsp;<strong>functions.php</strong> file. &nbsp;So we’re going to create that file in our local theme directory and add the following script to add a menu option to the Dashboard where we can then use the Dashboard interface to drag and drop menu items.</p>
+            <p>In our header, we will also want to have a menu for our site.  In order to use the menu function from WordPress, we need to establish a link to the menu in our <strong>functions.php</strong> file.  So we’re going to create that file in our local theme directory and add the following script to add a menu option to the Dashboard where we can then use the Dashboard interface to drag and drop menu items.</p>
             <p>For now, add the following code in functions.php:</p>
             <pre><code>&lt;?php
     register_nav_menu('main-menu', 'Main Menu');
 ?></code></pre>
         </div>
         <div class="slide">
-            <p>Once&nbsp;<strong>functions.php</strong> has been uploaded, the Menus option will appear in the WordPress Dashboard:</p>
+            <p>Once <strong>functions.php</strong> has been uploaded, the Menus option will appear in the WordPress Dashboard:</p>
             <img src="imgs/menus.png">
         </div>
         <div class="slide">
@@ -55,7 +55,7 @@
             <img src="imgs/mainmenu.png">
         </div>
         <div class="slide">
-            <p>For this menu to appear in the header, a php script must be added to&nbsp;<strong>header.php</strong>:</p>
+            <p>For this menu to appear in the header, a php script must be added to <strong>header.php</strong>:</p>
             <pre><code>&lt;?php $main_menu_top = array(
     'theme-location' => 'main-menu',
     'container' => 'nav'
@@ -63,6 +63,12 @@
 ?&gt;
 &lt;?php wp_nav_menu( $main_menu_top ); ?&gt;</code></pre>
         </div>
+
+        <div class="slide">
+            <p><code>$main_menu_top</code> is a <strong>variable</strong> in php syntax.  The dollar sign $ indicated a variable declaration.  In this case the variable is an array, which is actually more like a dictionary or map object in php.  A php array consists of key value pairs, in this case <code>'theme-location'</code> is a key with the value <code>'main-menu'</code> and <code>'container'</code> is a key with the value <code>'nav'</code> assigned with the <code>=></code> assignment operator.</p>
+            <p>The line <code>wp_nav_menu( $main_menu_top );</code> is a function that takes the <code>$main_menu_top</code> variable and uses the values to construct the right menu based on the WordPress menu.  The theme location is specified in the Appearance > Menus section and the container will be a <code>&lt;nav&gt;</code> element.</p>
+        </div>
+
         <div class="slide">
             <p>Those lines should completely replace the HTML menu in the template:</p>
             <pre><code>&lt;nav class="menu"&gt;
@@ -72,7 +78,7 @@
         &lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href="#"&gt;Blog&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
-&lt;/nav&gt; <!-- end menu --></code></pre>
+&lt;/nav&gt;</code></pre>
         </div>
         <div class="slide">
             <p>This php will generate the menu structure based on the menu and classes set up in the dashboard.</p>
@@ -82,7 +88,7 @@
             <p><a href="http://codex.wordpress.org/Navigation_Menus">More info on WordPress menus</a>.</p>
         </div>
         <div class="slide">
-            <p>Try creating&nbsp;<strong>footer.php</strong> in the same manner that we just created&nbsp;<strong>header.php</strong>. &nbsp;Depending on your site design/wireframe, you may have another navigation menu to add, or links to social networks, or other items that could appear on every page.</p>
+            <p>Try creating <strong>footer.php</strong> in the same manner that we just created <strong>header.php</strong>.  Depending on your site design/wireframe, you may have another navigation menu to add, or links to social networks, or other items that could appear on every page.</p>
         </div>
        
     </div>
