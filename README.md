@@ -121,5 +121,8 @@ Responsive design
 **Week 9**
 - [Building a WP Theme: index.php](http://owenroberts.github.io/mmp350/week9/)
 
-**Week 9**
+**Week 10**
 - [Building a WP Theme: header](http://owenroberts.github.io/mmp350/week10/)
+
+**Week 11**
+- [Building a WP Theme: WP loop & front-page.php](http://owenroberts.github.io/mmp350/week11/)
