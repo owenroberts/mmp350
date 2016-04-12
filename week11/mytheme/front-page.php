@@ -12,7 +12,7 @@
 				
 				<div class="content">
                     <a href="<?php the_permalink(); ?>">
-                        <?php the_content(); ?>
+                        <?php the_post_thumbnail(); ?>
                     </a>
 				</div>
                 <p><?php the_category(","); ?></p>
