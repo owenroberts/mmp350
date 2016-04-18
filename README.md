@@ -127,3 +127,6 @@ Responsive design
 **Week 11**
 - [Building a WP Theme: WP loop & front-page.php](http://owenroberts.github.io/mmp350/week11/)
 - [Building a WP Theme: styling front-page.php](http://owenroberts.github.io/mmp350/week11/foundation.html)
+
+**Week 12**
+- [Building a WP Theme: footer.php](http://owenroberts.github.io/mmp350/week12/)  
