@@ -131,3 +131,6 @@ Responsive design
 **Week 12**
 - [Building a WP Theme: footer.php](http://owenroberts.github.io/mmp350/week12/)  
 - [Building a WP Theme: category.php, page.php, single.php](http://owenroberts.github.io/mmp350/week12/pages.html)  
+
+**Week 13**
+- [Building a WP Theme: widgets & sidebar.php](http://owenroberts.github.io/mmp350/week13/)  
