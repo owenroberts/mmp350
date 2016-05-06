@@ -136,6 +136,6 @@ Responsive design
 - [Building a WP Theme: widgets & sidebar.php](http://owenroberts.github.io/mmp350/week13/)
 - [Building a WP Theme: image gallery](http://owenroberts.github.io/mmp350/week13/gallery.html) 
 
-**Week 13**
+**Week 14**
 - [Building a WP Theme: post formats](http://owenroberts.github.io/mmp350/week14/) 
 - [Building a WP Theme: theme branding and final template pages](http://owenroberts.github.io/mmp350/week14/final.html) 
