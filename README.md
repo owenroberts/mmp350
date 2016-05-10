@@ -139,3 +139,38 @@ Responsive design
 **Week 14**
 - [Building a WP Theme: post formats](http://owenroberts.github.io/mmp350/week14/) 
 - [Building a WP Theme: theme branding and final template pages](http://owenroberts.github.io/mmp350/week14/final.html) 
+
+**Week 15**
+- Final project workshop
+- Final project requirements
+	- WordPress theme template files.  This should be a zipped archive with all of your PHP and SASS files, as well as any image assets that are used for the theme.
+	- Working installation of WordPress theme on the BMCC server with your portfolio work added.
+	- Final Breakdown
+		- Concept (10) 
+			- The theme/portfolio should be clear in concept and execution.  Include the concept in the description in the style.css file.
+		- Visual Design (20) 
+			- Overall Impression: does the visual design fit the concept for this theme? This is about the atmosphere and feel of the site. Much of this is conveyed by the fonts, colors and images and graphic embellishments (icons, shadows, borders etc).
+			- Parts of the page are clearly visible: header, nav, content, footer etc. and the relative importance.
+			- This includes support for responsive or mobile design.
+
+		- Content (15)
+			- Is the content of your portfolio appropriate for the theme?  There should be images or videos, descriptions and links (if available) for all of the projects in the portfolio.
+
+		- Template Files (35) - These are the WordPress files we have been working on this semester.  For the theme to work correctly all of these files must be included.
+			- index.php: default page. Required of all themes
+			- 404.php : Shows if a page or post is now found. the only one where you don’t need a content- because there is no loop
+			- search.php: shows the search results
+			- archive.php: shows list of category/tag/date/author posts
+			- single.php: shows a single post
+			- page.php: single page (like about or bio)
+			- home.php: can be used for blog.
+			- header.php: Includes doctype, opening html, head and opening body tags, navigation
+			- footer.php: Includes footer and closing body and html tags.
+			- sidebar.php
+			- functions.php
+			- favicon.png
+			- screenshot.png
+		- Theme Functionality (20)
+			- Menus (Navigation)
+			- Featured Images
+			- Widget Areas (at least one)
