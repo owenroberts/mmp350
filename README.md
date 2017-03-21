@@ -1,4 +1,4 @@
-#MMP 350: Advanced Web Design
+# MMP 350: Advanced Web Design
 
 Spring 2016  
 Monday and Wednesday  
@@ -11,7 +11,7 @@ Office S622C
 Office Hours  
 Monday, Wednesday, Thursday: 4pm - 5pm
 
-###Course Description
+### Course Description
 This course gives the students the tools to build standards-compliant, accessible, dynamic web sites. Students will incorporate client-side and server-side scripting with advanced CSS to create intuitive and interactive web interfaces. The learning will take placed in the context of a content management system. Contemporary web development processes and platforms will be explored. A foundational knowledge of programming concepts, HTML, CSS and design for the web is required for this course.
 
 Students will write HTML, CSS JavaScript and PHP using Sublime Text editor. They will use image editing programs, Photoshop to create graphics for web sites. They will require a WordPress blog for each student to which they must be able to FTP files.
@@ -19,10 +19,10 @@ Students will write HTML, CSS JavaScript and PHP using Sublime Text editor. They
 Course site: [github.com/owenroberts/mmp350](https://github.com/owenroberts/mmp350)  
 Course notes: [owenroberts.github.io/mmp350/](http://owenroberts.github.io/mmp350/)
 
-###Attendance
+### Attendance
 At BMCC, the maximum number of absences is limited to one more hour than the number of hours a class meets in one week. For example, you may be enrolled in a four-hour class. In that class, you would be allowed 5 hours of absence (not 5 days). In the case of excessive absences, the instructor has the option to lower the grade or assign an F or WU grade.
 
-###Grading
+### Grading
 
 10% | Teacher evaluation and attendance  
 30% | Assignments  
@@ -36,7 +36,7 @@ Publisher: Wiley, John & Sons, Incorporated
 ISBN 978-1118600757; 1118600754  
 *The text book is not required
 
-###Outline of Topics:
+### Outline of Topics:
 - Web site Project Planning
 - Content Management Systems
 - Interactivity through Client-Side Scripting
@@ -49,7 +49,7 @@ ISBN 978-1118600757; 1118600754
 
 *Topics and schedule are subject to change throughout semester
 
-###Learning objectives:
+### Learning objectives:
 
 Planning
 - Research
@@ -82,7 +82,7 @@ Deploy
 Responsive design
 - Designing for multiple platforms
 
-###Schedule
+### Schedule
 
 **Week 1**
 - Introduction: Course, WordPress (WP) development environment and Class Project
