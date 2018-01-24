@@ -1,0 +1,11 @@
+{
+  "name": "firebase",
+  "version": "1.0.0",
+  "description": "test mmp 350 firebase db",
+  "main": "index.js",
+  "scripts": {
+    "test": "index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

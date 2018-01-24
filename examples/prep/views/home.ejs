@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Prep app</title>
+	<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+	<script>
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyDmVbZF0WuQWSr_n_X5uuzX1jK7C1OQLS0",
+			authDomain: "mmp-350-test.firebaseapp.com",
+			databaseURL: "https://mmp-350-test.firebaseio.com",
+			projectId: "mmp-350-test",
+			storageBucket: "mmp-350-test.appspot.com",
+			messagingSenderId: "399876902262"
+		};
+		firebase.initializeApp(config);
+	</script>
+</head>
+<body>
+	<h1>Prep</h1>
+	<p>Life</p>
+
+	<p>Login with Firebase</p>
+
+	<form method="POST">
+		<p>Enter your breakfast: <input type="text" name="breakfast"></p>
+		<button type="submit">Submit</button>
+	</form>
+
+	<p id="google-display-name"></p>
+	<img id="google-pic" src="" alt="">
+	<p id="google-email"></p>
+
+
+	<button id="login_btn" onclick={signInWithGoogle()}>Log in with Google</button>
+	<button id="logout_btn" onclick={signOut()}>Log out</button>
+	<script type="text/javascript" src="js/firebaseAuth.js"></script>
+</body>
+</html>

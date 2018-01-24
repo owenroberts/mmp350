@@ -34,7 +34,7 @@ Textbook: [Smashing WordPress: Beyond the Blog, 4th edition](http://www.amazon.c
 Author: Thord Daniel Hedengren  
 Publisher: Wiley, John & Sons, Incorporated  
 ISBN 978-1118600757; 1118600754  
-*The text book is not required
+*The text book is not required*
 
 ### Outline of Topics:
 - Web site Project Planning
@@ -47,7 +47,7 @@ ISBN 978-1118600757; 1118600754
 - Wireframing and prototyping
 - Github
 
-*Topics and schedule are subject to change throughout semester
+*Topics and schedule are subject to change throughout semester*
 
 ### Learning objectives:
 
@@ -174,3 +174,4 @@ Responsive design
 			- Menus (Navigation)
 			- Featured Images
 			- Widget Areas (at least one)
+
