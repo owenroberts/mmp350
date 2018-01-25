@@ -32,9 +32,12 @@
 	<img id="google-pic" src="" alt="">
 	<p id="google-email"></p>
 
+	<p>Add rest: <input type="text" id="addRest"></p>
+	<button onclick={addRest()}>Submit</button>
 
 	<button id="login_btn" onclick={signInWithGoogle()}>Log in with Google</button>
 	<button id="logout_btn" onclick={signOut()}>Log out</button>
 	<script type="text/javascript" src="js/firebaseAuth.js"></script>
+	<script type="text/javascript" src="js/firebaseVoting.js"></script>
 </body>
 </html>
