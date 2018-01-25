@@ -23,17 +23,29 @@
 
 	<p>Login with Firebase</p>
 
-	<form method="POST">
+<!-- 	<form method="POST">
 		<p>Enter your breakfast: <input type="text" name="breakfast"></p>
 		<button type="submit">Submit</button>
-	</form>
+	</form> -->
 
 	<p id="google-display-name"></p>
-	<img id="google-pic" src="" alt="">
+	<img id="google-pic" src="" alt="" width="128">
 	<p id="google-email"></p>
 
 	<p>Add rest: <input type="text" id="addRest"></p>
 	<button onclick={addRest()}>Submit</button>
+
+	<div>
+		<% const keys = Object.keys(rest); %>
+
+		<% keys.forEach(function(key) { %>
+			<% let all = rest[key].votes ? Object.keys(rest[key].votes).length : 0; %>
+			<p>Name: <%= rest[key].name %></p>
+			<p>Votes: <%= all %></p>
+			<button onclick={upvote("<%= key %>")}>Upvote</button>
+			<button onclick={downvote("<%= key %>")}>Downvote</button>
+		<% }); %>
+	</div>
 
 	<button id="login_btn" onclick={signInWithGoogle()}>Log in with Google</button>
 	<button id="logout_btn" onclick={signOut()}>Log out</button>

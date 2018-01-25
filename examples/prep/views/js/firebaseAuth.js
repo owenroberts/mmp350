@@ -1,6 +1,5 @@
 function checkIfLoggedIn() {
 	firebase.auth().onAuthStateChanged(function(user){
-		console.log(user);
 		if (user) {
 			document.getElementById('google-pic').src = user.photoURL;
 			document.getElementById('login_btn').style.display = "none";

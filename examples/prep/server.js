@@ -8,6 +8,7 @@ const firebaseAdmin = admin.initializeApp({
 	credential: admin.credential.cert(serviceAccount),
 	databaseURL: 'https://mmp-350-test.firebaseio.com'
 });
+const db = firebaseAdmin.database();
 
 const app = express();
 app.use(bodyParser.json());
@@ -18,12 +19,17 @@ app.set('views', __dirname + '/views');
 app.use(express.static('views'));
 
 function isAuthenticated(request, response, next) {
-
+	next();
 }
 
 app.get('/', function(request, response) {
-	//response.send("<h1>I'm alive!</h1>");
-	response.render('home.ejs');
+	const restRef = db.ref('/rest');
+	restRef.once('value', function(snapshot) {
+		response.render('home.ejs', {
+			rest: snapshot.val()
+		});
+	});
+	
 });
 
 app.get('/queen', isAuthenticated, function(request, response) {
