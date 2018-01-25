@@ -1,5 +1,10 @@
 # MMP 350: Advanced Web Design
 
+Course site: http://owenroberts.github.io/mmp350
+
+<!-- 
+# MMP 350: Advanced Web Design
+
 Spring 2016  
 Monday and Wednesday  
 7:30pm - 9:10pm  
@@ -175,3 +180,6 @@ Responsive design
 			- Featured Images
 			- Widget Areas (at least one)
 
+
+
+-->
