@@ -1,6 +1,7 @@
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+const functions = require('firebase-functions');
 
 const admin = require('firebase-admin');
 const serviceAccount = require('./mmp-350-test-firebase-adminsdk-j9cue-60dd382833.json');
@@ -29,7 +30,6 @@ app.get('/', function(request, response) {
 			rest: snapshot.val()
 		});
 	});
-	
 });
 
 app.get('/queen', isAuthenticated, function(request, response) {
@@ -40,7 +40,9 @@ app.post('/', function(request, response) {
 	response.render('results.ejs', { data: request.body.breakfast });
 });
 
-const port = process.env.PORT || 8000;
-app.listen(port, function() {
-	console.log('App running on port', port);
-});
+// const port = process.env.PORT || 8000;
+// app.listen(port, function() {
+// 	console.log('App running on port', port);
+// });
+
+exports.app = functions.https.onRequest(app);
