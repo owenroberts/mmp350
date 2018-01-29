@@ -64,6 +64,23 @@ week: 1
 <hl>['red', 'blue', 'green', 'yellow']</hl></code></pre>
 </div>
 
+<div class="slide">
+	<h2>Running node files</h2>
+	<p>The console is useful but most of the time we're writing JavaScript we'll be doing it in files.  We can execute a node file using the <code>node</code> command.  Make a file:</p>
+	<pre><code>touch count.js</code></pre>
+	<p>We'll write a simple counter:</p>
+	<pre><code>let count = 100;
+function countDown() {
+	console.log(count);
+	count--;
+	if (count > 0)
+		setTimeout(countDown, 50);
+}
+setTimeout(countDown, 50);</code></pre>
+	<p>Run it with the following command:</p>
+	<pre><code>node count.js</code></pre>
+</div>
+
 <!-- 
 - some basics in node console
 	- number and string
