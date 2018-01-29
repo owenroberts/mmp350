@@ -1,0 +1,93 @@
+---
+layout: slides
+title: Introduction to NodeJS
+week: 1
+---
+
+<div class="slide">
+	<h2>NodeJS</h2>
+	<p>JavaScript was originally written and popularized as a front-end or client-side programming language.  NodeJS is an implementation of JavaScript based on the Chrome V8 JavaScript Engine.  It allows programmers to create server-side programs written in JavaScript.</p>
+	<p>NodeJS has become popular because web programmers are familiar with JavaScript and because it uses events and asynchronous I/O to make highly scalable web applications.</p>
+</div>
+
+<div class="slide">
+	<h2>Client vs. Server</h2>
+	<p>One of the main topics of this class is the separation of client side and server side programs used by web based applications.</p>
+	<p>Every time a website or information is accessed through the Internet it involves an interaction between a client, or user, and server, or centralized program.</p>
+	<p>We're going to learn how to send and receive requests from a server and render the information on a client or browser.</p>
+</div>
+
+<div class="slide">
+	<h2>Servers</h2>
+	<p>A server is basically code running on computer which serves information to different users.  A server can be any computer but usually it is a powerful computer or network of computers.</p>
+	<p>Web servers are designed to receive request using specific protocols.  A protocol is sort of like a language or series or steps that both computers have agreed on the meaning of.  HTTP is one protocol that is often used.  Servers also use specific file types like HTML, XML, JSON and media types like .gif, .png, and .jpg.</p>
+	<p>There a many different programming languages used to create servers, like PHP, Ruby, Python, Java and now JavaScript.  The program will open a socket on the server to accept requests from clients.  The socket is like a doorway with an address, allowing clients to request contents from the server machine.</p>
+</div>
+
+<div class="slide">
+	<h2>Clients</h2>
+	<p>A typical client program is a web browser.  A web browser takes a request from a user, retrieves content from a server, and renders that content for the user to view and interact with.</p>
+	<p>What are some other web clients?</p>
+</div>
+
+<div class="slide">
+	<h2>JavaScript basics</h2>
+	<p>We can start writing some NodeJS code in the node console in the Terminal.  In your Terminal application, simply type the command <code>node</code>.  You will see a little prompt <code>&lt;</code> where you can write JavaScript.  This is similar to the JavaScript console in Chrome.</p>
+	<p>Let's review some JavaScript basics.</p>
+</div>
+
+<div class="slide">
+	<p>Variables can be declared using <code>var</code>, <code>let</code> or <code>const</code>.  Variable types include <code>strings</code>, <code>numbers</code>, <code>booleans</code>.</p>
+	<pre><code><c></c>var name = "Jerry";
+<c></c>name
+<hl>Jerry</hl>
+<c></c>typeof name
+<hl>string</hl></code></pre>
+	<pre><code><c></c>let n = 7;
+<c></c>typeof n
+<hl>number</hl></code></pre>
+</div>
+
+<div class="slide">
+	<p>Arrays are lists of variables.</p>
+	<pre><code><c></c>const colors = ['red', 'blue', 'green'];
+<c></c>colors
+<hl>['red', 'blue', 'green']</hl>
+<c></c>typeof colors
+<hl>object</hl>
+<c></c>colors.length
+<hl>3</hl>
+<c></c>colors[0]
+<hl>red</hl>
+<c></c>colors.push('yellow');
+<c></c>colors
+<hl>['red', 'blue', 'green', 'yellow']</hl></code></pre>
+</div>
+
+<!-- 
+- some basics in node console
+	- number and string
+- running a file
+	- make some .js file
+ -->
+
+<!-- <div class="slide">
+	<style>
+		#editor {
+			width: 100%;
+			/*height: 200px;*/
+		}
+	</style>
+	<pre id="editor">function fart() {
+	let fart = "fart";
+	return fart;
+}
+fart();</pre>
+</div>
+
+<script src="{{site.url}}{{site.baseurl}}/slides/ace/ace.js"></script>
+<script>
+	var editor = ace.edit("editor");
+	editor.setTheme("ace/theme/tomorrow_night");
+	editor.session.setMode("ace/mode/javascript");
+</script> -->

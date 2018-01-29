@@ -1,0 +1,55 @@
+---
+layout: slides
+title: Node Setup
+week: 1
+---
+
+<div class="slide">
+	<p>We don't have admin priveleges on the classroom machines, so we need to set up a special folder for our software in order to have a working development environment.  This should be relatively straight forward but we'll take some time to make sure everyone has this working.</p>
+</div>
+
+<div class="slide">
+	<p>Start by opening terminal.</p>
+	<p>From any directory, execute the following commands:</p>
+	<pre><code>git clone --depth=1 https://github.com/Homebrew/homebrew.git ~/.brew</code></pre>
+	<p>This installs a package manager called <note>Homebrew</note> into our user directory.  This will make it easy for us to install <note>NodeJS</note> and other software to our user directory instead of the root directory.</p>
+</div>
+
+<div class="slide">
+	<p>Use this command to open <code>~/.bash_profile</code>:</p>
+	<pre><code>open ~/.bash_profile</code></pre>
+	<p>It should open in TextEdit.  If the terminal reponds with <code>The file ... does not exist.</code> use this command to create it:</p>
+	<pre><code>touch ~/.bash_profile</code></pre>
+	<p>Then use <code>open</code> again.</p>
+	<p>Copy and paste the following line into the text document, save it and quit TextEdit.</p>
+	<pre><code>export PATH="$HOME/.brew/bin:$HOME/.brew/sbin:$PATH"</code></pre>
+	<p>This line tell the terminal where to find <code>Homebrew</code> because it is an unconventional folder.</p>
+	<p>Finally, use this command to load the new file:</p>
+	<pre><code>source ~/.bash_profile</code></pre>
+</div>
+
+<div class="slide">
+	<p>Okay, great.  Now lets upate <note>Homebrew</note> and install <note>Node</note>.</p>
+	<p></p>
+	<pre><code>brew update
+brew doctor
+brew install node</code></pre>
+	<p>That last command is going to take a while.  Open a new terminal window and try some Unix practice.</p>
+</div>
+
+<div class="slide">
+	<p>Once Node is installed, run these commands.  You should see something similar to the comments returned from the terminal.</p>
+	<pre><code class="javascript">which node 
+<hl>/Users/username/.brew/bin</hl>
+node --version
+node -v
+<hl>v6.11.1</hl>
+npm -v
+<hl>3.10.10</hl></code></pre>
+	<p>This will tell you if node was successfully installed.  We also need <note>npm</note> which is the node package manager, a tool to downloading libraries and dependencies we will need to build a website.</p>
+</div>
+
+<div class="slide">
+	<p>This process might not be perfectly smooth at first but we will make sure every one has it working before moving on.</p>
+</div>
+
