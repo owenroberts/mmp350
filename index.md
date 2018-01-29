@@ -9,6 +9,7 @@ The class notes, schedule and assignments are all found here.
 
 
 - [Schedule](schedule.html)
+- <a href="http://piratepad.net/mmp350" target="blank">Public Pad</a>
 - <a href="https://mmp350.slack.com/" target="blank">Slack channel</a>
 - <a href="https://docs.google.com/document/d/1r0CXReuT_GRplzgtCbvuWBEyAPxe09IDOWDA9FNsceM/" target="blank">Class syllabus</a>
 - [Student Work](studentwork/)
