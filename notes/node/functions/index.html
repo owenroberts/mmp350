@@ -4,3 +4,130 @@ title: Functions & Callbacks
 week: 2
 ---
 
+<div class="slide">
+	<p>Functions are blocks of code that can be called repeatedly.  Functions are defined like variables but have parentheses following the function name. The parentheses <code>()</code> are an operator like <code>+</code> or <code>=</code> that are used to <note>invoke</note> or call a function.</p>
+</div>
+
+<div class="slide">
+	<p>There a two primary ways to write a function.</p>
+	<pre><code>// function declaration
+function foo() {
+	console.log("Hello :)");
+}</code></pre>
+<pre><code>// function statement 
+var bar = function() {
+	console.log("world");
+}; // ends with semi color because it's a statement</code></pre>
+	<p>Notice how nothing happens after we declare the function.  The function is defined, but the code won't run until it is called:</p>
+	<pre><code>foo();
+bar();</code></pre>
+</div>
+
+<div class="slide">
+	<h2>Arguments</h2>
+	<p>A function can also be written with <note>arguments</note>, which are variables that are declared within the parentheses of the function.</p>
+	<p>Think of a function like a machine that has a series of actions.  For example, a car can drive from one place to another, as many times as you want it to.  But that's not very useful if there's no one in the car.  You can put anyone you want to in a car and take them wherever you want.  If we think of a car as a function it has many possible inputs: people, an origin and destination, the amount of gas, speed, radio channel, etc.  And these input have a result.  People are carried from one place to another.</p>
+</div>
+
+<div class="slide">
+	<p>Let's write a function with arguments.</p>
+	<pre><code>function greet(name, greeting) {
+	console.log(greeting + ", " + name);
+}
+
+greet("Jenny", "Hello");
+greet("Jerry", "Hi");</code></pre>
+</div>
+
+<div class="slide">
+	<h2>Return</h2>
+	<p>Functions can also <code>return</code> values.  A return statement stops the function block and returns a value to whatever variable the function is assigned to.</p>
+	<pre><code>function add(n1, n2) {
+	return n1 + n2;
+}
+var x = add(2, 2);
+var y = add(x, 2);
+var z = add(x, y);
+console.log(add(x, y, z));</code></pre>
+</div>
+
+<div class="slide">
+	<h2>Anonymous functions</h2>
+	<p>Regular JavaScript functions need to be called after they are declared.  There are cases where we want a function to run immediately. These are anonymous functions, which self execute:</p>
+	<pre><code>(function() {
+	console.log("Hello world");
+})();</code></pre>
+			<pre><code>(function(msg) {
+	console.log(msg);
+})("Hello world.");</code></pre>
+</div>
+
+<div class="slide">
+	<h2>setTimeout</h2>
+	<p>We've already seen an example where an anonymous function can be useful:</p>
+	<pre><code>setTimeout(function() {
+	console.log("Delayed hello world!");	
+}, 1000);</code></pre>
+	<p>The function argument used in a <code>setTimeout</code> is known as a callback function.</p>
+</div>
+
+<div class="slide">
+	<h2>Callbacks</h2>
+	<p>A callback is essentially when a function is passed as an argument into another function.  They are a very simple and powerful feature of JavaScript.</p>
+	<p>Callbacks are useful because they can be design to happen once something else has completed, for example, to load a page after a user has been authenticated.</p>
+	<p>Callbacks are used a lot in NodeJS program architecture.</p>
+	<p>They are often difficult for beginner's to fully understand.</p>
+</div>
+
+<div class="slide">
+	<p>Let's look at a simple example of passing a function to another function.</p>
+	<p>To start we're going to separate our count down program from last week into two separate functions:</p>
+	<pre><code>let count = 5;
+
+function countOne(n) {
+	count += n;
+}
+
+function printCount() {
+	console.log(count);
+}
+
+countOne(-1);
+printCount();</code></pre>
+</div>
+
+<div class="slide">
+	<p>This works assuming that the count happens right before the print count.  But what if we want to count down over time and add a delay to the <code>countOne</code> function:</p>
+	<pre><code>let count = 5;
+
+function countOne(n) {
+	setTimeout(function() {
+		count += n;
+	}, 1000);
+}
+
+function printCount() {
+	console.log(count);
+}
+
+countOne(-1);
+printCount();</code></pre>
+</div>
+
+<div class="slide">
+	<p>This prints the wrong number.  Instead of calling <code>printCount</code> directly after <code>countOne</code> we can add it as a callback, or argument, to wait for the count to happen.</p>
+	<pre><code>let count = 5;
+
+function countOne(n, callback) {
+	setTimeout(function() {
+		count += n;
+		callback();
+	}, 1000);
+}
+
+function printCount() {
+	console.log(count);
+}
+
+countOne(-1, printCount);</code></pre>
+</div>

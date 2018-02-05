@@ -4,3 +4,102 @@ title: Node Server
 week: 2
 ---
 
+<div class="slide">
+	<p>We're going to build two simple servers today in Node, as a way of showing how network communication works.</p>
+</div>
+
+<div class="slide">
+	<h2>TCP</h2>
+	<p>We'll start with a simple TCP connection that will echo back any message received by a client using NodeJS's NET module.</p>
+	<p>Node uses packags of code called modules which perform a lot of functions that would be tedious to program from scratch.  This will introduce the basic syntax for using a module.</p>
+	<p>Start by loading the module:</p>
+	<pre><code>const net = require('net');</code></pre>
+</div>
+
+<div class="slide">
+	<p>Next use the <code>net.createServer</code> method with a callback to establish a connection.</p>
+	<p>The callback waits until the connection is made and then performs the functions we will write next.</p>
+	<pre><code>net.createServer(function(socket) {
+    // this is our callback
+}).listen(5000); // listen on the localhost port 5000
+console.log("Tcp server started on localhost 5000");</code></pre>
+	<p>We can create the connection by running this program through terminal: <code>$ node tcp.js</code> and then open a second terminal window to connect with the server: <code>$ telnet localhost 5000</code>.</p>
+</div>
+
+<div class="slide">
+	<p>The <code>net</code> package has done a ton of stuff for us just to make this connection.  Now we can write inside the callback what should happen during the connection:</p>
+	<pre><code>// identify new client
+socket.name = socket.remoteAddress + ":" + socket.remotePort;
+console.log('connection:', socket.name);
+socket.write("Welcome to the tcp server\n");</code></pre>
+	<p>Note, when you change a node program, you have to close the current node program in Terminal and run it again.  Close the program using <span class="key">Vc</span>.</p>
+</div>
+
+<div class="slide">
+	<p>We can handle new data using an event listener:</p>
+	<pre><code>// incoming data event
+socket.on('data', function(data) {
+	console.log("Client said: " + data); // server log
+	socket.write("You said: " + data); // write to client
+});</code></pre>
+	<p>Notice this uses another callback for when the client connects.  Node is often a series of nested callbacks, so the structure can be complex.</p>
+</div>
+
+<div class="slide">
+	<p>We can also listen for when a client disconnects, using another event with a callback.</p>
+	<pre><code>// end event
+socket.on('end', function(){
+	console.log(socket.name, "left us.")
+});</code></pre>
+</div>
+
+<div class="slide">
+	<h2>HTTP</h2>
+	<p>A tcp connection is interseting, but HTTP is much more useful because that's what the World Wide Web works on.</p>
+	<p>We'll make a simple web page that counts visitors.</p>
+	<p>Start with loading the <code>http</code> node module, a port number and counter variable.</p>
+	<pre><code>const http = require('http');
+const port = 8000;
+let counter = 0;</code></pre>
+</div>
+
+<div class="slide">
+	<p>Next we'll establish a connection and set up another callback:</p>
+	<pre><code>http.createServer(function(request, response) {
+	// callback code
+}).listen(port);
+
+console.log("Server running at localhost:", port);</code></pre>
+	<p>Notice this callback has two arguments, <code>request</code> and <code>response</code>.  Every web connection has a request from the client and response from the server.</p>
+</div>
+
+<div class="slide">
+	<p>We've established a connection, but we need to tell the server program what to do when the URL is requested.  We'll start with a simple response.</p>
+	<pre><code>response.end("Hello World");</code></pre>
+	<p><code>.end()</code> sends a response and closes the connection.</p>
+	<p>Click here to see the server: <a href="http://localhost:8000" target="blank">localhost:8000</a>.</p>
+</div>
+
+<div class="slide">
+	<p>Okay, let's get some information from the request to make this more interesting:</p>
+	<pre><code>var path = request.url;
+console.log("requested=", path);
+response.writeHead(200, {'Content-Type': 'text/html'}); // prepare response headers</code></pre>
+</div>
+
+<div class="slide">
+	<p>Then we can use a conditional to decide which page to send the user:</p>
+	<pre><code>if (path == "/") {
+	response.end("Hello World. &lt;a href='/cool'&gt;Cool.&lt;/a&gt;");
+} else if (path == "/cool") {
+	response.end("This is page 2. &lt;a href='/'&gt;Back.&lt;/a&gt;"); 
+}</code></pre>
+</div>
+
+<div class="slide">
+	<p>Finally, let's use the server to count the visitors to the site:</p>
+	<pre><code class="javascript">counter = counter + 1; // no ++ in node
+console.log("counter=", counter);
+// new "/" response
+response.end("Hello World. You are visitor #" + counter + " &lt;a href='/cool'&gt;Cool.&lt;/a&gt;");</code></pre>
+</div>
