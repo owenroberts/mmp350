@@ -9,8 +9,8 @@ Go to [Home](index.html)
 **Introduction**
 - AKA "Bear with me"
 - [Command Line / OSX Terminal](notes/unix/)
-- [Setting up dev tools](notes/node_setup/)
-- [Intro to NodeJS](notes/node_intro/)
+- [Setting up dev tools](notes/node/setup/)
+- [Intro to NodeJS](notes/node/intro/)
 - *In class assignment*:
 	- Read Chapter 1 & 2: <a href="http://unixmages.com/ufbm.pdf" target="blank">Unix for the Beginning Mage</a>
 	- Use the command line to create a directory for the class on the Desktop, called `mmp350` with `mkdir`
@@ -20,23 +20,38 @@ Go to [Home](index.html)
 	- <a href="https://www.codecademy.com/courses/getting-started-v2/0/1" target="blank">Code Academy: Getting Started with JavaScript</a>
 - *Assignment 1: Website critique*
 	- Choose a website that you like or use often
-		- Do not use Facebook, Twitter, or other popular website
-		- If you don't have a site you want to use we can talk about options
+		- Do not use Facebook, Twitter, or another common website
+		- Ask me for options if you don't have a site you want to use
 	- Present the website to class
 	- Summarize the User Experience of the site: What does a user do?
 	- Include posting content if it is a dynamic site
 	- Note 2-3 design choices that work well
 	- Note 2-3 design choices that do not work as well
 
-
+## Week 2
+**Grid**
+- [Grid Systems](notes/grid/)
+- [Functions & callbacks](notes/node/functions/)
+- [Node Server](notes/node/server/)
+- **Assignment 2: Wireframe**
+	- Using the site you presented as a basis, design a wireframe for a desktop site
+	- Use your critique to improve any design problems you identified
+	- Start with pen and paper or simple sketches using Photoshop or [wireframe.cc](https://wireframe.cc/){:target="blank"}
+	- Use Photoshop, Illustrator or an online app to make a wireframe
+	- Finished wireframe must indicate percentages, units and measurements in order to be implemented
+	- Next week you will trade wireframes with another student to implement using HTML/CSS
 
 <!-- 
 
-week	| topics				| assignments		
-1		
-2
-3
-4
+node: conditionals, loops, arrays, objects, db
+
+week	| topics					| assignments		
+1		intro to node				web critique / analysis
+2		grids						wireframe
+		setting up node server
+		functions/callbacks
+3		css grid, flexbox			html and css for wireframe
+4		
 5
 6
 7

@@ -13,6 +13,9 @@ Resources
 - [Progressive enhancement](http://alistapart.com/article/understandingprogressiveenhancement)
 - [Wireframing for responsive design](https://www.smashingmagazine.com/2016/02/create-content-wireframes-for-responsive-design/)
 
+<!-- <li><a href="https://www.smashingmagazine.com/2016/11/css-grids-flexbox-box-alignment-new-layout-standard/" target="blank">Choosing a base unit</a></li>  
+use this instead of foundation -->
+
 ##Assignment 3: Front page wireframe
 - Draw three designs for the front page of your portfolio (can be Photoshop, Illustrator, hand drawn, Google Draw etc.)
 - Choose one design and make a wireframe in Photoshop
