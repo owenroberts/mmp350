@@ -72,6 +72,15 @@ console.log(add(x, y, z));</code></pre>
 </div>
 
 <div class="slide">
+	<p>Here is how this would look with a declared function:</p>
+	<pre><code>function delayedHello() {
+	console.log("Delayed hello world!");
+}
+setTimeout(delayedHello, 1000);</code></pre>
+	<p>Notice how the first argument of <code>setTimeout</code> is a function.</p>
+</div>
+
+<div class="slide">
 	<h2>Callbacks</h2>
 	<p>A callback is essentially when a function is passed as an argument into another function.  They are a very simple and powerful feature of JavaScript.</p>
 	<p>Callbacks are useful because they can be design to happen once something else has completed, for example, to load a page after a user has been authenticated.</p>
