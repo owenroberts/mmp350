@@ -3,3 +3,116 @@ layout: slides
 title: CSS Grid
 week: 3
 ---
+
+<div class="slide">
+	<p>Last week we made wireframes and swapped them with other students in the class.  Today we'll look at using CSS Grid properties to implement the wireframes in HTML and CSS.  This approach is based on the <a href="https://profstein.github.io/css-grid-basic-examples/" target="blank">CSS Grid notes by Professor Stein</a>.</p>
+</div>
+
+<div class="slide">
+	<h2>Columns</h2>
+	<p>CSS Grid simplifies the math of dividing a layout into even spaces.  We'll start with columns.  Rather than calculating percentages or adding together pixels, we can simply specify the number of columns to divvy out to child elements.</p>
+	<p>This used the fractional unit, <code>fr</code>.</p>
+</div>
+
+<div class="slide">
+	<p>For a grid with four columns.  Add or remove columns simply by changing the units.</p>
+	<pre><code>#container {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+}</code></pre>
+
+<pre><code>&lt;div id="container"&gt;
+	&lt;div&gt;One&lt;/div&gt;
+	&lt;div&gt;Two&lt;/div&gt;
+	&lt;div&gt;Three&lt;/div&gt;
+	&lt;div&gt;Four&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<p>Mixed units are also supported.  Throw in percentages or pixels and CSS will do the math for you.</p>
+	<pre><code>grid-template-columns: 100px 1fr 1fr 1fr;</code></pre>
+	<pre><code>grid-template-columns: 50% 1fr 1fr;</code></pre>
+</div>
+
+<div class="slide">
+	<h2>Repeat</h2>
+	<p>If you need a lot of the same units, use <code>repeat</code> instead of typing the all out:</p>
+	<pre><code>grid-template-columns: repeat(12, 1fr);</code></pre>
+	<p>Now we have 12 even columns.</p>
+</div>
+
+<div class="slide">
+	<p>Or repeat multiple units to make columns and gutters:</p>
+	<pre><code>grid-template-columns: repeat(6, 10px 1fr 10px);</code></pre>
+</div>
+
+<div class="slide">
+	<p>So far we've only looked at ways to set the container column number.  We can also set our child elements to use multiple columns in the grid.</p>
+	<pre><code>#container {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+}
+#one {
+	grid-column-start: 1;
+	grid-column-end: 6;
+}
+#two {
+	grid-column-start: 7;
+	grid-column-end: 8;
+}
+#three {
+	grid-column: 9 / 11;
+}
+#four {
+	grid-column: 11 / span 12;
+}</code></pre>
+</div>
+
+<div class="slide">
+	<pre><code>&lt;div id="container"&gt;
+	&lt;div id="one"&gt;One&lt;/div&gt;
+	&lt;div id="two"&gt;Two&lt;/div&gt;
+	&lt;div id="three"&gt;Three&lt;/div&gt;
+	&lt;div id="four"&gt;Four&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<h2>Rows</h2>
+	<p>We can create rows for our content with similar syntax.  We can specify a number of rows according to their height.  We can also use the new unit <code>max-content</code> to tell the row to size to fit the largest content.</p>
+</div>
+
+<div class="slide">
+	<pre><code>#rows {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	grid-template-rows: 4em 10em max-content;
+}
+
+#header {
+	grid-row: 1;
+}
+#main {
+	grid-row: 2;
+	grid-column: 1/ span 8;
+	grid-column: 1/ span 12;s
+}
+#sidebar {
+	grid-row: 2;
+	grid-column: 9/ span 12;
+}
+#footer {
+	grid-row: 3;
+	grid-column: 1/ span 12;
+}</code></pre>
+</div>
+
+<div class="slide">
+	<pre><code>&lt;div id="rows"&gt;
+	&lt;div id="header"&gt;Header&lt;/div&gt;
+	&lt;div id="main"&gt;Main&lt;/div&gt;
+	&lt;div id="sidebar"&gt;Sidebar&lt;/div&gt;
+	&lt;div id="footer"&gt;Footer&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
