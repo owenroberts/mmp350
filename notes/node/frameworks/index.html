@@ -1,0 +1,99 @@
+---
+layout: slides
+title: npm & Express
+week: 3
+---
+
+<div class="slide">
+	<p>Last week we used Node to create two different types of servers.  This is a good exercise for understanding how servers work.  Now we're going to look at some Node frameworks that will help create a more sophisticated server to create dynamic content.  This requires a bit of setup, so we'll start there this week.</p>
+</div>
+
+<div class="slide">
+	<p>We'll start by created a new project using <a href="https://www.npmjs.com/" target="blank">npm</a>: Node Package Manager.</p>  
+	<p>npm is a command line tool that installs packages of software and keeps track of our project dependencies.  Dependencies are modules of code written by Node developers to implement various aspects of a website.</p>
+</div>
+
+<div class="slide">
+	<p>Start by navigating to your <code>mmp350</code> directory and making a new project folder:</p>
+	<pre><code>$ mkdir my_node_app
+$ cd my_node_app</code></pre>
+	<p>Now we're going to use a command to initialize the node app:</p>
+	<pre><code>$ npm init</code></pre>
+	<p>This command will walk us through a series of steps to create the node app.  For now, just hit <span class="key">R</span> (Enter) at each prompt.</p>
+	<p>At the end you will see a file called <code>package.json</code> in your directory.  Right now it has some basic default information, which it will update as we add to it.</p>
+</div>
+
+<div class="slide">
+	<p><code>package.json</code></p>
+	<pre><code>{
+  "name": "my_node_app",
+  "version": "1.0.0",
+  "description": "A new node app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}</code></pre>
+</div>
+
+<div class="slide">
+	<h2>Express</h2>
+	<p>The first package we're going to install is called <a href="https://expressjs.com/" target="blank">Express</a>, which is a web framework for Node that will help us set up routes and do a bunch of stuff for our app.</p>
+	<pre><code>$ npm install express --save</code></pre>
+	<p>The <code>--save</code> flag tells node to add express as a dependency to <code>packages.json</code>.</p>
+	<pre><code>	"dependencies": {
+		"express": "^4.16.2"
+	}</code></pre>
+</div>
+
+<div class="slide">
+	<p>You will also see a new directory called <code>node_modules</code>.  This is where all of the packages are saved for easy reference.  We will not be editing this code.  You can look at it, but don't change anything in here.</p>
+</div>
+
+<div class="slide">
+	<p>Time to add some Express.  Let's start with our main application file:</p>
+	<pre><code>$ touch server.js</code></pre>
+	<p>Now we're going to open <code>server.js</code> and tell it to use Express:</p>
+	<pre><code>const express = require('express');
+const app = express();</code></pre>
+	<p>Now we have an express app!</p>
+</div>
+
+<div class="slide">
+	<p>We can run the app with this command:</p>
+	<pre><code>$ node server.js</code></pre>
+	<p>It doesn't do anything yet!</p>
+</div>
+
+<div class="slide">
+	<p>To run the app, we need a port.</p>
+	<pre><code>const port = process.env.PORT || 8000;</code></pre>
+	<p>We're using the <code>||</code> OR operator here to choose a local port for local development, or the <code>process.env.PORT</code> that will be used when we publish the app.</p>
+</div>
+
+<div class="slide">
+	<p>Let's listen to the port:</p>
+	<pre><code>app.listen(port, function() {
+	console.log("App running on port ", port);
+});</code></pre>
+	<p>This should look familiar.  It's a <note>callback</note> function!</p>
+</div>
+
+<div class="slide">
+	<p>Now if you run the application you will get the message from the console and you can navigate to <a href="http://localhost:8000" target="blank">localhost:8000</a> in your browser.</p> 
+	<p>You will see <code>Cannot GET /</code>.</p>
+	<p>The server is running, but we didn't say what content to serve up yet.</p>
+</div>
+
+<div class="slide">
+	<p>Let's make our first route:</p>
+	<pre><code>app.get('/', function(request, response){
+	response.send("&lt;h1&gt;Welcome to my Website&lt;/h1&gt;");
+});</code></pre>
+	<p>Remember anytime you change your Node server code, you need to restart the server with Control-C: <span class="key">Vc</span></p>
+	<p>This should also look familiar.  The get request is handled with a callback function with the <code>request, response</code> arguments.</p>
+</div>
+
+
