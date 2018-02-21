@@ -47,7 +47,7 @@ socket.on('data', function(data) {
 
 <div class="slide">
 	<p>We can also listen for when a client disconnects, using another event with a callback.</p>
-	<pre><code>// end event
+	<pre><code class="javascript">// end event
 socket.on('end', function(){
 	console.log(socket.name, "left us.")
 });</code></pre>
@@ -84,7 +84,9 @@ console.log("Server running at localhost:", port);</code></pre>
 	<p>Okay, let's get some information from the request to make this more interesting:</p>
 	<pre><code>var path = request.url;
 console.log("requested=", path);
-response.writeHead(200, {'Content-Type': 'text/html'}); // prepare response headers</code></pre>
+
+// prepare response headers
+response.writeHead(200, {'Content-Type': 'text/html'}); </code></pre>
 </div>
 
 <div class="slide">

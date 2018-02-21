@@ -43,7 +43,7 @@ Go to [Home](index.html)
 
 ## Week 3
 **npm & Express**
-- [CSS Grid](notes/grid/css.html)
+- [CSS Grid](notes/grid/css/)
 - [npm & express](notes/node/frameworks/)
 - **Assignment 3**: HTML & CSS for wireframe
 	- Using your classmates wireframe as a basis, use HTML and CSS to create a website prototype
