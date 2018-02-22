@@ -48,6 +48,12 @@ Go to [Home](index.html)
 - **Assignment 3**: HTML & CSS for wireframe
 	- Using your classmates wireframe as a basis, use HTML and CSS to create a website prototype
 
+## Week 4
+**Responsive Design**
+- [Responsive Layouts](notes/responsive/)
+- **Assignment 4**: Responsive wireframes
+
+
 <!-- 
 
 node: conditionals, loops, arrays, objects, db
