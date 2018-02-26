@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS Grid</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		#container {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			grid-template-rows: 4em 10em max-content;
+			grid-template-areas: 
+				"header header header"
+				"main main sidebar"
+				"footer footer footer";
+			max-width: 960px;
+			margin: 0 auto;
+		}
+
+		#header {
+			grid-area: header;
+		}
+		#main {
+			grid-area: main;
+		}
+		#sidebar {
+			grid-area: sidebar;
+		}
+		#footer {
+			grid-area: footer;
+		}
+
+		@media (max-width: 400px) {
+			#container {
+				grid-template-areas: 
+					"header header header"
+					"sidebar sidebar sidebar"
+					"main main main"
+					"footer footer footer";
+			}
+		}
+
+		@media (min-width: 401px) and (max-width: 600px) {
+			
+			
+		}
+
+	</style>
+</head>
+<body>
+
+	<div id="container">
+		<div id="header">Header</div>
+		<div id="main">Main</div>
+		<div id="sidebar">Sidebar</div>
+		<div id="footer">Footer</div>
+	</div>
+</body>
+</html>

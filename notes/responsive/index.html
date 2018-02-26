@@ -32,7 +32,158 @@ week: 4
 <div class="slide">
 	<h2>CSS Media Queries</h2>
 	<p>To implement Mobile and Tablet sized wireframe designs, we will use media queries in CSS to set breakpoints in terms of pixel dimensions (in device width) to change the layout.</p>
+	<p>Media Queries are like extra style sheets that let us rewrite the original style rules based on device properties.</p>
+	<p>Our design is set up to load at different sizes already, using the principle of responsive design.  But we also need to add break points, based on adaptive design, to change our layout for different devices.</p>
 </div>
 
-<!-- media rules -->
-<!-- template areas -->
+<div class="slide">
+	<p>First, let's establish a maximum width for our content.  This doesn't require a media query, we'll just add a couple of rules to the <code>#container</code>.</p>
+	<pre><code>#container {
+	max-width: 960px;
+	margin: 0 auto;
+}</code></pre>
+	<p>This establishes the maximum width of our page at <code>960px</code>.</p>  
+	<p>This dimension is arbitrary.  Your max width should be based on the content on the page.</p>
+	<p>The <code>margin</code> rule is there to center the container.</p>
+</div>
+
+<div class="slide">
+	<p>We also need to add a new <code>meta</code> tag to set the <code>viewport</code>.</p>
+	<p>This tells the browser not to resize or scale the content based on the device.  Some browsers do this by default to load the desktop version of the site at a viewable scale.  We're telling the browser that we are handling this in our CSS.</p>
+	<pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<h2>Choosing break points</h2>
+	<p>You will often see media queries based on the most popular sizes of various devices, such as the iPhone, iPad, laptop and desktop sizes.  This may be a good place to start but it's not necessarily going to work for all types of content.</p>
+	<p>A better approach to design around the content that will be on the site.  This requires writing media queries based on tests rather than pre-described defaults.</p>
+	<p>For now, since we haven't generated our content yet, I'm going to choose 2 arbitrary break points for mobile, <code>400px</code> and tablet, <code>600px</code>.</p>
+</div>
+
+<div class="slide">
+	<p>Let's write our CSS rules for these break points:</p>
+	<pre><code>@media (max-width: 400px) {
+	/* mobile style rules */
+}
+
+@media (min-width: 401px) and (max-width: 600px) {
+	/* tablet style rules
+}</code></pre>
+</div>
+
+<div class="slide">
+	<p>This is basically the simplest approach to get a working setup that target three different sizes.</p>
+	<p>The order and relationship between rules matter.  For example, in the second media query, we need to start at <code>min-width</code> and define a range to <code>max-width</code>.  Without that beginning point, this media query would replace the one that comes directly before it.</p>
+	<p>The first media query only needs a <code>max-width</code> rules because there is nothing smaller targeted.</p>
+	<p>Anything larger than <code>600px</code> will be handled by the original style rules.</p>
+</div>
+
+
+<div class="slide">
+	<p>Now that we have targeted two device sizes, let's start by changing the layout for mobile.</p>
+	<p>Keep in mind we can rewrite as many or as few styles as are necessary to complete the changes we're looking for.</p>  
+	<p>For the mobile version, let's simplify our grid by changing the overall number of columns and moving the <code>#sidebar</code> to it's own row.  This means rewriting a lot.</p>
+</div>
+
+<div class="slide">
+	<pre><code>@media (max-width: 400px) {
+			
+	#container {
+		grid-template-columns: repeat(3, 1fr);
+		grid-template-rows: repeat(4, max-content);
+	}
+
+	#main {
+		grid-row: 2;
+		grid-column: 1 / span 3;
+	}
+
+	#sidebar {
+		grid-row: 3;
+		grid-column: 1/ span 3;
+	}
+
+	#footer {
+		grid-row: 4;
+		grid-column: 1/ span 3;
+	}
+	
+}</code></pre>
+</div>
+
+<div class="slide">
+	<p>Notice that all of my child sections now have the same number of columns.  We can simplify this CSS by making one rule for all of them:</p>
+	<pre><code>#main, #sidebar, #footer {
+	grid-column: 1 / span 3;
+}</code></pre>
+</div>
+
+<div class="slide">
+	<p>Let's preview this in Chrome.  A note here: It's not enough to just drag the browser width in and out to test responsive layouts.  Chrome has a really nice mobile device emulator setting in the dev tools.  Let's take advantage of it.</p>
+	<p>Open <note>View > Developer > Developer Tools</note>, or hit <span class="key">CAi</span></p>
+	<p>Click on the icon in the Toolbar that looks like a mobile phone:</p>
+	<img src="mobile.png" alt="">
+	<p>You will see the content size change and a new menu appear with mobile parameters to set the width and height or choose specific devices:</p>
+	<img src="settings.png" alt="">
+</div>
+
+<div class="slide">
+	<p>Dragging or setting different sizes is one way to see how the layout changes, but its preferable to set a specific size and reload the page.  This is how most users will actually be loading the content.  Users will rarely be resizing their pages (unless they need to because our content doesn't update correctly).</p>
+</div>
+
+<div class="slide">
+	<p>Another way to change our grid is using <code>grid-template-areas</code>.  This adds a semantic dimension to creating layouts.</p>
+	<p>Template grids allow us to position the content on the page irrespective of the order it appears in HTML.</p>
+	<p>This could be achieved with grid and row numbers, but template-areas allow us to do this using named areas and moving them around without necessarily have to count through all of the units each time.</p>
+</div>
+
+<div class="slide">
+	<pre><code>#container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: 4em 10em max-content;
+	grid-template-areas: 
+		"header header header"
+		"main main sidebar"
+		"footer footer footer";
+	max-width: 960px;
+	margin: 0 auto;
+}</code></pre>
+</div>
+
+<div class="slide">
+	<pre><code>#header {
+	grid-area: header;
+}
+#main {
+	grid-area: main;
+}
+#sidebar {
+	grid-area: sidebar;
+}
+#footer {
+	grid-area: footer;
+}</code></pre>
+</div>
+
+<div class="slide">
+	<pre><code>@media (max-width: 400px) {
+	#container {
+		grid-template-areas: 
+			"header header header"
+			"sidebar sidebar sidebar"
+			"main main main"
+			"footer footer footer";
+	}
+}</code></pre>
+</div>
+
+
+<div class="slide">
+	<h2>Resources</h2>
+	<ul>
+		<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Realizing_common_layouts_using_CSS_Grid_Layout" target="blank">CSS Grid Layout, Common layouts</a></li>
+		<li><a href="https://mobiforge.com/design-development/how-to-choose-media-queries-breakpoints-to-best-support-all-connected-devices" target="blank">Content driven breakpoints</a></li>
+		<li><a href="https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag" target="blank">Viewport meta tag</a></li>
+	</ul>
+</div>
