@@ -1,0 +1,129 @@
+---
+layout: slides
+title: Templates
+week: 4
+---
+
+<div class="slide">
+	<p>Last week we got a server running using Express.  This week we're going to set up some more dependencies and packages to server <note>HTML templates</note> instead of static HTML.</p>
+</div>
+
+<div class="slide">
+	<p>We're going to start with a new package, <a href="https://github.com/expressjs/morgan" target="blank">Morgan.</a> Morgan is a middleware for logging to the node console.</p>
+	<pre><code class="javascript">$ npm install --save morgan</code></pre>
+	<pre><code>// require the module
+const express = require('express');
+const logger = require('morgan');
+
+// use logger
+const app = express();
+app.use(logger('dev'));</code></pre>
+	<p>Once this is set up, you will see log messages in Terminal giving information about GET and POST requests from the browser client.</p>
+	<pre><code>App running on port  8000
+GET / 304 4.107 ms - -
+GET /about 304 0.588 ms - -</code></pre>
+</div>
+
+<div class="slide">
+	<h2>EJS</h2>
+	<p>For our template language this semester we are going to use <a href="http://ejs.co/" target="blank">EJS</a>.  There are a bunch of good template languages out there, like <a href="https://handlebarsjs.com/" target="blank">Handlebars</a> and <a href="https://pugjs.org/api/getting-started.html" target="blank">Pug</a> that I like to use.</p>
+	<p>We're using EJS for class because it most closely resemble pure JavaScript, so we will have fewer new syntax structures to cover.</p>
+</div>
+
+<div class="slide">
+	<p>We will start by adding the <note>view engine</note> to out app.  In Node, the template language is referred to as the view engine, because it generates the client side markup that creates the content viewed by the user.</p>
+	<pre><code class="javascript">$ npm install --save ejs</code></pre>
+	<pre><code>app.set('view engine', 'ejs');</code></pre>
+</div>
+
+<div class="slide">
+	<p>Make a views folder to store our <code>.ejs</code> files.</p>
+	<pre><code>$ mkdir views</code></pre>
+	<p>Our first template will be for the home page:</p>
+	<pre><code>$ touch views/home.ejs</code></pre>
+	<p>We also need to add this directory to the app:</p>
+	<pre><code>app.set('views', __dirname + '/views');
+// __dirname has a double underscore at beginning</code></pre>
+</div>
+
+<div class="slide">
+	<p>Now we'll open <code>home.ejs</code> and make an HTML document.</p>
+	<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+	&lt;meta charset="UTF-8"&gt;
+	&lt;title&gt;New Node App&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;h1&gt;Welcome to my app :)&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<p>To get that HTML onto our website, change the line where we sent the static HTML reponse:</p>
+	<pre><code class="javascript">response.send("&lt;h1&gt;Welcome to my app :)&lt;/h1&gt;");</code></pre>
+	<p>To render the EJS file:</p>
+	<pre><code>response.render('home.ejs');</code></pre>
+</div>
+
+<div class="slide">
+	<p>Okay, that's cool, but what's the point of using templates?</p>
+	<p>By using templates we can pass information from the server in the HTML template, to display things that will be different for each user.</p>
+	<p>To do this we need to create a way for users to add information into the client.  The simplest way to do this is with a form.  Add a form to <code>home.ejs</code>:</p>
+	<pre><code>&lt;form method="POST"&gt;
+	&lt;input type="text" name="username" placeholder="Enter you name"&gt;
+	&lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<h2>POST</h2>
+	<p>Notice the <code>method="POST"</code> in the <code>form</code>?  On our server we will now need to make a separate route to handle the post request.</p>
+	<p>But first, for this to work, we need another package.  The <a href="https://github.com/expressjs/body-parser" target="blank">Body Parser</a> package reads a request from the client so we can use the information.</p>
+	<p>Install the pacakge:</p>
+	<pre><code>$ npm install --save body-parser</code></pre>
+	<p>Then add it into <code>server.js</code>:</p>
+	<pre><code>const bodyParser = require('body-parser');</code></pre>
+</div>
+
+<div class="slide">
+	<p>To finish setting it up, we need to set the type of data we will be using (JSON) and another property referred to as <code>urlencoded</code> (don't worry about the meaning of these too much).</p>
+	<pre><code>app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));</code></pre>
+</div>
+
+<div class="slide">
+	<p>Now let's set up our POST route:</p>
+	<pre><code>app.post('/', function(request, response){
+	const name = request.body.username;
+	response.render('login.ejs', { username: username });
+});</code></pre>
+	<p>We're getting the name that was entered by the user in the input with the <code>name="username"</code> attribute and then sending it back with the new <code>login.ejs</code> page.</p>
+	<p>We're adding some data to the second argument of <code>response.render</code> to send the unique user name back to the user in the Login page.</p>
+</div>
+
+<div class="slide">
+	<p>Let's create the <code>login.ejs</code> page.</p>
+	<pre><code>$ touch views/login.ejs</code></pre>
+	<p>This will be almost the same as the <code>home.ejs</code> page except for a message that display the user name.  For this we will make our first ejs tag:</p>
+	<pre><code>&lt;p&gt;Hello, <%= username %>&lt;/p&gt;</code></pre>
+	<p>ejs uses <code><%=</code> to open a JavaScript area inside of HTML, which can use any JavaScript that you want to write.  It is then closed with <code>%></code> to return to HTML.</p>
+</div>
+
+<div class="slide">
+	<h2>Static files</h2>
+	<p>We need to create a public folder for static documents that will be used by the site, such as images, CSS and front end JavaScript files.</p>
+	<p>Create the directory and then point the app to it.</p>
+	<pre><code class="javascript">$ mkdir public</code></pre>
+	<pre><code>app.use(express.static('public'));</code></pre>
+</div>
+
+<div class="slide">
+	<p>Let's add a CSS page:</p>
+	<pre><code>touch public/style.css</code></pre>
+	<p>Add it to the <code>&lt;head&gt;</code> section of <code>home.ejs</code> and <code>login.ejs</code>.</p>
+	<pre><code>&lt;link rel='stylesheet' href='/style.css'&gt;</code></pre>
+	<p>This will be at the root of the site because we set up the public folder.</p>
+	<p>We can test a few styles and then try to implement your grid designs from last week in the templates.  (You may need to add some more HTML to set up the structure).</p>
+</div>

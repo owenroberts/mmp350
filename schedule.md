@@ -51,7 +51,11 @@ Go to [Home](index.html)
 ## Week 4
 **Responsive Design**
 - [Responsive Layouts](notes/responsive/)
+- [Node Templates](notes/node/template)
 - **Assignment 4**: Responsive wireframes
+	- Make wireframes for mobile and tablet sized devices
+	- Share the wireframe with your classmate to write HTML and CSS
+	- Both are due next week
 
 
 <!-- 
