@@ -57,6 +57,9 @@ Go to [Home](index.html)
 	- Share the wireframe with your classmate to write HTML and CSS
 	- Both are due next week
 
+## Week 5
+**Firebase Intro**
+- [Firebase User Authentication](notes/node/firebase/)
 
 <!-- 
 

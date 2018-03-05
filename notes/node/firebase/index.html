@@ -1,0 +1,227 @@
+---
+layout: slides
+title: Firebase
+week: 5
+---
+
+<div class="slide">
+	<p>This week we're going to add Firebase to our application.</p>
+	<p>Firebase is a Google product that will let us create dynamic websites connected to a database and host them all for free (up to 5 projects).</p>
+	<p>Firebase has a nice visual interface that I think helps demystify (make less mysterious) what happens in a database.</p>
+</div>
+
+<div class="slide">
+	<h2>Account</h2>
+	<p>We need to start by making a Firebase account at <a href="https://firebase.google.com/" target="blank">firebase.google.com</a>.</p>
+	<p>If you already have a Google account this will be pretty easy.</p>
+	<p>If you don't have one you will need to create one now.</p>
+	<img src="get_started.png" alt="">
+</div>
+
+<div class="slide">
+	<p>When you're get your account set up, start by clicking "Add Project" from the main Firebase page, <a href="console.firebase.google.com">console.firebase.google.com</a>.</p>
+	<img src="add_project.png" alt="">
+	<p>Take a moment to explore the site and the services that are available.</p>
+</div>
+
+<div class="slide">
+	<p>When you're ready, click the "Add Firebase to Your Web App" button.</p>
+	<img src="web_app.png" alt="">
+</div>
+
+<div class="slide">
+	<p>A window will pop up with some info you can add to your app to connect with Firebase.</p>
+	<p>Don't share this information.</p>
+	<img src="firebase_code.png" alt="">
+</div>
+
+<div class="slide">
+	<h2>Client side authentication</h2>
+	<p>You'll notice that code looks like something you would add to the front end or an HTML page.</p>
+	<p>This is part of what makes Firebase awesome.  Instead of doing authentication and other security based things in our own server code, Firebase is going to handle most of that work for us.</p>
+	<p>Paste that code into the <code>home.ejs</code> template file, in the <code>&lt;head&gt;</code> section.</p>
+</div>
+
+<div class="slide">
+	<pre><code>&lt;head&gt;
+	&lt;meta charset="UTF-8"&gt;
+	&lt;title&gt;New Node App&lt;/title&gt;
+	&lt;link rel='stylesheet' href='/style.css'&gt;
+	&lt;script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"&gt;&lt;/script&gt;
+	&lt;script&gt;
+		// Initialize Firebase
+		var config = {
+			apiKey: "####",
+			authDomain: "new-node-app-b198a.firebaseapp.com",
+			databaseURL: "https://new-node-app-b198a.firebaseio.com",
+			projectId: "new-node-app-b198a",
+			storageBucket: "new-node-app-b198a.appspot.com",
+			messagingSenderId: "####"
+		};
+		firebase.initializeApp(config);
+	&lt;/script&gt;
+&lt;/head&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<p>Back in the Firebase console, let's set up some authentication.</p>
+	<p>Click on the Authentication item under Develop.</p>
+	<img src="authentication.png" alt="">
+	<p>This is where we will manage users of our application.</p>
+</div>
+
+<div class="slide">
+	<h2>Users</h2>
+	<p>This interface allows us to create multiple types of authentication and manage users.</p>
+	<img src="setup_signin.png" alt="">
+</div>
+
+<div class="slide">
+	<p>We can also set the domains that will be allowed to interact with our app.</p>
+	<img src="domains.png" alt="">
+	<p>The defaults should be fine here.  <code>localhost</code> is where we are developing the app and the Firebase URL is where we will eventually push the app.</p>
+</div>
+
+<div class="slide">
+	<p>We're going to start by adding email provider.  This is a simple authentication method.  We will ignore the other methods but feel free to try adding them if you like.</p>
+	<img src="provider.png" alt="">
+</div>
+
+<div class="slide">
+	<img src="provider_email.png" alt="">
+</div>
+
+<div class="slide">
+	<h2>User log in</h2>
+	<p>Okay, no we're ready to update our code to add users.</p>
+	<p>Return to <code>home.ejs</code>.  We're going to add a basic Firebase function to determine if a user is logged in or not.</p>
+	<p>This goes in a <code>&lt;script&gt;</code> tag at the bottom of the document, right before <code>&lt;/body&gt;</code></p>
+	<pre><code>firebase.auth().onAuthStateChanged(function(user) {
+	if (user) {
+		console.log(user);
+	} else {
+		console.log("no user")
+	}
+});</code></pre>
+</div>
+
+<div class="slide">
+	<p>We don't have users yet so this should just log <code>"no user"</code> to the console.</p>
+	<p>We're going to make links for the user to log in or create and account, with routes for each.</p>
+	<p>Let's add the links to <code>home.ejs</code>.</p>
+	<pre><code>&lt;a href="/login"&gt;Login&lt;/a&gt;
+&lt;a href="/create"&gt;Create&lt;/a&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<h2>Login and create user</h2>
+	<p>Add the routes in <code>server.js</code>.</p>
+	<pre><code>app.get('/login', function(request, response){
+	response.render('login.ejs');
+});
+
+app.get('/create', function(request, response){
+	response.render('create.ejs');
+});</code></pre>
+</div>
+
+<div class="slide">
+	<p>We have a template from last week for <code>login.ejs</code> so we just need to duplicate it to create a <code>create.ejs</code>.</p>
+	<p>We also need to add the Firebase code that we added in the <code>&lt;head&gt;</code> section of <code>home.ejs</code> in both of these.  (We'll use better templates to fix this soon).</p>
+</div>
+
+<div class="slide">
+	<h2>Create user</h2>
+	<p>Let's start with <code>create.ejs</code> since we need a user to login.</p>
+	<p>We need some text inputs and a button for the user to submit their info.  We're not using a <code>&lt;form&gt;</code> here because Firebase is handling the backend.</p>
+	<pre><code>&lt;div id="create"&gt;
+	&lt;input type="text" placeholder="Enter name" id="nameInput"&gt;
+	&lt;input type="text" placeholder="Enter email" id="emailInput"&gt;
+	&lt;input type="password" placeholder="Enter password" id="passwordInput"&gt;
+	&lt;button onclick={createAccount()}&gt;Create Account&lt;/button&gt;
+	&lt;p id="errorMessage"&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+	<p>There's also an error message paragraph in case there are errors.</p>
+</div>
+
+<div class="slide">
+	<p>When the user click the button, we need to capture their name, email and password and create a new user.</p>
+	<p>If the user is successfully created, we return to the home page.  If not, we give an error.</p>
+	<pre><code>function createAccount() {
+		let email = emailInput.value;
+		let password = passwordInput.value;
+		firebase.auth().createUserWithEmailAndPassword(email, password)
+			.then(function(user) {
+				console.log(user);
+				user.updateProfile({
+					displayName: nameInput.value
+				}).then(function(user) {
+					console.log('update', user);
+				}, function(error) {
+					console.log('error', error);
+				});
+				location.href = "/";
+			})
+			.catch(function(error) {
+				console.log(error);
+				errorMessage.textContent = error.message;
+			});
+	}</code></pre>
+</div>
+
+<div class="slide">
+	<h2>User name</h2>
+	<p>Now that we have a user, let's display the user name.</p>
+	<pre><code>&lt;div id="display-name"&gt;&lt;/div&gt;</code></pre>
+	<pre><code>const userName = document.getElementById("display-name");
+	serName.textContent = "Welcome, " + user.displayName;</code></pre>
+</div>
+
+<div class="slide">
+	<h2>Sign out</h2>
+	<p>We also need to make it possible for the user to log out.</p>
+	<pre><code>&lt;button onclick={signOut()}&gt;Sign Out&lt;/button&gt;</code></pre>
+	<pre><code>function signOut() {
+	firebase.auth().signOut();
+	location.reload();
+}</code></pre>
+</div>
+
+<div class="slide">
+	<h2>Log in</h2>
+	<p>So once a user logs out, they need to log in!  Almost done. Open <code>login.ejs</code>.</p>
+	<p>This is very similar to <code>create.ejs</code>.</p>
+	<pre><code>&lt;div id="login"&gt;
+	&lt;input type="text" placeholder="Enter email" id="emailInput"&gt;
+	&lt;input type="password" placeholder="Enter password" id="passwordInput"&gt;
+	&lt;button onclick="{signIn()}"&gt;Sign in&lt;/button&gt;
+	&lt;p id="errorMessage"&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<pre><code>function signIn() {
+	let name = nameInput.value;
+	let email = emailInput.value;
+	let password = passwordInput.value;
+	if (name && email && password) {
+		firebase.auth().signInWithEmailAndPassword(email, password)
+			.then(function(user) {
+				console.log(user);
+				location.href = "/";
+			})
+			.catch(function(error) {
+				console.log(error);
+				errorMessage.textContent = error.message;
+			});
+	} else {
+		errorMessage.textContent = "Enter valid name, email and password.";
+	}
+}</code></pre>
+</div>
+
+<div class="slide">
+	<h2>Done!</h2>
+	<p>Okay, that was a lot of work, but now we can login in our users.</p>
+	<p>By verifying users, we can use there user ID to set up a database that stores information specific to each user, and restrict access to different parts of the site based on authentication.</p>
+</div>

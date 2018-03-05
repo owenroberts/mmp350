@@ -1,4 +1,4 @@
-##Typography
+## Typography
 
 
 Let's review some of the basics of web typography through a few tutorials:

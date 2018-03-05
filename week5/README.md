@@ -1,4 +1,4 @@
-#Introduction to Foundation
+# Introduction to Foundation
 We’re going to look at using the Foundation grid to implement the wireframes for our site.
 
 Start by [downloading Foundation here](http://foundation.zurb.com/sites/download.html/).
@@ -10,7 +10,7 @@ We’re going to go over the [documentation](http://foundation.zurb.com/sites/do
 We'll also take a look at the tag: `<meta name="viewport" content="width=device-width, initial-scale=1"/>`
 
 
-##Set wpmmp server for template:
+## Set wpmmp server for template:
 Open FileZilla.  Use the Site Manager to connect to your wpmmp server.  This can be opened with ⌘S or File > Site Manager.
 
 Click the **New Site** button to create a new site.  Enter your server information.
@@ -44,7 +44,7 @@ Your site template will be live at **wpmmp.bmcc.cuny.edu/~username/projectfolder
 
 Next week we'll install WordPress on these servers.
 
-##Assignment 5
+## Assignment 5
 - Using your wireframes as an example, create a template for you website using Foundation, HTML and CSS
 - Your website should have a homepage, single page and blank page template (about or bio for example)
 - It should have three HTML files, one CSS file and the Foundation framework files
