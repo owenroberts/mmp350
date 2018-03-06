@@ -14,11 +14,12 @@ app.get('/', function(request, response) {
 	response.render('home.ejs');
 });
 
-app.post('/', function(request, response) {
-	const name = request.body.username;
-	response.render('login.ejs', {
-		username: name
-	});
+app.get('/login', function(request, response) {
+	response.render('login.ejs');
+});
+
+app.get('/create', function(request, response) {
+	response.render('create.ejs');
 });
 
 const port = process.env.PORT || 8000;

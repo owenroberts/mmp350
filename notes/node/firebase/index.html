@@ -138,8 +138,8 @@ app.get('/create', function(request, response){
 	&lt;input type="text" placeholder="Enter name" id="nameInput"&gt;
 	&lt;input type="text" placeholder="Enter email" id="emailInput"&gt;
 	&lt;input type="password" placeholder="Enter password" id="passwordInput"&gt;
-	&lt;button onclick={createAccount()}&gt;Create Account&lt;/button&gt;
-	&lt;p id="errorMessage"&gt;&lt;/p&gt;
+	&lt;button onclick={createUser()}&gt;Create Account&lt;/button&gt;
+	&lt;p id="error"&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 	<p>There's also an error message paragraph in case there are errors.</p>
 </div>
@@ -147,7 +147,7 @@ app.get('/create', function(request, response){
 <div class="slide">
 	<p>When the user click the button, we need to capture their name, email and password and create a new user.</p>
 	<p>If the user is successfully created, we return to the home page.  If not, we give an error.</p>
-	<pre><code>function createAccount() {
+	<pre><code>function createUser() {
 		let email = emailInput.value;
 		let password = passwordInput.value;
 		firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -164,6 +164,7 @@ app.get('/create', function(request, response){
 			})
 			.catch(function(error) {
 				console.log(error);
+				const errorMessage = document.getElementById("error");
 				errorMessage.textContent = error.message;
 			});
 	}</code></pre>

@@ -4,13 +4,42 @@
 	<title>New Node App</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="/style.css">
+	<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+		apiKey: "AIzaSyDdwKnt2dzC9eymT8pB3qe_xcup_lF9HWA",
+		authDomain: "mmp350-example.firebaseapp.com",
+		databaseURL: "https://mmp350-example.firebaseio.com",
+		projectId: "mmp350-example",
+		storageBucket: "mmp350-example.appspot.com",
+		messagingSenderId: "748102634369"
+	  };
+	  firebase.initializeApp(config);
+	</script>
 </head>
 <body>
 	<h1>Welcome to my app :)</h1>
 	<p>Hello world.</p>
-	<form method="POST">
-		<input name="username" type="text" placeholder="Enter user name">
-		<button type="submit">Login</button>
-	</form>
+	
+	<a href="/login">Log in</a>
+	<a href="/create">Create new user</a>
+	
+	<script>
+		firebase.auth().onAuthStateChanged(function(user) {
+			if (user) {
+				console.log(user);
+			} else {
+				console.log("no user");
+			}
+		});
+	</script>
 </body>
 </html>
+
+
+
+
+
+
+
