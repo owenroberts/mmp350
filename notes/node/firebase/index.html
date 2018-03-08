@@ -31,7 +31,6 @@ week: 5
 
 <div class="slide">
 	<p>A window will pop up with some info you can add to your app to connect with Firebase.</p>
-	<p>Don't share this information.</p>
 	<img src="firebase_code.png" alt="">
 </div>
 
@@ -51,12 +50,12 @@ week: 5
 	&lt;script&gt;
 		// Initialize Firebase
 		var config = {
-			apiKey: "####",
-			authDomain: "new-node-app-b198a.firebaseapp.com",
-			databaseURL: "https://new-node-app-b198a.firebaseio.com",
-			projectId: "new-node-app-b198a",
-			storageBucket: "new-node-app-b198a.appspot.com",
-			messagingSenderId: "####"
+			apiKey: "yourAPIkey",
+			authDomain: "your-project.firebaseapp.com",
+			databaseURL: "https://your-project.firebaseio.com",
+			projectId: "your-project",
+			storageBucket: "your-project.appspot.com",
+			messagingSenderId: "youMessagingID"
 		};
 		firebase.initializeApp(config);
 	&lt;/script&gt;
@@ -176,7 +175,7 @@ app.get('/create', function(request, response){
 	<pre><code>&lt;div id="display-name"&gt;&lt;/div&gt;</code></pre>
 	<p>Then, inside of the <code>if (user) { ... }</code> statement, add these lines to get the <code>displayName</code> from the <code>user</code> object from Firebase and add it to the div.</p>
 	<pre><code>const userName = document.getElementById("display-name");
-	userName.textContent = "Welcome, " + user.displayName;</code></pre>
+userName.textContent = "Welcome, " + user.displayName;</code></pre>
 </div>
 
 <div class="slide">
@@ -204,15 +203,15 @@ app.get('/create', function(request, response){
 
 <div class="slide">
 	<pre><code>function signIn() {
-	let email = emailInput.value;
-	let password = passwordInput.value;
+	const email = emailInput.value;
+	const password = passwordInput.value;
 	firebase.auth().signInWithEmailAndPassword(email, password)
 		.then(function(user) {
-			console.log(user);
 			location.href = "/";
 		})
 		.catch(function(error) {
 			console.log(error);
+			const errorMessage = document.getElementById("errorMessage");
 			errorMessage.textContent = error.message;
 		});
 	}
