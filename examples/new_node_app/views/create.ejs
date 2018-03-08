@@ -26,7 +26,7 @@
 		<input type="text" id="emailInput" placeholder="Enter user email">
 		<input type="password" id="passwordInput" placeholder="Enter user password">
 		<button onclick={createUser()}>Submit</button>
-		<p id="error"></p>
+		<p id="errorMessage"></p>
 	</div>
 	
 	<script>
@@ -45,7 +45,7 @@
 				})
 				.catch(function(error) {
 					console.log(error);
-					const errorMessage = document.getElementById("error");
+					const errorMessage = document.getElementById("errorMessage");
 					errorMessage.textContent = error.message;
 				});
 		}

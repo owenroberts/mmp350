@@ -20,19 +20,29 @@
 </head>
 <body>
 	<h1>Welcome to my app :)</h1>
-	<p>Hello world.</p>
 	
-	<a href="/login">Log in</a>
-	<a href="/create">Create new user</a>
+	<div id="login">
+		<input id="emailInput" placeholder="Enter your email" type="text">
+		<input id="passwordInput" placeholder="Enter your password" type="password">
+		<button onclick="{signIn()}" >Submit</button>
+		<p id="errorMessage"></p>
+	</div>
 	
 	<script>
-		firebase.auth().onAuthStateChanged(function(user) {
-			if (user) {
-				console.log(user);
-			} else {
-				console.log("no user");
-			}
-		});
+		function signIn() {
+			const email = emailInput.value;
+			const password = passwordInput.value;
+			firebase.auth().signInWithEmailAndPassword(email, password)
+				.then(function(user){
+					location.href = "/";
+				})
+				.catch(function(error) {
+					console.log(error);
+					const errorMessage = document.getElementById("errorMessage");
+					errorMessage.textContent = error.message;
+				});
+				
+		}
 	</script>
 </body>
 </html>

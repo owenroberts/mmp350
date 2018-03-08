@@ -20,19 +20,28 @@
 </head>
 <body>
 	<h1>Welcome to my app :)</h1>
-	<p>Hello world.</p>
+	<p id="display-name">Hello world.</p>
 	
 	<a href="/login">Log in</a>
 	<a href="/create">Create new user</a>
 	
+	<button onclick={signOut()}>Sign out</button>
+	
 	<script>
+		const userName = document.getElementById("display-name");
 		firebase.auth().onAuthStateChanged(function(user) {
 			if (user) {
 				console.log(user);
+				userName.textContent = "Hello, " + user.displayName;
 			} else {
 				console.log("no user");
 			}
 		});
+		
+		function signOut() {
+			firebase.auth().signOut();
+			location.reload();
+		}
 	</script>
 </body>
 </html>
