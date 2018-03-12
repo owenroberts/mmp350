@@ -19,11 +19,14 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 // create authentication middleware
 function isAuthenticated(request, response, next) {
-	if (request.query.user) {
-		next();
-	} else {
-		response.redirect('/');
-	}
+	const uid = request.query.uid;
+	firebaseAdmin.auth().getUser(uid)
+		.then(function(user){
+			next();
+		})
+		.catch(function(error){
+			response.redirect('/');
+		});
 }
 
 app.get('/', function(request, response){

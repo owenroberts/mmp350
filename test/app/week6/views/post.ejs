@@ -22,13 +22,24 @@
 	<h1>Welcome to my node app :)</h1>
 	<div id="display-name"></div>
 	<div id="post">
-		<textarea id="post-test"></textarea>
+		<textarea id="post-text"></textarea>
+		<br>
+		<button onclick={savePost()}>Post</button>
 	</div>	
 	<script>
-		function signOut() {
-			firebase.auth().signOut();
-			location.reload();
-		};
+
+		function savePost() {
+			const uid = firebase.auth().currentUser.uid
+			const db = firebase.database();
+			const postRef = db.ref('/users/' + uid + '/posts');
+			const text = document.getElementById('post-text').value;
+			const post = {
+				text: text,
+				date: new Date().toString()
+			};
+			console.log(post);
+			return postRef.push(post).key
+		}
 
 		firebase.auth().onAuthStateChanged(function(user) {
 			if (user) {

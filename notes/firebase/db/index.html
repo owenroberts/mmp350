@@ -27,13 +27,14 @@ week: 6
 </div>
 
 <div class="slide">
+	<h2>Server side authentication</h2>
 	<p>Next we're going to create a <note>middleware</note> in our Express app to handle authentication on routes that require it.</p>
-	<p>In Express, middleware is basically functions that are used in the middle of <code>requests</code> and <code>resopnses</code>.  They have access to those values but do not render a resopnse.</p>
+	<p>In Express, middleware is basically functions that are used in the middle of <code>request</code> and <code>resopnse</code>.  They have access to those values but do not render a resopnse.</p>
 	<p>Instead, they call <code>next</code> to return to the route.</p>
 </div>
 
 <div class="slide">
-	<p>Our Firebase Admin middleware is called <code>isAuthenticated.</code></p>
+	<p>Our Firebase Admin middleware is called <code>isAuthenticated</code>.</p>
 	<pre><code>function isAuthenticated(request, response, next) {
 	
 }</code></pre>
@@ -94,11 +95,82 @@ week: 6
 	<p>In the form the user value is <code>hidden</code> because the user doesn't need to see it or interact with it for it to work.</p>
 	<p>When the user clicks the button to add a new post it will pass the <code>uid</code> as a parameter into the <code>isAuthenticated</code> function:</p>
 	<pre><code>function isAuthenticated(request, response, next) {
-	if (request.query.user) {
-		next();
-	} else {
-		response.redirect('/');
-	}
+	const uid = request.query.uid;
+	firebaseAdmin.auth().getUser(uid)
+		.then(function(user){
+			next();
+		})
+		.catch(function(error){
+			response.redirect('/');
+		});
 }</code></pre>
+</div>
+
+<div class="slide">
 	<p>If the user exists, we go to the post page.  If not, redirect the user back to the home page.  You could also send them to a login or create user page or return a message asking them to login.</p>
+	<p>There is more authentication that could happen here, for example looking at the <code>emailVerified</code> field or using a custom token.  For now we just want to go over the basics, we can add more security if we have time later in the semester.</p>
+</div>
+
+<div class="slide">
+	<h2>localStorage</h2>
+	<p>You may be wondering at this point how the user stays signed in when the page is reloaded.</p>
+	<p>We wrote some code to allow the user to create an account, login and logout, and used some Firebase code to log the user when those events occur, but if we reload the page, that code shows the user info before the user actually does anything.</p>
+	<p>Firebase employs a feature of the browser called <code>localStorage</code> to keep the user logged in.  localStorage is a simple local database where web pages can store information to access later that is only used for that specific user.</p>
+</div>
+
+<div class="slide">
+	<p>You can view <code>localStorage</code> by going to the <note>Developer Tools</note> window in Chrome and opening the <note>Application</note> tab.  There you will see a drop down called <note>Local Storage</note> and if you click there you will see the <code>localhost:8000</code> address with a piece of data stored that starts with <code>firebase:authUser</code>.   Select this and you will see the data stored inside in the inspector window below.</p>
+	<img src="local_storage.png" alt="">
+</div>
+
+<div class="slide">
+	<h2>Post</h2>
+	<p>Now that our user is authenticated, they can make a new post, which we will add to the database.</p>
+	<p>Let's start by building <code>post.ejs</code>.  To get started, simply make a copy of <code>home.ejs</code> in the <code>views/</code> folder and rename it.</p>
+	<p>We can remove the <code>form</code> and links to <code>/create</code> and <code>login</code> as well as the <code>signOut</code> function and <code>button</code>.</p>
+	<p>Everything else should stay the same, and we'll add some HTML to make a post.</p>
+</div>
+
+<div class="slide">
+	<pre><code>&lt;div id="post"&gt;
+	&lt;textarea id="post-text"&gt;&lt;/textarea&gt;
+	&lt;br&gt;
+	&lt;button onclick={savePost()}&gt;Post&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<h2>Firebase Database</h2>
+	<p>Next we'll make a function but first we have to set up the database in the Firebase Console.</p>
+	<img src="database.png" alt="">
+</div>
+
+<div class="slide">
+	<p>In the Database tab, click "Get Started".</p>
+	<p>We can practice adding data manually here.  Firebase is awesome because we can see how the data is structured and watch it update in real time.</p>
+	<img src="data.png" alt="">
+</div>
+
+<div class="slide">
+	<p>That's where our data will appear.  Let's also take a quick look at the Rules tab.  This determines which users can access to read or write to the database.</p>
+	<img src="rules.png" alt="">
+</div>
+
+<div class="slide">
+	<h2>Save post</h2>
+	<p>Now we'll write some client side JavaScript to save a post.</p>
+	<p>We'll walk through each line in this code.  The basic steps are to get the user id (uid), get a reference to the database, store the text entered by the user and the current date in the database.</p>
+</div>
+
+<div class="slide">
+	<pre><code>function savePost() {
+	const uid = firebase.auth().currentUser.uid;
+	const db = firebase.database();
+	const ref = db.ref('/users/' + uid + '/posts');
+	const post = {
+		text: document.getElementById('post-text').value,
+		date: new Date().toString()
+	};
+	return postRef.push(post).key
+}</code></pre>
 </div>
