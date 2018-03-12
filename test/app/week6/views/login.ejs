@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>New Node App</title>
+	<link rel='stylesheet' href='/style.css'>
+	<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+	<script>
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyB0Bv7Xgt8DlqcX5hrY5ZIz8UMrobVR5lc",
+			authDomain: "new-node-app-b198a.firebaseapp.com",
+			databaseURL: "https://new-node-app-b198a.firebaseio.com",
+			projectId: "new-node-app-b198a",
+			storageBucket: "new-node-app-b198a.appspot.com",
+			messagingSenderId: "1028638213524"
+		};
+		firebase.initializeApp(config);
+	</script>
+</head>
+<body>
+	<h1>Welcome to my node app :)</h1>
+	<div id="login">
+		<input type="text" placeholder="Enter email" id="emailInput">
+		<input type="password" placeholder="Enter password" id="passwordInput">
+		<button onclick="{signIn()}">Sign in</button>
+		<p id="errorMessage"></p>
+	</div>
+	<script>
+		function signIn() {
+			let email = emailInput.value;
+			let password = passwordInput.value;
+			firebase.auth().signInWithEmailAndPassword(email, password)
+				.then(function(user) {
+					console.log(user);
+					location.href = "/";
+				})
+				.catch(function(error) {
+					console.log(error);
+					errorMessage.textContent = error.message;
+				});
+		}
+	</script>
+</body>
+</html>

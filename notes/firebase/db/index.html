@@ -1,0 +1,104 @@
+---
+layout: slides
+title: Firebase Database
+week: 6
+---
+
+<div class="slide">
+	<p>Last week we created users for our app.  This week we will start connecting the users to our database.</p>
+	<p>In order to securely connect a user, we need to verify the user on the server side.  To do that we need to set up the Firebase Admin and authentication tools.</p>
+</div>
+
+<div class="slide">
+	<h2>Firebase Admin</h2>
+	<p>Start by installing the Firebase Admin.</p>
+	<pre><code class="javascript">$ npm install --save firebase-admin</code></pre>
+	<p>Add that to <code>server.js</code> with other packages.</p>
+	<pre><code>const admin = require('firebase-admin');</code></pre>
+</div>
+
+<div class="slide">
+	<p>We need to then initialize the Firebase admin.</p>
+	<pre><code>const firebaseAdmin = admin.initializeApp({
+	credential: admin.credential.cert(serviceAccount),
+	databaseURL: ''
+});</code></pre>
+	<p>We'll get the databaseURL shortly.</p>
+</div>
+
+<div class="slide">
+	<p>Next we're going to create a <note>middleware</note> in our Express app to handle authentication on routes that require it.</p>
+	<p>In Express, middleware is basically functions that are used in the middle of <code>requests</code> and <code>resopnses</code>.  They have access to those values but do not render a resopnse.</p>
+	<p>Instead, they call <code>next</code> to return to the route.</p>
+</div>
+
+<div class="slide">
+	<p>Our Firebase Admin middleware is called <code>isAuthenticated.</code></p>
+	<pre><code>function isAuthenticated(request, response, next) {
+	
+}</code></pre>
+</div>
+
+<div class="slide">
+	<p>We use this to restrict access from non-authenticated users to the parts of our application that access the database.</p>
+	<p>Our app is going to allow users to make posts (like tweets).  We will create a <code>'/post'</code> route that requires authentication.</p>
+	<pre><code>app.get('/post', isAuthenticated, function(request, resopnse){
+	response.render('post.ejs');
+});</code></pre>
+	<p>Notice that <code>isAuthenticated</code> is inserted into the route arguments.</p>
+</div>
+
+<div class="slide">
+	<p>Now we need to get some info from the Firebase Console to make authentication work.</p>
+	<p>Return to <a href="https://console.firebase.google.com/" target="blank">console.firebase.google.com</a> and open the project you created.</p>
+	<p>From there go to Project Overview > Settings</p>
+	<img src="settings.png" alt="">
+</div>
+
+<div class="slide">
+	<p>From there click on "Service Accounts".</p>
+	<img src="firebase-admin.png" alt="">
+</div>
+
+<div class="slide">
+	<p>There you will see the <code>databaseURL</code>.  Copy that into your project code.</p>
+	<p>Next click the Generate Key button.</p>
+	<img src="generate.png" alt="">
+</div>
+
+<div class="slide">
+	<p>This will download a <code>json</code> file with your authentication key inside it.</p>  	
+	<p>Do not share this information with anyone or commit it to a public repo!  This is how you authenticate requests to your Firebase project and database.</p>
+	<p>Move that files to your project and copy the name of it into the line <code>const serviceAccount = require('');</code> starting with <code>./</code></p>
+</div>
+
+<div class="slide">
+	<p>Now to set this up on the client side.  On <code>home.ejs</code> we will add a link to the <code>'/post'</code> page.  To authenticate the user we will pass a <code>uid</code> from Firebase to tell the server the user is logged in.</p>
+	<p>We need to use a <code>&lt;form&gt;</code> element to pass the <code>uid</code>.</p>
+	<pre><code>&lt;form method="GET" action="/post"&gt;
+	&lt;input type="hidden" name="user" id="userInput"&gt;
+	&lt;input type="submit" value="Write a new post"&gt;
+&lt;/form&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<p>In JavaScript we can get the <code>uid</code> from the <code>user</code> user object:</p>
+	<pre><code>if (user) {
+	console.log('user', user);
+	const userInput = document.getElementById("userInput");
+	userInput.value = user.uid;
+} </code></pre>
+</div>
+
+<div class="slide">
+	<p>In the form the user value is <code>hidden</code> because the user doesn't need to see it or interact with it for it to work.</p>
+	<p>When the user clicks the button to add a new post it will pass the <code>uid</code> as a parameter into the <code>isAuthenticated</code> function:</p>
+	<pre><code>function isAuthenticated(request, response, next) {
+	if (request.query.user) {
+		next();
+	} else {
+		response.redirect('/');
+	}
+}</code></pre>
+	<p>If the user exists, we go to the post page.  If not, redirect the user back to the home page.  You could also send them to a login or create user page or return a message asking them to login.</p>
+</div>

@@ -59,9 +59,24 @@ Go to [Home](index.html)
 
 ## Week 5
 **Firebase Intro**
-- [Firebase User Authentication](notes/node/firebase/)
+- [Firebase User Authentication](notes/firebase/auth/)
+
+## Week 6
+**Typography**
+- [Typographic Hierarchy](notes/typography/)
+- [Firebase Database](notes/firebase/db/)
+- **Assignment 5**: Typographic Hierarchy
+	- Create 3 separate font pairings for a webpage
+	- Make a template for each of three fonts
+	- We will compare in class
 
 <!-- 
+
+app things to do
+user make post
+display all the users
+view users posts
+like/dislike user posts
 
 node: conditionals, loops, arrays, objects, db
 
