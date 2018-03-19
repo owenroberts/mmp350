@@ -1,0 +1,65 @@
+<% include partials/head.ejs %>
+<body>
+	<% include partials/header.ejs %>
+
+	<form method="GET" action="/post">
+		<input type="hidden" name="uid" id="userInput">
+		<input type="submit" value="Write a new post">
+	</form>
+
+	<% var j = JSON.stringify(data); %>
+	<!-- <%= j %> -->
+
+	<% if (data) { %>
+		<% let users = data.val() %>
+		<% let keys = Object.keys(users) %>
+		<% for (let i = 0; i < keys.length; i++) { %>
+			<% let key = keys[i]; %>
+			<% let user = users[key]; %>
+			<!-- <%=  JSON.stringify(user) %> -->
+			<% let posts = user.posts %>
+			<% let pees = Object.keys(posts) %>
+			<% for (let i = 0; i < pees.length; i++) { %>
+				<% let pk = pees[i]; %>
+				<% let post = posts[pk]; %>
+				<%= post.text %>
+				<%= post.date %>
+			<% } %>
+		<% } %>
+	<% } %>
+
+<!-- 	<% if (data) { %>
+		<% for (var user in data.val()) { %>
+			<div class="post">
+				<%= user %>
+			</div>
+		<% } %>
+	<% } %> -->
+
+	
+	<button onclick={signOut()}>Sign Out</button>
+	<script>
+		function signOut() {
+			firebase.auth().signOut();
+			location.reload();
+		};
+
+		firebase.auth().onAuthStateChanged(function(user) {
+			if (user) {
+				console.log('user', user);
+				const userInput = document.getElementById("userInput");
+				userInput.value = user.uid;
+				const userName = document.getElementById("display-name");
+				userName.textContent = "Welcome, " + user.displayName;
+			} else {
+				console.log("out")
+			}
+		});
+	</script>
+</body>
+</html>
+
+<!-- 
+https://firebase.google.com/docs/database/web/lists-of-data#reading_and_writing_lists
+
+ -->

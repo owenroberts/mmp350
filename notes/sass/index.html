@@ -1,0 +1,152 @@
+---
+layout: slides
+title: Introduction to Sass
+week: 7
+---
+
+<div class="slide">
+	<p><em>Sass</em> is a CSS pre-processor.  It allows us to write CSS style documents that are more complex and more elegant by introducing some basic concepts like variables, nesting and inheritance.  It takes some time to learn but saves a lot of time in the long run.</p>
+	<p>Check out the <a href="http://sass-lang.com/guide" target="blank">Sass Guide</a>.</p>
+</div>
+
+<div class="slide">
+	<h2>Installation</h2>
+	<p>The easiest way to use Sass is as a command line tool.  We can install it right from Terminal.</p>
+	<pre><code class="javascript">$ gem install --user-install sass</code></pre>
+	<p>Sass is not an <code>npm</code> package (although there are Sass related packages), so it doesn't get saved in <code>package.json</code>.</p>
+	<p>If you are on your own computer you don't have to use the <code>--user-install</code> flag.</p>
+</div>
+
+<div class="slide">
+	<p>Because we don't have admin access on the school computers, we have to create a bash shortcut for Sass.  If you're using your laptop or home computer you may not need to do this.  You can check by running <code>which sass</code> from Terminal.  If you get a path, it already works.</p>
+	<p>First, check which version of <em>Ruby</em> you have. </p>
+	<pre><code>$ which ruby
+/Users/oroberts/.gem/ruby/2.0.0/</code></pre>
+	<p>You will see something like that, just remember the numbers, where mine says <code>2.0.0</code>.</p>
+</div>
+
+<div class="slide">
+	<p>We're going to add the path to the Sass program to our <code>.bash_profile</code>.</p>
+	<pre><code>$ open ~/.bash_profile</code></pre>
+	<p>In this text file, add the following line, updating with your version of Ruby:</p>
+	<pre><code class="javascript">export PATH=$PATH:/Users/oroberts/.gem/ruby/2.0.0/bin</code></pre>
+	<p>Save and Quit Text Edit.</p>
+	<p>Back in Terminal, refresh the bash profile:</p>
+	<pre><code class="javascript">$ source ~/.bash_profile</code></pre>
+	<p>Type <code>which sass</code> to see if it worked.</p>
+	<pre><code>$ which sass</code></pre>
+</div>
+
+<div class="slide">
+	<h2>Usage</h2>
+	<p>Now that Sass is installed we have to learn how to use it.  We're going to go over it using our node app as the example project, but you could use these steps for any project.</p>
+	<p>First, navigate in Terminal to the project public folder and create a <code>css/</code> folder.</p>
+	<pre><code>$ cd Desktop/mmp350
+$ cd new_node_app
+$ cd public
+$ mkdir css && cd css</code></pre>
+	<p>Now create the Sass file.</p>
+	<pre><code>$ touch style.scss</code></pre>
+</div>
+
+<div class="slide">
+	<p>Sass is a pre-processor, meaning that it takes a file and processes it before it's used by a website.  Sass files themselves are not readable by web browsers.  To use them, we need to process them, or read through them and turn them into a regular css file.</p>
+	<p>Let's but a line of Sass into our style.scss and then process it.</p>
+	<pre><code>body {
+	font-family: 'Roboto', Helvetica, sans-serif;
+	background-color: lightblue;
+}</code></pre>
+</div>
+
+<div class="slide">
+	<p>Now run Sass:</p>
+	<pre><code class="javascript">$ sass --watch style.scss:style.css</code></pre>
+	<p>Sass will generate a style.css file from your style.scss file.  It also generates a file called style.css.map, which we don't need to worry about.</p>
+	<p>The <code>--watch</code> flag tells Terminal to update the files everytime the style.scss file is saved.</p>
+	<p>Each time you save, Terminal will print two messages: "write style.css" and "write style.css.map"</p>
+	<p>If you have errors in your Sass file they will appear instead. We'll look at an error in class.</p>
+	<p>When you're done editing remember to close out the Sass program like we do the Node server, using Control + C <span class="key">Vc</span></p>
+</div>
+
+<div class="slide">
+	<p>You're style.css file at this point is probably going to look exactly like your style.scss file did.  We haven't really started writing Sass yet.</p>
+	<p>We're going to do that now.</p>
+	<p>I'm going to be using the <code>scss</code> syntax, which keeps brackets <code>{ ... }</code> to separate rule blocks and semi-colons <code>;</code> to end lines.</p>
+	<p><code>.sass</code> files use new line endings for new rules and indentations instead of brackets.  You can use <code>.sass</code> if you want to try it out.  I generally prefer <code>.scss</code>.</p>
+</div>
+
+<div class="slide">
+	<h2>Nesting</h2>
+	<p>Nesting is an awesome feature in Sass.  We can recreate the HTML structure in our CSS file instead of having to write the same rules over and over.</p>
+	<p>Let's imagine at the structure of a "post" that we created with our Node app last week:</p>
+	<pre><code>&lt;div class="post"&gt;
+	&lt;div class="text"&gt;Hello world :)&lt;/div&gt;
+	&lt;div class="info&gt;
+		by &lt;span class="author"&gt;Owen&lt;/span&gt;
+		on &lt;span class="date"&gt;March 13 2018&lt;/span&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<p>Typically the CSS for that HTML would look like this:</p>
+	<pre><code class="css">.post {
+	// post container style
+}
+.post .text {
+	// text style
+}
+.post .info {
+	// info style
+}
+.post .info .author {
+	// author style
+}
+.post .info .date {
+	// date style
+}</code></pre>
+</div>
+
+<div class="slide">
+	<p>That's long and not very organized.</p>
+	<p>Here's the same thing in Scss:</p>
+	<pre><code class="css">.post {
+	// container style
+
+	.text {
+		// test style
+	}
+	.info {
+		// info style
+
+		.author {
+			// author style
+		}
+		.date {
+			// date style
+		}
+	}	
+}</code></pre>
+</div>
+
+<div class="slide">
+	<p>By nesting the rules, our CSS now looks like our HTML and we can think about the relationships between elements while we're writing CSS, not just HTML.</p>
+	<p>The processor will format this into CSS that follows the regular rules.</p>
+</div>
+
+<div class="slide">
+	<h2>Variables</h2>
+	<p>Another feature in Sass is variables.  Typically CSS doesn't allow us to save a variable.  This means that if you use one color 10 times, and then you decide to change it, your have to replace it 10 times.  With Sass, we can choose a color, use a bunch of times, and then replace it by just replacing the color in the variable.</p>
+	<pre><code class="css">$main-color: #dfdfdf;
+body {
+	color: $main-color;
+}
+a:hover {
+	color: $main-color;
+}</code></pre>
+</div>
+
+<div class="slide">
+	<p>There's a lot more Sass functionality that you should explore on the Sass website.</p> 
+	<p>We're going to stop here and look at using it for color schemes.</p>
+</div>

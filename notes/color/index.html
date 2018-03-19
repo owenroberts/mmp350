@@ -1,0 +1,76 @@
+---
+layout: slides
+title: Calculating Color
+week: 7
+---
+
+<div class="slide">
+	<p>We’re going to look at color today and some cool stuff that SASS can do for us using new color concepts.  First let’s review some basic color theory so we have a basis for how to use SASS.</p>
+</div>
+<div class="slide">
+	<p>We've all looked at the <a href="https://color.adobe.com/create/color-wheel/" target="_blank">Adobe Kuler</a> site for making color schemes.  But what do the different Color Rules (analogous, monochromatic, triad, complementary) signify?  These are basic concepts in <a href="http://www.colormatters.com/color-and-design/basic-color-theory" target="_blank">color theory</a>.  Let's take a look.</p>
+</div>
+<div class="slide">
+	<p>The main thing I want to take away from these concepts is the fact that color relationships can be described with numbers.</p>
+	<p>Because all colors are mapped on the color wheel, we can set up basic relationships and apply them to different colors.</p>
+	<p>For a complementary color, we just have to move the color wheel 180 degrees.</p>
+</div>
+<div class="slide">
+	<p><img src="hsl-colors.png" /></p>
+	<p>Sass uses HSL functions making it easy to set up these color rules in a way that we can substitute any color and achieve the same basic scheme (or our user can choose a color).  <!-- This site shows us how these rules work: <a href="http://sassme.arc90.com/" target="_blank">SassMe</a> -->.</p>
+</div>
+<div class="slide">
+	<p>Let's <a href="http://www.0to255.com/" target="_blank">choose a color</a>.  Now let's take a look at how to create these color schemes with simple SCSS code.</p>
+</div>
+<div class="slide">
+	<p>Sass color functions.</p>
+	<table style="font-family: Menlo, Monaco, monospace;">
+		<tr>
+			<td>adjust_hue(color, degrees)</td> 
+			<td>change the hue of a color by degrees number 0 - 360</td>
+		</tr>
+		<tr>
+			<td>darken(color, precent)</td> 
+			<td>darker color 0% - 100%</td>
+		</tr>
+		<tr>
+			<td>lighten(color, precent)</td> 
+			<td>lighter color 0% - 100%</td>
+		</tr>
+		<tr>
+			<td>saturate(color, precent)</td> 
+			<td>more saturated color 0% - 100%</td>
+		</tr>
+		<tr>
+			<td>desaturate(color, precent)</td> 
+			<td>less saturated color 0% - 100%</td>
+		</tr>
+	</table>    
+</div>
+<div class="slide">
+	<p data-height="328" data-theme-id="10088" data-slug-hash="azzNKr" data-default-tab="result" data-user="owenroberts" class="codepen">See the Pen <a href="http://codepen.io/owenroberts/pen/azzNKr/">azzNKr</a> by Owen Roberts (<a href="http://codepen.io/owenroberts">@owenroberts</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+	<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+	<p><note>Complementary</note>, primary color, with complementary color difference of 180 degrees.</p>
+</div>
+<div class="slide">
+	<p data-height="335" data-theme-id="10088" data-slug-hash="WbbOdL" data-default-tab="result" data-user="owenroberts" class="codepen">See the Pen <a href="http://codepen.io/owenroberts/pen/WbbOdL/">WbbOdL</a> by Owen Roberts (<a href="http://codepen.io/owenroberts">@owenroberts</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+	<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+	<p><note>Monochromatic</note>, primary color, with other colors differing in saturation and lightness.</p>
+</div>
+<div class="slide">
+	<p data-height="332" data-theme-id="10088" data-slug-hash="bNNRLm" data-default-tab="result" data-user="owenroberts" class="codepen">See the Pen <a href="http://codepen.io/owenroberts/pen/bNNRLm/">bNNRLm</a> by Owen Roberts (<a href="http://codepen.io/owenroberts">@owenroberts</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+	<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+	<p><note>Analogous</note>, primary color, second and support colors hue in opposite directions at equal degrees, ie (15 and -15).</p>
+</div>
+<div class="slide">
+	<p data-height="334" data-theme-id="10088" data-slug-hash="dPPRmR" data-default-tab="result" data-user="owenroberts" class="codepen">See the Pen <a href="http://codepen.io/owenroberts/pen/dPPRmR/">dPPRmR</a> by Owen Roberts (<a href="http://codepen.io/owenroberts">@owenroberts</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+	<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+	<p><note>Triadic</note>, primary, second and third divided evenly by 120 degrees.</p>
+</div>
+<div class="slide">
+	<p><a href="http://www.tigercolor.com/color-lab/color-theory/color-theory-intro.htm#analogous" target="_blank">More color schemes</a>.</p>
+</div>

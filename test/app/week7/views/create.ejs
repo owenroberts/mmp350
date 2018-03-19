@@ -1,0 +1,38 @@
+<% include partials/head.ejs %>
+<body>
+	<% include partials/header.ejs %>
+	
+	<div id="create">
+		<input type="text" placeholder="Enter name" id="nameInput">
+		<input type="text" placeholder="Enter email" id="emailInput">
+		<input type="password" placeholder="Enter password" id="passwordInput">
+		<button id="createBtn" onclick={createAccount()}>Create Account</button>
+		<p id="errorMessage"></p>
+	</div>
+	<script>
+		function createAccount() {
+			let email = emailInput.value;
+			let password = passwordInput.value;
+			firebase.auth().createUserWithEmailAndPassword(email, password)
+				.then(function(user) {
+					console.log(user);
+					if (!user.displayName) {
+						console.log(nameInput.value);
+						user.updateProfile({
+							displayName: nameInput.value
+						}).then(function(user) {
+							console.log('update', user);
+							location.href = "/";
+						}, function(error) {
+							console.log('error', error);
+						});
+					}
+				})
+				.catch(function(error) {
+					console.log(error);
+					errorMessage.textContent = error.message;
+				});
+		}
+	</script>
+</body>
+</html>

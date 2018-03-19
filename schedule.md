@@ -70,6 +70,17 @@ Go to [Home](index.html)
 	- Make a template for each of three fonts
 	- We will compare in class
 
+## Week 7
+**Color**
+- [Sass Intro](notes/sass/)
+- [Calculating Color](notes/color/)
+- **Assignment 6**: Color Scheme
+	- Using Sass, create three different color schemes of at least three colors each
+	- Identify which scheme type (complement, triad	, monochromatic, analogous, or combination)
+	- Use one color as main color
+	- Other colors calculated using Sass functions
+
+
 <!-- 
 
 app things to do
@@ -89,8 +100,8 @@ week	| topics					| assignments
 		set up npm, express etc
 4		responsive design			wireframe for mobile
 5		reponsive css, sass			html/css for moile
-6		typography
-7		color
+6		typography					3 type hierarchies
+7		color						3 color schemes
 8		
 9
 10
@@ -99,6 +110,15 @@ week	| topics					| assignments
 13
 14
 15
+
+wordpress topics
+ 8 db setup, dashboard and themes
+ 9 index.php, intro to php
+10 header
+11 loop, front-pate, foundation
+12 footer, category
+13 widgets, image gallery
+14 post format, branding, final
 
 old assignment sequence
 
@@ -111,4 +131,11 @@ typography pairings
 color (lecture)
 midterm html css 
 final
+
+firebase stuff
+https://firebase.google.com/docs/database/web/lists-of-data#reading_and_writing_lists
+https://firebase.googleblog.com/2014/04/best-practices-arrays-in-firebase.html
+https://stackoverflow.com/questions/45527780/node-js-iterate-through-nested-firebase-json-tree
+http://shiffman.net/a2z/firebase/
+
  -->

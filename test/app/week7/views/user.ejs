@@ -1,0 +1,30 @@
+<% include partials/head.ejs %>
+<body>
+	<% include partials/header.ejs %>
+	
+	<form method="GET" action="/post">
+		<input type="hidden" name="uid" id="userInput">
+		<input type="submit" value="Write a new post">
+	</form>
+	
+	<button onclick={signOut()}>Sign Out</button>
+	<script>
+		function signOut() {
+			firebase.auth().signOut();
+			location.reload();
+		};
+
+		firebase.auth().onAuthStateChanged(function(user) {
+			if (user) {
+				console.log('user', user);
+				const userInput = document.getElementById("userInput");
+				userInput.value = user.uid;
+				const userName = document.getElementById("display-name");
+				userName.textContent = "Welcome, " + user.displayName;
+			} else {
+				console.log("out")
+			}
+		});
+	</script>
+</body>
+</html>

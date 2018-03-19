@@ -1,3 +1,0 @@
-- [building index.php](http://owenroberts.github.io/mmp350/week9/)
-- [Intro to php on Code Academy](https://www.codecademy.com/learn/php)
-	- Do lesson 1
