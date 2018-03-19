@@ -7,13 +7,13 @@
 	<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
 	<script>
 	  // Initialize Firebase
-	  var config = {
-		apiKey: "AIzaSyDdwKnt2dzC9eymT8pB3qe_xcup_lF9HWA",
-		authDomain: "mmp350-example.firebaseapp.com",
-		databaseURL: "https://mmp350-example.firebaseio.com",
-		projectId: "mmp350-example",
-		storageBucket: "mmp350-example.appspot.com",
-		messagingSenderId: "748102634369"
+	   var config = {
+		apiKey: "AIzaSyB0Bv7Xgt8DlqcX5hrY5ZIz8UMrobVR5lc",
+		authDomain: "new-node-app-b198a.firebaseapp.com",
+		databaseURL: "https://new-node-app-b198a.firebaseio.com",
+		projectId: "new-node-app-b198a",
+		storageBucket: "new-node-app-b198a.appspot.com",
+		messagingSenderId: "1028638213524"
 	  };
 	  firebase.initializeApp(config);
 	</script>
@@ -38,10 +38,11 @@
 						displayName: nameInput.value
 					}).then(function(user) {
 						console.log('update', user);
+						location.href = "/";
 					}, function(error) {
 						console.log('error', error);
 					});
-					location.href = "/";
+					
 				})
 				.catch(function(error) {
 					console.log(error);

@@ -8,13 +8,13 @@
 	<script>
 	  // Initialize Firebase
 	  var config = {
-		apiKey: "AIzaSyDdwKnt2dzC9eymT8pB3qe_xcup_lF9HWA",
-		authDomain: "mmp350-example.firebaseapp.com",
-		databaseURL: "https://mmp350-example.firebaseio.com",
-		projectId: "mmp350-example",
-		storageBucket: "mmp350-example.appspot.com",
-		messagingSenderId: "748102634369"
-	  };
+    	apiKey: "AIzaSyB0Bv7Xgt8DlqcX5hrY5ZIz8UMrobVR5lc",
+    	authDomain: "new-node-app-b198a.firebaseapp.com",
+    	databaseURL: "https://new-node-app-b198a.firebaseio.com",
+    	projectId: "new-node-app-b198a",
+    	storageBucket: "new-node-app-b198a.appspot.com",
+    	messagingSenderId: "1028638213524"
+  		};
 	  firebase.initializeApp(config);
 	</script>
 </head>
@@ -25,14 +25,21 @@
 	<a href="/login">Log in</a>
 	<a href="/create">Create new user</a>
 	
+	<form method="GET" action="/post">
+		<input type="hidden" name="uid" id="userInput">
+		<input type="submit" value="Write a new post">
+	</form>
+	
 	<button onclick={signOut()}>Sign out</button>
 	
 	<script>
 		const userName = document.getElementById("display-name");
 		firebase.auth().onAuthStateChanged(function(user) {
 			if (user) {
-				console.log(user);
+				console.log(user.uid);
 				userName.textContent = "Hello, " + user.displayName;
+				const userInput = document.getElementById('userInput');
+				userInput.value = user.uid;
 			} else {
 				console.log("no user");
 			}
