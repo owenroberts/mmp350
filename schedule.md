@@ -138,4 +138,8 @@ https://firebase.googleblog.com/2014/04/best-practices-arrays-in-firebase.html
 https://stackoverflow.com/questions/45527780/node-js-iterate-through-nested-firebase-json-tree
 http://shiffman.net/a2z/firebase/
 
+midterm/final options
+pitch a backend site -> build the backend site
+design wireframes -> use class example
+
  -->

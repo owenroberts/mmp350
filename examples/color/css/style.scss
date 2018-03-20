@@ -1,0 +1,22 @@
+body {
+	font-family: Helvetica, sans-serif;
+	background-color: aqua;
+}
+
+.post {
+	border: 2px solid blue;
+	margin: 1em;
+	padding: 1em;
+	.text {
+		font-size: 2em;
+	}
+	.info {
+		color: gray;
+		.author {
+			font-style: italic;	
+		}
+		.date {
+			color: pink;
+		}
+	}
+}
