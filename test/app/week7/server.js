@@ -34,14 +34,9 @@ app.get('/', function(request, response){
 	const ref = db.ref('users').orderByKey();
 	ref.once('value')
 		.then(function(snapshot){
-			snapshot.forEach(function(childSnapShot) {
-				var key = childSnapShot.key;
-				var childData = childSnapShot.val();
-				console.log(key);
-				console.log(childData);
-			});
+			console.log(snapshot.val());
 			response.render('home.ejs', {
-				data: snapshot
+				data: snapshot.val()
 			});
 		});
 	// response.render('home.ejs');

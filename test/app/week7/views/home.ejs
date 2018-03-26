@@ -8,35 +8,20 @@
 	</form>
 
 	<% var j = JSON.stringify(data); %>
-	<!-- <%= j %> -->
-
-	<% if (data) { %>
-		<% let users = data.val() %>
-		<% let keys = Object.keys(users) %>
-		<% for (let i = 0; i < keys.length; i++) { %>
-			<% let key = keys[i]; %>
-			<% let user = users[key]; %>
-			<!-- <%=  JSON.stringify(user) %> -->
-			<% let posts = user.posts %>
-			<% let pees = Object.keys(posts) %>
-			<% for (let i = 0; i < pees.length; i++) { %>
-				<% let pk = pees[i]; %>
-				<% let post = posts[pk]; %>
-				<%= post.text %>
-				<%= post.date %>
-			<% } %>
-		<% } %>
-	<% } %>
-
-<!-- 	<% if (data) { %>
-		<% for (var user in data.val()) { %>
-			<div class="post">
-				<%= user %>
-			</div>
-		<% } %>
-	<% } %> -->
-
 	
+	<div>
+		<% var keys = Object.keys(data); %>
+		<% keys.forEach(function(key) { %>
+			<% var postKeys =  Object.keys(data[key].posts) %>
+			<% postKeys.forEach(function(postKey) { %>
+				<p><%= data[key].posts[postKey].text %></p>
+				<p><%= data[key].posts[postKey].date %></p>
+			<% }); %>
+
+		<% }); %>
+	</div>
+
+
 	<button onclick={signOut()}>Sign Out</button>
 	<script>
 		function signOut() {
