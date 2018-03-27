@@ -5,8 +5,7 @@ title: Schedule
 
 Go to [Home](index.html)
 
-## Week 1
-**Introduction**
+## Week 1 **Introduction**
 - AKA "Bear with me"
 - [Command Line / OSX Terminal](notes/unix/)
 - [Setting up dev tools](notes/node/setup/)
@@ -28,8 +27,7 @@ Go to [Home](index.html)
 	- Note 2-3 design choices that work well
 	- Note 2-3 design choices that do not work as well
 
-## Week 2
-**Grid**
+## Week 2 **Grid + Node Intro**
 - [Grid Systems](notes/grid/)
 - [Functions & callbacks](notes/node/functions/)
 - [Node Server](notes/node/server/)
@@ -41,15 +39,13 @@ Go to [Home](index.html)
 	- Finished wireframe must indicate percentages, units and measurements in order to be implemented
 	- Next week you will trade wireframes with another student to implement using HTML/CSS
 
-## Week 3
-**npm & Express**
+## Week 3 **npm & Express**
 - [CSS Grid](notes/grid/css/)
 - [npm & express](notes/node/frameworks/)
 - **Assignment 3**: HTML & CSS for wireframe
 	- Using your classmates wireframe as a basis, use HTML and CSS to create a website prototype
 
-## Week 4
-**Responsive Design**
+## Week 4 **Responsive Design**
 - [Responsive Layouts](notes/responsive/)
 - [Node Templates](notes/node/template)
 - **Assignment 4**: Responsive wireframes
@@ -57,12 +53,10 @@ Go to [Home](index.html)
 	- Share the wireframe with your classmate to write HTML and CSS
 	- Both are due next week
 
-## Week 5
-**Firebase Intro**
+## Week 5 **Firebase Intro**
 - [Firebase User Authentication](notes/firebase/auth/)
 
-## Week 6
-**Typography**
+## Week 6 **Typography**
 - [Typographic Hierarchy](notes/typography/)
 - [Firebase Database](notes/firebase/db/)
 - **Assignment 5**: Typographic Hierarchy
@@ -70,8 +64,7 @@ Go to [Home](index.html)
 	- Make a template for each of three fonts
 	- We will compare in class
 
-## Week 7
-**Color**
+## Week 7 **Color**
 - [Sass Intro](notes/sass/)
 - [Calculating Color](notes/color/)
 - **Assignment 6**: Color Scheme
