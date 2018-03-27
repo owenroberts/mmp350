@@ -1,22 +1,37 @@
+$main-color: #f29c80;
+
+/* complementary */
+$complement: adjust_hue($main-color, 180);
+
+/* monochromatic */
+$secondary: lighten( saturate($main-color, 50%), 10%);
+$tertiary: darken($main-color, 30%);
+
+/* analagous */
+$secondary: adjust_hue($main-color, 30%);
+$tertiary: adjust_hue($main-color, -30%);
+
 body {
 	font-family: Helvetica, sans-serif;
-	background-color: aqua;
 }
 
 .post {
-	border: 2px solid blue;
+	border: 2px solid $main-color;
 	margin: 1em;
 	padding: 1em;
+	/*background: $secondary;*/
 	.text {
 		font-size: 2em;
+		color: $secondary;
 	}
 	.info {
 		color: gray;
 		.author {
-			font-style: italic;	
+			font-style: italic;
+			color: $tertiary;
 		}
 		.date {
-			color: pink;
+			color: $tertiary;
 		}
 	}
 }

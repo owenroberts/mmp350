@@ -1,24 +1,29 @@
-/* line 1, /Users/oroberts/Desktop/s2018/mmp350/color/css/style.scss */
+/* complementary */
+/* monochromatic */
+/* analagous */
+/* line 14, /Users/oroberts/Desktop/s2018/mmp350/color/css/style.scss */
 body {
-  font-family: Helvetica, sans-serif;
-  background-color: aqua; }
+  font-family: Helvetica, sans-serif; }
 
-/* line 6, /Users/oroberts/Desktop/s2018/mmp350/color/css/style.scss */
+/* line 18, /Users/oroberts/Desktop/s2018/mmp350/color/css/style.scss */
 .post {
-  border: 2px solid blue;
+  border: 2px solid #f29c80;
   margin: 1em;
-  padding: 1em; }
-  /* line 10, /Users/oroberts/Desktop/s2018/mmp350/color/css/style.scss */
+  padding: 1em;
+  /*background: $secondary;*/ }
+  /* line 23, /Users/oroberts/Desktop/s2018/mmp350/color/css/style.scss */
   .post .text {
-    font-size: 2em; }
-  /* line 13, /Users/oroberts/Desktop/s2018/mmp350/color/css/style.scss */
+    font-size: 2em;
+    color: #f2d580; }
+  /* line 27, /Users/oroberts/Desktop/s2018/mmp350/color/css/style.scss */
   .post .info {
     color: gray; }
-    /* line 15, /Users/oroberts/Desktop/s2018/mmp350/color/css/style.scss */
+    /* line 29, /Users/oroberts/Desktop/s2018/mmp350/color/css/style.scss */
     .post .info .author {
-      font-style: italic; }
-    /* line 18, /Users/oroberts/Desktop/s2018/mmp350/color/css/style.scss */
+      font-style: italic;
+      color: #f2809d; }
+    /* line 33, /Users/oroberts/Desktop/s2018/mmp350/color/css/style.scss */
     .post .info .date {
-      color: pink; }
+      color: #f2809d; }
 
 /*# sourceMappingURL=style.css.map */

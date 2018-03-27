@@ -1,0 +1,25 @@
+/* line 5, /Users/oroberts/Desktop/s2018/mmp350/color/css/style.scss */
+body {
+  font-family: Helvetica, sans-serif;
+  background-color: aqua; }
+
+/* line 10, /Users/oroberts/Desktop/s2018/mmp350/color/css/style.scss */
+.post {
+  border: 2px solid blue;
+  margin: 1em 2em;
+  padding: 1em 2em; }
+  /* line 14, /Users/oroberts/Desktop/s2018/mmp350/color/css/style.scss */
+  .post .text {
+    font-size: 2em; }
+  /* line 17, /Users/oroberts/Desktop/s2018/mmp350/color/css/style.scss */
+  .post .info {
+    color: gray; }
+    /* line 19, /Users/oroberts/Desktop/s2018/mmp350/color/css/style.scss */
+    .post .info .author {
+      font-style: italic;
+      color: blue; }
+    /* line 23, /Users/oroberts/Desktop/s2018/mmp350/color/css/style.scss */
+    .post .info .date {
+      color: blue; }
+
+/*# sourceMappingURL=style.css.map */

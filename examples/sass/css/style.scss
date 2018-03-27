@@ -1,0 +1,27 @@
+$bg-color: aqua;
+$text-color: blue;
+$default-margin-padding: 1em 2em;
+
+body {
+	font-family: Helvetica, sans-serif;
+	background-color: $bg-color;
+}
+
+.post {
+	border: 2px solid blue;
+	margin: $default-margin-padding;
+	padding: $default-margin-padding;
+	.text {
+		font-size: 2em;
+	}
+	.info {
+		color: gray;
+		.author {
+			font-style: italic;	
+			color: $text-color;
+		}
+		.date {
+			color: $text-color;
+		}
+	}
+}
