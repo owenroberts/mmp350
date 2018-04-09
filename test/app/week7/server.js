@@ -3,12 +3,12 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 
 const admin = require('firebase-admin');
-const serviceAccount = require('./key.json');
-const firebaseAdmin = admin.initializeApp({
-	credential: admin.credential.cert(serviceAccount),
-	databaseURL: 'https://new-node-app-b198a.firebaseio.com'
-});
-const db = admin.database();
+// const serviceAccount = require('./key.json');
+// const firebaseAdmin = admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+//   databaseURL: "https://mmp350-example.firebaseio.com"
+// });
+// const db = admin.database();
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -31,15 +31,15 @@ function isAuthenticated(request, response, next) {
 }
 
 app.get('/', function(request, response){
-	const ref = db.ref('users').orderByKey();
-	ref.once('value')
-		.then(function(snapshot){
-			console.log(snapshot.val());
-			response.render('home.ejs', {
-				data: snapshot.val()
-			});
-		});
-	// response.render('home.ejs');
+	// const ref = db.ref('users').orderByKey();
+	// ref.once('value')
+	// 	.then(function(snapshot){
+	// 		console.log(snapshot.val());
+	// 		response.render('home.ejs', {
+	// 			data: snapshot.val()
+	// 		});
+	// 	});
+	response.render('home.ejs');
 });
 
 app.get('/post', isAuthenticated, function(request, response){
