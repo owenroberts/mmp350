@@ -80,6 +80,7 @@ Go to [Home](index.html)
 - Two options
 	1. Design pitch
 	2. Web application pitch
+	
 1. Design Pitch
 	- Using our base Post writing application
 	- Make a design pitch for the website
