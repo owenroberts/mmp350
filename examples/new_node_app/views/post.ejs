@@ -1,26 +1,6 @@
-<!doctype html>
-<html>
-<head>
-	<title>New Node App</title>
-	<meta charset="utf-8">
-	<link rel="stylesheet" href="/style.css">
-	<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
-	<script>
-	  // Initialize Firebase
-	  var config = {
-    	apiKey: "AIzaSyB0Bv7Xgt8DlqcX5hrY5ZIz8UMrobVR5lc",
-    	authDomain: "new-node-app-b198a.firebaseapp.com",
-    	databaseURL: "https://new-node-app-b198a.firebaseio.com",
-    	projectId: "new-node-app-b198a",
-    	storageBucket: "new-node-app-b198a.appspot.com",
-    	messagingSenderId: "1028638213524"
-  		};
-	  firebase.initializeApp(config);
-	</script>
-</head>
+<% include partials/head.ejs %>
 <body>
-	<h1>Welcome to my app :)</h1>
-	<p id="display-name">Hello world.</p>
+	<% include partials/header.ejs %>
 	
 	<div id="post">
 		<textarea id="post-text"></textarea>
@@ -29,7 +9,6 @@
 	</div>
 	
 	<script>
-		
 		function savePost() {
 			const uid = firebase.auth().currentUser.uid;
 			const db = firebase.database();
@@ -42,24 +21,10 @@
 			
 			ref.push(post).key;
 		}
-		
-		const userName = document.getElementById("display-name");
-		firebase.auth().onAuthStateChanged(function(user) {
-			if (user) {
-				console.log(user.uid);
-				userName.textContent = "Hello, " + user.displayName;
-				const userInput = document.getElementById('userInput');
-				userInput.value = user.uid;
-			} else {
-				console.log("no user");
-			}
-		});
-		
-		function signOut() {
-			firebase.auth().signOut();
-			location.reload();
-		}
 	</script>
+	
+	<% include partials/footer.ejs %>
+	
 </body>
 </html>
 
