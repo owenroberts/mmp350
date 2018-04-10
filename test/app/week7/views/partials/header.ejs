@@ -2,9 +2,24 @@
 	<h1>Welcome to my node app :)</h1>
 	<div id="menu">
 		<a href="/">Home</a>
-		<a href="/login">Login</a>
-		<a href="/create">Create</a>
+		<div id="not-logged-in" style="display:none;">
+			<a href="/login">Login</a>
+			<a href="/create">Create</a>
+		</div>
 	</div>
 	<div id="display-name"></div>
 </div>
 
+<script>
+firebase.auth().onAuthStateChanged(function(user) {
+		if (user) {
+			console.log('user', user);
+			const userInput = document.getElementById("userInput");
+			userInput.value = user.uid;
+			const userName = document.getElementById("display-name");
+			userName.textContent = "Welcome, " + user.displayName;
+		} else {
+			document.getElementById("not-logged-in").style.display = "inline-block";
+		}
+	});
+</script>

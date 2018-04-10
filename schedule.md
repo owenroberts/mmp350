@@ -73,6 +73,27 @@ Go to [Home](index.html)
 	- Use one color as main color
 	- Other colors calculated using Sass functions
 
+## Week 8 **Templates**
+- [Templates](notes/templates/)
+
+## Midterm
+- Two options
+	1. Design pitch
+	2. Web application pitch
+	
+1. Design Pitch
+	- Using our base Post writing application
+	- Make a design pitch for the website
+	- Pitch requires layout, typography and color scheme
+	- Can be executed as wireframes or static HTML/CSS
+	- Site map/user interaction flow document
+2. Application pitch
+	- Present a pitch for a web based application
+	- The application must use a database
+	- What does the application do?
+	- Who are the users of the application?
+	- Quick User Interaction flow
+
 
 <!-- 
 

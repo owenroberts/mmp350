@@ -1,0 +1,115 @@
+---
+layout: slides
+title: Templates
+week: 8
+---
+
+<div class="slide">
+	<p>Templates are like blueprints for a web page that describe the basic structure which is filled in with content from a database.</p>
+	<p>Templates allow us to separate the parts of a single web page that are repeated and create building blocks that are used to construct a page.</p>
+	<p>This week we'll start by dividing our templates into smaller blocks and then adding our data into the templates.</p>
+</div>
+
+<div class="slide">
+	<h2>Partials</h2>
+	<p>EJS, as well as some other templating languages, use the concept of <note>partials</note> to separate similar blocks of the web page.</p>
+	<p>Our application currently has four separate routes, <code>/</code>, <code>/post</code>, <code>/login</code> and <code>/create</code>.</p>
+	<p>Each of these routes has common parts of the page that we can divide into partials.</p>
+</div>
+
+<div class="slide">
+	<p>Start by creating a new directory called <code>partials</code> inside of the <code>views</code> directory.</p>
+	<p>In Terminal, move to the application directory and then create the directory:</p>
+	<pre><code>$ mkdir views/partials</code></pre>
+</div>
+
+<div class="slide">
+	<h2>head</h2>
+	<p>Each one of our templates has the exact same markup in the <code>&lt;head&gt;</code> section.  We will separate this into it's own file, <code>head.ejs</code>.</p>
+	<pre><code>$ touch views/partials/head.ejs</code></pre>
+	<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+	&lt;meta charset="UTF-8"&gt;
+	&lt;title&gt;New Node App&lt;/title&gt;
+	&lt;link rel='stylesheet' href='/css/style.css'&gt;
+	&lt;script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"&gt;&lt;/script&gt;
+	&lt;script&gt;
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyB0Bv7Xgt8DlqcX5hrY5ZIz8UMrobVR5lc",
+			authDomain: "new-node-app-b198a.firebaseapp.com",
+			databaseURL: "https://new-node-app-b198a.firebaseio.com",
+			projectId: "new-node-app-b198a",
+			storageBucket: "new-node-app-b198a.appspot.com",
+			messagingSenderId: "1028638213524"
+		};
+		firebase.initializeApp(config);
+	&lt;/script&gt;
+&lt;/head&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<p>To place a partial inside another template, EJS uses this syntax:</p>
+	<pre><code class="ejs">&lt;% include partials/head.ejs %&gt;</code></pre>
+	<p><code>include</code> essentially tells EJS to grab all of the markup from <code>head.ejs</code> and load it into whatever template includes it.</p>
+	<p>Replace the <code>&lt;head&gt;</code> section of all of your templates with that line.</p>
+</div>
+
+<div class="slide">
+	<p><code>head.ejs</code> is the first building block for our template.</p>
+	<p>By using this partial, anytime we make a change to the <code>head</code> section, it will automatically be updated on all of our page, so we won't need to rewrite several different documents to keep everything the same.</p>
+</div>
+
+<div class="slide">
+	<h2>header</h2>
+	<p>The header section of the templates is also basically the same on each template page, however there are some differences.  Each header section contains the title of the website and links to other pages, but these links differ on separate pages.  We can make some changes to simplify this section.</p>
+	<p>We'll start by creating a new template partial:</p>
+	<pre><code class="ejs">&lt;% include partials/header.ejs %&gt;</code></pre>
+	<p>Make sure to be clear on the difference between <code>head.ejs</code> and <code>header.ejs</code></p>
+</div>
+
+<div class="slide">
+	<pre><code>&lt;div id="header"&gt;
+	&lt;h1&gt;Welcome to my node app :)&lt;/h1&gt;
+	&lt;div id="menu"&gt;
+		&lt;a href="/"&gt;Home&lt;/a&gt;
+		&lt;a href="/login"&gt;Login&lt;/a&gt;
+		&lt;a href="/create"&gt;Create&lt;/a&gt;
+	&lt;/div&gt;
+	&lt;div id="display-name"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<p>If the user is already logged in, we won't need to display the <code>/login</code> and <code>/create</code> links.</p>
+	<p>Let's add the authentication JavaScript code into the header template and hide those links if the user is available.</p>
+	<pre><code>&lt;div id="not-logged-in" style="display:none;"&gt;
+	&lt;a href="/login"&gt;Login&lt;/a&gt;
+	&lt;a href="/create"&gt;Create&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<pre><code>&lt;script&gt;
+firebase.auth().onAuthStateChanged(function(user) {
+		if (user) {
+			console.log('user', user);
+			const userInput = document.getElementById("userInput");
+			userInput.value = user.uid;
+			const userName = document.getElementById("display-name");
+			userName.textContent = "Welcome, " + user.displayName;
+		} else {
+			document.getElementById("not-logged-in").style.display = "inline-block";
+		}
+	});
+&lt;/script&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<p>Now add this partial to the page that require it.</p>
+	<p>It should replace the <code>&lt;div id="header"&gt;</code> section, right after the body tag.</p>
+	<pre><code>&lt;body&gt;
+	&lt;% include partials/header.ejs %&gt;</code></pre>
+	<p>Not all of the templates will need this section, so let's figure out where it makes sense to include this together.</p>
+</div>
