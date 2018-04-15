@@ -93,6 +93,9 @@ Go to [Home](index.html)
 	- Who are the users of the application?
 	- Quick User Interaction flow
 
+## Week 9 **User Interaction**
+- [User Interaction Flow Chart]
+- [User posts page]
 
 <!-- 
 
