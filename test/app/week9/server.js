@@ -8,6 +8,7 @@ const firebaseAdmin = admin.initializeApp({
 	credential: admin.credential.cert(serviceAccount),
 	databaseURL: 'https://new-node-app-b198a.firebaseio.com'
 });
+const db = admin.database();
 
 function isAuthenticated(request, response, next) {
 	const uid = request.query.uid;
@@ -29,14 +30,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 
-app.get('/', function(request, response){
-	response.render('home.ejs');
-});
-
-app.get('/post', isAuthenticated, function(request, response){
-	response.render('post.ejs');
-});
-
 app.get('/', function(request, response) {
 	response.render('home.ejs');
 });
@@ -54,11 +47,9 @@ app.get('/post', isAuthenticated, function(request, response) {
 });
 
 app.get('/users', function(request, response){
-	console.log("hello")
-	const ref = db.ref('users').orderByKey();
+	const ref = db.ref('users');
 	ref.once('value')
 		.then(function(snapshot){
-			console.log(snapshot.val());
 			response.render('users.ejs', {
 				data: snapshot.val()
 			});
@@ -66,12 +57,19 @@ app.get('/users', function(request, response){
 });
 
 app.get('/user/:id', function(request, response) {
-
-	response.render('user.ejs');
+	const ref = db.ref('users/' + request.params.id);
+	ref.once('value')
+		.then(function(snapshot){
+			response.render('user.ejs', {
+				data: snapshot.val()
+			});
+		});
 });
 
 const port = process.env.PORT || 8000;
 app.listen(port, function() {
 	console.log("App running on port", port);
 });
+
+
 

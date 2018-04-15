@@ -17,12 +17,18 @@
 				.then(function(user) {
 					console.log(user);
 					if (!user.displayName) {
-						console.log(nameInput.value);
 						user.updateProfile({
 							displayName: nameInput.value
 						}).then(function(user) {
 							console.log('update', user);
-							location.href = "/";
+
+							const db = firebase.database();
+							const ref = db.ref('/users/' + user.uid)
+							const info = {
+								name: nameInput.value
+							};
+							ref.push(info).key;
+							// location.href = "/";
 						}, function(error) {
 							console.log('error', error);
 						});

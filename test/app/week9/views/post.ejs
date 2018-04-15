@@ -19,7 +19,12 @@
 				date: new Date().toString()
 			};
 			
-			ref.push(post).key;
+			ref.push(post)
+				.then(function(post){
+					console.log(post);
+				})
+
+			document.getElementById("post-text").value = "";
 		}
 	</script>
 	

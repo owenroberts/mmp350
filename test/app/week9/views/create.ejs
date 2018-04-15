@@ -15,10 +15,15 @@
 			firebase.auth().createUserWithEmailAndPassword(emailInput.value, passwordInput.value)
 				.then(function(user) {
 					console.log(user);
+					const db = firebase.database();
+					const ref = db.ref('/users/' + user.uid)
+					const info = {
+						name: nameInput.value
+					};
+					ref.set(info);
 					user.updateProfile({
 						displayName: nameInput.value
 					}).then(function(user) {
-						console.log('update', user);
 						location.href = "/";
 					}, function(error) {
 						console.log('error', error);

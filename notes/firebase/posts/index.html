@@ -12,5 +12,77 @@ week: 9
 
 <div class="slide">
 	<h2>Route parameters</h2>
-	
+	<p>Earlier this semester we used a <code>form</code> with <code>type="hidden"</code> to pass the user's ID number to an Express route.</p>
+	<p>That resulted in a URL that looks like this:</p>
+	<pre><code>http://localhost:8000/post?uid=trlEE279WHe6BEKMLTSMTT4K4Ma2</code></pre>
+	<p>In this case the <code>/post</code> is the route, the <code>?</code> separates the parameters in the URL, and the <code>uid=trl...</code> is the key value pair for the user ID.</p>
+	<p>We used this to authenticate the user to go to their post page.</p>
+</div>
+
+<div class="slide">
+	<p>In this case, we don't need to authenticate the user to display the page, because we will only be viewing posts.</p>
+	<p>Contructing the URL using a parameter will make it easier to create links to each user's page.</p>
+	<p>In these previous section we set up a page to display all of the users with links to their pages.  The resulting URL looked like this:</p>
+	<pre><code>http://localhost:8000/user/rAKpDiwrGlf2yuP8u4KP92ItEI12</code></pre>
+	<p>That long string of numbers is the invidual user ID for the user "Owen".  Using that as a parameter, we can load any user's page with their individual posts, using the same formula.</p>
+</div>
+
+<div class="slide">
+	<h2>Route</h2>
+	<p>The express route will look like this:</p>
+	<pre><code>app.get('/user/:id', function(request, response) {
+	// get user posts
+});</code></pre>
+</div>
+
+<div class="slide">
+	<p>Let's take a look at that value using <code>request.params</code>:</p>
+	<pre><code>console.log(request.params);
+// { id: 'rAKpDiwrGlf2yuP8u4KP92ItEI12' }</code></pre>
+	<p>The <code>request</code> argument now includes an object with the values passed in the URL.</p>
+</div>
+
+<div class="slide">
+	<p>Let's use the user id to grab their posts before we render their page.</p>
+	<p>This looks similar to how we got the post data for all of the users.</p>
+	<pre><code>const ref = db.ref('users/' + request.params.id);
+ref.once('value')
+	.then(function(snapshot){
+		response.render('user.ejs', {
+			data: snapshot.val()
+		});
+	});</code></pre>
+</div>
+
+<div class="slide">
+	<h2>User template</h2>
+	<p>Now that we have the data from the database, we can create a new template to display that data.</p>
+	<p><code>user.ejs</code> will look a lot like <code>users.ejs</code> but we'll be display different information.</p>
+	<p>Same basic template:</p>
+	<pre><code class="html">&lt;% include partials/head.ejs %&gt;
+&lt;body&gt;
+	&lt;% include partials/header.ejs %&gt;
+	&lt;!-- display user posts here --&gt;
+	&lt;% include partials/footer.ejs %&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<pre><code>&lt;div id="posts"&gt;
+	&lt;h2&gt;Posts by &lt;%= data.name %&gt;&lt;/h2&gt;
+	&lt;% let keys = Object.keys(data.posts); %&gt;
+	&lt;% keys.forEach(function(key) { %&gt;
+		&lt;% let post = data.posts[key]; %&gt;
+		&lt;div class="post"&gt;
+			&lt;div class="text"&gt;&lt;%= post.text %&gt;&lt;/div&gt;
+			&lt;div class="date"&gt;&lt;%= post.date%&gt;&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;% }); %&gt; 
+&lt;/div&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<p>In this case, we are iterating over the data in almost the exact same way, except instead of iterating over all of the data, we are iterating over the posts table within data, using <code>data.posts</code>.</p>  
+	<p>We're also using <code>data.name</code> to fill in the users name in the header.</p>
 </div>

@@ -1,0 +1,19 @@
+<% include partials/head.ejs %>
+<body>
+	<% include partials/header.ejs %>
+
+	<div id="posts">
+		<h2>Posts by <%= data.name %></h2>
+		<% let keys = Object.keys(data.posts); %>
+		<% keys.forEach(function(key) { %>
+			<% let post = data.posts[key]; %>
+			<div class="post">
+				<div class="text"><%= post.text %></div>
+				<div class="date"><%= post.date%></div>
+			</div>
+		<% }); %> 
+	</div>
+	
+	<% include partials/footer.ejs %>
+</body>
+</html>

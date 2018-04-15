@@ -80,6 +80,7 @@ Go to [Home](index.html)
 - Two options
 	1. Design pitch
 	2. Web application pitch
+	
 1. Design Pitch
 	- Using our base Post writing application
 	- Make a design pitch for the website
@@ -95,7 +96,8 @@ Go to [Home](index.html)
 
 ## Week 9 **User Interaction**
 - [User Interaction Flow Chart]
-- [User posts page]
+- [Display users](notes/firebase/users)
+- [User posts page](notes/firebase/posts)
 
 <!-- 
 

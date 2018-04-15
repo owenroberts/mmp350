@@ -60,3 +60,56 @@ week: 8
 	<p><code>head.ejs</code> is the first building block for our template.</p>
 	<p>By using this partial, anytime we make a change to the <code>head</code> section, it will automatically be updated on all of our page, so we won't need to rewrite several different documents to keep everything the same.</p>
 </div>
+
+<div class="slide">
+	<h2>header</h2>
+	<p>The header section of the templates is also basically the same on each template page, however there are some differences.  Each header section contains the title of the website and links to other pages, but these links differ on separate pages.  We can make some changes to simplify this section.</p>
+	<p>We'll start by creating a new template partial:</p>
+	<pre><code class="ejs">&lt;% include partials/header.ejs %&gt;</code></pre>
+	<p>Make sure to be clear on the difference between <code>head.ejs</code> and <code>header.ejs</code></p>
+</div>
+
+<div class="slide">
+	<pre><code>&lt;div id="header"&gt;
+	&lt;h1&gt;Welcome to my node app :)&lt;/h1&gt;
+	&lt;div id="menu"&gt;
+		&lt;a href="/"&gt;Home&lt;/a&gt;
+		&lt;a href="/login"&gt;Login&lt;/a&gt;
+		&lt;a href="/create"&gt;Create&lt;/a&gt;
+	&lt;/div&gt;
+	&lt;div id="display-name"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<p>If the user is already logged in, we won't need to display the <code>/login</code> and <code>/create</code> links.</p>
+	<p>Let's add the authentication JavaScript code into the header template and hide those links if the user is available.</p>
+	<pre><code>&lt;div id="not-logged-in" style="display:none;"&gt;
+	&lt;a href="/login"&gt;Login&lt;/a&gt;
+	&lt;a href="/create"&gt;Create&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<pre><code>&lt;script&gt;
+firebase.auth().onAuthStateChanged(function(user) {
+		if (user) {
+			console.log('user', user);
+			const userInput = document.getElementById("userInput");
+			userInput.value = user.uid;
+			const userName = document.getElementById("display-name");
+			userName.textContent = "Welcome, " + user.displayName;
+		} else {
+			document.getElementById("not-logged-in").style.display = "inline-block";
+		}
+	});
+&lt;/script&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<p>Now add this partial to the page that require it.</p>
+	<p>It should replace the <code>&lt;div id="header"&gt;</code> section, right after the body tag.</p>
+	<pre><code>&lt;body&gt;
+	&lt;% include partials/header.ejs %&gt;</code></pre>
+	<p>Not all of the templates will need this section, so let's figure out where it makes sense to include this together.</p>
+</div>
