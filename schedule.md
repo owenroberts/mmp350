@@ -95,8 +95,11 @@ Go to [Home](index.html)
 	- Quick User Interaction flow
 
 ## Week 9 **User Interaction**
+- Midterm workshop
 - [User Interaction Flow Chart](notes/ui/)
 - [Display users](notes/firebase/users)
+
+## Week 10 **
 - [User posts page](notes/firebase/posts)
 
 <!-- 
