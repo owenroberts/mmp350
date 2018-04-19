@@ -40,7 +40,7 @@ week: 9
 	<pre><code>firebase.auth().createUserWithEmailAndPassword(emailInput.value, passwordInput.value)
 		.then(function(user) {
 			const db = firebase.database();
-			const ref = db.ref('/users' + user.uid);
+			const ref = db.ref('/users/' + user.uid);
 			ref.set({ name: nameInput.value });</code></pre>
 	<p>The rest of that function stays the same.</p>
 </div>
