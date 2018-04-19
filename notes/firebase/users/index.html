@@ -57,6 +57,19 @@ week: 9
 </div>
 
 <div class="slide">
+	<p>First we need a reference to the database.</p>
+	<p>In <code>server.js</code> right after the <code>const firebaseAdmin</code> code, let's add a reference to the database.</p>
+	<pre><code>// leave this the same
+const firebaseAdmin = admin.initializeApp({
+	credential: admin.credential.cert(serviceAccount),
+	databaseURL: 'https://your-node-app.firebaseio.com'
+});
+// reference to database
+const db = firebaseAdmin.database();</code></pre>
+</div>
+
+
+<div class="slide">
 	<p>Here's the route:</p>
 	<pre><code>app.get('/users', function(request, response){
 	const ref = db.ref('users');
