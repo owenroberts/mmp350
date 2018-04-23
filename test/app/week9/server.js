@@ -1,6 +1,8 @@
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+const sassMiddleware = require('node-sass-middleware');
+const path = require('path');
 const admin = require('firebase-admin');
 const serviceAccount = require('./key.json');
 
@@ -28,6 +30,14 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(sassMiddleware({
+	src: path.join(__dirname, 'public/css'),
+	dest: path.join(__dirname, 'public/css'),
+	debug: true,
+	outputstyle: 'compressed',
+	prefix: '/css'
+}));
 app.use(express.static('public'));
 
 app.get('/', function(request, response) {
