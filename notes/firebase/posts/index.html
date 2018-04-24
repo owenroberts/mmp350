@@ -71,14 +71,19 @@ ref.once('value')
 <div class="slide">
 	<pre><code>&lt;div id="posts"&gt;
 	&lt;h2&gt;Posts by &lt;%= data.name %&gt;&lt;/h2&gt;
-	&lt;% let keys = Object.keys(data.posts); %&gt;
-	&lt;% keys.forEach(function(key) { %&gt;
-		&lt;% let post = data.posts[key]; %&gt;
-		&lt;div class="post"&gt;
-			&lt;div class="text"&gt;&lt;%= post.text %&gt;&lt;/div&gt;
-			&lt;div class="date"&gt;&lt;%= post.date%&gt;&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;% }); %&gt; 
+	&lt;% if (data.posts) { %&gt;
+		&lt;% let keys = Object.keys(data.posts); %&gt;
+		&lt;% keys.forEach(function(key) { %&gt;
+			&lt;% let post = data.posts[key] %&gt;
+			&lt;div class="post"&gt;
+				&lt;div class="text"&gt;&lt;%= post.text %&gt;&lt;/div&gt;
+				&lt;% var d = new Date(post.date); %&gt;
+				&lt;div class="date"&gt;posted on &lt;%= d.toLocaleString('en-us', { month: 'long', weekday: 'long', day: 'numeric' }); %&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;% }); %&gt;
+	&lt;% } else { %&gt;
+		&lt;p&gt;This user has not posted yet :(&lt;/p&gt;
+	&lt;% } %&gt;
 &lt;/div&gt;</code></pre>
 </div>
 
