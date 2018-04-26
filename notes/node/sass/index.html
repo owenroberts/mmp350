@@ -1,0 +1,68 @@
+---
+layout: slides
+title: Node + Sass
+week: 10
+---
+
+<div class="slide">
+	<p>So far our app has limited CSS styling.  To implement the CSS color scheme, typoraphy and layouts that we've been working on in the assignments, we're going to add SASS to the application.</p>
+</div>
+
+<div class="slide">
+	<h2>Running SASS</h2>
+	<p>To start we're just going to make a <code>css/</code> folder inside the <code>public/</code> folder for our <code>.scss</code> file.</p>
+	<p>From the <code>node_app/</code> directory:</p>
+	<pre><code class="javascript">$ mkdir public/css
+$ touch public/css/style.scss</code></pre>
+</div>
+
+<div class="slide">
+	<p>We can run Sass as the same time as the node app, but it requires two separate Terminal windows.</p>
+	<pre><code>$ node server.js
+// CMD-T or CMD-N for new Terminal tab or window
+$ sass --watch public/css/style.scss:public/css/style.css</code></pre>
+	<p>With this method, the Sass program must be running for your CSS to be updated.  You also have to remember to close both programs, Node and Sass, when you're done developing.</p>
+</div>
+
+<div class="slide">
+	<h2>HTML href</h2>
+	<p>We also need to update the link in our <code>head.ejs</code> template to get the new location of the <code>.scss</code> file.</p>
+	<pre><code>&lt;link rel="stylesheet" href="/css/style.css"&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<h2>Sass middleware package</h2>
+	<p>Another option which requires a bit of setup is the <code>node-sass-middleware</code> package, which will process the <code>style.scss</code> file while you're running Node.</p>
+	<p>First install the package and add it to <code>package.json</code>.</p>
+	<pre><code class="javascript">$ npm install --save node-sass-middleware</code></pre>
+</div>
+
+<div class="slide">
+	<p>Next we have to initialize it.</p>
+	<p>We need to require the package as well as another package that npm install by default, called <code>path</code>.</p>
+	<pre><code>const sassMiddleware = require('node-sass-middleware');
+const path = require('path');</code></pre>
+</div>
+
+<div class="slide">
+	<p>Next we use the package.  Find the line of code in your app that looks like this:</p>
+	<pre><code>app.use(express.static('public'));</code></pre>
+	<p>The following must go before that line.</p>
+	<pre><code class="javascript">app.use(sassMiddleware({
+	src: path.join(__dirname, 'public/css'),
+	dest: path.join(__dirname, 'public/css'),
+	debug: true,
+	outputstyle: 'compressed',
+	prefix: '/css'
+}));</code></pre>
+</div>
+
+<div class="slide">
+	<p>This will initialize the package.</p>
+	<p><code>app.use</code> simply tells the Node application to use this package.</p>
+	<p>The <code>src</code> and <code>dest</code> parameters tell the package where to find the <code>.scss</code> file and where to place the <code>.css</code> file.</p>
+	<p><code>debug: true</code> will print messages to the Terminal console so we can see if Sass isn't working for some reason.  The default for this parameter is <code>false</code>, so this line can be deleted when publishing the app.</p>
+	<p><code>outputstyle</code> sets the CSS formatting.</p>
+	<p><code>prefix</code> is used to specify the folder inside the public folder.</p>
+</div>
+

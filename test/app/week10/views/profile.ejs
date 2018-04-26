@@ -1,0 +1,50 @@
+<% include partials/head.ejs %>
+<body>
+	<% include partials/header.ejs %>
+	
+	<p>Add a profile image:</p>
+	<input id="profile_img_file" type="file" name="profile_img" accept="image/gif, image/jpeg, image/png">
+	<button id="submit">Submit Image</button>
+	<script>
+		document.getElementById("submit").onclick = function() {
+
+			const uid = firebase.auth().currentUser.uid;
+			const file = document.getElementById("profile_img_file").files[0];
+			const storage = firebase.storage();
+			const ref = storage.ref('/users/' + uid);
+			ref.child('profile_img').put(file)
+				.then(function(file){
+					const url = file.downloadURL;
+					const db = firebase.database();
+					const dbRef = db.ref('/users/' + uid);
+					dbRef.set({ profile_img_url: url })
+						.then(function(success) {
+							console.log(success);
+						})
+						.catch(function(error) {
+							console.log(error);
+						});
+				})
+				.catch(function(error) {
+					console.log(error);
+				});
+
+
+
+
+
+			/*firebase.auth().onAuthStateChanged(function(user) {
+				const storage = firebase.storage();
+				const ref = storage.ref('/users/' + user.uid);
+				console.log()
+				ref.set({
+						profile_img: 
+				});
+			}*/
+		};
+
+	</script>
+	
+	<% include partials/footer.ejs %>
+</body>
+</html>

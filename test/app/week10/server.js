@@ -25,6 +25,7 @@ function isAuthenticated(request, response, next) {
 }
 
 const app = express();
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 app.use(logger('dev'));
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
@@ -60,6 +61,7 @@ app.get('/users', function(request, response){
 	const ref = db.ref('users');
 	ref.once('value')
 		.then(function(snapshot){
+			console.log(snapshot);
 			response.render('users.ejs', {
 				data: snapshot.val()
 			});
@@ -74,6 +76,10 @@ app.get('/user/:id', function(request, response) {
 				data: snapshot.val()
 			});
 		});
+});
+
+app.get('/profile', function(request, response){ 
+	response.render('profile.ejs');
 });
 
 const port = process.env.PORT || 8000;

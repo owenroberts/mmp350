@@ -99,16 +99,19 @@ Go to [Home](index.html)
 - [User Interaction Flow Chart](notes/ui/)
 - [Display users](notes/firebase/users)
 
-## Week 10 **
+## Week 10 **Posts**
+- Present Midterm
 - [User posts page](notes/firebase/posts)
+- [Sass with Node](notes/node/sass/)
 
 <!-- 
 
 app things to do
-user make post
-display all the users
 view users posts
 like/dislike user posts
+view all posts
+what else?
+add use image?
 
 node: conditionals, loops, arrays, objects, db
 
