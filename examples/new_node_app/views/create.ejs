@@ -14,19 +14,21 @@
 		function createUser() {
 			firebase.auth().createUserWithEmailAndPassword(emailInput.value, passwordInput.value)
 				.then(function(user) {
-					console.log(user);
+				
+					// add user to database
+					const db = firebase.database();
+					const ref = db.ref('/users/' + user.uid);
+					ref.set({ name: nameInput.value });
+				
 					user.updateProfile({
 						displayName: nameInput.value
 					}).then(function(user) {
-						console.log('update', user);
-						location.href = "/";
+						// location.href = "/";
 					}, function(error) {
 						console.log('error', error);
 					});
-					
 				})
 				.catch(function(error) {
-					console.log(error);
 					const errorMessage = document.getElementById("errorMessage");
 					errorMessage.textContent = error.message;
 				});
