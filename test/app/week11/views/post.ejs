@@ -1,0 +1,46 @@
+<% include partials/head.ejs %>
+<body>
+	<% include partials/header.ejs %>
+	
+	<div id="post">
+		<textarea id="post-text" placeholder="Add a new post"></textarea>
+		<br>
+		<button onclick={savePost()}>Post</button>
+	</div>
+	<p id="message"></p>
+	
+	<script>
+		function savePost() {
+			const uid = firebase.auth().currentUser.uid;
+			const db = firebase.database();
+			const ref = db.ref('/users/' + uid + '/posts');
+		
+			const post = {
+				text: document.getElementById("post-text").value,
+				date: new Date().toString()
+			};
+			
+			ref.push(post)
+				.then(function(post){
+					console.log('posted', post);
+					document.getElementById("message").textContent = "Posted successfully.";
+				})
+				.catch(function(error){
+					console.log('error', error);
+				});
+
+			document.getElementById("post-text").value = "";
+		}
+	</script>
+	
+	<% include partials/footer.ejs %>
+	
+</body>
+</html>
+
+
+
+
+
+
+

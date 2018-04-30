@@ -1,0 +1,70 @@
+<% include partials/head.ejs %>
+<body>
+	<% include partials/header.ejs %>
+	<div id="posts">
+		<h2>Posts by <%= data.name %></h2>
+		<% if (data.profile_img_url) { %>
+			<img src="<%= data.profile_img_url %>" width="200">
+		<% } %>
+		<% if (data.posts) { %>
+			<% let keys = Object.keys(data.posts); %>
+			<% keys.forEach(function(key) { %>
+				<% let post = data.posts[key] %>
+				<div class="post">
+					<div class="text"><%= post.text %></div>
+					<% var d = new Date(post.date); %>
+					<div class="date">posted on <%= d.toLocaleString('en-us', { month: 'long', weekday: 'long', day: 'numeric' }); %></div>
+					<div class="like">
+						<button onclick={likePost("<%= key %>")}>Like</button>
+						<button onclick={unlikePost("<%= key %>")}>Unlike</button>
+						<span class="likes">
+							<% if (post.likes) { %>
+								<%= Object.keys(post.likes).length %> likes
+							<% } else { %>
+								0 likes
+							<% } %>
+						</span>
+					</div>
+				</div>
+			<% }); %>
+		<% } else { %>
+			<p>This user has not posted yet :(</p>
+		<% } %>
+	</div>
+
+	<script>
+		
+		function likePost(key) {
+			const currentUser = firebase.auth().currentUser;
+			const postUID = "<%= user %>";
+			const db = firebase.database();
+			const ref = db.ref('/users/' + postUID + '/posts/' + key + '/likes/' + currentUser.uid);
+			ref.set({name: currentUser.displayName})
+				.then(function(success) {
+					console.log('success', success);
+					location.reload();
+				})
+				.catch(function(error){
+					console.log('error', error);
+				});
+		}
+
+		function unlikePost(key) {
+			const currentUser = firebase.auth().currentUser;
+			const postUID = "<%= user %>";
+			const db = firebase.database();
+			db.ref('/users/' + postUID + '/posts/' + key + '/likes/' + currentUser.uid)
+				.remove()
+				.then(function(success) {
+					console.log('success', success);
+					location.reload();
+				})
+				.catch(function(error){
+					console.log('error', error);
+				});
+		}
+	</script>	
+	
+	<% include partials/footer.ejs %>
+</body>
+</html>

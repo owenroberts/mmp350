@@ -1,0 +1,32 @@
+<div id="header">
+	<h1>Welcome to my app :)</h1>
+	<div id="menu">
+		<a href="/">Home</a>
+		<a href="/users">View Users</a>
+	
+		<div id="not-logged-in" style="display:none;">
+			<a href="/login">Log in</a>
+			<a href="/create">Create new user</a>
+		</div>
+	
+	</div>
+	<p id="display-name"></p>
+	<p id="profile-img"></p>
+</div>
+
+<script>
+	const userName = document.getElementById("display-name");
+	firebase.auth().onAuthStateChanged(function(user) {
+		if (user) {
+			console.log(user.uid);
+			userName.textContent = "Hello, " + user.displayName;
+			const userInput = document.getElementById('userInput');
+			userInput.value = user.uid;
+		} else {
+			document.getElementById("not-logged-in").style.display = "inline";
+		}
+	});
+</script>
+
+
+	

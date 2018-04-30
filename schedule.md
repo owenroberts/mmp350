@@ -104,6 +104,10 @@ Go to [Home](index.html)
 - [User posts page](notes/firebase/posts)
 - [Sass with Node](notes/node/sass/)
 
+## Week 11 **Post likes**
+- Work on final projects
+- [Likes](notes/firebase/likes)
+
 <!-- 
 
 app things to do
