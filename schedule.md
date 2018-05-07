@@ -108,6 +108,10 @@ Go to [Home](index.html)
 - Work on final projects
 - [Likes](notes/firebase/likes)
 
+## Week 12 **Storage**
+- Work on final projects
+- [Storage](notes/firebase/storage)
+
 <!-- 
 
 app things to do

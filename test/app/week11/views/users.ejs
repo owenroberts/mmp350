@@ -9,6 +9,9 @@
 			<% keys.forEach(function(key) { %>
 				<% let user = data[key]; %>
 				<div class="user">
+					<% if (user.profile_img_url) { %>
+						<img src="<%= user.profile_img_url %>" width="100">
+					<% } %>
 					<a href="/user/<%= key %>"><%= user.name %></a>
 				</div>
 			<% }); %> 

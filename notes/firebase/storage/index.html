@@ -1,0 +1,196 @@
+---
+layout: slides
+title: Storage
+week: 12
+---
+
+<div class="slide">
+	<p>The Firebase Database can only save basic data like numbers, strings and booleans.  This is great for storing user posts, passwords and likes.</p>
+	<p>If we want to save files like images or videos we need to use the Storage area in Firebase.</p>
+</div>
+
+<div class="slide">
+	<p>To set up Storage, start by clicking on the Storage link in the Firebase menu.</p>
+	<img src="menu.png" alt="">
+</div>
+
+<div class="slide">
+	<p>You will be prompted to "Get Started".</p>
+	<img src="get_started.png" alt="">
+</div>
+
+<div class="slide">
+	<p>Then you will approve the default security rules.</p>
+	<img src="security.png" alt="">
+</div>
+
+<div class="slide">
+	<p>This will create an empty storage folder where we can add media files.</p>
+	<img src="empty.png" alt="">
+</div>
+
+<div class="slide">
+	<h2>Profile</h2>
+	<p>We're going to start by giving our users the ability to add a Profile picture.  To do this we need to upload an image to Storage and then get the URL where the image is stored and save it in the database with the user.</p>
+</div>
+
+<div class="slide">
+	<h2>Profile route</h2>
+	<p>We'll start by adding a route where users can upload an image.  We'll call this <note>profile.ejs</note>.</p>
+	<p>First we need to add a simple route to the <note>server.js</note> file.</p>
+	<pre><code>app.get('/profile', function(request, response){ 
+	response.render('profile.ejs');
+});</code></pre>
+</div>
+
+<div class="slide">
+	<h2>Menu</h2>
+	<p>Before we create <note>profile.ejs</note> let's update the menu inside of <note>head.ejs</note> to make sure there's a link to the profile.  Let's also update it to create a <code>logged-in</code> area like the <code>not-logged-in</code> area.</p>
+</div>
+
+<div class="slide">
+	<pre><code>&lt;div id="menu"&gt;
+	&lt;a href="/"&gt;Home&lt;/a&gt;
+	&lt;a href="/users"&gt;View Users&lt;/a&gt;
+
+	&lt;div id="logged-in" style="display:none;"&gt;
+		&lt;a href="/profile"&gt;Profile&lt;/a&gt;
+	&lt;/div&gt;
+
+	&lt;div id="not-logged-in" style="display:none;"&gt;
+		&lt;a href="/login"&gt;Log in&lt;/a&gt;
+		&lt;a href="/create"&gt;Create new user&lt;/a&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<p>Update the <code>script</code> on <note>header.ejs</note> to show the <code>logged-in</code> section.</p>
+	<pre><code>const userName = document.getElementById("display-name");
+firebase.auth().onAuthStateChanged(function(user) {
+	if (user) {
+		userName.textContent = "Hello, " + user.displayName;
+		const userInput = document.getElementById('userInput');
+		userInput.value = user.uid;
+		document.getElementById("logged-in").style.display = "inline";
+	} else {
+		document.getElementById("not-logged-in").style.display = "inline";
+	}
+});</code></pre>
+</div>
+
+<div class="slide">
+	<h2>profile.ejs</h2>
+	<p>This template has the same basic setup of most of our previous templates.</p>
+	<pre><code>&lt;% include partials/head.ejs %&gt;
+&lt;body&gt;
+	&lt;% include partials/header.ejs %&gt;
+	
+	&lt;!--  add profile image  --&gt;
+	
+	&lt;% include partials/footer.ejs %&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<p>For the HTML we need to add an <code>input</code> for a file and a button for the user to submit the image file.</p>
+	<pre><code>&lt;p&gt;Add a profile image:&lt;/p&gt;
+&lt;input  type="file" id="profile_img_file" accept="image/gif, image/jpeg, image/png"&gt;
+&lt;button id="submit"&gt;Submit Image&lt;/button&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<p>After the HTML add a <code>script</code> tag for the script that will upload the photo and then update the database and the user.</p>
+	<p>Start with an event for the <code>submit</code> button and getting a reference to the Firebase user.</p>
+	<pre><code>document.getElementById("submit").onclick = function() {
+	const user = firebase.auth().currentUser.uid;
+	const file = document.getElementById("profile_img_file").files[0];
+	const storage = firebase.storage();
+	const ref = storage.ref('/users/' + uid);
+};</code></pre>
+</div>
+
+<div class="slide">
+	<p>Then we upload the file and update the database for that user with a link to the file location in storage.</p>
+	<pre><code>ref.child('profile_img').put(file)
+	.then(function(file){
+		const url = file.downloadURL;
+		const db = firebase.database();
+		const dbRef = db.ref('/users/' +user.uid);
+		dbRef.set({ profile_img_url: url })
+			.then(function(success) {
+				user.updateProfile({ photoURL: file.downloadURL })
+					.then(function(success) {
+						location.reload();
+					})
+					.catch(function(error) {
+						console.log(error);
+					})
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
+	})
+	.catch(function(error) {
+		console.log(error);
+	});</code></pre>
+</div>
+
+<div class="slide">
+	<p>You should see the image appear in the Storage files.</p>
+	<img src="storage.png" alt="">
+</div>
+
+<div class="slide">
+	<p>And the URL will be added to the Database.</p>
+	<img src="db.png" alt="">
+</div>
+
+<div class="slide">
+	<h2>Displaying the user image</h2>
+	<p>These reference will allow us to display the user photo when they're logged in and next to the posts that they write.</p>
+	<p>First we'll add an image element into <note>header.ejs</note> to add the photo when the user logs in:</p>
+	<pre><code>&lt;p id="display-name"&gt;/p&gt;
+&lt;img id="profile-img" width="200"&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<p>In the <code>script</code> add a reference to the <code>profile-img</code> and update the <code>src</code>.</p>
+	<pre><code>const userName = document.getElementById("display-name");
+const profileImg = document.getElementById("profile-img");
+firebase.auth().onAuthStateChanged(function(user) {
+	if (user) {
+		userName.textContent = "Hello, " + user.displayName;
+		profileImg.src = user.photoURL;
+		const userInput = document.getElementById('userInput');
+		userInput.value = user.uid;
+		document.getElementById("logged-in").style.display = "inline";
+	} else {
+		document.getElementById("not-logged-in").style.display = "inline";
+	}
+});</code></pre>
+</div>
+
+<div class="slide">
+	<h2>user.ejs</h2>
+	<p>Finally on the <note>user.ejs</note> page, we'll use the photo URL from the database to add the user image next to each post.</p>
+	<pre><code>&lt;% let post = data.posts[key] %&gt;
+&lt;div class="post"&gt;
+	&lt;% if (data.profile_img_url) { %&gt;
+		&lt;img src="&lt;%= data.profile_img_url %&gt;" width="100"&gt;
+	&lt;% } %&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<h2>users.ejs</h2>
+	<p>Let's also display the profile image next to each user on the <note>users.ejs</note> page.</p>
+	<p>Careful here because the data is in a <code>user</code> variable instead of a <code>post</code>.</p>
+	<pre><code>&lt;% let user = data[key]; %&gt;
+&lt;div class="user"&gt;
+	&lt;% if (user.profile_img_url) { %&gt;
+		&lt;img src="&lt;%= user.profile_img_url %&gt;" width="100"&gt;
+	&lt;% } %&gt;
+	&lt;a href="/user/&lt;%= key %&gt;"&gt;&lt;%= user.name %&gt;&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+</div>

@@ -3,25 +3,31 @@
 	<div id="menu">
 		<a href="/">Home</a>
 		<a href="/users">View Users</a>
+
+		<div id="logged-in" style="display:none;">
+			<a href="/profile">Profile</a>
+		</div>
 	
 		<div id="not-logged-in" style="display:none;">
 			<a href="/login">Log in</a>
 			<a href="/create">Create new user</a>
 		</div>
-	
 	</div>
 	<p id="display-name"></p>
-	<p id="profile-img"></p>
+	<img id="profile-img" width="200">
 </div>
 
 <script>
 	const userName = document.getElementById("display-name");
+	const profileImg = document.getElementById("profile-img");
 	firebase.auth().onAuthStateChanged(function(user) {
 		if (user) {
 			console.log(user.uid);
 			userName.textContent = "Hello, " + user.displayName;
+			profileImg.src = user.photoURL;
 			const userInput = document.getElementById('userInput');
 			userInput.value = user.uid;
+			document.getElementById("logged-in").style.display = "inline";
 		} else {
 			document.getElementById("not-logged-in").style.display = "inline";
 		}

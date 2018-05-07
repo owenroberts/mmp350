@@ -8,18 +8,24 @@
 	<script>
 		document.getElementById("submit").onclick = function() {
 
-			const uid = firebase.auth().currentUser.uid;
+			const user = firebase.auth().currentUser;
 			const file = document.getElementById("profile_img_file").files[0];
 			const storage = firebase.storage();
-			const ref = storage.ref('/users/' + uid);
+			const ref = storage.ref('/users/' + user.uid);
 			ref.child('profile_img').put(file)
 				.then(function(file){
 					const url = file.downloadURL;
 					const db = firebase.database();
-					const dbRef = db.ref('/users/' + uid);
+					const dbRef = db.ref('/users/' +user.uid);
 					dbRef.set({ profile_img_url: url })
 						.then(function(success) {
-							console.log(success);
+							user.updateProfile({ photoURL: file.downloadURL })
+								.then(function(success) {
+									location.reload();
+								})
+								.catch(function(error) {
+									console.log(error);
+								})
 						})
 						.catch(function(error) {
 							console.log(error);
@@ -28,19 +34,6 @@
 				.catch(function(error) {
 					console.log(error);
 				});
-
-
-
-
-
-			/*firebase.auth().onAuthStateChanged(function(user) {
-				const storage = firebase.storage();
-				const ref = storage.ref('/users/' + user.uid);
-				console.log()
-				ref.set({
-						profile_img: 
-				});
-			}*/
 		};
 
 	</script>
