@@ -162,7 +162,9 @@ const profileImg = document.getElementById("profile-img");
 firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
 		userName.textContent = "Hello, " + user.displayName;
-		profileImg.src = user.photoURL;
+		if (user.photoURL) {
+			profileImg.src = user.photoURL;
+		}
 		const userInput = document.getElementById('userInput');
 		userInput.value = user.uid;
 		document.getElementById("logged-in").style.display = "inline";
