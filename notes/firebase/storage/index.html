@@ -117,8 +117,8 @@ firebase.auth().onAuthStateChanged(function(user) {
 	.then(function(file){
 		const url = file.downloadURL;
 		const db = firebase.database();
-		const dbRef = db.ref('/users/' + user.uid);
-		dbRef.set({ profile_img_url: url })
+		const dbRef = db.ref('/users/' + user.uid + 'profile_img_url');
+		dbRef.set(url)
 			.then(function(success) {
 				user.updateProfile({ photoURL: url })
 					.then(function(success) {
