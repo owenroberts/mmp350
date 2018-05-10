@@ -11,6 +11,11 @@
 			<% keys.forEach(function(key) { %>
 				<% let post = data.posts[key]; %>
 				<div class="post">
+					
+					<% if (data.profile_img_url) { %>
+						<img src="<%= data.profile_img_url %>" width="100">
+					<% } %>
+					
 					<div class="text">
 						<%= post.text %>
 					</div>
@@ -23,12 +28,81 @@
 							day: 'numeric'
 						}); %>
 					</div>
+					
+					<div id="like">
+						<button onclick={likePost("<%= key %>")}>Like</button>
+						<button onclick={unlikePost("<%= key %>")}>Unlike</button>
+						<span id="likes">
+							<% if (post.likes) { %>
+								<%= Object.keys(post.likes).length %>
+							<% } else { %>
+								0
+							<% } %>
+							likes
+						</span>
+					</div>
+					
 				</div>
 			<% }); %>
 		<% } else { %>
 			<p>This user has not posted yet :(</p>
 		<% } %>
 	</div>
+	
+	<script>
+		firebase.auth().onAuthStateChanged(function(user) {
+			//console.log(user.uid);
+			const posts = document.getElementsByClassName('post');
+			//console.log(posts);
+		});
+		
+		function likePost(postId) {
+			const currentUser = firebase.auth().currentUser;
+			const posterId = "<%= user %>";
+			const db = firebase.database();
+			const ref = db.ref('/users/' 
+							   + posterId
+							   + '/posts/'
+							   + postId
+							   + '/likes/'
+							   + currentUser.uid);
+			ref.set({name: currentUser.displayName})
+				.then(function(success) {
+					location.reload();
+				})
+				.catch(function(error){
+					console.log(error);
+				});
+		}
+		
+		function unlikePost(postId) {
+			const currentUser = firebase.auth().currentUser;
+			const posterId = "<%= user %>";
+			const db = firebase.database();
+			db.ref('users')
+				.child(posterId)
+				.child('posts')
+				.child(postId)
+				.child('likes')
+				.child(currentUser.uid)
+				.remove()
+				.then(function(success) {
+					location.reload();
+				})
+				.catch(function(error) {
+					console.log(error);
+				});
+		}
+	
+	</script>
+	
 	<% include partials/footer.ejs %>
 </body>
 </html>
+
+
+
+
+
+
+

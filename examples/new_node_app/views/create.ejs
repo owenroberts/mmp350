@@ -14,19 +14,21 @@
 		function createUser() {
 			firebase.auth().createUserWithEmailAndPassword(emailInput.value, passwordInput.value)
 				.then(function(user) {
-				
-					// add user to database
-					const db = firebase.database();
-					const ref = db.ref('/users/' + user.uid);
-					ref.set({ name: nameInput.value });
-				
-					user.updateProfile({
-						displayName: nameInput.value
-					}).then(function(user) {
-						// location.href = "/";
-					}, function(error) {
-						console.log('error', error);
-					});
+					user.updateProfile({ displayName: nameInput.value})
+						.then(function(success) {
+							const db = firebase.database();
+							const ref = db.ref('/users/' + user.uid);
+							ref.set({ name: nameInput.value })
+								.then(function(success){
+									location.href = '/';
+								})
+								.catch(function(error) {
+									console.log(error);
+								})
+						})
+						.catch(function(error){
+							console.log(error);
+						});
 				})
 				.catch(function(error) {
 					const errorMessage = document.getElementById("errorMessage");

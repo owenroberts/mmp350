@@ -71,9 +71,14 @@ app.get('/user/:id', function(request, response) {
 	ref.once('value')
 		.then(function(snapshot) {
 			response.render('user.ejs', {
-				data: snapshot.val()
+				data: snapshot.val(),
+				user: request.params.id
 			});
 		});
+});
+
+app.get('/profile', function(request, response) {
+	response.render('profile.ejs');
 });
 
 const port = process.env.PORT || 8000;
