@@ -112,6 +112,10 @@ Go to [Home](index.html)
 - Work on final projects
 - [Storage](notes/firebase/storage)
 
+## Week 13 **Deployment**
+- Work on Final projects
+- [Firebase Deployment](notes/firebase/deploy)
+
 <!-- 
 
 app things to do
