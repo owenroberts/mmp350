@@ -26,12 +26,12 @@ $ cd firebase</code></pre>
 </div>
 
 <div class="slide">
-	<p>If you're using a school computer we need to set up the path to be able to find the Firebase program.  If you're on your own computer you may be able to skip this step.  Using terminal, open the <note>.bash_profile</note>. </p>
+	<p>Test if firebase is installed use this command in Terminal.</p>
+	<pre><code>$ firebase --version</code></pre>
+	<p>If you're using a school computer you may need to set up the path to be able to find the Firebase program.  If you're on your own computer you may be able to skip this step.  Using terminal, open the <note>.bash_profile</note>. </p>
 	<pre><code>$ open ~/.bash_profile</code></pre>
 	<p>Add the following then save and quit.</p>
 	<pre><code class="javascript">alias firebase="~/node/bin/firebase"</code></pre>
-	<p>	<p>To test if firebase is installed use this command in Terminal.</p>
-	<pre><code>$ firebase --version</code></pre>
 </div>
 
 <div class="slide">
@@ -75,16 +75,21 @@ $ cd firebase</code></pre>
 
 <div class="slide">
 	<h2>app</h2>
-	<p>Ignore the <note>public</note> folder for now.</p>
+	<p>We don't really need the <note>public</note> folder so just delete the whole thing.  We actually need it to be gone because it will change the app routing.</p>
 	<p>Delete the <note>functions</note> file and then drag your <note>new_node_app</note> project into the <note>firebase</note> folder and rename it <note>functions</note>.</p>
 	<p>Then we have to update the app.</p>
 </div>
 
 <div class="slide">
 	<p>First install the <note>firebase-functions</note> module.</p>
-	<pre><code class="javascript">$ npm install --save firebase-functions</code></pre>
+	<pre><code class="javascript">$ cd functions
+$ npm install --save firebase-functions
+$ cd ..</code></pre>
 	<p>Include the firebase functions package at the top <note>server.js</note>.</p>
 	<pre><code>const functions = require('firebase-functions');</code></pre>
+</div>
+
+<div class="slide">
 	<p>And at the very bottom of <note>server.js</note> we need to export the app instead of using the localhost <code>app.listen</code> function.</p>
 	<pre><code class="javascript">// comment this part out for now
 // const port = process.env.PORT || 8000;
@@ -96,9 +101,16 @@ exports.app = functions.https.onRequest(app);</code></pre>
 </div>
 
 <div class="slide">
+	<p>We also need to make sure the right file is being called in <note>package.json</note>.</p>
+	<p>One of the fields in <note>package.json</note> is <code>"main"</code>.  This may not exist or may be set to something like <code>"app.js"</code>.</p>
+	<p>Make sure it is set to our main file, <code>"server.js"</code>.</p>
+	<pre><code>"main": "server.js"</code></pre>
+</div>
+
+<div class="slide">
 	<h2>Run locally</h2>
 	<p>Before we deploy, use firebase to run the project locally and make sure it still behaves as expected.</p>
-	<pre><code>firebase serve --only functions,hosting</code></pre>
+	<pre><code>$ firebase serve --only functions,hosting</code></pre>
 	<p>Firebase defaults to use <code>localhost:5000</code> instead of the <code>localhost:8000</code> we've been using so far.</p>
 </div>
 
