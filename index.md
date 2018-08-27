@@ -9,19 +9,20 @@ The class notes, schedule and assignments are all found here.
 
 
 - [Schedule](schedule.html)
-- <a href="http://piratepad.net/mmp350" target="blank">Public Pad</a>
-- <a href="https://mmp350.slack.com/" target="blank">Slack channel</a>
-- <a href="https://docs.google.com/document/d/1r0CXReuT_GRplzgtCbvuWBEyAPxe09IDOWDA9FNsceM/" target="blank">Class syllabus</a>
+- [Syllabus](https://docs.google.com/document/d/1N156DV929tV0voIvr_i0twnu_pRn9_JC-tUt4JYrGy8/edit?usp=sharing){:target="blank"}
 - [Student Work](studentwork/)
 - [Examples](examples/)
 
-## Spring 2018
+<!--  <a href="http://piratepad.net/mmp350" target="blank">Public Pad</a>
+ <a href="https://mmp350.slack.com/" target="blank">Slack channel</a>  -->
+
+## Fall 2018
 
 - Instructor: Owen Roberts
 - Email: oroberts AT bmcc DOT cuny  DOT edu
 - Office: S622J
 - Office extension: 8057
-- Office hours: Tuesday 3pm-6pm, Wednesday by appointment
+- Office hours: Monday 2pm-5pm, Wednesday by appointment
 - Class times: Mon/Wed 7:30 - 9:10 pm
 - Room: Fiterman 1006
 
@@ -30,11 +31,17 @@ This course gives the students the tools to build standards-compliant, accessibl
 
 Students will write HTML, CSS, JavaScript and NodeJS. They will use image editing programs, Photoshop to create graphics for web sites. They will use Git and Github for source code management and Firebase for server deployment.
 
-## Turning in assignments
 
-- DM @owen a URL to the assignment on Slack
-- Due dates posted on schedule page, assignments must be ready to present at the beginning of class
-- Late assignments are automatic 25 points off
+## Turning in assignments
+- Assignments turned in on Blackboard
+- Late assignments are 25 points off
+
+## Citations for code resources
+- Coding assignments must use citations for any code borrowed from resources outside of class, including Google, Stack Overflow, YouTube or any tutorial, even if it's as little as one line of code
+- This is good practice to keep track of resources as well
+- In comments at the top of include a link to the resource
+
+## Grade Breakdown
 
 10% | Teacher evaluation and attendance  
 40% | Assignments  
@@ -67,4 +74,3 @@ For MMP and MMA tutoring, please visit BMCC's [tutoring schedule](http://www.bmc
 - [Git Rocks](http://git.rocks/getting-started/)
 - [Git Branching Interactive Tutorial](https://learngitbranching.js.org/)
 - [Try Git Interactive Tutorial](https://try.github.io/levels/1/challenges/1)
-- Will update throughout semester
