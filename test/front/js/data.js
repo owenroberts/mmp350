@@ -1,14 +1,6 @@
-// initialize firebase
-(function() {
-	var config = {
-		apiKey: "AIzaSyDxJ7VUZ_KuAqBmh_k46MOwfFRil_E6OlM",
-		authDomain: "front-end-51c85.firebaseapp.com",
-		databaseURL: "https://front-end-51c85.firebaseio.com",
-		projectId: "front-end-51c85",
-		storageBucket: "front-end-51c85.appspot.com",
-		messagingSenderId: "566402615229"
-	};
-	firebase.initializeApp(config);
+window.addEventListener('load', function() {
+
+	console.log('hello')
 
 	const preObject = document.getElementById('object');
 	const ulList = document.getElementById('list');
@@ -36,9 +28,4 @@
 		liChanged.remove();
 	});
 
-})();
-
-/*
-firecast 1: https://www.youtube.com/watch?v=noB98K6A0TY
-firecast 2: https://www.youtube.com/watch?v=dBscwaqNPuk
-*/
+});
