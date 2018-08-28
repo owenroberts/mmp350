@@ -1,0 +1,126 @@
+---
+layout: slides
+title: Firebase Deploy
+week: 13
+---
+
+<div class="slide">
+	<p>Deployment is the process of moving a website from its local development environment to a server where it can be accessed on the internet.</p>
+	<p>Firebase provides a hosting service for both static and dynamic websites.</p>
+	<p>We're going to set up a Firebase hosting environment and then add our Node app to it.</p>
+</div>
+
+<div class="slide">
+	<p>We need to start by making a new folder to initialize our Firebase hosting.  We'll drop our app into it later.</p>
+	<p>Make a new folder inside your class folder called "firebase".</p>
+	<pre><code>$ mkdir firebase
+$ cd firebase</code></pre>
+	<p>In here we're going to set up our hosting.</p>
+	<p>The following instructions follow <a href="https://firebase.google.com/docs/hosting/quickstart?authuser=2" target="blank">this guide</a> with some tweaks for our class project.  This <a href="https://www.youtube.com/watch?v=LOeioOKUKI8" target="blank">video guide</a> is another good reference for the basics of Firebase hosting but there are some differences for our app that I'll cover.</p>
+</div>
+
+<div class="slide">
+	<p>First we need to download the Firebase hosting tools, login into Firebase and choose the project we want to connect our hosting to.</p>
+	<pre><code>$ npm -g install firebase-tools
+// this will take a moment to download</code></pre>
+</div>
+
+<div class="slide">
+	<p>Test if firebase is installed use this command in Terminal.</p>
+	<pre><code>$ firebase --version</code></pre>
+	<p>If you're using a school computer you may need to set up the path to be able to find the Firebase program.  If you're on your own computer you may be able to skip this step.  Using terminal, open the <note>.bash_profile</note>. </p>
+	<pre><code>$ open ~/.bash_profile</code></pre>
+	<p>Add the following then save and quit.</p>
+	<pre><code class="javascript">alias firebase="~/node/bin/firebase"</code></pre>
+</div>
+
+<div class="slide">
+	<p>Once Firebase is installed, log in to your account.</p>
+	<p>Login into your Firebase account.</p>
+	<pre><code>$ firebase login</code></pre>
+	<p>Follow the prompts.  Make sure to use the Google account that is associated with your Firebase project.</p>
+</div>
+
+<div class="slide">
+	<p>Once you are logged in, create a new Firebase project.</p>
+	<pre><code>$ firebase init hosting</code></pre>
+	<p>This will take you through a series of prompts.  You can hit enter without inputing anything to accept the default setting for most of these prompts.</p>
+	<p>At the end there will be a <note>firebase.json</note> file in the folder along with directories called <note>functions</note> and <note>public</note>.  We're going to replace these files with our own app.</p>
+</div>
+
+<div class="slide">
+	<p>Firebase uses a package called <note>functions</note> to run dynamic apps for their hosting.</p>
+	<pre><code>$ firebase init functions</code></pre>
+	<p>This will take you through another series of prompts.</p>
+</div>
+
+<div class="slide">
+	<h2>firebase.json</h2>
+	<p>We're going to simplify <note>firebase.json</note> to work with our node app.</p>
+	<pre><code>{
+	"hosting": {
+		"public": "public",
+		"rewrites": [{
+			"source": "**",
+			"function": "app"
+		}],
+		"ignore": [
+			"firebase.json",
+			"**/.*",
+			"**/node_modules/**"
+		]
+	}
+}</code></pre>
+</div>
+
+<div class="slide">
+	<h2>app</h2>
+	<p>We don't really need the <note>public</note> folder so just delete the whole thing.  We actually need it to be gone because it will change the app routing.</p>
+	<p>Delete the <note>functions</note> file and then drag your <note>new_node_app</note> project into the <note>firebase</note> folder and rename it <note>functions</note>.</p>
+	<p>Then we have to update the app.</p>
+</div>
+
+<div class="slide">
+	<p>First install the <note>firebase-functions</note> module.</p>
+	<pre><code class="javascript">$ cd functions
+$ npm install --save firebase-functions
+$ cd ..</code></pre>
+	<p>Include the firebase functions package at the top <note>server.js</note>.</p>
+	<pre><code>const functions = require('firebase-functions');</code></pre>
+</div>
+
+<div class="slide">
+	<p>And at the very bottom of <note>server.js</note> we need to export the app instead of using the localhost <code>app.listen</code> function.</p>
+	<pre><code class="javascript">// comment this part out for now
+// const port = process.env.PORT || 8000;
+// app.listen(port, function() {
+// 	console.log('App running on port', port);
+// });
+
+exports.app = functions.https.onRequest(app);</code></pre>
+</div>
+
+<div class="slide">
+	<p>We also need to make sure the right file is being called in <note>package.json</note>.</p>
+	<p>One of the fields in <note>package.json</note> is <code>"main"</code>.  This may not exist or may be set to something like <code>"app.js"</code>.</p>
+	<p>Make sure it is set to our main file, <code>"server.js"</code>.</p>
+	<pre><code>"main": "server.js"</code></pre>
+</div>
+
+<div class="slide">
+	<h2>Run locally</h2>
+	<p>Before we deploy, use firebase to run the project locally and make sure it still behaves as expected.</p>
+	<pre><code>$ firebase serve --only functions,hosting</code></pre>
+	<p>Firebase defaults to use <code>localhost:5000</code> instead of the <code>localhost:8000</code> we've been using so far.</p>
+</div>
+
+<div class="slide">
+	<h2>Deploy</h2>
+	<p>If the local version is working, we can deploy to the Firebase hosting server.</p>
+	<pre><code>$ firebase deploy</code></pre>
+	<p>You should see a link to the URL for your live project in the Hosting section of the Firebase console.</p>
+</div>
+
+<div class="slide">
+	<img src="deployed.png" alt="">
+</div>

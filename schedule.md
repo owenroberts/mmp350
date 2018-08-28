@@ -6,26 +6,23 @@ title: Schedule
 Go to [Home](index.html)
 
 ## Week 1 **Introduction**
-- AKA "Bear with me"
 - [Command Line / OSX Terminal](notes/unix/)
-- [Setting up dev tools](notes/node/setup/)
-- [Intro to NodeJS](notes/node/intro/)
+- [Code Academy: Getting Started with JavaScript](https://www.codecademy.com/courses/getting-started-v2/0/1){:target="blank"}
 - **In class assignment**:
 	- Read Chapter 1 & 2: <a href="http://unixmages.com/ufbm.pdf" target="blank">Unix for the Beginning Mage</a>
-	- Use the command line to create a directory for the class on the Desktop, called `mmp350` with `mkdir`
-	- Inside `mmp350/` create a new directory (folder) called `week1`
-	- Inside `week1/` make a `css/`, `javascript`, and `images` folders 
-	- Use `touch` to make `index.html` and `style.css` inside `css/`
-	- <a href="https://www.codecademy.com/courses/getting-started-v2/0/1" target="blank">Code Academy: Getting Started with JavaScript</a>
+	- Using the command line, create a directory for your MMP 350 project
+	- The project should have a main folder, index.html page, CSS folder and JS folder
 - **Assignment 1**: Website critique
 	- Choose a website that you like or use often
 		- Do not use Facebook, Twitter, or another common website
+		- Website should use a database with user information
 		- Ask me for options if you don't have a site you want to use
-	- Present the website to class
-	- Summarize the User Experience of the site: What does a user do?
-	- Include posting content if it is a dynamic site
-	- Note 2-3 design choices that work well
-	- Note 2-3 design choices that do not work as well
+	- Present the website to class.
+	- Use screen shots to show how a user would access the site, what links they would click on, how they could sign up or post content.
+	- One sentence about a design/user experience choice that works well.
+	- One sentence about a design/user experience choice that you would change/improve.
+
+<!-- 
 
 ## Week 2 **Grid + Node Intro**
 - [Grid Systems](notes/grid/)
@@ -112,7 +109,10 @@ Go to [Home](index.html)
 - Work on final projects
 - [Storage](notes/firebase/storage)
 
-<!-- 
+## Week 13 **Deployment**
+- Work on Final projects
+- [Firebase Deployment](notes/firebase/deploy)
+
 
 app things to do
 view users posts

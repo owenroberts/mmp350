@@ -1,6 +1,6 @@
 ---
 layout: slides
-title: OSX Terminal / Command Line / Unix Intro
+title: Unix Intro
 week: 1
 ---
 
