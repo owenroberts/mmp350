@@ -7,7 +7,7 @@ week: 1
 <div class="slide">
 	<h2>Terminal</h2>
 	<p><note>Terminal</note> is a Mac application that emulates a terminal or text-based controller for the operating system.</p>
-	<p>The command line interface is useful for developers using software that requires command line interface or is extended through command line, including software we'll be using like <note>NodeJS</note>, <note>npm</note> and <note>Git</note>.</p>
+	<p>The command line interface is useful for developers using software that requires command line interface or is extended through command line, including software we'll be using like <note>Git</note> and <note>Sass</note>.</p>
 	<p>The Terminal uses a language called <note>Unix</note> to issue commands to the operating system.</p>
 </div>
 
@@ -16,8 +16,19 @@ week: 1
 </div>
 
 <div class="slide">
+	<h2>Commands</h2>
+	<p>In the Terminal, commands are made by typing the command shorthand and hitting Enter/Return <span class="key">R</span>.</p>
+	<p>Many commands have arguments, or extra information for the command.  The arguments are separated by spaces.</p>
+	<pre><code>$ command argument
+$ cd Desktop
+$ mkdir mmp350
+$ touch index.html</code></pre>
+
+</div>
+
+<div class="slide">
 	<h2>Essential Unix commands</h2>
-	<table>
+	<table class="code">
 		<tr>
 			<th>Command</th>
 			<th>Function</th>
@@ -26,8 +37,8 @@ week: 1
 		<tr>
 			<td>cd &lt;path&gt;</td>
 			<td>change directory</td>
-			<td>cd ~/Desktop <br>
-			cd ~/Desktop/my-project <br>
+			<td>cd Desktop <br>
+			cd mmp350 <br>
 			cd ..</td>
 		</tr>
 		<tr>
@@ -59,12 +70,12 @@ week: 1
 		<tr>
 			<td>cp &lt;path&gt; &lt;path&gt;</td>
 			<td>copy a file</td>
-			<td>cp ~/Desktop/my-project/css/style.css css/style.css</td>
+			<td>cp my-project/css/style.css css/style.css</td>
 		</tr>
 		<tr>
 			<td>mv</td>
 			<td>move a file</td>
-			<td>cp ~/Downloads/file.txt my-project/file.txt</td>
+			<td>mv my-app/style.css new-app/style.css</td>
 		</tr>
 	</table>
 </div>
