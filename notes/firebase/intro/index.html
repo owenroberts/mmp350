@@ -1,0 +1,126 @@
+---
+layout: slides
+title: Firebase Intro
+week: 1
+---
+
+<div class="slide">
+	<p>Today we're going to create a new web application using Firebase.</p>
+	<p>Firebase is a Google product that will let us create dynamic websites connected to a database and host them all for free (up to 5 projects).</p>
+	<p>Firebase has a nice visual interface that I think helps demystify (make less mysterious) what happens in a database.</p>
+</div>
+
+
+<div class="slide">
+	<h2>Account</h2>
+	<p>We need to start by making a Firebase account at <a href="https://firebase.google.com/" target="blank">firebase.google.com</a>.</p>
+	<p>If you already have a Google account this will be pretty easy.</p>
+	<p>If you don't have one you will need to create one now.</p>
+	<img src="get_started.png" alt="">
+</div>
+
+<div class="slide">
+	<p>When you're get your account set up, start by clicking "Add Project" from the main Firebase page, <a href="console.firebase.google.com">console.firebase.google.com</a>.</p>
+	<img src="add_project.png" alt="">
+	<p>Take a moment to explore the site and the services that are available.</p>
+</div>
+
+<div class="slide">
+	<h2>Add Firebase</h2>
+	<p>When you're ready, click the "Add Firebase to Your Web App" button.</p>
+	<img src="web_app.png" alt="">
+</div>
+
+<div class="slide">
+	<p>A window will pop up with some info you can add to your app to connect with Firebase.</p>
+	<img src="firebase_code.png" alt="">
+</div>
+
+<div class="slide">
+	<p>We need to throw that code into an HTML page along with some references to the Firebase SDK so that we can use Firebase in our app.</p>
+</div>
+
+<div class="slide">
+	<div class="ex" data-lang="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;title&gt;firebase&lt;/title&gt;
+	&lt;meta charset="utf-8"&gt;
+	&lt;script src="https://www.gstatic.com/firebasejs/5.0.0/firebase-app.js"&gt;&lt;/script&gt;
+	&lt;script src="https://www.gstatic.com/firebasejs/5.0.0/firebase-auth.js"&gt;&lt;/script&gt;
+	&lt;script src="https://www.gstatic.com/firebasejs/5.0.0/firebase-database.js"&gt;&lt;/script&gt;
+
+	&lt;script type="text/javascript"&gt;
+		// initialize firebase
+		var config = {
+			 apiKey: "AIzaSyDdwKnt2dzC9eymT8pB3qe_xcup_lF9HWA",
+    		authDomain: "mmp350-example.firebaseapp.com",
+    		databaseURL: "https://mmp350-example.firebaseio.com",
+    		projectId: "mmp350-example",
+    		storageBucket: "mmp350-example.appspot.com",
+    		messagingSenderId: "748102634369"
+		};
+		firebase.initializeApp(config);
+	&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+</div>
+
+<div class="slide">
+	<h2>Adding data</h2>
+	<p>Today we're going to add some data manually just to see how it works and we'll write some code on the client side to update our webpage when new data is added.</p>
+	<p>One of the convenient aspects of Firebase is the ability to add and update data directly from the console.</p>
+	<img src="db.png">
+</div>
+
+<div class="slide">
+	<h2>Getting data</h2>
+	<p>After adding some data, we need to show it on the client side.</p>
+	<p>First let's add some HTML to render the data in and then we'll use JavaScript with some Firebase methods to grab the data from the database.</p>
+	<pre><code>&lt;div id="data"&gt;&lt;/div&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<p>Next we'll create an external JavaScript file to grab data from the database and populate our div.</p>
+	<pre><code>&lt;script type="text/javascript" src="js/data.js"&gt;&lt;/script&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<p>First we'll create a reference to the <code>#data</code> so we can add new elements inside.</p>
+	<pre><code>const dataDiv = document.getElementById('data');</code></pre>
+	<p>We also need a reference to the database.</p>
+	<pre><code>const db = firebase.database().ref();</code></pre>
+</div>
+
+<div class="slide">
+	<h2>Firebase Events</h2>
+	<p>Because Firebase is a real-time database, there are events set up to fire whenever data is changed in the database.</p>
+	<p>These events are listened to with the <code>.on</code> method.  The <code>value</code> event occurs whenever data is changed.</p>
+	<p>We can also listen for specific updates to the data using the <code>child_added</code>, <code>child_changed</code> and <code>child_removed</code> events.</p>
+</div>
+
+<div class="slide">
+	<p>When any of those events occur, we grab the data and update our HTML.</p>
+	<div class="ex">db.on('value', snap => {
+	console.log(snap);
+});
+
+db.on('child_added', snap => {
+	const elem = document.createElement('div');
+	elem.textContent = snap.val();
+	elem.id = snap.key;
+	dataDiv.appendChild(elem);
+});
+
+db.on('child_changed', snap => {
+	const elem = document.getElementById(snap.key);
+	elem.textContent = snap.val();
+});
+
+db.on('child_removed', snap => {
+	const elem = document.getElementById(snap.key);
+	elem.remove();
+});</div>
+</div>
