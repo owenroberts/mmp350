@@ -1,10 +1,8 @@
 window.addEventListener('load', function() {
 
-	console.log('hello')
-
 	const preObject = document.getElementById('object');
 	const ulList = document.getElementById('list');
-	const dbRefObject = firebase.database().ref().child('object');
+	const dbRefObject = firebase.database().ref();
 	const dbRefList = dbRefObject.child('hobbies');
 
 	dbRefObject.on('value', snap => {

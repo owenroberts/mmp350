@@ -1,6 +1,6 @@
 ---
 layout: main
-title: Home
+title: Advanced Web Design
 ---
 
 This is the class page of MMP 350 at BMCC.

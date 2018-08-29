@@ -3,10 +3,10 @@ layout: main
 title: Schedule
 ---
 
-Go to [Home](index.html)
-
 ## Week 1 **Introduction**
 - [Command Line / OSX Terminal](notes/unix/)
+- [Intro to Firebase](notes/firebase/intro)
+- [Forking a Project on GitHub](notes/github/fork)
 - [Code Academy: Getting Started with JavaScript](https://www.codecademy.com/courses/getting-started-v2/0/1){:target="blank"}
 - **In class assignment**:
 	- Read Chapter 1 & 2: <a href="http://unixmages.com/ufbm.pdf" target="blank">Unix for the Beginning Mage</a>
