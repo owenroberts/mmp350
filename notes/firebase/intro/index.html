@@ -103,23 +103,23 @@ week: 1
 
 <div class="slide">
 	<p>When any of those events occur, we grab the data and update our HTML.</p>
-	<div class="ex">db.on('value', snap => {
+	<div class="ex">db.on('value', function(snapshot) {
 	console.log(snap);
 });
 
-db.on('child_added', snap => {
+db.on('child_added', function(snapshot) {
 	const elem = document.createElement('div');
 	elem.textContent = snap.val();
 	elem.id = snap.key;
 	dataDiv.appendChild(elem);
 });
 
-db.on('child_changed', snap => {
+db.on('child_changed', function(snapshot) {
 	const elem = document.getElementById(snap.key);
 	elem.textContent = snap.val();
 });
 
-db.on('child_removed', snap => {
+db.on('child_removed', function(snapshot) {
 	const elem = document.getElementById(snap.key);
 	elem.remove();
 });</div>
