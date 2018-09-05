@@ -1,6 +1,6 @@
 ---
 layout: main
-title: Home
+title: Advanced Web Design
 ---
 
 This is the class page of MMP 350 at BMCC.
@@ -29,7 +29,7 @@ The class notes, schedule and assignments are all found here.
 ## Course Description
 This course gives the students the tools to build standards-compliant, accessible, dynamic web sites. Students will incorporate client-side and server-side scripting with advanced CSS to create intuitive and interactive web interfaces. The learning will take placed in the context of a content management system. Contemporary web development processes and platforms will be explored. A foundational knowledge of programming concepts, HTML, CSS and design for the web is required for this course.
 
-Students will write HTML, CSS, JavaScript and NodeJS. They will use image editing programs, Photoshop to create graphics for web sites. They will use Git and Github for source code management and Firebase for server deployment.
+Students will write HTML, CSS and JavaScript. They will use image editing programs, Photoshop to create graphics for web sites. They will use Git and Github for source code management and Firebase for server deployment.
 
 
 ## Turning in assignments
