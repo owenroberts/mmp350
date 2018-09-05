@@ -6,7 +6,6 @@ title: Schedule
 ## Week 1 **Introduction**
 - [Command Line / OSX Terminal](notes/unix/)
 - [Intro to Firebase](notes/firebase/intro)
-- [Forking a Project on GitHub](notes/github/fork)
 - [Code Academy: Getting Started with JavaScript](https://www.codecademy.com/courses/getting-started-v2/0/1){:target="blank"}
 - **In class assignment**:
 	- Read Chapter 1 & 2: <a href="http://unixmages.com/ufbm.pdf" target="blank">Unix for the Beginning Mage</a>
@@ -22,10 +21,23 @@ title: Schedule
 	- One sentence about a design/user experience choice that works well.
 	- One sentence about a design/user experience choice that you would change/improve.
 
-<!-- 
-
-## Week 2 **Grid + Node Intro**
+## Week 2 **Grid & GitHub**
 - [Grid Systems](notes/grid/)
+- [GitHub Basics](notes/github/intro)
+- [Forking a Project on GitHub](notes/github/fork)
+- **Assignment 2**: Wireframe
+	- Design a wireframe for the website desktop view
+	- Use the site critique as a basis, what worked and what could be improved
+	- 5 simple sketches, pen and paper or quick digital mockups
+	- Final version using Photoshop or [wireframe.cc](https://wireframe.cc/){:target="blank"} (or preferred software)
+
+## Week 3 **CSS Grid**
+- [CSS Grid](notes/grid/css/)
+- **Assignment 3**: HTML & CSS for wireframe
+	- Implement grid from wireframe using CSS
+	- Build on top of class app
+
+<!-- 
 - [Functions & callbacks](notes/node/functions/)
 - [Node Server](notes/node/server/)
 - **Assignment 2**: Wireframe
@@ -36,11 +48,10 @@ title: Schedule
 	- Finished wireframe must indicate percentages, units and measurements in order to be implemented
 	- Next week you will trade wireframes with another student to implement using HTML/CSS
 
-## Week 3 **npm & Express**
-- [CSS Grid](notes/grid/css/)
+
+
 - [npm & express](notes/node/frameworks/)
-- **Assignment 3**: HTML & CSS for wireframe
-	- Using your classmates wireframe as a basis, use HTML and CSS to create a website prototype
+
 
 ## Week 4 **Responsive Design**
 - [Responsive Layouts](notes/responsive/)

@@ -5,16 +5,350 @@ week: 2
 ---
 
 <div class="slide">
-<!-- 	<li><a href="http://www.graphics.com/article-old/brief-history-grids" target="blank">History of 
-Grids</a></li> -->
+	<p>For most design processes, we start with a grid.</p>
+	<p>Why is the grid so important?</p>
+	<p>A grid creates simple organization for designers to organize information in a way that users will be able to quickly identify what they are looking for in a piece of media.</p>
+	<p>Grids can be as simple as box.  They can also become very complex.  Identifying the best grid for a design is often the beginning of the process.</p>
+</div>
+
+<div class="slide">
+	<h2>Brief History</h2>
+	<p>Grids are based on mathematical principals like ratios and proportions.  The use of mathematical principles to recreate physical space originated with Renaissance painting, when linear perspective was introduced.</p>
+	<img src="imgs/raphael.jpg">
+</div>
+
+<div class="slide">
+	<p>Another mathematical principal used in design and art is the Golden Ratio, which describes two quantities where their ratio is the same as the ratio of their sum and the larger quantity.  The Golden Ratio is still used by designer today to create harmonious layouts and designs.</p>
+	<img src="imgs/ratio.jpg">
+</div>
+
+<div class="slide">
+	<p>A similar design was created in the 13th century, before the invention of the printing press, by Villard de Honnecourt, to define the margins of book pages.</p>
+	<p>You may not notice the grid margins of a book layout but these principals are used to make the design readable.</p>
+	<img src="imgs/villard.png">
+</div>
+
+<div class="slide">
+	<p>Book and manuscript design informs a lot of the web page grid design we see today.  Before the printing press, simple grids were used with illuminated manuscripts to add notes in the margins.</p>
+	<img src="imgs/illuminated.jpg">
+</div>
+
+<div class="slide">
+	<p>With the introduction of the printing press and movable type, these grid designs became more complex and more visualized.</p>
+	<img src="imgs/movable_type.jpg">
+</div>
+
+<div class="slide">
+	<p>Industrialization and advertising led to even more complex layouts.</p>
+	<img src="imgs/print.jpg">
+</div>
+
+<div class="slide">
+	<p>Eventually, the art of grid design was codified by the Swiss Style school of designers.</p>
+	<table>
+		<tr>
+			<td><img src="imgs/brockman.jpg"></td>
+			<td><img src="imgs/swiss.jpg"></td>
+		</tr>
+	</table>
+</div>
+
+<!--  grid components -->
+<div class="slide">
+	<h2>Grid Components</h2>
+	<p>There are several terms we need to be familiar with to design a grid for wireframes and CSS implementation.</p>
+</div>
+
+<div class="slide">
+	<p>The <note>format</note> is the available space in a medium.</p>
+
+	<style type="text/css">
+		#format {
+			display: grid;
+			padding: 2em;
+			width: 100%;
+			background: lightgray;
+			height: 360px;
+		}
+	</style>
+	<div id="format"></div>
+</div>
+
+<div class="slide">
+	<p>The <note>margins</note> are space between the content and the outside edge of the medium.</p>
+
+	<style type="text/css">
+		#margin {
+			display: grid;
+			padding: 2em;
+			width: 100%;
+			background: lightgray;
+			height: 360px;
+		}
+		.column {
+			border: 1px dashed #5DD8C8;
+			background: white;
+			padding: 1em;
+		}
+	</style>
+	<div id="margin">
+		<div class="column"></div>
+	</div>
+</div>
+
+<div class="slide">
+	<p><note>Units</note> are the base measurement for the grid.  Units can be derived in multiple ways,  such as dividing width by the number of columns or basing it on a screen size.</p>
+
+	<style type="text/css">
+		#units-px {
+			display: grid;
+			padding: 60px;
+			width: 100%;
+			background: lightgray;
+			height: 360px;
+		}
+	</style>
+	<div id="units-px">
+		<div class="column">
+			margin 60 pixels
+		</div>
+	</div>
+</div>
+
+
+<div class="slide">
+
+	<style type="text/css">
+		#units-em {
+			display: grid;
+			padding: 2em;
+			width: 100%;
+			background: lightgray;
+			height: 360px;
+		}
+	</style>
+	<div id="units-em">
+		<div class="column">
+			margin 2 em
+		</div>
+	</div>
+</div>
+
+<div class="slide">
+	<p><note>Columns</note> are the vertical blocks of content position on a page.  Typically, columns are used to break up large blocks of text to make them more readable.</p>
+
+	<style type="text/css">
+		#columns {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr;
+			padding: 1em;
+			width: 100%;
+			background: lightgray;
+			height: 360px;
+		}
+		
+	</style>
+	<div id="columns">
+		<div class="column"></div>
+		<div class="column"></div>
+		<div class="column"></div>
+		<div class="column"></div>
+	</div>
+</div>
+
+<div class="slide">
+	<p><note>Gutters</note> are the space in between columns (or rows).</p>
+
+	<style type="text/css">
+		#gutter {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr;
+			grid-column-gap: 2em;
+			padding: 1em;
+			width: 100%;
+			background: lightgray;
+			height: 360px;
+		}
+	</style>
+	<div id="gutter">
+		<div class="column"></div>
+		<div class="column"></div>
+		<div class="column"></div>
+		<div class="column"></div>
+	</div>
+</div>
+
+<div class="slide">
+	<p><note>Rows</note> are horizontal blocks of content.</p>
+
+	<style type="text/css">
+		#rows {
+			display: grid;
+			grid-template-rows: 1fr 1fr 1fr;
+			grid-row-gap: 1em;
+			padding: 1em;
+			width: 100%;
+			background: lightgray;
+			height: 360px;
+		}
+	</style>
+	<div id="rows">
+		<div class="column"></div>
+		<div class="column"></div>
+		<div class="column"></div>
+	</div>
+</div>
+
+
+<div class="slide">
+	<h2>Types of grids</h2>
+	<p>There are four basic types of grids.</p>
+</div>
+
+<div class="slide">
+	<p>The <note>manuscript</note> grid is essentially a box with margins.  Manuscript grids are useful for single blocks of text or large images.  Manuscript grids with wide margins will focus attentions on the content.  Narrow margins will create tension between the medium edge and the content.</p>
+
+	<style type="text/css">
+		#manuscript {
+			display: grid;
+			padding: 2em;
+			width: 100%;
+			background: lightgray;
+			height: 360px;
+		}
+	</style>
+	<div id="manuscript">
+		<div class="column"></div>
+	</div>
+</div>
+
+<div class="slide">
+	<p>A <note>column</note> grid is good for laying out different types of content together.  This might be a combination of text, images, icons, links or other elements.</p>
+
+	<style type="text/css">
+		#column-grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			grid-column-gap: 1em;
+			padding: 1em;
+			width: 100%;
+			background: lightgray;
+			height: 360px;
+		}
+	</style>
+	<div id="column-grid">
+		<div class="column"></div>
+		<div class="column"></div>
+		<div class="column"></div>
+	</div>
+</div>
+
+<div class="slide">
+	<p><note>Column gutters</note> are typically more narrow than the margins of a design.  This leads the viewer inward to the content.  Larger gutters create more tension in the design and lead eyes outward.</p>
+
+	<style type="text/css">
+		#column-gutter {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			grid-column-gap: 4em;
+			padding: 1em;
+			width: 100%;
+			background: lightgray;
+			height: 360px;
+		}
+	</style>
+	<div id="column-gutter">
+		<div class="column"></div>
+		<div class="column"></div>
+		<div class="column"></div>
+	</div>
+</div>
+
+<div class="slide">
+	<p><note>Modular</note> grids are like column grids with rows added to divide vertical space. Modular grids are typically used for mediums with organized information like charts and spreadsheets.  They were preferred by Swiss Style designers for their qualities of objectivity and order.</p>
+
+	<style type="text/css">
+		#modular-grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			grid-column-gap: 1em;
+			grid-template-rows: 1fr 1fr 1fr;
+			grid-row-gap: 1em;
+			padding: 1em;
+			width: 100%;
+			background: lightgray;
+			height: 360px;
+		}
+	</style>
+	<div id="modular-grid">
+		<div class="column"></div>
+		<div class="column"></div>
+		<div class="column"></div>
+		<div class="column"></div>
+		<div class="column"></div>
+		<div class="column"></div>
+		<div class="column"></div>
+		<div class="column"></div>
+		<div class="column"></div>
+	</div>
+</div>
+
+<div class="slide">
+	<p><note>Hierarchical</note> grids typically combine other grid types to make a more complex grid to support multiple types of content.  Most web sites use hierarchical grids.  In a hierarchical grid column sizes can change along with placement of rows and gutter sizes.  They require a more intuitive sense of design but still use units and structure.</p>
+
+	<style type="text/css">
+		#hierarchical-grid {
+			padding: 1em;
+			width: 100%;
+			background: lightgray;
+			height: 360px;
+		}
+		#hier-row-1 {
+			display:grid;
+			grid-template-columns: 100px 1fr;
+			height: 80px;
+		}
+		#hier-row-2 {
+			display:grid;
+			grid-template-columns: 1fr 2fr 1fr;
+			height: 160px;
+		}
+		#hier-row-3 {
+			display:grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr;
+			height: 80px;
+		}
+	</style>
+	<div id="hierarchical-grid">
+		<div id="hier-row-1">
+			<div class="column"></div>
+			<div class="column"></div>
+		</div>
+		<div id="hier-row-2">
+			<div class="column"></div>
+			<div class="column"></div>
+			<div class="column"></div>
+		</div>
+		<div id="hier-row-3">
+			<div class="column"></div>
+			<div class="column"></div>
+			<div class="column"></div>
+			<div class="column"></div>
+		</div>
+	</div>
+</div>
+
+
+<div class="slide">
+	<h2>Resources</h2>
 	<li><a href="https://99designs.com/blog/tips/history-of-the-grid-part-1/" target="blank">History of the design grid</a></li>
 	<li><a href="http://printingcode.runemadsen.com/lecture-grid/" target="blank">History of Grid Systems</a></li>
 	<li><a href="http://vanseodesign.com/web-design/grid-types/" target="blank">Grid Types</a></li>
 	<li><a href="http://vanseodesign.com/web-design/grid-choices/" target="blank">Grid Choices</a></li>
-	<li><a href="http://www.thegridsystem.org/" target="blank">Grid System blog</a></li>
-</div>
+<!-- 	<li><a href="http://www.thegridsystem.org/" target="blank">Grid System blog</a></li>
+ --></div>
 
-
+<!-- 
 <div class="slide">
 	<h2>Wireframing</h2>
 	<ul>
@@ -22,4 +356,4 @@ Grids</a></li> -->
 		<li><a href="http://vanseodesign.com/web-design/grid-construction-choosing-constraints/" target="blank">Choosing contraints</a></li>
 		<li><a href="http://960.gs/" target="blank">960 grid system</a></li>
 	</ul>
-</div>
+</div> -->
