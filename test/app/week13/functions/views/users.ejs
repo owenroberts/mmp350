@@ -1,0 +1,25 @@
+<% include partials/head.ejs %>
+<body>
+	<% include partials/header.ejs %>
+
+	<div id="users">
+		<h2>Users</h2>
+		<% let keys = Object.keys(data); %>
+		<% if (keys.length) { %>
+			<% keys.forEach(function(key) { %>
+				<% let user = data[key]; %>
+				<div class="user">
+					<% if (user.profile_img_url) { %>
+						<img src="<%= user.profile_img_url %>" width="100">
+					<% } %>
+					<a href="/user/<%= key %>"><%= user.name %></a>
+				</div>
+			<% }); %> 
+		<% } else { %>
+			<p>This website has no users.</p>
+		<% } %>
+	</div>
+	
+	<% include partials/footer.ejs %>
+</body>
+</html>

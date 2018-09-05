@@ -46,3 +46,7 @@ app.post('/', function(request, response) {
 // });
 
 exports.app = functions.https.onRequest(app);
+
+/*
+https://stackoverflow.com/questions/43420744/how-can-i-use-a-folder-name-other-than-functions-for-the-cloud-functions-in-my
+*/

@@ -81,6 +81,8 @@ title: Schedule
 	- Use one color as main color
 	- Other colors calculated using Sass functions
 
+https://css-tricks.com/difference-between-types-of-css-variables/
+
 ## Week 8 **Templates**
 - [Templates](notes/templates/)
 

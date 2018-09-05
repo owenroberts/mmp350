@@ -1,0 +1,65 @@
+---
+layout: slides
+title: Git Basics
+week: 1
+---
+
+<div class="slide">
+	<p>This semester we will be using Git and GitHub as tools to collaborate on the web apps we will be building.</p>
+	<p>Today we'll go over some of the basics of using Git before using it to make a copy of the project repo.</p>
+</div>
+
+<div class="slide">
+	<h2>Git Repo</h2>
+	<p>Since we'll be working on the same project, I'm going to start by adding my code to a project repo.</p>
+	<p><note>Repo</note> is shorthand for repository.  It basically means a folder with a bunch of code in it that can be copied and send to different locations.</p>
+</div>
+
+<div class="slide">
+	<p>I'll start by adding a new Git repo in my project folder using the <code>init</code> command.</p>
+	<pre><code>$ git init</code></pre>
+	<p>This adds a hidden <code>.git</code> directory in my project folder that keeps track of all of my files and code.</p>
+	<p>I can use <code>$ git status</code> to check that the repo exists.  Use this command a lot while doing things in Git.</p>
+</div>
+
+<div class="slide">
+	<p>Now that I have a repo, I want to create a <code>.gitignore</code> to ignore any files I don't want in the website.</p>
+	<p>For now that's just the <code>.DS_Store</code> file the Mac OS creates in each folder.</p>
+</div>
+
+<div class="slide">
+	<h2>Add and Commit</h2>
+	<p>Now I'm ready to make my first commit.</p>
+	<p>Making a commit is a process that you will do over and over.</p>
+	<p>A commit represents a finished verion of a piece of code that you want to save.  It could be just a couple lines of CSS or a hundred lines of JavaScript that implement a new feature.</p>
+	<p>The commit process involves two parts: <code>add</code> and <code>commit</code>.</p>
+</div>
+
+<div class="slide">
+	<pre><code>$ git add .</code></pre>
+	<p>This command will add all the new or modified files to the git repo.  The files will turn green when you do <code>git status</code>.</p>
+</div>
+
+<div class="slide">
+	<pre><code>$ git commit -m "initial commit"</code></pre>
+	<p>This creates a new commit.  You can view the commit using <code>$ git log</code>.  To publish your code there must be at least one commit.</p>
+	<p>Follow this same process for any future updates.  Add the files and then commit them.</p>
+</div>
+
+<div class="slide">
+	<h2>Push and Pull</h2>
+	<p>Add and Commit is the local part of the process, it's how you prepare code on your computer to be shared.</p>
+	<p>To share your code you push it to a remote repository and then pull changes that other developers add.</p>
+</div>
+
+<div class="slide">
+	<p>To push and pull, first we need a <code>remote</code>, a location that git saves to send the code to and get it from.</p>
+	<p>On GitHub, I'm going to create a new repo and name it after the project.  Then I'll copy the URL for this repo to use as my remote.</p>
+	<pre><code>$ git remote add origin GITHUB_URL</code></pre>
+	<p>To check my remotes I can use the command:</p>
+	<pre><code>$ git remote -v</code></pre>
+</div>
+
+<div class="slide">
+	<p></p>
+</div>
