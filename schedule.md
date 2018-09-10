@@ -23,8 +23,8 @@ title: Schedule
 
 ## Week 2 **Grid & GitHub**
 - [Grid Systems](notes/grid/)
-- [GitHub Basics](notes/github/intro)
-- [Forking a Project on GitHub](notes/github/fork)
+- [GitHub Basics](notes/git/intro)
+- [Forking a Project on GitHub](notes/git/fork)
 - **Assignment 2**: Wireframe
 	- Design a wireframe for the website desktop view
 	- Use the site critique as a basis, what worked and what could be improved
