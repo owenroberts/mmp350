@@ -5,7 +5,7 @@ window.addEventListener('load', function() {
 	const dbRefObject = firebase.database().ref();
 	const dbRefList = dbRefObject.child('hobbies');
 
-	dbRefObject.on('value', snap => {
+/*	dbRefObject.on('value', snap => {
 		preObject.textContent = JSON.stringify(snap.val(), null, 3);
 	});
 
@@ -24,6 +24,6 @@ window.addEventListener('load', function() {
 	dbRefList.on('child_removed', snap => {
 		const liChanged = document.getElementById(snap.key);
 		liChanged.remove();
-	});
+	});*/
 
 });

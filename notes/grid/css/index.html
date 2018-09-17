@@ -115,3 +115,57 @@ week: 3
 	&lt;div id="footer"&gt;Footer&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 </div>
+
+<!-- grid gap -->
+<div class="slide">
+	<h2>Grid Gap</h2>
+	<p>To automatically add spaces in between the columns and rows in our grid we can use the <code>grid-gap</code> property.</p>
+	<pre><code>#container {
+	grid-gap: 1em; /* add to both columns and rows */
+	column-gap: 1em; /* just columns */
+	row-gap: 10px; /* just rows */
+}</code></pre>
+</div>
+
+<!-- grid areas -->
+<div class="slide">
+	<h2>Grid Areas</h2>
+	<p>A feature of the CSS grid is using nicknames to set parts of our content to specific areas in the grid.  This makes it easy to change the position of the page content without having to change the markup.</p>
+</div>
+
+<div class="slide">
+	<p>First we need to define the areas of our grid row by row.  To do this we need a template area for each column in the row.</p>
+	<p>Let's make a simpler grid with three columns and three rows.</p>
+	<pre><code>#container {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 120px max-content max-content;
+	grid-template-areas:
+		"header header header"
+		"main main sidebar"
+		"footer footer footer";
+}</code></pre>
+</div>
+
+<div class="slide">
+	<p>Then we assign our content sections to specific areas.</p>
+	<pre><code>#header {
+	grid-area: header;
+}
+
+#main {
+	grid-area: main;
+}
+
+#sidebar {
+	grid-area: sidebar;
+}
+
+#footer {
+	grid-area: footer;
+}</code></pre>
+</div>
+
+<div class="slide">
+	<p>Now we can move content around regardless of the order in the HTML page.  For this method it might make more sense to name HTML ids based on content rather than the layout position.</p>
+</div>
