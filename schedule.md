@@ -33,33 +33,22 @@ title: Schedule
 
 ## Week 3 **CSS Grid**
 - [CSS Grid](notes/grid/css/)
+- [Firebase Authentication](notes/firebase/auth)
 - **Assignment 3**: HTML & CSS for wireframe
 	- Implement grid from wireframe using CSS
 	- Build on top of class app
 
-<!-- 
-- [Functions & callbacks](notes/node/functions/)
-- [Node Server](notes/node/server/)
-- **Assignment 2**: Wireframe
-	- Using the site you presented as a basis, design a wireframe for a desktop site
-	- Use your critique to improve any design problems you identified
-	- Start with pen and paper or simple sketches using Photoshop or [wireframe.cc](https://wireframe.cc/){:target="blank"}
-	- Use Photoshop, Illustrator or an online app to make a wireframe
-	- Finished wireframe must indicate percentages, units and measurements in order to be implemented
-	- Next week you will trade wireframes with another student to implement using HTML/CSS
-
-
-
-- [npm & express](notes/node/frameworks/)
-
-
 ## Week 4 **Responsive Design**
 - [Responsive Layouts](notes/responsive/)
-- [Node Templates](notes/node/template)
 - **Assignment 4**: Responsive wireframes
 	- Make wireframes for mobile and tablet sized devices
 	- Share the wireframe with your classmate to write HTML and CSS
 	- Both are due next week
+
+<!-- 
+
+## Week 4 **Responsive Design**
+- [Node Templates](notes/node/template)
 
 ## Week 5 **Firebase Intro**
 - [Firebase User Authentication](notes/firebase/auth/)
@@ -142,7 +131,7 @@ week	| topics					| assignments
 		setting up node server
 		functions/callbacks
 3		css grid, flexbox			html and css for wireframe
-		set up npm, express etc
+		set up npm, express etc		
 4		responsive design			wireframe for mobile
 5		reponsive css, sass			html/css for moile
 6		typography					3 type hierarchies
