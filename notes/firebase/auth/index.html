@@ -53,6 +53,9 @@ week: 3
 <div class="slide">
 	<p>When the user click the button, we need to capture their name, email and password and create a new user.</p>
 	<p>We'll start with a simple sign up and then work on creating the user.</p>
+</div>
+
+<div class="slide">
 	<p>First we need to create a new file in the <code>js/</code> folder to handle authentication.  Let's call in <code>auth.js</code>.</p>
 	<p>We need to attach it to the <code>index.html</code> file with a script tag.</p>
 	<pre><code>&lt;script src="js/auth.js"&gt;&lt;/script&gt;</code></pre>
@@ -88,12 +91,18 @@ const logOutBtn = document.getElementById('log-out');</div>
 <div class="slide">
 	<p>That will add a user to the authentication table.  Give that a try and then refresh the authentication table in the Firebase console to see if a user is added.</p>
 	<p>Once that works, there's some more work we need to to create the user in the database.</p>
+</div>
+
+<div class="slide">
 	<p>We're going to modify the above code, starting by creating a <code>Promise</code> from the result of the <code>createUserWithEmailAndPassword</code> method.</p>
 	<div class="ex">const createUserPromise = auth.createUserWithEmailAndPassword(email, password);</div>
 </div>
 
 <div class="slide">
 	<p>In JavaScript, a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="blank">Promise</a> represents the eventual outcome of a asynchronous function.  This could be either the completion of the function or a failure.  Using a Promise allows the developer to wait for either outcome and then write code to behave according to that outcome.</p>
+</div>
+
+<div class="slide">
 	<p>When creating a new user, either the user will be created, or we will receive some kind of error.  If a user is created, we will want to store that user in the database.</p>
 	<p>The <code>createUserPromise</code> will return a user credential with some information we can use to store that user in our database.</p>
 </div>
@@ -178,7 +187,10 @@ signInPromise.then(displayUserInfo);</div>
 
 <div class="slide">
 	<h2>Auth state</h2>
-	<p>To keep users logged in, Firebase stores a user key in the local storage in the browser.  This means if you refresh the page, or close your browser and return later, you will still be logged in.</p>  
+	<p>To keep users logged in, Firebase stores a user key in the local storage in the browser.  This means if you refresh the page, or close your browser and return later, you will still be logged in.</p>
+</div>
+
+<div class="slide">
 	<p>In order to detect this we can use another Firebase Authentication function.</p>
 	<div class="ex">firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
