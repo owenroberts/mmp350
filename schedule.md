@@ -41,9 +41,9 @@ title: Schedule
 ## Week 4 **Responsive Design**
 - [Responsive Layouts](notes/responsive/)
 - **Assignment 4**: Responsive wireframes
-	- Make wireframes for mobile and tablet sized devices
-	- Share the wireframe with your classmate to write HTML and CSS
-	- Both are due next week
+	- Add responsive layouts for mobile and to the `layout.css` stylesheet
+	- Use media queries to change the grid rules created for desktop
+	- Upload new version to GitHub and publish with GH Pages
 
 <!-- 
 

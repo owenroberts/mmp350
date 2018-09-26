@@ -33,7 +33,6 @@ week: 4
 	<h2>CSS Media Queries</h2>
 	<p>To implement Mobile and Tablet sized wireframe designs, we will use media queries in CSS to set breakpoints in terms of pixel dimensions (in device width) to change the layout.</p>
 	<p>Media Queries are like extra style sheets that let us rewrite the original style rules based on device properties.</p>
-	<p>Our design is set up to load at different sizes already, using the principle of responsive design.  But we also need to add break points, based on adaptive design, to change our layout for different devices.</p>
 </div>
 
 <div class="slide">
@@ -42,6 +41,9 @@ week: 4
 	max-width: 960px;
 	margin: 0 auto;
 }</code></pre>
+</div>
+
+<div class="slide">
 	<p>This establishes the maximum width of our page at <code>960px</code>.</p>  
 	<p>This dimension is arbitrary.  Your max width should be based on the content on the page.</p>
 	<p>The <code>margin</code> rule is there to center the container.</p>
@@ -49,31 +51,33 @@ week: 4
 
 <div class="slide">
 	<p>We also need to add a new <code>meta</code> tag to set the <code>viewport</code>.</p>
-	<p>This tells the browser not to resize or scale the content based on the device.  Some browsers do this by default to load the desktop version of the site at a viewable scale.  We're telling the browser that we are handling this in our CSS.</p>
 	<pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</code></pre>
+	<p>This tells the browser not to resize or scale the content based on the device.  Some browsers do this by default to load the desktop version of the site at a viewable scale.  We're telling the browser that we are handling this in our CSS.</p>
 </div>
 
 <div class="slide">
 	<h2>Choosing break points</h2>
 	<p>You will often see media queries based on the most popular sizes of various devices, such as the iPhone, iPad, laptop and desktop sizes.  This may be a good place to start but it's not necessarily going to work for all types of content.</p>
 	<p>A better approach to design around the content that will be on the site.  This requires writing media queries based on tests rather than pre-described defaults.</p>
-	<p>For now, since we haven't generated our content yet, I'm going to choose 2 arbitrary break points for mobile, <code>400px</code> and tablet, <code>600px</code>.</p>
+	
 </div>
 
 <div class="slide">
-	<p>Let's write our CSS rules for these break points:</p>
+	<p>For the sake of simplicity, let's choose 2 break points for mobile, <code>400px</code> and tablet, <code>600px</code>.</p>
 	<pre><code>@media (max-width: 400px) {
 	/* mobile style rules */
 }
 
 @media (min-width: 401px) and (max-width: 600px) {
-	/* tablet style rules
+	/* tablet style rules */
 }</code></pre>
 </div>
 
 <div class="slide">
-	<p>This is basically the simplest approach to get a working setup that target three different sizes.</p>
-	<p>The order and relationship between rules matter.  For example, in the second media query, we need to start at <code>min-width</code> and define a range to <code>max-width</code>.  Without that beginning point, this media query would replace the one that comes directly before it.</p>
+	<p>The relationship between rules matter.  For example, in the second media query, we need to start at <code>min-width</code> and define a range to <code>max-width</code>.  Without that beginning point, this media query would replace the one that comes directly before it.</p>
+</div>
+
+<div class="slide">
 	<p>The first media query only needs a <code>max-width</code> rules because there is nothing smaller targeted.</p>
 	<p>Anything larger than <code>600px</code> will be handled by the original style rules.</p>
 </div>
@@ -82,45 +86,15 @@ week: 4
 <div class="slide">
 	<p>Now that we have targeted two device sizes, let's start by changing the layout for mobile.</p>
 	<p>Keep in mind we can rewrite as many or as few styles as are necessary to complete the changes we're looking for.</p>  
-	<p>For the mobile version, let's simplify our grid by changing the overall number of columns and moving the <code>#sidebar</code> to it's own row.  This means rewriting a lot.</p>
+	<p>For the mobile version, let's simplify our grid by changing the overall number of columns and moving the <code>#sidebar</code> to it's own row.</p>
 </div>
 
 <div class="slide">
-	<pre><code>@media (max-width: 400px) {
-			
-	#container {
-		grid-template-columns: repeat(3, 1fr);
-		grid-template-rows: repeat(4, max-content);
-	}
-
-	#main {
-		grid-row: 2;
-		grid-column: 1 / span 3;
-	}
-
-	#sidebar {
-		grid-row: 3;
-		grid-column: 1/ span 3;
-	}
-
-	#footer {
-		grid-row: 4;
-		grid-column: 1/ span 3;
-	}
-	
-}</code></pre>
-</div>
-
-<div class="slide">
-	<p>Notice that all of my child sections now have the same number of columns.  We can simplify this CSS by making one rule for all of them:</p>
-	<pre><code>#main, #sidebar, #footer {
-	grid-column: 1 / span 3;
-}</code></pre>
-</div>
-
-<div class="slide">
-	<p>Let's preview this in Chrome.  A note here: It's not enough to just drag the browser width in and out to test responsive layouts.  Chrome has a really nice mobile device emulator setting in the dev tools.  Let's take advantage of it.</p>
+	<p>After we figure out the rules, we can test the mobile version before publishing using the mobile preview in Chrome.  It's not enough to just drag the browser width in and out to test responsive layouts.  Chrome has a mobile device emulator setting in the dev tools.  Let's take advantage of it.</p>
 	<p>Open <note>View > Developer > Developer Tools</note>, or hit <span class="key">CAi</span></p>
+</div>
+
+<div class="slide">
 	<p>Click on the icon in the Toolbar that looks like a mobile phone:</p>
 	<img src="mobile.png" alt="">
 	<p>You will see the content size change and a new menu appear with mobile parameters to set the width and height or choose specific devices:</p>
