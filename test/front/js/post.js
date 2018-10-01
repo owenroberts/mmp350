@@ -5,10 +5,11 @@ window.addEventListener('load', function() {
 	function publishPost() {
 		const uid = firebase.auth().currentUser.uid;
 		const db = firebase.database();
-		const ref = db.ref('users').child(uid).child('posts');
+		const ref = db.ref('posts').child(uid);
 		const postInfo = {
 			text: postInput.value,
-			date: new Date().toString()
+			date: Date.now(),
+			author: firebase.auth().currentUser.displayName
 		};
 		const postPromise = ref.push(postInfo);
 		postPromise.then(function(post) {

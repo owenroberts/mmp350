@@ -39,7 +39,7 @@ window.addEventListener('load', function() {
 			});
 			const setDisplayName = credential.user.updateProfile(userInfo);
 			setDisplayName.then(function(success){
-				console.log(success);
+				displayUserInfo();
 			});
 			setDisplayName.catch(function(error) {
 				console.log(error);
