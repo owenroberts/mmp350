@@ -1,26 +1,11 @@
 window.addEventListener('load', function() {
 
 	const postsDiv = document.getElementById('posts');
-	const postData = firebase.database().ref('posts');
+	const postRef = firebase.database().ref('posts');
 
-	// const db = firebase.database();
-	// const posts = db.ref('posts');
-	// const query = posts.orderByChild('date');
-	// query.on('value', snap => {
-	// 	console.log(snap.val());
-	// });
-
-
-	postData.on('child_added', function(snapshot) {
-		const userKey = snapshot.key;
-		userRef = postData.child(userKey);
-		userRef.on('child_added', function(snapshot) {
-			const post = snapshot.val();
-			const postKey = snapshot.key;
-			createPost(post);
-		});
+	postRef.on('child_added', function(snapshot) {
+		createPost(snapshot.val());
 	});
-
 
 	function createPost(post) {
 		const postDiv = document.createElement('div');
@@ -46,7 +31,7 @@ window.addEventListener('load', function() {
 		postInfo.innerHTML += " on ";
 		postInfo.appendChild(postDate);
 
-		postsDiv.appendChild(postDiv);
+		postsDiv.insertBefore(postDiv, postsDiv.firstElementChild);
 	}
 
 });

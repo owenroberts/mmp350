@@ -7,7 +7,7 @@ week: 4
 <div class="slide">
 	<p>Now that we have users that can create posts, we can save posts that users write to the database and display those posts on the website.</p>
 	<p>We are going to use front-end JavaScript to post new content to the database and retrieve posts to display.</p>
-	<p>To do this we will create to separate files to handle each function: <note>js/post.js</note> and <note>js/data.js</note>.</p>
+	<p>To do this we will create to separate files to handle each function: <note>js/publish.js</note> and <note>js/posts.js</note>.</p>
 </div>
 
 <div class="slide">
@@ -44,7 +44,8 @@ publishButton.addEventListener('click', publishPost);</div>
 		const postInfo = {
 			text: postInput.value,
 			date: Date.now(),
-			author: firebase.auth().currentUser.displayName
+			author: firebase.auth().currentUser.displayName,
+			id: uid
 		};
 		ref.push(postInfo);
 		postInput.value = "";
@@ -60,7 +61,7 @@ publishButton.addEventListener('click', publishPost);</div>
 
 <div class="slide">
 	<h2>Displaying posts</h2>
-	<p>Once we can save posts, we want to display them.  This is a separate function that will go in <note>js/data.js</note>.  This way we can keep processes separate to be more modular.</p>
+	<p>Once we can save posts, we want to display them.  This is a separate function that will go in <note>js/posts.js</note>.  This way we can keep processes separate to be more modular.</p>
 	<p>Again start with the window load event listener.</p>
 	<div class="ex">window.addEventListener('load', function() {
 	// data code
@@ -70,54 +71,50 @@ publishButton.addEventListener('click', publishPost);</div>
 <div class="slide">
 	<p>First we need to get a reference to the <code>#posts</code> div in the HTML to add the post content to.  We'll also get a reference to the <note>posts</note> area of the database.</p>
 	<div class="ex">const postsDiv = document.getElementById('posts');
-const postData = firebase.database().ref('posts');</div>
+const postRef = firebase.database().ref('posts');</div>
 </div>
 
 <div class="slide">
-	<p>The <code>postData</code> part of the database can be used to detect when new posts have been added.  We're going to create two event listeners to listen for new content being added, using the <code>"child_added"</code> event.  The convenient thing about this event is it will go through all of the existing children at the beginning and then continue listening for new children added.</p>
-	<p>The first event gets each user's section in the posts area of the database.  For each user in the list we add another event to listen for new posts for each user.</p>
+	<p>The <code>postRef</code> part of the database can be used to detect when new posts have been added.  We're going to create two event listeners to listen for new content being added, using the <code>"child_added"</code> event.  The convenient thing about this event is it will go through all of the existing children at the beginning and then continue listening for new children added.</p>
 </div>
 
 <div class="slide">
-	<div class="ex">postData.on('child_added', function(snapshot) {
-	const userKey = snapshot.key;
-	userRef = postData.child(userKey);
-	userRef.on('child_added', function(snapshot) {
-		const post = snapshot.val();
-		const postKey = snapshot.key;
-		createPost(post);
-	});
+	<div class="ex">postRef.on('child_added', function(snapshot) {
+	createPost(snapshot.val());
 });</div>
 </div>
 
 <div class="slide">
 	<p>Finally we need to create the HTML to render each post.  We'll make a <code>createPost</code> function in case we want to use it in other places later.  This is based on the structure of a post mocked up in class.</p>
 	<div class="ex">function createPost(post) {
-		const postDiv = document.createElement('div');
-		postDiv.classList.add('post');
-		const postText = document.createElement('div');
-		postText.classList.add('post-text');
-		const postInfo = document.createElement('div');
-		postInfo.classList.add('post-info');
-		
-		const postAuthor = document.createElement('span');
-		postAuthor.classList.add('post-author');
-		const postDate = document.createElement('span');
-		postDate.classList.add('post-date');
+	const postDiv = document.createElement('div');
+	postDiv.classList.add('post');
+	const postText = document.createElement('div');
+	postText.classList.add('post-text');
+	const postInfo = document.createElement('div');
+	postInfo.classList.add('post-info');
+	
+	const postAuthor = document.createElement('span');
+	postAuthor.classList.add('post-author');
+	const postDate = document.createElement('span');
+	postDate.classList.add('post-date');
 
-		postText.textContent = post.text;
-		postAuthor.textContent = post.author;
-		postDate.textContent = new Date(post.date).toLocaleString('en-us', { month: 'long', year: 'numeric', weekday: 'long', day: 'numeric' })
+	postText.textContent = post.text;
+	postAuthor.textContent = post.author;
+	postDate.textContent = new Date(post.date).toLocaleString('en-us', { month: 'long', year: 'numeric', weekday: 'long', day: 'numeric' })
 
-		postDiv.appendChild(postText);
-		postDiv.appendChild(postInfo);
-		postInfo.innerHTML += "by ";
-		postInfo.appendChild(postAuthor);
-		postInfo.innerHTML += " on ";
-		postInfo.appendChild(postDate);
+	postDiv.appendChild(postText);
+	postDiv.appendChild(postInfo);
+	postInfo.innerHTML += "by ";
+	postInfo.appendChild(postAuthor);
+	postInfo.innerHTML += " on ";
+	postInfo.appendChild(postDate);
 
-		postsDiv.appendChild(postDiv);
-	}</div>
+	/* chronological order */
+	// postsDiv.appendChild(postDiv); 
+	/* reverse chronological order */
+	postsDiv.insertBefore(postDiv, postsDiv.firstElementChild); 
+}</div>
 </div>
 
 <div class="slide">
