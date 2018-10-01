@@ -40,6 +40,7 @@ title: Schedule
 
 ## Week 4 **Responsive Design**
 - [Responsive Layouts](notes/responsive/)
+- [Publish & Display Posts](notes/firebase/post)
 - **Assignment 4**: Responsive wireframes
 	- Add responsive layouts for mobile and to the `layout.css` stylesheet
 	- Use media queries to change the grid rules created for desktop

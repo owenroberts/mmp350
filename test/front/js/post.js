@@ -12,10 +12,10 @@ window.addEventListener('load', function() {
 		};
 		const postPromise = ref.push(postInfo);
 		postPromise.then(function(post) {
-			console.log(post);
+			console.log('success', post);
 		});
 		postPromise.catch(function(error) {
-			console.log(error);
+			console.log('error', error);
 		});
 		postInput.value = "";
 	}

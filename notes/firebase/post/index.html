@@ -1,0 +1,77 @@
+---
+layout: slides
+title: Posting & Displaying Posts
+week: 4
+---
+
+<div class="slide">
+	<p>Now that we have users that can create posts, we can save posts that users write to the database and display those posts on the website.</p>
+	<p>We are going to use front-end JavaScript to post new content to the database and retrieve posts to display.</p>
+	<p>To do this we will create to separate files to handle each function: <note>js/post.js</note> and <note>js/data.js</note>.</p>
+</div>
+
+<div class="slide">
+	<h2>Publish a post</h2>
+	<p>We have already added the HTML elements a user can use to write a new post and click to publish it.</p>
+	<div class="ex" data-lang="html">&lt;div id="write-post"&gt;
+	&lt;textarea id="post-body" placeholder="What's on your mind?"&gt;&lt;/textarea&gt;
+	&lt;br&gt;
+	&lt;button id="submit-post"&gt;Publish&lt;/button&gt;
+&lt;/div&gt;</div>
+</div>
+
+<div class="slide">
+	<p>Now we can add JavaScript to listen to when the user click the "Publish" button and save their content to our database.</p>
+	<p>As usual, we'll start with an event listener to make sure the HTML has loaded before running and JavaScript.</p>
+	<div class="ex">window.addEventListener('load', function() {
+	// post code
+});</div>
+</div>
+
+<div class="slide">
+	<p>We need references to the post <code>textarea</code> and Publish <code>button</code>, and an event listener for when the user click "Publish".</p>
+	<div class="ex">const publishButton = document.getElementById('submit-post');
+const postInput = document.getElementById('post-body');
+publishButton.addEventListener('click', publishPost);</div>
+</div>
+
+<div class="slide">
+	<p>Finally, our <code>publishPost</code> function will get the user authentication info, find their part of the database and then grab the text from their post to publish.  We'll also record the current date to save along with the post to display.</p>
+	<div class="ex">function publishPost() {
+		const uid = firebase.auth().currentUser.uid;
+		const db = firebase.database();
+		const ref = db.ref('users').child(uid).child('posts');
+		const postInfo = {
+			text: postInput.value,
+			date: new Date().toString()
+		};
+		ref.push(postInfo);
+		postInput.value = "";
+	}</div>
+</div>
+
+<div class="slide">
+	<p><code>ref.push</code> adds a new entry to a field of the database. </p>
+	<p>A <code>Promise</code> could be assigned to make sure the post is successful and alert the user if it is not.</p>
+	<p>We will add some code to make the new post appear in the next section.</p>
+	<p><code>postInput.value = "";</code> simply clears the textarea so the user can write a new post.</p>
+</div>
+
+<div class="slide">
+	<h2>Displaying posts</h2>
+	<p>Once we can save posts, we want to display them.  This is a separate function that will go in <note>js/data.js</note>.  This way we can keep processes separate to be more modular.</p>
+	<p>Again start with the window load event listener.</p>
+	<div class="ex">window.addEventListener('load', function() {
+	// data code
+});</div>
+</div>
+
+<div class="slide">
+	<p>First we need to get a reference to the <code>#posts</code> div in the HTML to add the post content to.</p>
+	<div class="ex">const postsDiv = document.getElementById('posts');</div>
+</div>
+
+<div class="slide">
+	<p>Next we use the authentication state to detect if their is a user available.  If so, we grab their posts and display them.</p>
+</div>
+
