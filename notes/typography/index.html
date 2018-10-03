@@ -1,26 +1,395 @@
 ---
 layout: slides
 title: Typography
-week: 6
+week: 5
 ---
 
 <div class="slide">
 	<h2>Typography Hierarchy</h2>
-	<p><a href="http://webdesign.tutsplus.com/articles/understanding-typographic-hierarchy--webdesign-11636" target="_blank">Typographic hierarchy</a> is an important concept for developing the typographic styles for a web page.</p>
-	<p>A typographic hierarchy helps the client or user understand how the information on the page is organized, what the most important information is and how to read the page.</p>
+	<p><note>Typographic hierarchy</note> helps the client or user understand how the information on the page is organized, what the most important information is and how to read the page.</p>
 </div>
+
 <div class="slide">
-	<p>Let's review <a href="http://webdesign.tutsplus.com/articles/the-anatomy-of-web-typography--webdesign-10533" target="_blank">some basics</a> in terms of what&#8217;s available with web typography.</p>
+	<p>The following example of a post has no typographic rules applied.</p>
+	<style>
+		.post-no-rules {
+			padding: 1em;
+			border: 1px solid gray;
+			background: white;
+			color: black;
+		}
+	</style>
+	<div class="post-no-rules">
+		<div class="post-text">I skate to where the puck is going to be, not to where it has been.</div>
+		<div class="post-info">
+			by <span class="post-author">Wayne Gretzky</span> 
+			on <span class="post-date">Monday, January 1, 1999</span>
+		</div>
+	</div>
 </div>
+
 <div class="slide">
-	<p><a href="http://webdesign.tutsplus.com/articles/typographic-readability-and-legibility--webdesign-12211" target="_blank">Legibility</a> is also important.</p>
+	<p>It's not easy to see which part is the post and which part is the by line, is it?</p>
+	<p>Let's try adding some rules to make it easier to read.</p>
 </div>
-<div class="slide">	
-	<p>We will focus on <a href="http://webdesign.tutsplus.com/articles/a-beginners-guide-to-pairing-fonts--webdesign-5706" target="_blank">pairing fonts</a> for this week.</p>
-</div>
+
+<style>
+	.post-two {
+		padding: 1em;
+		border: 1px solid gray;
+		background: white;
+		color: black;
+	}
+	.post-two .post-text {
+		font-size: 1.25em;
+	}
+	.post-two .post-info {
+		color: gray;
+	}
+</style>
+
 <div class="slide">
-	<p>We&#8217;ll talk a bit about <a href="http://ia.net/know-how/responsive-typography-the-basics" target="_blank">responsive typography</a> and <a href="http://trentwalton.com/2012/06/19/fluid-type/" target="_blank">fluid type</a>, or designing for different screen sizes.</p>
+	
+	<div class="post-two">
+		<div class="post-text">I skate to where the puck is going to be, not to where it has been.</div>
+		<div class="post-info">
+			by <span class="post-author">Wayne Gretzky</span> 
+			on <span class="post-date">Monday, January 1, 1999</span>
+		</div>
+	</div>
 </div>
+
+<div class="slide">
+	<p>I didn't have to change much, I just applied a couple of rules and now it's easy to separate the content.</p>
+	<div class="ex" data-lang="css">.post-text {
+	font-size: 1.25em;
+}
+.post-info {
+	color: gray;
+}</div>
+</div>
+
+<div class="slide">
+	<p>A few more rules makes it easier to separate each part of the content.</p>
+	<style>
+		.post {
+			padding: 1em;
+			border: 1px solid gray;
+			background: white;
+			color: black;
+		}
+		.post .post-text {
+			font-size: 1.25em;
+		}
+		.post .post-info {
+			color: gray;
+		}
+		.post .post-author {
+			color: darkblue;
+		}
+		.post .post-date {
+			font-style: italic;
+		}
+	</style>
+	<div class="post">
+		<div class="post-text">I skate to where the puck is going to be, not to where it has been.</div>
+		<div class="post-info">
+			by <span class="post-author">Wayne Gretzky</span> 
+			on <span class="post-date">Monday, January 1, 1999</span>
+		</div>
+	</div>
+</div>
+
+<div class="slide">
+	<p>These examples touch on a few of the basic ways we can adjust the typography of a web page: <code>font-size</code>, <code>color</code> and <code>font-style</code>.</p>
+
+	<p>There are many more ways to adjust the text, some more noticeable than others.  Let's review some of them.</p>
+</div>
+
+<!-- font-size + line-height - (half leading) -->
+<div class="slide">
+	<h2>Font Size and Line Height</h2>
+	<p>You have probably worked with <code>font-size</code> before, so I won't spend to much time here, but <code>line-height</code> is related to <code>font-size</code> and is very important for legibility.</p>
+	<p>In CSS, the different betwee <code>line-height</code> and <code>font-size</code> is split between the top and bottom of a line.</p>
+	<img src="font-size-line-height.png" alt="">
+</div>
+
+<div class="slide">
+	<pre><code>line-height: <span id="line-height-display">1</span>;</code></pre>
+	<input id="line-height" type="range" min="0" max="2" value="1" step="0.1"> 
+	<div class="post" id="line-height-example">
+		<div class="post-text">I skate to where the puck is going to be, not to where it has been.</div>
+		<div class="post-info">
+			by <span class="post-author">Wayne Gretzky</span> 
+			on <span class="post-date">Monday, January 1, 1999</span>
+		</div>
+	</div>
+	
+	<script>
+		document.getElementById('line-height').addEventListener('input', ev => {
+			document.getElementById("line-height-example").style.lineHeight = document.getElementById('line-height-display').textContent = ev.currentTarget.value;
+		});
+	</script>
+</div>
+
+<div class="slide">
+	<h2>Letter spacing</h2>
+	<p><code>letter-spacing</code> is what it sounds like, the space between letters.  In traditional typography, letter spacing is known as <strong>tracking</strong>. However, it is <strong>not kerning</strong> which is a more specific application of spacing between different types of letters.</p>
+</div>
+
+<div class="slide">
+	<pre><code>letter-spacing: <span id="letter-spacing-display">1px</span>;</code></pre>
+	<input id="letter-spacing" type="range" min="-10" max="10" value="1" step="1" > 
+	<div class="post" >
+		<div class="post-text" id="letter-spacing-example">I skate to where the puck is going to be, not to where it has been.</div>
+		<div class="post-info">
+			by <span class="post-author">Wayne Gretzky</span> 
+			on <span class="post-date">Monday, January 1, 1999</span>
+		</div>
+	</div>
+	
+	<script>
+		document.getElementById('letter-spacing').addEventListener('input', ev => {
+			document.getElementById("letter-spacing-example").style.letterSpacing = document.getElementById('letter-spacing-display').textContent = ev.currentTarget.value + 'px';
+		});
+	</script>
+</div>
+
+<div class="slide">
+	<h2>Word spacing</h2>
+	<p><code>word-spacing</code> is also what it sounds like, the space between letters. </p>
+</div>
+
+<div class="slide">
+	<pre><code>word-spacing: <span id="word-spacing-display">normal</span>;</code></pre>
+	<input id="word-spacing" type="range" min="0" max="2" value="0.1" step="0.1" > 
+	<div class="post" >
+		<div class="post-text" id="word-spacing-example">I skate to where the puck is going to be, not to where it has been.</div>
+		<div class="post-info">
+			by <span class="post-author">Wayne Gretzky</span> 
+			on <span class="post-date">Monday, January 1, 1999</span>
+		</div>
+	</div>
+	
+	<script>
+		document.getElementById('word-spacing').addEventListener('input', ev => {
+			document.getElementById("word-spacing-example").style.wordSpacing = document.getElementById('word-spacing-display').textContent = ev.currentTarget.value + 'em';
+		});
+	</script>
+</div>
+
+<div class="slide">
+	<h2>Font weight</h2>
+	<p><code>font-weight</code> is the thickness of the characters in the text.</p>
+	<p>There are some descriptive values for <code>font-weight</code> like <code>lighter</code>, <code>bold</code>, and <code>normal</code>.</p>
+	<p>It can also be described numerically on a scale from <code>100</code> to <code>900</code> with <code>400</code> being regular.</p>
+</div>
+
+<style>
+	#font-weight-example {
+		font-family: Helvetica, Arial, sans-serif;
+	}
+</style>
+
+<div class="slide">
+	<pre><code>font-weight: <span id="font-weight-display">normal</span>;</code></pre>
+	<input id="font-weight" type="range" min="100" max="900" value="400" step="100" >
+	<select id="font-weight-select">
+		<option>lighter</option>
+		<option selected>normal</option>
+		<option>bold</option>
+		<option>bolder</option>
+	</select>
+	<div class="post" >
+		<div class="post-text" id="font-weight-example">I skate to where the puck is going to be, not to where it has been.</div>
+		<div class="post-info">
+			by <span class="post-author">Wayne Gretzky</span> 
+			on <span class="post-date">Monday, January 1, 1999</span>
+		</div>
+	</div>
+	
+	<script>
+		document.getElementById('font-weight').addEventListener('input', ev => {
+			document.getElementById("font-weight-example").style.fontWeight = document.getElementById('font-weight-display').textContent = ev.currentTarget.value;
+		});
+		document.getElementById('font-weight-select').addEventListener('input', ev => {
+			document.getElementById("font-weight-example").style.fontWeight = document.getElementById('font-weight-display').textContent = ev.currentTarget.value;
+		});
+	</script>
+</div>
+
+<div class="slide">
+	<h2>Legibility</h2>
+	<p>Text is typically used in a few different contents on the web.</p>
+	<p><note>Display</note> describes text used for headlines.  These tend to be larger and shorter than other parts of the text.</p>
+	<p><note>Text</note> refers to longer passages of text like paragraphs, posts or the body of a text.</p>
+	<p><note>Links</note> usually have a different font treatment to indicate that they are interactive.</p>
+</div>
+
+<div class="slide">
+	<p><note>Serif</note> fonts are typically used for text on a page.  Serifs are the added strokes at the ends of the main strokes in a character.  Sometimes they're referred to as feet.</p>
+	<p>Serifs help make text more legible by guiding the eye through the individual letters of a word.</p>
+	<style> #serif-example { font-family: 'Lora', Georgia, serif; }</style>
+	<div id="serif-example" class="post">I skate to where the puck is going to be, not to where it has been.</div>
+</div>
+
+<div class="slide">
+	<p><note>Sans-serif</note> are more appropriate for display fonts.</p>
+	<p>However, as more reading is done on the web, which supports lots of fonts, sans-serif fonts are more common for text bodies.</p>
+	<style> #sans-serif-example { font-family: 'Karla', Arial, sans-serif;
+		font-weight: bold;
+		font-size: 2em;
+	}</style>
+	<div id="sans-serif-example" class="post">Wayne Gretzky</div>
+</div>
+
+
+<div class="slide">
+	<h2>Font pairing</h2>
+	<p>For the assignment this week we will focus on font pairing.  This is basically what it sounds like, choosing two font that work together for different parts of a website.</p>
+	<p>We'll choose one font for the main text of the user posts in our application and a second font for the post information.</p>
+	<p>When choosing two fonts, there's a few ways to approach the relationship between them.</p>
+</div>
+
+<div class="slide">
+	<p>In most cases, we will choose fonts that are <note>harmonious</note>, or look similar.</p>
+	<style>
+		#harmonious .post-text {
+			font-family: Helvetica, sans-serif;
+		}
+		#harmonious .post-info {
+			font-family: Futura, sans-serif;
+		}
+	</style>
+	<div class="post" id="harmonious">
+		<div class="post-text">I skate to where the puck is going to be, not to where it has been.</div>
+		<div class="post-info">
+			by <span class="post-author">Wayne Gretzky</span> 
+			on <span class="post-date">Monday, January 1, 1999</span>
+		</div>
+	</div>
+</div>
+
+<div class="slide">
+	<p>For something a little more noticeable, choose fonts that have some <note>contrast</note>.</p>
+	<style>
+		#contrast .post-text {
+			font-family: Georgia, serif;
+		}
+		#contrast .post-info {
+			font-family: Optima, sans-serif;
+		}
+	</style>
+	<div class="post" id="contrast">
+		<div class="post-text">I skate to where the puck is going to be, not to where it has been.</div>
+		<div class="post-info">
+			by <span class="post-author">Wayne Gretzky</span> 
+			on <span class="post-date">Monday, January 1, 1999</span>
+		</div>
+	</div>
+</div>
+
+<div class="slide">
+	<p>For a bolder style, choose fonts that have obvious <note>conflict</note>.</p>
+	<style>
+		#conflict .post-text {
+			font-family: Andale Mono, monaco, consolas;
+		}
+		#conflict .post-info {
+			font-family: Cursive, script;
+		}
+	</style>
+	<div class="post" id="conflict">
+		<div class="post-text">I skate to where the puck is going to be, not to where it has been.</div>
+		<div class="post-info">
+			by <span class="post-author">Wayne Gretzky</span> 
+			on <span class="post-date">Monday, January 1, 1999</span>
+		</div>
+	</div>
+</div>
+
+<div class="slide">
+	<h2>Responsive typography</h2>
+	<p>Last week we looked at changing the layout of the web app for different device and screen sizes.</p>
+	<p>Does our typography also need to be updated?</p>
+</div>
+
+<div class="slide">
+	<p>When reading on your phone is the screen closer or farther away then reading something on a computer?  Most likely, it will be a little closer, in which case the type face may appear larger relative to the screen space.</p>
+	<p>A good rule of thumb is to hold your phone at the distance you would normally read with your computer in the background.  Does the font size look relatively the same?  If not, we can add a media query to change the size.</p>
+</div>
+
+<div class="slide">
+	<div class="ex" data-lang="css">@media (max-width: 400px) {
+	body {
+		font-size: 14px;
+		line-height: 1.2;
+	}
+}</div>
+	<p>Here, instead of updating specific elements of the page, we can change the baseline for the <code>font-size</code> and <code>line-height</code>.  If using <code>em</code> values, the rest of the page will update accordingly.</p>
+</div>
+
+<div class="slide">
+	<h2>Fluid type</h2>
+	<p>Other than <code>font-size</code>, another component of readability is the number of characters in a line.  There are different rules of thumb as to how many characters should be on one line of text.  Some say <note>45 - 75</note>.  Some specify <note>66</note> as the ideal.  Some say as many as <note>90</note> is acceptable.</p>
+	<p>As designers, we can these values to get a sense of a baselines, and then use our eyes to confirm.</p>
+</div>
+
+<div class="slide">
+	<p>The Wayne Gretzky quote I've been using is exactly 66 characters.</p>
+	<p>The number of characters depends on the <code>font-size</code> and paragraph <code>width</code>.</p>
+</div>
+
+<div class="slide">
+	<p>At <code>1em</code> the line doesn't take up a whole line in the paragraph.</p>
+	<style>
+		#fluid-1 {
+			font-size: 1em;
+		}
+	</style>
+	<div class="post">
+		<div class="post-text" id="fluid-1">I skate to where the puck is going to be, not to where it has been.</div>
+	</div>
+</div>
+
+<div class="slide">
+	<p>We can change the width to fix it.</p>
+	<style>
+		#fluid-2 {
+			font-size: 1em;
+			width: 460px;
+			margin: 0 auto;
+		}
+	</style>
+	<div class="post">
+		<div class="post-text" id="fluid-2">I skate to where the puck is going to be, not to where it has been.</div>
+	</div>
+</div>
+
+<div class="slide">
+	<p>At <code>2em</code> there is not enough text per line.</p>
+	<style>
+		#fluid-3 {
+			font-size: 2em;
+		}
+	</style>
+	<div class="post">
+		<div class="post-text" id="fluid-3">I skate to where the puck is going to be, not to where it has been.</div>
+	</div>
+</div>
+
+<div class="slide">
+	<p>We don't have more width so let's take it down a bit.  <code>1.35em</code> looks similar to the above example.</p>
+	<style>
+		#fluid-4 {
+			font-size: 1.35em;
+		}
+	</style>
+	<div class="post">
+		<div class="post-text" id="fluid-4">I skate to where the puck is going to be, not to where it has been.</div>
+	</div>
+</div>
+
 
 <div class="slide">
 	<h2>Google Fonts</h2>
@@ -29,11 +398,26 @@ week: 6
 
 <div class="slide">
 	<p>To use a font on your website, choose a font by clicking "Select this font" and then open the window that appears, go to the "Embed" section and copy the "@import" CSS rule to your CSS style sheet.  You don't need the <code>style</code> tags.</p>
+</div>
+
+<div class="slide">
 	<p>You can also copy the generated style rule to use in the stylesheet.</p>
 	<img src="import.png" alt="">
 </div>
 
 <div class="slide">
-	<p>Google Fonts are free and they have nice tools for testing out font pairs right in the browser.</p>
+	<p>You can try pairing fonts directly in Google Fonts before choosing to add them.</p>
 	<img src="pairings.png" alt="">
+</div>
+
+<div class="slide">
+	<h2>Resources</h2>
+	<ul>
+		<li><a href="http://webdesign.tutsplus.com/articles/understanding-typographic-hierarchy--webdesign-11636" target="_blank">Typographic hierarchy</a></li>
+		<li><a href="http://webdesign.tutsplus.com/articles/the-anatomy-of-web-typography--webdesign-10533" target="_blank">Web typography</a></li>
+		<li><a href="http://webdesign.tutsplus.com/articles/typographic-readability-and-legibility--webdesign-12211" target="_blank">Readability & Legibility</a></li>
+		<li><a href="http://webdesign.tutsplus.com/articles/a-beginners-guide-to-pairing-fonts--webdesign-5706" target="_blank">pairing fonts</a></li>
+		<li><a href="http://ia.net/know-how/responsive-typography-the-basics" target="_blank">Responsive typography</a></li>
+		<li><a href="http://trentwalton.com/2012/06/19/fluid-type/" target="_blank">Fluid type</a></li>
+	</ul>
 </div>

@@ -6,6 +6,8 @@
 		"header header header"
 		"main main sidebar"
 		"footer footer footer";
+	max-width: 800px;
+	margin: 0 auto;
 }
 
 #title {

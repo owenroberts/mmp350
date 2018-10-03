@@ -46,21 +46,17 @@ title: Schedule
 	- Use media queries to change the grid rules created for desktop
 	- Upload new version to GitHub and publish with GH Pages
 
+## Week 5 **Typography**
+- [Typographic Hierarchy](notes/typography/)
+- **Assignment 5**: Typographic Hierarchy
+	- Create 3 separate font pairings
+	- Use `typography.css` to apply each pairing
+	- Each pairing should be separated with comments `/* pairing 1 */` etc.
+	- Choose the pairing you prefer best to add to the project
+	
+
 <!-- 
 
-## Week 4 **Responsive Design**
-- [Node Templates](notes/node/template)
-
-## Week 5 **Firebase Intro**
-- [Firebase User Authentication](notes/firebase/auth/)
-
-## Week 6 **Typography**
-- [Typographic Hierarchy](notes/typography/)
-- [Firebase Database](notes/firebase/db/)
-- **Assignment 5**: Typographic Hierarchy
-	- Create 3 separate font pairings for a webpage
-	- Make a template for each of three fonts
-	- We will compare in class
 
 ## Week 7 **Color**
 - [Sass Intro](notes/sass/)

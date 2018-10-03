@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=K2D|Roboto');
+@import url('https://fonts.googleapis.com/css?family=Charmonman|Open+Sans');
+
+
+/* pairing 1 */
+.post-text {
+	font-family: 'K2D', sans-serif;
+	font-size: 1.5em;
+}
+
+.post-info {
+	font-family: 'Roboto', sans-serif;
+	font-size: 0.8em;
+}
+
+
+
+/* pairing 2 */
+.post-text {
+	font-family: 'Charmonman', sans-serif;
+	font-size: 1.5em;
+}
+
+.post-info {
+	font-family: 'Open+Sans', sans-serif;
+	font-size: 0.8em;
+}
+
+@media (max-width: 400px) {
+	body {
+		font-size: 40px;
+	}
+}
