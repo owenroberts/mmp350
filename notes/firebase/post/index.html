@@ -38,18 +38,18 @@ publishButton.addEventListener('click', publishPost);</div>
 <div class="slide">
 	<p>Finally, our <code>publishPost</code> function will get the user authentication info, find their part of the database and then grab the text from their post to publish.  We'll also record the current date to save along with the post to display.</p>
 	<div class="ex">function publishPost() {
-		const uid = firebase.auth().currentUser.uid;
-		const db = firebase.database();
-		const ref = db.ref('posts').child(uid);
-		const postInfo = {
-			text: postInput.value,
-			date: Date.now(),
-			author: firebase.auth().currentUser.displayName,
-			id: uid
-		};
-		ref.push(postInfo);
-		postInput.value = "";
-	}</div>
+	const uid = firebase.auth().currentUser.uid;
+	const db = firebase.database();
+	const ref = db.ref('posts').child(uid);
+	const postInfo = {
+		text: postInput.value,
+		date: Date.now(),
+		author: firebase.auth().currentUser.displayName,
+		id: uid
+	};
+	ref.push(postInfo);
+	postInput.value = "";
+}</div>
 </div>
 
 <div class="slide">
