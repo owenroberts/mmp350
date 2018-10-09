@@ -5,23 +5,100 @@ week: 7
 ---
 
 <div class="slide">
-	<p>We’re going to look at color today and some cool stuff that SASS can do for us using new color concepts.  First let’s review some basic color theory so we have a basis for how to use SASS.</p>
-</div>
-<div class="slide">
 	<p>We've all looked at the <a href="https://color.adobe.com/create/color-wheel/" target="_blank">Adobe Kuler</a> site for making color schemes.  But what do the different Color Rules (analogous, monochromatic, triad, complementary) signify?  These are basic concepts in <a href="http://www.colormatters.com/color-and-design/basic-color-theory" target="_blank">color theory</a>.  Let's take a look.</p>
 </div>
+
 <div class="slide">
 	<p>The main thing I want to take away from these concepts is the fact that color relationships can be described with numbers.</p>
 	<p>Because all colors are mapped on the color wheel, we can set up basic relationships and apply them to different colors.</p>
 	<p>For a complementary color, we just have to move the color wheel 180 degrees.</p>
 </div>
+
 <div class="slide">
-	<p><img src="hsl-colors.png" /></p>
-	<p>Sass uses HSL functions making it easy to set up these color rules in a way that we can substitute any color and achieve the same basic scheme (or our user can choose a color).  <!-- This site shows us how these rules work: <a href="http://sassme.arc90.com/" target="_blank">SassMe</a> -->.</p>
+	<h2>CSS Custom Properties</h2>
+	<p>CSS Custom Properties are sort of like variables in JavaScript or another programming language.  They allow us to define CSS rules that can be reused for multiple selectors.</p>
+	<p>Using custom properties solves two issues that often come when writing CSS.</p>
 </div>
+
+<div class="slide">
+	<p>First is repeating values.  You have probably had the experience of using one color several times in various parts of you stylesheet and then deciding to change that color.  Then you have to read through all of the rules and find each time you used it.  With custom properties, you can just change the original property value.</p>
+</div>
+
+<div class="slide">
+	<p>Second is using calculations to set style values.</p>
+	<p>This week we're going to focus on creating a color scheme for the web app.  When designing a color scheme, the relationships between colors can be describes by number values.  We can't recreate this in CSS, at least not in the past, but now we can use CSS custom properties.
+</div>
+
+<div class="slide">
+	<p>Let's look at a working example and then break down the code.  This example uses a triadic color scheme.  By adjusting the primary color hue, saturation or lightness, we will see all of the colors adjust along with it.</p>
+</div>
+
+
+<style>
+#site {
+	--hue: 0;
+	--sat: 50;
+	--lit: 50;
+	--primary: hsl(var(--hue), calc(var(--sat) * 1%), calc(var(--lit) * 1%));
+	--accent-one: hsl(calc(var(--hue) + 120), calc(var(--sat) * 1%), calc(var(--lit) * 1%));;
+	--accent-two: hsl(calc(var(--hue) - 120), calc(var(--sat) * 1%), calc(var(--lit) * 1%));;
+
+	background: white;
+	padding: 1em;
+}
+.title {
+	color: var(--primary);
+	font-size: 1.5em;
+}
+.post {
+	border: 2px solid var(--accent-one);
+	padding: 0.25em;
+	margin: 0.25em 0;
+}
+.post-text {
+	color: var(--primary);
+}
+.post-author, .post-date {
+	color: var(--accent-two);
+}
+</style>
+
+<div class="slide">
+	<div id="site">
+		<div class="title">My App</div>
+		<div class="posts">
+			<div class="post">
+				<div class="post-text">Hello world!</div>
+				by <span class="post-author">Wayne Gretzky</span>
+				on <span class="post-date">Jan 1, 1999</span>
+			</div>
+			<div class="post">
+				<div class="post-text">My first post.</div>
+				by <span class="post-author">Wayne Gretzky</span>
+				on <span class="post-date">Jan 1, 1999</span>
+			</div>
+		</div>
+	</div>
+	<input class="ex-one" id="hue" type="range" min="0" max="100" value="0"></input>
+	<input class="ex-one" id="sat" type="range" min="0" max="100" value="0"></input>
+	<input class="ex-one" id="lit" type="range" min="0" max="100" value="0"></input>
+	<script type="text/javascript">
+		Array.from(document.getElementsByClassName('ex-one')).forEach(e => {
+			console.log(e);
+		});
+	</script>
+</div>
+
+
+<div class="slide">
+	<h2>Hue</h2>
+	<p><img src="hsl-colors.png" /></p>
+</div>
+
 <div class="slide">
 	<p>Let's <a href="http://www.0to255.com/" target="_blank">choose a color</a>.  Now let's take a look at how to create these color schemes with simple SCSS code.</p>
 </div>
+
 <div class="slide">
 	<p>Sass color functions.</p>
 	<table style="font-family: Menlo, Monaco, monospace;">
