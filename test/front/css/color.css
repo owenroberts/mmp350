@@ -1,0 +1,10 @@
+:root {
+  --hue: 0;
+  --sat: 50;
+  --light: 50;
+}
+
+body {
+	background: hsl(calc(var(--hue) + 180), calc(var(--sat) * 1%), calc(var(--light) * 1%));;
+	color: hsl(var(--hue), calc(var(--sat) * 1%), calc(var(--light) * 1%));
+}

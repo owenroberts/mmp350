@@ -53,7 +53,13 @@ title: Schedule
 	- Use `typography.css` to apply each pairing
 	- Each pairing should be separated with comments `/* pairing 1 */` etc.
 	- Choose the pairing you prefer best to add to the project
-	
+
+## Week 6 **Color**
+- [Calculating Color](notes/color/)
+- **Assignment 6**: Color Scheme
+	- Choose a color scheme (complementary, triad, monochromatic, analogous, or combination)
+	- Use one color as main color
+
 
 <!-- 
 
