@@ -25,28 +25,56 @@ window.addEventListener('load', function() {
 		postDate.textContent = new Date(post.date).toLocaleString('en-us', { month: 'long', year: 'numeric', weekday: 'long', day: 'numeric' });
 
 		const authorPhoto = new Image();
-		authorPhoto.classList.add('photo-'+post.id);
+		authorPhoto.classList.add('photo-' + post.id);
 		authorPhoto.classList.add('post-photo');
 		postDiv.appendChild(authorPhoto);
+
+		const likeDiv = document.createElement('div');
+		likeDiv.classList.add('likes');
 
 		const likeBtn = document.createElement('button');
 		likeBtn.classList.add('like-btn');
 		likeBtn.textContent = "Like";
+		
 		const unlikeBtn = document.createElement('button');
 		unlikeBtn.classList.add('unlike-btn');
 		unlikeBtn.textContent = "Unlike";
 
+		const displayLikes = document.createElement('span');
+		displayLikes.classList.add('display-likes');
+		
+
+		if (post.likes) {
+			displayLikes.textContent = Object.keys(post.likes).length + " likes";
+		} else {
+			displayLikes.textContent = "0 likes";
+		}
+
+		likeDiv.appendChild(likeBtn);
+		likeDiv.appendChild(unlikeBtn);
+		likeDiv.appendChild(displayLikes);
+
+		function likeOrUnLikePost(like) {
+			if (firebase.auth().currentUser) {
+				const uid = firebase.auth().currentUser.uid;
+				const postRef = firebase.database().ref('posts').child(key).child('likes').child(uid);
+				if (like) {
+					postRef.set(true);
+				} else {
+					postRef.remove();
+				}
+				
+			} else {
+				alert("Log in to like posts");
+			}
+		}
+
 		likeBtn.addEventListener('click', function() {
-			if (firebase.auth().currentUser) {
-				const uid = firebase.auth().currentUser.uid;
-				firebase.database().ref('posts').child(key).child('likes').child(uid).set(true);
-			}
+			likeOrUnLikePost(true);
 		});
+
 		unlikeBtn.addEventListener('click', function() {
-			if (firebase.auth().currentUser) {
-				const uid = firebase.auth().currentUser.uid;
-				firebase.database().ref('posts').child(key).child('likes').child(uid).remove();
-			}
+			likeOrUnLikePost(false);
 		});
 
 		postDiv.appendChild(postText);
@@ -56,8 +84,7 @@ window.addEventListener('load', function() {
 		postInfo.innerHTML += " on ";
 		postInfo.appendChild(postDate);
 
-		postDiv.appendChild(likeBtn);
-		postDiv.appendChild(unlikeBtn);
+		postDiv.appendChild(likeDiv);
 
 		postsDiv.insertBefore(postDiv, postsDiv.firstElementChild);
 	}

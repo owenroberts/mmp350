@@ -1,127 +1,124 @@
 ---
 layout: slides
-title: Likes
-week: 11
+title: Interacting with user content
+week: 5
 ---
 
 <div class="slide">
+	<p>In many web applications we want to allow users to interact with one another's content.  This can take many forms, sharing, commenting, reposting.</p>
 	<p>This week we're going to introduce the ability for users to "Like" posts.</p>	
-	<p>To do this, we will need to add a Like button to the <code>/posts</code> template and record likes from specific users in the Firebase database.</p>
+	<p>To implement this feature, we need to add buttons for users to interact with and entries in the database to track the users who have "liked a post.</p>
 </div>
 
 <div class="slide">
-	<p>Most of this functionality will be added on the <code>user.ejs</code> template, but we have to add something to the route first in <code>server.js</code>.</p>
+	<p>To implement this feature we're going to add some more code to the <note>js/posts.js</note> script, in the <code>createPost</code> function.</p>
 	<p>In order to keep track of "likes" and prevent users from spamming likes, we're going to need to know both the user who liked the post as well as the user who posted the post.</p>
-	<p>We can get the signed in user through the Firebase auth, but we don't have the user who posted the posts id on their page, so we need to pass the user id parameter through the route.</p>
+	<p>Only signed in users will be able to like posts, and once they're signed in we'll use their <code>uid</code> as a way to track likes.</p>
+</div>
+
+
+<div class="slide">
+	<p>To start, we need to modify our <code>postRef</code> event and <code>createPost</code> function a little bit.</p>
+	<p>In order to add "Likes" back to the database, we need to know the key value of each post.</p>
+	<p>We can add another argument to the <code>createPost</code> function and get the post key from the <code>snapshot</code>.</p>
 </div>
 
 <div class="slide">
-	<pre><code>app.get('/user/:id', function(request, response) {
-	const ref = db.ref('users/' + request.params.id);
-	ref.once('value')
-		.then(function(snapshot){
-			response.render('user.ejs', {
-				data: snapshot.val(),
-				user: request.params.id
-			});
-		});
-});</code></pre>
+	<div class="ex">postRef.on('child_added', function(snapshot) {
+	createPost(snapshot.key, snapshot.val());
+});</div>
+	<br>
+	<div class="ex">function createPost(key, post) {
+	// create post code
+}</div>
 </div>
 
 <div class="slide">
-	<p>This route is almost exactly the same except for adding <code>user: request.params.id</code> to the data we pass along to the route.</p>
+	<h2>Like interface</h2>
+	<p>To create the interface for users to "like" and then "unlike" posts, we need to add another section to our post with two buttons and span to display the posts.</p>
 </div>
 
 <div class="slide">
-	<h2>Like template</h2>
-	<p>We can add the <code>ejs</code> template and then deal with the like functionality.</p>
-	<p>To start, we need to add some HTML with two buttons to Like or "Unlike" a post.</p>
-	<p>Add the following under the <code>&lt;div class="date"&gt;</code> we added previously.</p>
+	<div class="ex">const likeDiv = document.createElement('div');
+likeDiv.classList.add('likes');
+
+const likeBtn = document.createElement('button');
+likeBtn.classList.add('like-btn');
+likeBtn.textContent = "Like";
+
+const unlikeBtn = document.createElement('button');
+unlikeBtn.classList.add('unlike-btn');
+unlikeBtn.textContent = "Unlike";
+
+const displayLikes = document.createElement('span');
+displayLikes.classList.add('display-likes');</div>
 </div>
 
 <div class="slide">
-	<pre><code>&lt;div class="like"&gt;
-	&lt;button onclick={likePost("&lt;%= key %&gt;")}&gt;Like&lt;/button&gt;
-	&lt;button onclick={unlikePost("&lt;%= key %&gt;")}&gt;Unlike&lt;/button&gt;
-&lt;/div&gt;</code></pre>
+	<p>Next we add each of the elements to the likes div and then append that to the post div after everything else.</p>
+	<div class="ex">likeDiv.appendChild(likeBtn);
+likeDiv.appendChild(unlikeBtn);
+likeDiv.appendChild(displayLikes);
+// after adding <code>postText</code>, <code>postAuthor</code> and <code>postInfo</code>.
+postDiv.appendChild(likeDiv);</div>
 </div>
 
 <div class="slide">
-	<h2>Like function</h2>
-	<p>These two functions will be almost identical, with opposite functionality.</p>
-	<p>The <code>likePost</code> function uses the <code>key</code> parameter to specify which post is being liked.</p>
-	<p>Let's start with <code>likePost</code>.</p>
-	<p>Add a new <code>script</code> tag before the <code>footer</code> partial.</p>
+	<p>We also need to add event listeners to each button to call a function to like or unlike the post.</p>
+	<p>The like button will add the argument <code>true</code> to like and the unlike button will use <code>false</code> to unlike.</p>
+	<div class="ex">likeBtn.addEventListener('click', function() {
+	likeOrUnLikePost(true);
+});
+
+unlikeBtn.addEventListener('click', function() {
+	likeOrUnLikePost(false);
+});</div>
 </div>
 
 <div class="slide">
-	<pre><code>function likePost(key) {
-	const currentUser = firebase.auth().currentUser; 
-	const postId = "<%= user %>";
-	const db = firebase.database();
-	const ref = db.ref('/users/' + postId + '/posts/' + key + '/likes/' + currentUser.uid);
-	ref.set({name: currentUser.displayName})
-		.then(function(success) {
-			console.log('success', success);
-			location.reload();
-		})
-		.catch(function(error){
-			console.log('error', error);
-		});
-}</code></pre>
-</div>
-
-<div class="slide">
+	<h2>Like/Unlike Function</h2>
 	<p>In this code, the <code>currentUser</code> is the one who is doing the likeing.  We're going to set the name of the user to a reference in the database, creating a new child called <code>likes</code>.</p>
 	<p>By storing a reference using the user's id that is rewritten with the <code>set</code> function, this will prevent the user from liking more than once, because firebase won't store multiple references with the same key.</p>
+</div>
+
+
+<div class="slide">
+	<div class="ex">function likeOrUnLikePost(isLike) {
+	if (firebase.auth().currentUser) {
+		const uid = firebase.auth().currentUser.uid;
+		const postRef = firebase.database().ref('posts').child(key).child('likes').child(uid);
+		let likePromise;
+		if (isLike) {
+			likePromise = postRef.set(true);
+		} else {
+			likePromise = postRef.remove();
+		}
+		likePromise.then(function() {
+			location.reload();
+		});
+	} else {
+		alert("Log in to like posts");
+	}
+}</div>
+</div>
+
+<div class="slide">
 	<p>Once the like is recorded in the database, we want to reload the page to show the new likes.</p>
 </div>
 
-<div class="slide">
-	<h2>Unlike function</h2>
-	<p>This function just removes the key added by the previous function.</p>
-</div>
-
-<div class="slide">
-	<pre><code>function unlikePost(key) {
-	const currentUser = firebase.auth().currentUser;
-	const postUID = "<%= user %>";
-	const db = firebase.database();
-	db.ref('/users/' + postUID + '/posts/' + key + '/likes/' + currentUser.uid)
-		.remove()
-		.then(function(success) {
-			console.log('success', success);
-			location.reload();
-		})
-		.catch(function(error){
-			console.log('error', error);
-		});
-}</code></pre>
-</div>
-
-<div class="slide">
-	<p>The difference here is that instead of creating a reference and the setting it, we're using the reference to simply remove it.</p>	
-</div>
 
 <div class="slide">
 	<h2>Display likes</h2>
 	<p>Now that we have some likes stored in the database, let's display them.</p>
-	<p>Let's return to the template markup and add a new section right after our two like buttons.</p>
-	<p>Let's use a <code>span</code> so that they sit next to the buttons, inside the <code>&lt;div class="like"&gt;</code></p>
+	<p>To get the number of likes, we can make an array of the likes object keys, using <code>Object.keys()</code> and get the <code>length</code> from that array.</p>
+	<p>If there are no likes, we simply display "0 likes".</p>
 </div>
 
 <div class="slide">
-	<pre><code>&lt;span class="likes"&gt;
-	&lt;% if (post.likes) { %&gt;
-		&lt;%= Object.keys(post.likes).length %&gt; likes
-	&lt;% } else { %&gt;
-		0 likes
-	&lt;% } %&gt;
-&lt;/span&gt;</code></pre>
+	<div class="ex">if (post.likes) {
+	displayLikes.textContent = Object.keys(post.likes).length + " likes";
+} else {
+	displayLikes.textContent = "0 likes";
+}</div>
 </div>
 
-<div class="slide">
-	<p>First we check to make sure there are likes with <code>if (post.likes)</code>.</p>
-	<p>If there are likes we check the length of the <code>post.likes</code> objects by getting a list of keys using <code>Object.keys()</code> and getting the length of the list.</p>
-	<p>Finally, if there are no likes, we just display <code>0 likes</code>.</p>
-</div>
