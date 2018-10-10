@@ -72,19 +72,27 @@ week: 7
 				by <span class="post-author">Wayne Gretzky</span>
 				on <span class="post-date">Jan 1, 1999</span>
 			</div>
-			<div class="post">
-				<div class="post-text">My first post.</div>
-				by <span class="post-author">Wayne Gretzky</span>
-				on <span class="post-date">Jan 1, 1999</span>
-			</div>
 		</div>
 	</div>
-	<input class="ex-one" id="hue" type="range" min="0" max="100" value="0"></input>
-	<input class="ex-one" id="sat" type="range" min="0" max="100" value="0"></input>
-	<input class="ex-one" id="lit" type="range" min="0" max="100" value="0"></input>
+
+	<pre><code>.site {
+	--hue: <span id="hue-display">0</span>;
+	--sat: <span id="sat-display">50</span>;
+	--lit: <span id="lit-display">50</span>;
+}</code></pre>
+
+	<input class="ex-one" id="hue" type="range" min="0" max="360" value="0"></input>
+	<label for="hue">Hue</label>
+	<input class="ex-one" id="sat" type="range" min="0" max="100" value="50"></input>
+	<label for="sat">Saturation</label>
+	<input class="ex-one" id="lit" type="range" min="0" max="100" value="50"></input>
+	<label for="lit">Lightness</label>
 	<script type="text/javascript">
 		Array.from(document.getElementsByClassName('ex-one')).forEach(e => {
-			console.log(e);
+			e.addEventListener('input', ev => {
+				document.getElementsByClassName('site')[0].style.setProperty(`--${ev.target.id}`, ev.target.value);
+				document.getElementById(`${ev.target.id}-display`).textContent = ev.target.value;
+			});
 		});
 	</script>
 </div>
