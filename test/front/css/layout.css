@@ -23,7 +23,7 @@
 	grid-area: sidebar;
 }
 
-#posts {
+#posts, #profile {
 	grid-area: main;
 }
 

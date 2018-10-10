@@ -48,6 +48,7 @@ title: Schedule
 
 ## Week 5 **Typography**
 - [Typographic Hierarchy](notes/typography/)
+
 - **Assignment 5**: Typographic Hierarchy
 	- Create 3 separate font pairings
 	- Use `typography.css` to apply each pairing

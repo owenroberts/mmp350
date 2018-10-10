@@ -6,6 +6,7 @@
 	<script src="https://www.gstatic.com/firebasejs/5.0.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.0.0/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.0.0/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.0.0/firebase-storage.js"></script>
 
 	<script type="text/javascript">
 		// initialize firebase
@@ -24,18 +25,6 @@
 <body>
     
 	<div id="container">
-		<input type="range" id="hue" value="0" min="0" max="360" step="1">
-		<input type="range" id="saturation" value="50%" min="0%" max="100%" step="1%">
-		<script type="text/javascript">
-			document.getElementById('saturation').addEventListener('input', ev => {
-				console.log(ev.currentTarget.value);
-				document.body.style.setProperty('--sat', ev.currentTarget.value);
-			});
-			document.getElementById('hue').addEventListener('input', ev => {
-				console.log(ev.currentTarget.value);
-				document.body.style.setProperty('--hue', ev.currentTarget.value);
-			})
-		</script>
 		<div id="title">
 			<h1>MMP 350 Site</h1>
 		</div>
@@ -53,18 +42,20 @@
 			<button id="log-out">Log Out</button>
 		</div>
 
-		<div id="write-post">
-			<textarea id="post-body" placeholder="What's on your mind?"></textarea>
-			<br>
-			<button id="submit-post">Publish</button>
+		<div id="profile">
+			<h2>My Profile</h2>
+			<p id="profile-name"></p>
+			<div id="add-photo" style="display:none;">
+				<p>Add a profile image:</p>
+				<input id="profile-photo-file" type="file" name="profile-img" accept="image/gif, image/jpeg, image/png">
+				<button id="submit-photo">Submit Image</button>
+			</div>
+			<img id="profile-photo" width="200">
 		</div>
 
-		<div id="posts">
-			
-		</div>
 
 		<ul id="menu">
-			<li><a href="profile.html">Profile</a></li>
+			<li><a href="index.html">Home</a></li>
 			<li>Friends</li>
 			<li>All Users</li>
 		</ul>
@@ -75,10 +66,7 @@
 
 	</div>
 	
-	
-	
 	<script type="text/javascript" src="js/auth.js"></script>
-	<script type="text/javascript" src="js/posts.js"></script>
-	<script type="text/javascript" src="js/publish.js"></script>
+	<script type="text/javascript" src="js/profile.js"></script>
 </body>
 </html>

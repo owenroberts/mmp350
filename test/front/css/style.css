@@ -1,3 +1,7 @@
 @import "layout.css";
 @import "typography.css";
 @import "color.css";
+
+.post-photo {
+	width: 100px;
+}
