@@ -35,7 +35,7 @@ week: 7
 
 
 <style>
-.site {
+.posts {
 	--hue: 0;
 	--sat: 50;
 	--lit: 50;
@@ -45,10 +45,6 @@ week: 7
 
 	background: white;
 	padding: 1em;
-}
-.title {
-	color: var(--primary);
-	font-size: 1.5em;
 }
 .post {
 	border: 2px solid var(--accent-one);
@@ -64,18 +60,15 @@ week: 7
 </style>
 
 <div class="slide">
-	<div class="site">
-		<div class="title">My App</div>
-		<div class="posts">
-			<div class="post">
-				<div class="post-text">Hello world!</div>
-				by <span class="post-author">Wayne Gretzky</span>
-				on <span class="post-date">Jan 1, 1999</span>
-			</div>
+	<div class="posts">
+		<div class="post">
+			<div class="post-text">Hello world!</div>
+			by <span class="post-author">Wayne Gretzky</span>
+			on <span class="post-date">Jan 1, 1999</span>
 		</div>
 	</div>
 
-	<pre><code>.site {
+	<pre><code>.posts {
 	--hue: <span id="hue-display">0</span>;
 	--sat: <span id="sat-display">50</span>;
 	--lit: <span id="lit-display">50</span>;
@@ -90,72 +83,63 @@ week: 7
 	<script type="text/javascript">
 		Array.from(document.getElementsByClassName('ex-one')).forEach(e => {
 			e.addEventListener('input', ev => {
-				document.getElementsByClassName('site')[0].style.setProperty(`--${ev.target.id}`, ev.target.value);
+				document.getElementsByClassName('posts')[0].style.setProperty(`--${ev.target.id}`, ev.target.value);
 				document.getElementById(`${ev.target.id}-display`).textContent = ev.target.value;
 			});
 		});
 	</script>
 </div>
 
+<div class="slide">
+	<p>How does this work?</p>
+	<p>We can use CSS custom properties to take a single value for the hue and use it to define three separate colors.</p>
+	<p>Custom properties can be defined in any CSS selector block using two dashes before the property name.  Any CSS value is then assigned to the property.</p>
+</div>
+
+<div class="slide">
+	<p>We can start with <code>--hue</code>.</p>
+	<pre><code>.post { 
+	--hue: red;
+}</code></pre>
+	<p>And use it to define a color, using the <code>var()</code> rule.</p>
+	<pre><code>.post {
+	--hue: red;
+	--main-color: var(--hue);
+}</code></pre>
+	<p>When <code>--hue</code> is changed, the <code>--main-color</code> will also change.</p>
+</div>
+
+<div class="slide">
+	<p>To define the colors using relationships between the hue, we need another CSS function, <code>--calc</code> will do simple mathematic expression inside CSS.  In order to make these values work for an HSL color, we need to change the units.</p>
+</div>
+
+<!-- start with HSL rule -->
+<!-- change hue -->
+
+<!-- add sat and lit -->
 
 <div class="slide">
 	<h2>Hue</h2>
 	<p><img src="hsl-colors.png" /></p>
 </div>
 
-<div class="slide">
-	<p>Let's <a href="http://www.0to255.com/" target="_blank">choose a color</a>.  Now let's take a look at how to create these color schemes with simple SCSS code.</p>
-</div>
+
 
 <div class="slide">
-	<p>Sass color functions.</p>
-	<table style="font-family: Menlo, Monaco, monospace;">
-		<tr>
-			<td>adjust_hue(color, degrees)</td> 
-			<td>change the hue of a color by degrees number 0 - 360</td>
-		</tr>
-		<tr>
-			<td>darken(color, precent)</td> 
-			<td>darker color 0% - 100%</td>
-		</tr>
-		<tr>
-			<td>lighten(color, precent)</td> 
-			<td>lighter color 0% - 100%</td>
-		</tr>
-		<tr>
-			<td>saturate(color, precent)</td> 
-			<td>more saturated color 0% - 100%</td>
-		</tr>
-		<tr>
-			<td>desaturate(color, precent)</td> 
-			<td>less saturated color 0% - 100%</td>
-		</tr>
-	</table>    
-</div>
-<div class="slide">
-	<p data-height="328" data-theme-id="10088" data-slug-hash="azzNKr" data-default-tab="result" data-user="owenroberts" class="codepen">See the Pen <a href="http://codepen.io/owenroberts/pen/azzNKr/">azzNKr</a> by Owen Roberts (<a href="http://codepen.io/owenroberts">@owenroberts</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-	<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
-
 	<p><note>Complementary</note>, primary color, with complementary color difference of 180 degrees.</p>
 </div>
-<div class="slide">
-	<p data-height="335" data-theme-id="10088" data-slug-hash="WbbOdL" data-default-tab="result" data-user="owenroberts" class="codepen">See the Pen <a href="http://codepen.io/owenroberts/pen/WbbOdL/">WbbOdL</a> by Owen Roberts (<a href="http://codepen.io/owenroberts">@owenroberts</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-	<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
+<div class="slide">
 	<p><note>Monochromatic</note>, primary color, with other colors differing in saturation and lightness.</p>
 </div>
-<div class="slide">
-	<p data-height="332" data-theme-id="10088" data-slug-hash="bNNRLm" data-default-tab="result" data-user="owenroberts" class="codepen">See the Pen <a href="http://codepen.io/owenroberts/pen/bNNRLm/">bNNRLm</a> by Owen Roberts (<a href="http://codepen.io/owenroberts">@owenroberts</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-	<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
+<div class="slide">
 	<p><note>Analogous</note>, primary color, second and support colors hue in opposite directions at equal degrees, ie (15 and -15).</p>
 </div>
 <div class="slide">
-	<p data-height="334" data-theme-id="10088" data-slug-hash="dPPRmR" data-default-tab="result" data-user="owenroberts" class="codepen">See the Pen <a href="http://codepen.io/owenroberts/pen/dPPRmR/">dPPRmR</a> by Owen Roberts (<a href="http://codepen.io/owenroberts">@owenroberts</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-	<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
-
 	<p><note>Triadic</note>, primary, second and third divided evenly by 120 degrees.</p>
 </div>
+
 <div class="slide">
 	<p><a href="http://www.tigercolor.com/color-lab/color-theory/color-theory-intro.htm#analogous" target="_blank">More color schemes</a>.</p>
 </div>
