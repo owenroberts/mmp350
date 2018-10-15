@@ -58,8 +58,11 @@ title: Schedule
 ## Week 6 **Color**
 - [Calculating Color](notes/color/)
 - **Assignment 6**: Color Scheme
+	- Create a `color.css` page
 	- Choose a color scheme (complementary, triad, monochromatic, analogous, or combination)
 	- Use one color as main color
+	- Use CSS custom properties to define two other colors
+	- Implement those colors for the typography, borders, backgrounds and any other colors in the app
 
 
 <!-- 

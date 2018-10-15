@@ -1,7 +1,7 @@
 ---
 layout: slides
 title: Calculating Color
-week: 7
+week: 6
 ---
 
 <div class="slide">
@@ -15,13 +15,20 @@ week: 7
 </div>
 
 <div class="slide">
+	<h2>Hue</h2>
+	<p><img src="hsl-colors.png" /></p>
+</div>
+
+
+<div class="slide">
 	<h2>CSS Custom Properties</h2>
 	<p>CSS Custom Properties are sort of like variables in JavaScript or another programming language.  They allow us to define CSS rules that can be reused for multiple selectors.</p>
 	<p>Using custom properties solves two issues that often come when writing CSS.</p>
 </div>
 
 <div class="slide">
-	<p>First is repeating values.  You have probably had the experience of using one color several times in various parts of you stylesheet and then deciding to change that color.  Then you have to read through all of the rules and find each time you used it.  With custom properties, you can just change the original property value.</p>
+	<p>First is repeating values.</p>
+	<p>You have probably had the experience of using one color several times in various parts of you stylesheet and then deciding to change that color.  Then you have to read through all of the rules and find each time you used it.  With custom properties, you can just change the original property value.</p>
 </div>
 
 <div class="slide">
@@ -30,6 +37,7 @@ week: 7
 </div>
 
 <div class="slide">
+	<h2>Triadic color scheme</h2>
 	<p>Let's look at a working example and then break down the code.  This example uses a triadic color scheme.  By adjusting the primary color hue, saturation or lightness, we will see all of the colors adjust along with it.</p>
 </div>
 
@@ -45,6 +53,7 @@ week: 7
 
 	background: white;
 	padding: 1em;
+	color: black;
 }
 .post {
 	border: 2px solid var(--accent-one);
@@ -97,48 +106,356 @@ week: 7
 </div>
 
 <div class="slide">
+	<h2>var</h2>
 	<p>We can start with <code>--hue</code>.</p>
 	<pre><code>.post { 
 	--hue: red;
 }</code></pre>
+</div>
+
+<div class="slide">
 	<p>And use it to define a color, using the <code>var()</code> rule.</p>
 	<pre><code>.post {
 	--hue: red;
-	--main-color: var(--hue);
+	--main: var(--hue);
 }</code></pre>
 	<p>When <code>--hue</code> is changed, the <code>--main-color</code> will also change.</p>
 </div>
 
 <div class="slide">
-	<p>To define the colors using relationships between the hue, we need another CSS function, <code>--calc</code> will do simple mathematic expression inside CSS.  In order to make these values work for an HSL color, we need to change the units.</p>
+	<p>Instead of a default color, we will assign a number from the color wheel to the <code>--hue</code> value.  Let's start with a nice green.</p>
+	<pre><code>.post {
+	--hue: 120;
+}</code></pre>
 </div>
-
-<!-- start with HSL rule -->
-<!-- change hue -->
-
-<!-- add sat and lit -->
 
 <div class="slide">
-	<h2>Hue</h2>
-	<p><img src="hsl-colors.png" /></p>
+	<p>To create an HSL color, we also need the <note>saturation</note> and <note>lightness</note> values.</p>
+	<pre><code>.post {
+	--sat: 50;
+	--lit: 50;
+}</code></pre>
 </div>
 
+<div class="slide">
+	<h2>calc</h2>
+	<p>Then we need to convert those values to use the <code>%</code> to be read correctly by the CSS <code>hsl()</code> rule.  To do this we can use the CSS <code>calc</code> function to do basic arithmetic.</p>
+	<pre><code>.post {
+	--saturation: calc(var(--sat) * 1%);
+	--lightness: calc(var(--lit) * 1%);
+}</code></pre>
+</div>
+
+<div class="slide">
+	<p>Now we can construct and HSL value.</p>
+	<pre><code>.post {
+	--main-color: hsl(var(--main), var(--saturation), var(--lightness));
+}</code></pre>
+</div>
+
+<div class="slide">
+	<p>To define the colors using relationships between the hue, we can use <code>calc</code> again to define a new relationship.</p>
+	<p>Let's try a complimentary color.</p>
+	<pre><code>.post {
+	--comp: calc(var(--main) + 180);
+	--comp-color: hsl(var(--comp), var(--saturation), var(--lightness));
+}</code></pre>
+</div>
+
+<div class="slide">
+	<p>Now we can update the entire color scheme by updating a single value.</p>
+	<pre><code>.post {
+	--hue: 240;
+}</code></pre>
+</div>
+
+<style>
+.comp {
+	--comp-hue: 240;
+	--comp-sat: 50;
+	--comp-lit: 50;
+	--primary: hsl(var(--comp-hue), calc(var(--comp-sat) * 1%), calc(var(--comp-lit) * 1%));
+	--comp: hsl(calc(var(--comp-hue) + 180), calc(var(--comp-sat) * 1%), calc(var(--comp-lit) * 1%));;
+
+	background: white;
+	padding: 1em;
+	color: black;
+}
+.comp .post {
+	border: 2px solid var(--primary);
+	padding: 0.25em;
+	margin: 0.25em 0;
+}
+.comp .post-text {
+	color: var(--primary);
+}
+.comp .post-author, .comp .post-date {
+	color: var(--comp);
+}
+</style>
+
+<div class="slide">
+	<p>Here's the resulting complementary color scheme.</p>
+	<div class="comp">
+		<div class="post">
+			<div class="post-text">Hello world!</div>
+			by <span class="post-author">Wayne Gretzky</span>
+			on <span class="post-date">Jan 1, 1999</span>
+		</div>
+	</div>
+
+	<pre><code>.posts {
+	--hue: <span id="comp-hue-display">240</span>;
+	--sat: <span id="comp-sat-display">50</span>;
+	--lit: <span id="comp-lit-display">50</span>;
+}</code></pre>
+
+	<input class="ex-comp" id="comp-hue" type="range" min="0" max="360" value="240"></input>
+	<label for="hue">Hue</label>
+	<input class="ex-comp" id="comp-sat" type="range" min="0" max="100" value="50"></input>
+	<label for="sat">Saturation</label>
+	<input class="ex-comp" id="comp-lit" type="range" min="0" max="100" value="50"></input>
+	<label for="lit">Lightness</label>
+	<script type="text/javascript">
+		Array.from(document.getElementsByClassName('ex-comp')).forEach(e => {
+			e.addEventListener('input', ev => {
+				document.getElementsByClassName('comp')[0].style.setProperty(`--${ev.target.id}`, ev.target.value);
+				document.getElementById(`${ev.target.id}-display`).textContent = ev.target.value;
+			});
+		});
+	</script>
+</div>
+
+<div class="slide">
+	<p>The rest of the CSS rules.</p>
+	<pre><code>.posts {
+	--hue: 240;
+	--sat: 50;
+	--lit: 50;
+	--main: hsl(var(--comp-hue), calc(var(--sat) * 1%), calc(var(--lit) * 1%));
+	--complementary: hsl(calc(var(--hue) + 180), calc(var(--sat) * 1%), calc(var(--lit) * 1%));;
+}
+.posts .post {
+	border: 2px solid var(--main);
+}
+.posts .post-text {
+	color: var(--main);
+}
+.posts .post-author, .posts .post-date {
+	color: var(--complementary);
+}</code></pre>
+</div>
+
+<div class="slide">
+	<p>That covers creating a <note>complementary</note> scheme, with complementary color difference of 180 degrees.</p>
+	<p>Let's take a look at a few other color schemes.</p>
+</div>
+
+<div class="slide">
+	<p><note>Analogous</note>, primary color, second and support colors hue in opposite directions at equal degrees, ie (30 and -30).</p>
+</div>
+
+<style>
+.anal {
+	--anal-hue: 240;
+	--anal-sat: 50;
+	--anal-lit: 50;
+	--primary: hsl(var(--anal-hue), calc(var(--anal-sat) * 1%), calc(var(--anal-lit) * 1%));
+	--anal-one: hsl(calc(var(--anal-hue) + 30), calc(var(--anal-sat) * 1%), calc(var(--anal-lit) * 1%));;
+	--anal-two: hsl(calc(var(--anal-hue) - 30), calc(var(--anal-sat) * 1%), calc(var(--anal-lit) * 1%));;
+
+	background: white;
+	padding: 1em;
+	color: black;
+}
+.anal .post {
+	border: 2px solid var(--primary);
+	padding: 0.25em;
+	margin: 0.25em 0;
+}
+.anal .post-text {
+	color: var(--anal-one);
+}
+.anal .post-author, .anal .post-date {
+	color: var(--anal-two);
+}
+</style>
+
+<div class="slide">
+	<div class="anal">
+		<div class="post">
+			<div class="post-text">Hello world!</div>
+			by <span class="post-author">Wayne Gretzky</span>
+			on <span class="post-date">Jan 1, 1999</span>
+		</div>
+	</div>
+
+	<pre><code>.posts {
+	--hue: <span id="anal-hue-display">240</span>;
+	--sat: <span id="anal-sat-display">50</span>;
+	--lit: <span id="anal-lit-display">50</span>;
+}</code></pre>
+
+	<input class="ex-anal" id="anal-hue" type="range" min="0" max="360" value="240"></input>
+	<label for="hue">Hue</label>
+	<input class="ex-anal" id="anal-sat" type="range" min="0" max="100" value="50"></input>
+	<label for="sat">Saturation</label>
+	<input class="ex-anal" id="anal-lit" type="range" min="0" max="100" value="50"></input>
+	<label for="lit">Lightness</label>
+	<script type="text/javascript">
+		Array.from(document.getElementsByClassName('ex-anal')).forEach(e => {
+			e.addEventListener('input', ev => {
+				document.getElementsByClassName('anal')[0].style.setProperty(`--${ev.target.id}`, ev.target.value);
+				document.getElementById(`${ev.target.id}-display`).textContent = ev.target.value;
+			});
+		});
+	</script>
+</div>
+
+<div class="slide">
+	<p>The analogous CSS rules.</p>
+	<pre><code>.posts {
+	--hue: 240;
+	--sat: 50;
+	--lit: 50;
+	--main: hsl(var(--hue), calc(var(--sat) * 1%), calc(var(--lit) * 1%));
+	--one: hsl(calc(var(--hue) + 30), calc(var(--sat) * 1%), calc(var(--lit) * 1%));;
+	--two: hsl(calc(var(--hue) - 30), calc(var(--sat) * 1%), calc(var(--lit) * 1%));;
+}
+.posts .post {
+	border: 2px solid var(--primary);
+}
+.posts .post-text {
+	color: var(--one);
+}
+.posts .post-author, .posts .post-date {
+	color: var(--two);
+}</code></pre>
+</div>
 
 
 <div class="slide">
-	<p><note>Complementary</note>, primary color, with complementary color difference of 180 degrees.</p>
+	<p><note>Triadic</note>, primary, second and third divided evenly by 120 degrees.</p>
+	<p>This example is demonstrated at the top of this page.</p>
 </div>
+
+<div class="slide">
+	<pre><code>.posts {
+	--hue: 0;
+	--sat: 50;
+	--lit: 50;
+	--primary: hsl(var(--hue), calc(var(--sat) * 1%), calc(var(--lit) * 1%));
+	--accent-one: hsl(calc(var(--hue) + 120), calc(var(--sat) * 1%), calc(var(--lit) * 1%));;
+	--accent-two: hsl(calc(var(--hue) - 120), calc(var(--sat) * 1%), calc(var(--lit) * 1%));;
+}
+.post {
+	border: 2px solid var(--accent-one);
+}
+.post-text {
+	color: var(--primary);
+}
+.post-author, .post-date {
+	color: var(--accent-two);
+}</code></pre>
+</div>
+
 
 <div class="slide">
 	<p><note>Monochromatic</note>, primary color, with other colors differing in saturation and lightness.</p>
+
+</div>
+
+
+<style>
+.mono {
+	--mono-hue: 240;
+	--mono-sat: 50;
+	--mono-lit: 50;
+	
+	--mono-main: hsl(var(--mono-hue), calc(var(--mono-sat) * 1%), calc(var(--mono-lit) * 1%));
+	
+	--mono-saturation: calc(var(--mono-sat) + 20);
+	--mono-lightness: calc(var(--mono-lit) - 20);
+	
+	--mono-one: hsl(calc(var(--mono-hue)), calc(var(--mono-saturation) * 1%), calc(var(--mono-lit) * 1%));;
+	--mono-two: hsl(calc(var(--mono-hue)), calc(var(--mono-sat) * 1%), calc(var(--mono-lightness) * 1%));;
+
+	background: white;
+	padding: 1em;
+	color: black;
+}
+.mono .post {
+	border: 2px solid var(--mono-main);
+	padding: 0.25em;
+	margin: 0.25em 0;
+}
+.mono .post-text {
+	color: var(--mono-one);
+}
+.mono .post-author, .mono .post-date {
+	color: var(--mono-two);
+}
+</style>
+
+<div class="slide">
+	<div class="mono">
+		<div class="post">
+			<div class="post-text">Hello world!</div>
+			by <span class="post-author">Wayne Gretzky</span>
+			on <span class="post-date">Jan 1, 1999</span>
+		</div>
+	</div>
+
+	<pre><code>.posts {
+	--hue: <span id="mono-hue-display">240</span>;
+	--sat: <span id="mono-sat-display">50</span>;
+	--lit: <span id="mono-lit-display">50</span>;
+}</code></pre>
+
+	<input class="ex-mono" id="mono-hue" type="range" min="0" max="360" value="240"></input>
+	<label for="hue">Hue</label>
+	<input class="ex-mono" id="mono-sat" type="range" min="0" max="100" value="50"></input>
+	<label for="sat">Saturation</label>
+	<input class="ex-mono" id="mono-lit" type="range" min="0" max="100" value="50"></input>
+	<label for="lit">Lightness</label>
+	<script type="text/javascript">
+		Array.from(document.getElementsByClassName('ex-mono')).forEach(e => {
+			e.addEventListener('input', ev => {
+				document.getElementsByClassName('mono')[0].style.setProperty(`--${ev.target.id}`, ev.target.value);
+				document.getElementById(`${ev.target.id}-display`).textContent = ev.target.value;
+			});
+		});
+	</script>
 </div>
 
 <div class="slide">
-	<p><note>Analogous</note>, primary color, second and support colors hue in opposite directions at equal degrees, ie (15 and -15).</p>
+	<p>The monochromatic CSS rules.</p>
+	<pre><code>.posts {
+	--hue: 240;
+	--sat: 50;
+	--lit: 50;
+	--main: hsl(var(--hue), calc(var(--sat) * 1%), calc(var(--lit) * 1%));
+	
+	/* update saturation in one */
+	--saturation: calc(var(--sat) + 20);
+	--one: hsl(calc(var(--hue)), calc(var(--saturation) * 1%), calc(var(--lit) * 1%));;
+
+	/* change lightness in two */
+	--lightness: calc(var(--lit) - 20);
+	--two: hsl(calc(var(--hue)), calc(var(--sat) * 1%), calc(var(--lightness) * 1%));;
+}
+.posts .post {
+	border: 2px solid var(--main);
+}
+.posts .post-text {
+	color: var(--one);
+}
+.posts .post-author, .posts .post-date {
+	color: var(--two);
+}</code></pre>
 </div>
-<div class="slide">
-	<p><note>Triadic</note>, primary, second and third divided evenly by 120 degrees.</p>
-</div>
+
+
 
 <div class="slide">
 	<p><a href="http://www.tigercolor.com/color-lab/color-theory/color-theory-intro.htm#analogous" target="_blank">More color schemes</a>.</p>
