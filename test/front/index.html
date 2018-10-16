@@ -24,18 +24,6 @@
 <body>
     
 	<div id="container">
-		<input type="range" id="hue" value="0" min="0" max="360" step="1">
-		<input type="range" id="saturation" value="50%" min="0%" max="100%" step="1%">
-		<script type="text/javascript">
-			document.getElementById('saturation').addEventListener('input', ev => {
-				console.log(ev.currentTarget.value);
-				document.body.style.setProperty('--sat', ev.currentTarget.value);
-			});
-			document.getElementById('hue').addEventListener('input', ev => {
-				console.log(ev.currentTarget.value);
-				document.body.style.setProperty('--hue', ev.currentTarget.value);
-			})
-		</script>
 		<div id="title">
 			<h1>MMP 350 Site</h1>
 		</div>
@@ -48,7 +36,7 @@
 		 	<button id="log-in">Log In</button>
 		</div>
 
-		<div id="user-info" style="display:none">
+		<div id="user-info">
 			<span id="display-name"></span>
 			<button id="log-out">Log Out</button>
 		</div>

@@ -1,68 +1,63 @@
 window.addEventListener('load', function() {
 
+	const userNameAuth = document.getElementById('username');
+	const emailAuth = document.getElementById('email');
+	const passwordAuth = document.getElementById('password');
+	const signUpButton = document.getElementById('sign-up');
+	const logInButton = document.getElementById('log-in');
+	const logOutButton = document.getElementById('log-out');
+
 	firebase.auth().onAuthStateChanged(function(user) {
+		console.log(user);
 		if (user) {
-		   displayUserInfo();
+			document.getElementById('display-name').textContent = "Welcome, " + firebase.auth().currentUser.displayName;
+			document.body.classList.add('user-logged-in');
+			document.body.classList.remove('no-user');
+		} else {
+			document.body.classList.add('no-user');
+			document.body.classList.remove('user-logged-in');
 		}
 	});
 
-	function displayUserInfo(user) {
-		document.getElementById('display-name').textContent = "Hi " + firebase.auth().currentUser.displayName;
-		document.getElementById('user-info').style.display = 'block';
-		document.getElementById('auth').style.display = 'none';
-	}
 
-	const userNameAuth = document.getElementById('name');
-	const emailAuth = document.getElementById('email');
-	const passwordAuth = document.getElementById('password');
-	const signUpBtn = document.getElementById('sign-up');
-	const logInBtn = document.getElementById('log-in');
-	const logOutBtn = document.getElementById('log-out');
-
-	signUpBtn.addEventListener('click', function() {
+	signUpButton.addEventListener('click', function() {
 		const email = emailAuth.value;
 		const password = passwordAuth.value;
 		const auth = firebase.auth();
-		const createUser = auth.createUserWithEmailAndPassword(email, password);
-		createUser.then(function(credential) {
+		const createUserPromise = auth.createUserWithEmailAndPassword(email, password);
+		
+		// promise reponse
+		createUserPromise.then(function(credential){
+			const id = credential.user.uid;
 			const db = firebase.database();
-			const ref = db.ref('users').child(credential.user.uid);
+			const ref = db.ref('users').child(id);
 			const userInfo = {
-				displayName: userNameAuth.value
+				displayName: userNameAuth.value		
 			};
-			const promise = ref.set(userInfo)
-			promise.then(function(success) {
-				console.log(success);
-			});
-			promise.catch(function(error) {
-				console.log(error);
-			});
-			const setDisplayName = credential.user.updateProfile(userInfo);
-			setDisplayName.then(function(success){
-				displayUserInfo();
-			});
-			setDisplayName.catch(function(error) {
-				console.log(error);
-			});
+			ref.set(userInfo);
+			credential.user.updateProfile(userInfo)
+				.then(displayUserInfo);
 		});
-		createUser.catch(function(error) {
-			console.log(error.message);
+		
+		// promise error
+		createUserPromise.catch(function(error) {
+			alert(error.message);	
 		});
 	});
 
-	logInBtn.addEventListener('click', e => {
+	logInButton.addEventListener('click', function() {
 		const email = emailAuth.value;
 		const password = passwordAuth.value;
 		const auth = firebase.auth();
-		const promise = auth.signInWithEmailAndPassword(email, password);
-		promise.then(displayUserInfo);
-		promise.catch(e => console.log(e.message));
-
+		const signInPromise = auth.signInWithEmailAndPassword(email, password);
+		signInPromise.catch(function(error) {
+			alert(error.message);
+		});
 	});
 
-	logOutBtn.addEventListener('click', e => {
+	logOutButton.addEventListener('click', function() {
 		firebase.auth().signOut();
-		document.getElementById('auth').style.display = 'block';
-		document.getElementById('user-info').style.display = 'none';
+		// document.getElementById('user-info').style.display = 'none';
+		// document.getElementById('auth').style.display = 'block';
 	});
 });

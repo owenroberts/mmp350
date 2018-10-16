@@ -79,25 +79,71 @@ week: 12
 </div>
 
 <div class="slide">
-	<h2>profile.ejs</h2>
-	<p>This template has the same basic setup of most of our previous templates.</p>
-	<pre><code>&lt;% include partials/head.ejs %&gt;
-&lt;body&gt;
-	&lt;% include partials/header.ejs %&gt;
-	
-	&lt;!--  add profile image  --&gt;
-	
-	&lt;% include partials/footer.ejs %&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
+	<p>Next we're going to make an update to the <note>js/auth.js</note> script to make it easier to hide and show content depending on whether the user is logged in.</p>
+	<p>Previously, we created a function, <code>displayUserInfo</code> which was triggered when the user logged in, and manually set various components to display or not display.</p>
+	<p>Let's make a more sophisticated version of this using CSS nested rules.</p>
 </div>
 
 <div class="slide">
-	<p>For the HTML we need to add an <code>input</code> for a file and a button for the user to submit the image file.</p>
-	<pre><code>&lt;p&gt;Add a profile image:&lt;/p&gt;
-&lt;input  type="file" id="profile_img_file" accept="image/gif, image/jpeg, image/png"&gt;
-&lt;button id="submit"&gt;Submit Image&lt;/button&gt;</code></pre>
+	<p>I'm going to add a CSS file called <note>interface.css</note> to handle the visibility of components in the layout when a user is logged in or not, using CSS nested selectors.</p>
+	<p>I'll define two classes, <code>.no-user</code> and <code>.user-logged-in</code> that can be updated with the Firebase authentication.</p>
+	<p>Then we'll nest the divs we want to display or hide for each.</p>
 </div>
+
+<div class="slide">
+	<div class="ex" data-lang="css">.user-logged-in { }
+.no-user { }</div>
+</div>
+
+<div class="slide">
+	<p>A nested rule uses a space between the parent and child elements and targets any element inside the parent.</p>
+	<div class="ex" data-lang="css">/* display when user is logged in */
+.user-logged-in #write-post {
+	display: block;
+}</div>	
+</div>
+
+<div class="slide">
+	<p>We can also use a comma to add more selectors to this rule.</p>
+	<div class="ex" data-lang="css">/* display when user is logged in */
+.user-logged-in #user-info,
+.user-logged-in #profile-photo,
+.user-logged-in #write-post {
+	display: block;
+}</div>	
+</div>
+
+<div class="slide">
+	<p>Then add the elements we don't want to see when user is logged in.</p>
+	<div class="ex" data-lang="css">/* hide when user is logged in */
+.user-logged-in #auth,
+.user-logged-in #add-photo {
+	display: none;
+}</div>	
+</div>
+
+<div class="slide">
+	<p>Now the inverse when no user is logged in.</p>
+	<div class="ex" data-lang="css">/* display when no user */
+.no-user #auth,
+.no-user #add-photo {
+	display: block;
+}
+
+/* hide when no user */
+.no-user #user-info,
+.no-user #profile-photo,
+.no-user #write-post {
+	display: none;
+}</div>
+</div>
+
+<div class="slide">
+	<p>Now we can update <code>onAuthStateChanged</code> to turn these classes on and off.</p>
+	
+</div>
+
+
 
 <div class="slide">
 	<p>After the HTML add a <code>script</code> tag for the script that will upload the photo and then update the database and the user.</p>
