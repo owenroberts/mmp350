@@ -35,48 +35,47 @@ week: 12
 </div>
 
 <div class="slide">
-	<h2>Profile route</h2>
-	<p>We'll start by adding a route where users can upload an image.  We'll call this <note>profile.ejs</note>.</p>
-	<p>First we need to add a simple route to the <note>server.js</note> file.</p>
-	<pre><code>app.get('/profile', function(request, response){ 
-	response.render('profile.ejs');
-});</code></pre>
+	<h2>Profile page</h2>
+	<p>We'll start by adding a profile page.  This is a separate page from the <note>index.html</note>, but it has a lot of similarities, so we can begin by duplicating <note>index.html</note> and renaming it <note>profile.html</note>.</p>
 </div>
 
 <div class="slide">
-	<h2>Menu</h2>
-	<p>Before we create <note>profile.ejs</note> let's update the menu inside of <note>header.ejs</note> to make sure there's a link to the profile.  Let's also update it to create a <code>logged-in</code> area like the <code>not-logged-in</code> area.</p>
+	<p>Before leaving <note>index.html</note> let's update the menu with a link to the profile page.</p>
+	<div class="ex" data-lang="html">&lt;ul id="menu"&gt;
+	&lt;li&gt;&lt;a href="profile.html"&gt;Profile&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;Friends&lt;/li&gt;
+	&lt;li&gt;All Users&lt;/li&gt;
+&lt;/ul&gt;</div>
 </div>
 
 <div class="slide">
-	<pre><code>&lt;div id="menu"&gt;
-	&lt;a href="/"&gt;Home&lt;/a&gt;
-	&lt;a href="/users"&gt;View Users&lt;/a&gt;
+	<p>Over on <note>profile.html</note> remember to update this link to go back to the homepage.</p>
+	<div class="ex" data-lang="html">&lt;li&gt;&lt;a href="index.html"&gt;Home&lt;/a&gt;&lt;/li&gt;</div>
+</div>
 
-	&lt;div id="logged-in" style="display:none;"&gt;
-		&lt;a href="/profile"&gt;Profile&lt;/a&gt;
+<div class="slide">
+	<p>For the HTML, we can delete the main content sections <code>#posts</code> and <code>#write-post</code>.</p>
+	<p>We'll replace that with the <code>#profile</code> section.</p>
+	<p>In the profile section we'll add a file input for the user to upload a photo.  That's all we'll add for now.</p>
+</div>
+
+<div class="slide">
+	<div class="ex" data-lang="html">&lt;div id="profile"&gt;
+	&lt;h2&gt;My Profile&lt;/h2&gt;
+	&lt;p id="profile-name"&gt;&lt;/p&gt;
+	&lt;div id="add-photo" style="display:none;"&gt;
+		&lt;p&gt;Add a profile image:&lt;/p&gt;
+		&lt;input id="profile-photo-file" type="file" name="profile-img" accept="image/gif, image/jpeg, image/png"&gt;
+		&lt;button id="submit-photo"&gt;Submit Image&lt;/button&gt;
 	&lt;/div&gt;
-
-	&lt;div id="not-logged-in" style="display:none;"&gt;
-		&lt;a href="/login"&gt;Log in&lt;/a&gt;
-		&lt;a href="/create"&gt;Create new user&lt;/a&gt;
-	&lt;/div&gt;
-&lt;/div&gt;</code></pre>
+	&lt;img id="profile-photo" width="200"&gt;
+&lt;/div&gt;</div>
 </div>
 
 <div class="slide">
-	<p>Update the <code>script</code> on <note>header.ejs</note> to show the <code>logged-in</code> section.</p>
-	<pre><code>const userName = document.getElementById("display-name");
-firebase.auth().onAuthStateChanged(function(user) {
-	if (user) {
-		userName.textContent = "Hello, " + user.displayName;
-		const userInput = document.getElementById('userInput');
-		userInput.value = user.uid;
-		document.getElementById("logged-in").style.display = "inline";
-	} else {
-		document.getElementById("not-logged-in").style.display = "inline";
-	}
-});</code></pre>
+	<p>Next, let's update the scripts in <note>profile.html</note>.</p>
+	<p>We still need <note>js/auth.js</note>, we'll leave that there.  But we can delete <note>js/posts.js</note> and <note>js/publish.js</note>.</p>
+	<p>We'll replace those with just <note>js/profile.js</note>.</p>
 </div>
 
 <div class="slide">

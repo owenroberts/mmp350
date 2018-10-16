@@ -57,6 +57,7 @@ title: Schedule
 
 ## Week 6 **Color**
 - [Calculating Color](notes/color/)
+- [Firebase Storage](notes/firebase/storage)
 - **Assignment 6**: Color Scheme
 	- Create a `color.css` page
 	- Choose a color scheme (complementary, triad, monochromatic, analogous, or combination)
