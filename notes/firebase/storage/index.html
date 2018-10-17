@@ -63,7 +63,7 @@ week: 12
 	<div class="ex" data-lang="html">&lt;div id="profile"&gt;
 	&lt;h2&gt;My Profile&lt;/h2&gt;
 	&lt;p id="profile-name"&gt;&lt;/p&gt;
-	&lt;div id="add-photo" style="display:none;"&gt;
+	&lt;div id="add-photo"&gt;
 		&lt;p&gt;Add a profile image:&lt;/p&gt;
 		&lt;input id="profile-photo-file" type="file" name="profile-img" accept="image/gif, image/jpeg, image/png"&gt;
 		&lt;button id="submit-photo"&gt;Submit Image&lt;/button&gt;
@@ -79,6 +79,7 @@ week: 12
 </div>
 
 <div class="slide">
+	<h2>Authentication display</h2>
 	<p>Next we're going to make an update to the <note>js/auth.js</note> script to make it easier to hide and show content depending on whether the user is logged in.</p>
 	<p>Previously, we created a function, <code>displayUserInfo</code> which was triggered when the user logged in, and manually set various components to display or not display.</p>
 	<p>Let's make a more sophisticated version of this using CSS nested rules.</p>
@@ -140,47 +141,72 @@ week: 12
 
 <div class="slide">
 	<p>Now we can update <code>onAuthStateChanged</code> to turn these classes on and off.</p>
-	
-</div>
-
-
-
-<div class="slide">
-	<p>After the HTML add a <code>script</code> tag for the script that will upload the photo and then update the database and the user.</p>
-	<p>Start with an event for the <code>submit</code> button and getting a reference to the Firebase user.</p>
-	<pre><code>document.getElementById("submit").onclick = function() {
-	const user = firebase.auth().currentUser;
-	const file = document.getElementById("profile_img_file").files[0];
-	const storage = firebase.storage();
-	const ref = storage.ref('/users/' + user.uid);
-};</code></pre>
+	<p>When the auth state changes we want to add the correct class and remove the other class in case it is currently in use.</p>
 </div>
 
 <div class="slide">
-	<p>Then we upload the file and update the database for that user with a link to the file location in storage.</p>
-	<pre><code>ref.child('profile_img').put(file)
-	.then(function(file){
-		const url = file.downloadURL;
-		const db = firebase.database();
-		const dbRef = db.ref('/users/' + user.uid + 'profile_img_url');
-		dbRef.set(url)
-			.then(function(success) {
-				user.updateProfile({ photoURL: url })
-					.then(function(success) {
-						location.reload();
-					})
-					.catch(function(error) {
-						console.log(error);
-					})
-			})
-			.catch(function(error) {
-				console.log(error);
-			});
-	})
-	.catch(function(error) {
-		console.log(error);
-	});</code></pre>
+	<div class="ex">firebase.auth().onAuthStateChanged(function(user) {
+	if (user) {
+		document.getElementById('display-name').textContent = "Welcome, " + firebase.auth().currentUser.displayName;
+		document.body.classList.add('user-logged-in');
+		document.body.classList.remove('no-user');
+	} else {
+		document.body.classList.add('no-user');
+		document.body.classList.remove('user-logged-in');
+	}
+});</div>
 </div>
+
+<div class="slide">
+	<h2>Upload image</h2>
+	<p>To upload the image, we need listen for when the user click the submit image button and then grab the file and put it in Firebase storage.</p>
+	<p>Once in storage, we can grab the URL for the image to add to the database and user account.</p>
+</div>
+
+<div class="slide">
+	<p>Start with the usual window load event listener.</p>
+	<div class="ex">window.addEventListener('load', function() {
+	// upload image
+});</div>
+</div>
+
+<div class="slide">
+	<p>Listen for the user click.</p>
+	<div class="ex">const submitButton = document.getElementById('submit-photo');
+submitButton.addEventListener('click', function() {
+	// get file
+	// upload file
+});</div>
+</div>
+
+<div class="slide">
+	<p>Get the file from the HTML input.</p>
+	<div class="ex">const file = document.getElementById('profile-photo-file').files[0];</div>
+</div>
+
+<div class="slide">
+	<p>The storage reference is structured the same way as the firebase database reference.</p>
+	<div class="ex">const storage = firebase.storage();
+const user = firebase.auth().currentUser;
+const ref = storage.ref('users').child(user.uid).child('profile-photo');
+const filePromise = ref.put(file);</div>
+</div>
+
+<div class="slide">
+	<p>With the <code>filePromise</code> we can add the photo URL and use it to update the database and user account.</p>
+	<p>To get the photo URL we need to use another method that returns a promise, <code>getDownloadURL()</code>.  To do this we can use a common structure with Promises.  We return the result of <code>photo.ref.getDownloadURL()</code> and add another <code>.then()</code> to deal with the new Promise created.</p>
+</div>
+
+<div class="slide">
+	<div class="ex">filePromise.then(function(photo) {
+	return photo.ref.getDownloadURL();
+}).then(function(photoURL) {
+	user.updateProfile({photoURL: photoURL});
+	document.getElementById('profile-photo').src = photoURL;
+	firebase.database().ref('users').child(user.uid).update({profilePhoto: photoURL});
+});</div>
+</div>
+
 
 <div class="slide">
 	<p>You should see the image appear in the Storage files.</p>
@@ -195,49 +221,22 @@ week: 12
 <div class="slide">
 	<h2>Displaying the user image</h2>
 	<p>These reference will allow us to display the user photo when they're logged in and next to the posts that they write.</p>
-	<p>First we'll add an image element into <note>header.ejs</note> to add the photo when the user logs in:</p>
-	<pre><code>&lt;p id="display-name"&gt;/p&gt;
-&lt;img id="profile-img" width="200"&gt;</code></pre>
+	<p>We already have some HTML to populate the user name and image on their profile.</p>
+	<div class="ex" data-lang="html">&lt;p id="profile-name"&gt;/p&gt;
+&lt;img id="profile-img" width="200"&gt;</div>
 </div>
 
 <div class="slide">
-	<p>In the <code>script</code> add a reference to the <code>profile-img</code> and update the <code>src</code>.</p>
-	<pre><code>const userName = document.getElementById("display-name");
-const profileImg = document.getElementById("profile-img");
+	<p>We can add another function to update the profile image and name when the user is logged in.</p>
+	<div class="ex">// display profile  
 firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
-		userName.textContent = "Hello, " + user.displayName;
+		document.getElementById('profile-name').textContent = user.displayName;
 		if (user.photoURL) {
-			profileImg.src = user.photoURL;
+			document.getElementById('profile-photo').src = user.photoURL;
+		} else {
+			document.getElementById('add-photo').style.display = 'block';
 		}
-		const userInput = document.getElementById('userInput');
-		userInput.value = user.uid;
-		document.getElementById("logged-in").style.display = "inline";
-	} else {
-		document.getElementById("not-logged-in").style.display = "inline";
 	}
-});</code></pre>
-</div>
-
-<div class="slide">
-	<h2>user.ejs</h2>
-	<p>Finally on the <note>user.ejs</note> page, we'll use the photo URL from the database to add the user image next to each post.</p>
-	<pre><code>&lt;% let post = data.posts[key] %&gt;
-&lt;div class="post"&gt;
-	&lt;% if (data.profile_img_url) { %&gt;
-		&lt;img src="&lt;%= data.profile_img_url %&gt;" width="100"&gt;
-	&lt;% } %&gt;</code></pre>
-</div>
-
-<div class="slide">
-	<h2>users.ejs</h2>
-	<p>Let's also display the profile image next to each user on the <note>users.ejs</note> page.</p>
-	<p>Careful here because the data is in a <code>user</code> variable instead of a <code>post</code>.</p>
-	<pre><code>&lt;% let user = data[key]; %&gt;
-&lt;div class="user"&gt;
-	&lt;% if (user.profile_img_url) { %&gt;
-		&lt;img src="&lt;%= user.profile_img_url %&gt;" width="100"&gt;
-	&lt;% } %&gt;
-	&lt;a href="/user/&lt;%= key %&gt;"&gt;&lt;%= user.name %&gt;&lt;/a&gt;
-&lt;/div&gt;</code></pre>
+});</div>
 </div>

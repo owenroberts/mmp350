@@ -8,7 +8,6 @@ window.addEventListener('load', function() {
 	const logOutButton = document.getElementById('log-out');
 
 	firebase.auth().onAuthStateChanged(function(user) {
-		console.log(user);
 		if (user) {
 			document.getElementById('display-name').textContent = "Welcome, " + firebase.auth().currentUser.displayName;
 			document.body.classList.add('user-logged-in');
