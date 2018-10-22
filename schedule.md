@@ -65,23 +65,33 @@ title: Schedule
 	- Use CSS custom properties to define two other colors
 	- Implement those colors for the typography, borders, backgrounds and any other colors in the app
 
+## Midterm **App Pitch**
+- Pitch your idea for a web application
+- Class will vote on app to build 
+	- (cannot vote for your own app)
+- Pitch deck components
+	- Idea in one sentence
+	- Audience
+	- "Problem"
+	- "Solution"
+	- Features
+	- Desktop mockup with basic design
+	- UI flow chart
+
+## Week 7/8 **Midterm Workshop**
+- [Creating a pitch deck](notes/pitch/)
+- [User interaction flow chart](notes/ui/)
+
 
 <!-- 
 
-
-## Week 7 **Color**
-- [Sass Intro](notes/sass/)
-- [Calculating Color](notes/color/)
-- **Assignment 6**: Color Scheme
-	- Using Sass, create three different color schemes of at least three colors each
-	- Identify which scheme type (complement, triad	, monochromatic, analogous, or combination)
-	- Use one color as main color
-	- Other colors calculated using Sass functions
-
-https://css-tricks.com/difference-between-types-of-css-variables/
-
-## Week 8 **Templates**
-- [Templates](notes/templates/)
+pitch
+- intro/one liner
+- audience
+- problem
+- solution
+- mock up
+- flow chart
 
 ## Midterm
 - Two options
