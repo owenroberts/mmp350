@@ -67,18 +67,28 @@ title: Schedule
 
 
 <!-- 
+## Midterm
+- Present a pitch for a web app
 
+idea summary
+audience
+problem
+solution
+ui flow chart
+mockup of design
+execution
 
-## Week 7 **Color**
-- [Sass Intro](notes/sass/)
-- [Calculating Color](notes/color/)
-- **Assignment 6**: Color Scheme
-	- Using Sass, create three different color schemes of at least three colors each
-	- Identify which scheme type (complement, triad	, monochromatic, analogous, or combination)
-	- Use one color as main color
-	- Other colors calculated using Sass functions
+Dev process for final
+- Teams of two (each week, two weeks?)
+- Assigned a feature (wireframes, layout, responsive, typography, color scheme, authentication, database)
+- Content? Work on as a class?
+- Feature review (Class critique)
+- Re-assign or redo the feature
 
-https://css-tricks.com/difference-between-types-of-css-variables/
+http://www.scholastic.com/samsungacademy/downloads/SS4_IP_TeacherGuide.pdf
+https://piktochart.com/blog/startup-pitch-decks-what-you-can-learn/ // safari
+https://slidebean.com/blog/startups/pitch-deck-examples
+
 
 ## Week 8 **Templates**
 - [Templates](notes/templates/)
