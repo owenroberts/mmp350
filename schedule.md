@@ -65,6 +65,22 @@ title: Schedule
 	- Use CSS custom properties to define two other colors
 	- Implement those colors for the typography, borders, backgrounds and any other colors in the app
 
+## Midterm **App Pitch**
+- Pitch your idea for a web application
+- Class will vote on app to build 
+	- (cannot vote for your own app)
+- Pitch deck components
+	- Idea in one sentence
+	- Audience
+	- "Problem"
+	- "Solution"
+	- Features
+	- Desktop mockup with basic design
+	- UI flow chart
+
+## Week 7/8 **Midterm Workshop**
+- [Creating a pitch deck](notes/pitch/)
+- [User interaction flow chart](notes/ui/)
 
 <!-- 
 ## Midterm
@@ -88,33 +104,13 @@ Dev process for final
 http://www.scholastic.com/samsungacademy/downloads/SS4_IP_TeacherGuide.pdf
 https://piktochart.com/blog/startup-pitch-decks-what-you-can-learn/ // safari
 https://slidebean.com/blog/startups/pitch-deck-examples
-
-
-## Week 8 **Templates**
-- [Templates](notes/templates/)
-
-## Midterm
-- Two options
-	1. Design pitch
-	2. Web application pitch
-	
-1. Design Pitch
-	- Using our base Post writing application
-	- Make a design pitch for the website
-	- Pitch requires layout, typography and color scheme
-	- Can be executed as wireframes or static HTML/CSS
-	- Site map/user interaction flow document
-2. Application pitch
-	- Present a pitch for a web based application
-	- The application must use a database
-	- What does the application do?
-	- Who are the users of the application?
-	- Quick User Interaction flow
-
-## Week 9 **User Interaction**
-- Midterm workshop
-- [User Interaction Flow Chart](notes/ui/)
-- [Display users](notes/firebase/users)
+pitch
+- intro/one liner
+- audience
+- problem
+- solution
+- mock up
+- flow chart
 
 ## Week 10 **Posts**
 - Present Midterm
