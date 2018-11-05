@@ -82,6 +82,17 @@ title: Schedule
 - [Creating a pitch deck](notes/pitch/)
 - [User interaction flow chart](notes/ui/)
 
+## Final Project
+- Building class web application
+- Assign tasks Weeks 9, 11, 13
+- Review works Weeks 10, 12, 14
+- Complete tasks Weeks 11, 13, 15
+- 25% Feedback on classmates tasks
+- 25% for each task completed
+	- HTML/CSS/JavaScript for each task
+	- Incorporated class feedback
+	- Pull Request made to master repo
+
 <!-- 
 ## Midterm
 - Present a pitch for a web app
