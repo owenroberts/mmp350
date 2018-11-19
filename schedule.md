@@ -84,6 +84,7 @@ title: Schedule
 
 ## Final Project
 - Building class web application
+- [Making a Pull Request](notes/github/pull_request/)
 - Assign tasks Weeks 9, 11, 13
 - Review works Weeks 10, 12, 14
 - Complete tasks Weeks 11, 13, 15
