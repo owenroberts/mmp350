@@ -95,6 +95,31 @@ title: Schedule
 	- Pull Request made to master repo
 
 <!-- 
+
+2019 redo
+- local server
+	- Terminal - cd Desktop/mmp350 - python -m SimpleHTTPServer 8000
+	- editor.p5js.org ?? - need to understand file stuff on computer
+	- firefox?? 
+
+urls
+- mmp, bmcc, mm.p, 
+- mmp.pizza 9.99 (69.99)
+- mmp.ninja 9.99 (24.99)
+- mmp.computer 19.99 (39.99)
+- mmp.codes 9.99 (69.99)
+
+edit pad
+- http://scratchpad.io/ - live code editing - in class collaborations?
+- https://firebase.googleblog.com/2013/04/announcing-firepad-our-open-source.html
+
+- new stuff
+	- github desktop client no terminal
+	- fork html projects for assignments
+	- no brackets
+	
+
+
 ## Midterm
 - Present a pitch for a web app
 
