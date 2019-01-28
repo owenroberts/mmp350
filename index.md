@@ -12,7 +12,7 @@ The class notes, schedule and assignments are all found here.
 - [Syllabus](https://docs.google.com/document/d/1N156DV929tV0voIvr_i0twnu_pRn9_JC-tUt4JYrGy8/edit?usp=sharing){:target="blank"}
 - [Student Work](studentwork/)
 - [Examples](examples/)
-- [Public Pad](https://pad.riseup.net/p/mmp350){:target="blank"}
+- [Public Pad](pad)
 
 <!--  <a href="http://piratepad.net/mmp350" target="blank">Public Pad</a>
  <a href="https://mmp350.slack.com/" target="blank">Slack channel</a>  -->
