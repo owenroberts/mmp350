@@ -1,0 +1,88 @@
+---
+layout: slides
+title: Back End Web
+week: 1
+---
+
+<div class="slide">
+	<p>In this class we are going to look at web design and development from a new angle.</p>
+	<p>In previous courses you have learned the technologies required to make websites, but these have been limited to the <note>client</note> side of web development.</p>
+	<p>Today, most web services rely on a <note>back-end</note>, or persistent user information stored in a <note>database</note>.</p>
+	<p>We will consider how the back end requirements for a website change the design and look at simple ways of accessing backend information.</p>
+</div>
+
+<div class="slide">
+	<h2>Website architecture</h2>
+	<p>You have probably heard terms like <note>front-end</note>, <note>back-end</note> or even <note>full-stack</note> as you have studied web design and development.</p>
+	<p>Let's review the technologies used to structure the internet.</p>
+</div>	
+
+<div class="slide">
+	<h2>Front-end</h2>
+	<p>The <note>front-end</note> or <note>client</note> is any device used to display information to a user.</p>
+	<p>What are some client side applications you use in your daily life?</p>
+</div>
+
+<div class="slide">
+	<p>Historically, the technologies of the client side are HTML, CSS and JavaScript.</p>
+	<p><note>HTML</note> is used to create the structure of a website and add content such as text and images.</p>
+	<p><note>CSS</note> is added to the HTML to add stylitic elements like colors, typography, layout and visual transitions or animations.</p>
+	<p><note>JavaScript</note> is a scriping language used to create interaction between the user and content of a website.</p>
+</div>
+
+<div class="slide">
+	<h2>Back-end</h2>
+	<p>The <note>back-end</note> is the code running on a <note>server</note>, which delivers website content to the client.</p>
+	<p>The back-end also includes a <note>database</note>, which is used to store information which is then sent to the client.</p>
+	<p>Back-end or server side scripting uses code to interpret a request from a client, in the form of a <note>URL</note>, or Uniform Resource Locator, and respond with the content that will be used by the client to display the webpage.</p>
+</div>
+
+<div class="slide">
+	<h2>Database</h2>
+	<p>Why do we need a database?</p>
+	<p>Websites, such as social networks or other web services, store lots of content.  Much of that content looks the same.</p>
+	<p>It would be impractical to generate a new HTML and CSS document for every user of a website.  Most of the documents would be exactly the same except for certain pieces of data, like the user name.</p>
+	<p>Databases make it possible to associate data with specific pages and add that data into the page without creating an individual page for each user or service.</p>
+</div>
+
+<div class="slide">
+	<h2>An example</h2>
+	<p>Let's say we are creating a web service for MEA students to keep track of the courses they have completed.</p>
+	<p>What would we need to do to make it possible for a student to view their course history?</p>
+</div>
+
+<div class="slide">
+	<p>First off, we need an address where the student can visit on the web to see their personal data.</p>
+	<p>Let's imagine that URL (this is not a real url).</p>
+	<pre><code>https://mea.bmcc.cuny.edu/student_id/courses</code></pre>
+	<p>The <code>student_id</code> part could be mapped to any student. So a student with the CUNY ID 12345555 would go to the URL:</p>
+	<pre><code>https://mea.bmcc.cuny.edu/12345555/courses</code></pre>
+</div>
+
+<div class="slide">
+	<p>Once the student types that URL into their browser, it will read each section and create a request.</p>
+	<p>First it reads <code>https://</code>.  This tells the browser to use Hyper Text Transfer Protocol.  This is a set of rules developed to make the web work.  It will know what type of request is being made and go out on the web to make it.</p>
+</div>
+
+<div class="slide">
+	<p>Next comes the (fictional) server address: <code>mea.bmcc.cuny.edu</code>.</p>
+	<p>This is where our server code lives.</p> 
+	<p>The server exists in the "cloud", meaning that when the request is made, the internet will look for the most accessible copy of this address.  In the old days, servers used to be literally one computer sitting in a room somewhere, but now they are more likely to be clusters of computers distributed across the world.</p>
+</div>
+
+<div class="slide">
+	<p>Next is the <code>student_id</code>.</p>
+	<p>This ID will be cross referenced to a database to gather that students information.
+</div>
+
+<div class="slide">
+	<p>Finally there's the end of the URL, <code>courses</code>.</p>
+	<p>This tells the server to only return the content used to display which courses a student has taken.</p>
+</div>
+
+<div class="slide">
+	<p>The server will find the right HTML page, CSS styelsheet and anything else associated with this page, like images or videos.</p>
+	<p>Then it will grab the data from the database and generate a new page with the right data put into the right places.</p>
+	<p>Finally it will send all of that information across the web, back to the client where the request originated.</p>
+</div>
+

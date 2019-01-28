@@ -38,8 +38,15 @@ title: MMP 350 Public Pad
 		border-radius: 0 !important;
 	}
 	a.firepad-btn:hover { 
-		background-color: #3BE0CB;
-		border-color: #2480d2;
+		background-color: #D1E5F7;
+		border-color: #9b26ff;
+	}
+	a.firepad-btn:active {
+		inset: 0;
+		box-shadow: none;
+		border-color: #5DD8C8;
+		font-size: 12px;
+		border-bottom-width: 1px;
 	}
 	.firepad-btn-group { margin: 0; }
 </style>

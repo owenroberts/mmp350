@@ -4,16 +4,17 @@ title: Schedule
 ---
 
 ## Week 1 **Introduction**
-- [Back end web]()
+- [Back end web](notes/backend)
 - [GitHub](notes/github/client)
 - **Assignment 1**: Website breakdown
 	- Find a website that requires a login
 	- Use screen shots to capture 
-		- the process of registering and loggin into the site
+		- the process of registering and logging into the site
 		- creating a user profile
 		- adding information to the site
 		- displaying information
 		- social interactions
+	- Make a simple HTML page with images and descriptions of the process
 
 ## Week 2 **Grid & GitHub**
 - [Grid Systems](notes/grid/)
@@ -51,17 +52,7 @@ title: Schedule
 - [User interaction flow chart](notes/ui/)
 
 ## Week 7 **Midterm Workshop**
-- Pitch your idea for a web application
-- Class will vote on app to build 
-	- (cannot vote for your own app)
-- Pitch deck components
-	- Idea in one sentence
-	- Audience
-	- "Problem"
-	- "Solution"
-	- Features
-	- Desktop mockup with basic design
-	- UI flow chart
+- Pitch design for web application
 
 ## Week 8 **JavaScript**
 - [JavaScript input & variables](notes/javascript/input/)

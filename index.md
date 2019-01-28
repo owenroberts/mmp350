@@ -9,15 +9,12 @@ The class notes, schedule and assignments are all found here.
 
 
 - [Schedule](schedule.html)
-- [Syllabus](https://docs.google.com/document/d/1N156DV929tV0voIvr_i0twnu_pRn9_JC-tUt4JYrGy8/edit?usp=sharing){:target="blank"}
+- [Syllabus](https://docs.google.com/document/d/17oA-Wf_aaA4YDBx4mLUNwl9v4PptRPTs1NXP3i8uvJ0/edit?usp=sharing){:target="blank"}
 - [Student Work](studentwork/)
 - [Examples](examples/)
 - [Public Pad](pad)
 
-<!--  <a href="http://piratepad.net/mmp350" target="blank">Public Pad</a>
- <a href="https://mmp350.slack.com/" target="blank">Slack channel</a>  -->
-
-## Fall 2018
+## Spring 2019
 
 - Instructor: Owen Roberts
 - Email: oroberts AT bmcc DOT cuny  DOT edu
@@ -66,12 +63,4 @@ For MMP and MMA tutoring, please visit BMCC's [tutoring schedule](http://www.bmc
 - SASS and advanced CSS concepts
 - Wireframing and prototyping
 - Git and Github
-- Command Line
 
-
-## Resources
-
-- [Google Firebase](https://firebase.google.com/docs/samples/)
-- [Git Rocks](http://git.rocks/getting-started/)
-- [Git Branching Interactive Tutorial](https://learngitbranching.js.org/)
-- [Try Git Interactive Tutorial](https://try.github.io/levels/1/challenges/1)
