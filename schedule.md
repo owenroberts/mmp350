@@ -6,6 +6,7 @@ title: Schedule
 ## Week 1 **Introduction**
 - [Back end web](notes/backend)
 - [GitHub](notes/github/client)
+- [HTML/CSS Review](notes/review)
 - **Assignment 1**: Website breakdown
 	- Find a website that requires a login
 	- Use screen shots to capture 
