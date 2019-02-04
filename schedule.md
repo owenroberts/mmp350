@@ -17,14 +17,15 @@ title: Schedule
 		- social interactions
 	- Make a simple HTML page with images and descriptions of the process
 
-## Week 2 **Grid & GitHub**
+## Week 2 **Grid**
 - [Grid Systems](notes/grid/)
-- [Forking a Project on GitHub](notes/git/fork)
+- [Forking a Project on GitHub](notes/github/fork)
 - [CSS Grid](notes/grid/css/)
 - **Assignment 2**: Layout
 	- Use `style.css` to import style sheets
-	- Create `layout.css`
-	- Implement grid in HTML project using CSS Grid
+	- Create `layout-1.css`, `layout-2.css` and `layout-3.css` inside css/ folder
+	- Use CSS grid rules, either with columns and rows or template areas, to implement three different possibilities for the website grid
+	- Choose the best version and make a copy as `layout.css`
 
 ## Week 3 **Responsive Design**
 - [Responsive Layouts](notes/responsive/)
