@@ -29,10 +29,13 @@ title: Schedule
 
 ## Week 3 **Responsive Design**
 - [Responsive Layouts](notes/responsive/)
+- [Flex box](notes/responsive/flex.html)
 - **Assignment 3**: Responsive CSS
 	- Add responsive layouts for mobile and to the `responsive.css` stylesheet
-	- Use media queries to change the grid rules created for desktop
-	- Upload new version to GitHub and publish with GH Pages
+	- Use media queries to update grid for mobile and tablet display
+	- Use Chrome mobile emulator for development/testing
+	- Add flex box for header menu
+	- Create three separate flex box layouts for the menu
 
 ## Week 4 **Typography**
 - [Typographic Hierarchy](notes/typography/)
