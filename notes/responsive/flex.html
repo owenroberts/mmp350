@@ -17,14 +17,118 @@ week: 3
 
 <div class="slide">
 	<h2>display: flex</h2>
-	
+	<p>Elements with <code>display: flex</code> will attempt to fill the available space with the content of the child elements.</p>
+	<p>Look at this menu for example.</p>
 </div>
 
-<!-- flex direction -->
-<!-- flex wrap -->
-<!-- justify content -->
+<div class="slide">
+	<pre><code>&lt;div class="menu"&gt;
+	&lt;div class="menu-item"&gt;Home&lt;/div&gt;
+	&lt;div class="menu-item"&gt;Profile&lt;/div&gt;
+	&lt;div class="menu-item"&gt;About&lt;/div&gt;
+	&lt;div class="menu-item"&gt;Users&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<pre><code>display: <span id="display-display">block</span>;</code></pre>
+	<select id="display-select">
+		<option selected>block</option>
+		<option >flex</option>
+	</select>
+	<style type="text/css">
+		.menu { 
+			background: lightblue;
+			margin: 0.5em 0;
+			padding: 0.5em;
+		}
+	</style>
+	<div class="menu" id="flex">
+		<div class="menu-item">Home</div>
+		<div class="menu-item">Profile</div>
+		<div class="menu-item">About</div>
+		<div class="menu-item">Users</div>
+	</div>
+	<script>
+		document.getElementById('display-select').addEventListener('input', ev => {
+			document.getElementById('flex').style.display = document.getElementById('display-display').textContent = ev.currentTarget.value;
+		});
+	</script>
+</div>
+
+<div class="slide">
+	<p>The child elements can be aligned to the space using the <code>justify-content</code> rule.</p>
+</div>
+
+<div class="slide">
+	<pre><code>justify-content: <span id="justify-display">flex-start</span>;</code></pre>
+	<select id="justify-select">
+		<option selected>flex-start</option>
+		<option>flex-end</option>
+		<option>center</option>
+		<option>space-between</option>
+		<option>space-around</option>
+		<option>space-evenly</option>
+	</select>
+	<style type="text/css">
+		.flex { display: flex; }
+	</style>
+	<div class="menu flex" id="justify">
+		<div class="menu-item">Home</div>
+		<div class="menu-item">Profile</div>
+		<div class="menu-item">About</div>
+		<div class="menu-item">Users</div>
+	</div>
+	<script>
+		document.getElementById('justify-select').addEventListener('input', ev => {
+			document.getElementById('justify').style.justifyContent = document.getElementById('justify-display').textContent = ev.currentTarget.value;
+		});
+	</script>
+</div>
+
+<div class="slide">
+	<p><code>align-items</code> is used to determine the alignment of the children in the opposing axis (in this case vertical).</p>
+</div>
+
+<div class="slide">
+	<pre><code>justify-content: <span id="align-display">flex-start</span>;</code></pre>
+	<select id="align-select">
+		<option>stretch</option>
+		<option selected>flex-start</option>
+		<option>flex-end </option>
+		<option>center</option>
+		<option>baseline</option>
+	</select>
+	<style>
+	#align { 
+		align-items: flex-start; 
+		height: 100px;
+	}
+	#align .menu-item {
+		background: blue;
+		margin: 0 5px;
+		padding: 10px;
+	}
+	</style>
+	<div class="menu flex" id="align">
+		<div class="menu-item">Home</div>
+		<div class="menu-item">Profile</div>
+		<div class="menu-item">About</div>
+		<div class="menu-item">Users</div>
+	</div>
+	<script>
+		document.getElementById('align-select').addEventListener('input', ev => {
+			document.getElementById('align').style.alignItems = document.getElementById('align-display').textContent = ev.currentTarget.value;
+		});
+	</script>
+</div>
+
+
+
 <!-- align items -->
 <!-- align content -->
+<!-- flex wrap -->
+<!-- flex direction -->
 
 <!-- order -->
 <!-- grow / shrink -->
