@@ -28,14 +28,15 @@ title: Schedule
 	- Choose the best version and make a copy as `layout.css`
 
 ## Week 3 **Responsive Design**
-- [Responsive Layouts](notes/responsive/)
-- [Flex box](notes/responsive/flex.html)
+- [Responsive Layouts](notes/responsive/media)
+- [Flex box](notes/responsive/flex)
 - **Assignment 3**: Responsive CSS
 	- Add responsive layouts for mobile and to the `responsive.css` stylesheet
 	- Use media queries to update grid for mobile and tablet display
 	- Use Chrome mobile emulator for development/testing
 	- Add flex box for header menu
 	- Create three separate flex box layouts for the menu
+	- Media queries should also address flex box rules
 
 ## Week 4 **Typography**
 - [Typographic Hierarchy](notes/typography/)

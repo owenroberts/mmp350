@@ -1,0 +1,508 @@
+---
+layout: slides
+title: Flex Box
+week: 3
+---
+
+<div class="slide">
+	<p>Flex box is used to layout elements within a container so that they adapt to take up the available space.</p>
+	<p>While CSS Grid is used for imposing a layout on the entire webpage, flex box is used to create a flexible or responsive layout in one section with multiple elements.</p>
+	<p>Flex box can be used for horizontally or vertically oriented layouts.</p>
+</div>
+
+<div class="slide">
+	<p>A flex box grid is comprised of two parts, the container and the items within it.</p>
+	<p>One set of rules is used to set up the container, or <em>parent</em>, while rules are added to invidividual items, or <em>children</em>, to determine their behavior.</p>
+</div>
+
+<div class="slide">
+	<h2>flex container</h2>
+	<p>Elements with <code>display: flex</code> will attempt to fill the available space with the content of the child elements.</p>
+	<p>Look at this menu for example.</p>
+</div>
+
+<div class="slide">
+	<pre><code>&lt;div class="menu"&gt;
+	&lt;div class="menu-item"&gt;Home&lt;/div&gt;
+	&lt;div class="menu-item"&gt;Profile&lt;/div&gt;
+	&lt;div class="menu-item"&gt;About&lt;/div&gt;
+	&lt;div class="menu-item"&gt;Users&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<pre><code>.menu { display: <span id="display-display">block</span>; }</code></pre>
+	<select id="display-select">
+		<option selected>block</option>
+		<option>flex</option>
+	</select>
+	<style type="text/css">
+		.menu { 
+			background: lightblue;
+			margin: 0.5em 0;
+			padding: 0.5em;
+		}
+	</style>
+	<div class="menu" id="flex">
+		<div class="menu-item">Home</div>
+		<div class="menu-item">Profile</div>
+		<div class="menu-item">About</div>
+		<div class="menu-item">Users</div>
+	</div>
+	<script>
+		function get(id) { return document.getElementById(id); }
+		function getAll(className) { return document.getElementsByClassName(className); }
+		get('display-select').addEventListener('input', ev => {
+			get('flex').style.display = get('display-display').textContent = ev.currentTarget.value;
+		});
+	</script>
+</div>
+
+<div class="slide">
+	<p>The child elements can be aligned to the space using the <code>justify-content</code> rule.</p>
+</div>
+
+<div class="slide">
+	<pre><code>.menu { justify-content: <span id="justify-display">flex-start</span>; }</code></pre>
+	<select id="justify-select">
+		<option selected>flex-start</option>
+		<option>flex-end</option>
+		<option>center</option>
+		<option>space-between</option>
+		<option>space-around</option>
+		<option>space-evenly</option>
+	</select>
+	<style type="text/css">
+		.flex { display: flex; }
+	</style>
+	<div class="menu flex" id="justify">
+		<div class="menu-item">Home</div>
+		<div class="menu-item">Profile</div>
+		<div class="menu-item">About</div>
+		<div class="menu-item">Users</div>
+	</div>
+	<script>
+		get('justify-select').addEventListener('input', ev => {
+			get('justify').style.justifyContent = get('justify-display').textContent = ev.currentTarget.value;
+		});
+	</script>
+</div>
+
+<div class="slide">
+	<p><code>align-items</code> is used to determine the alignment of the children in the opposing axis (in this case vertical).</p>
+</div>
+
+<div class="slide">
+	<pre><code>.menu { align-items: <span id="align-display">flex-start</span>; }</code></pre>
+	<select id="align-select">
+		<option>stretch</option>
+		<option selected>flex-start</option>
+		<option>flex-end </option>
+		<option>center</option>
+		<option>baseline</option>
+	</select>
+	<style>
+	#align { 
+		align-items: flex-start; 
+		height: 100px;
+	}
+	#align .menu-item {
+		background: plum;
+		margin: 0 5px;
+		padding: 10px;
+	}
+	</style>
+	<div class="menu flex" id="align">
+		<div class="menu-item">Home</div>
+		<div class="menu-item">Profile</div>
+		<div class="menu-item">About</div>
+		<div class="menu-item">Users</div>
+	</div>
+	<script>
+		get('align-select').addEventListener('input', ev => {
+			get('align').style.alignItems = get('align-display').textContent = ev.currentTarget.value;
+		});
+	</script>
+</div>
+
+<div class="slide">
+	<p><code>flex-wrap</code> determines whether or not content will wrap to a new column or row when it overflows the space of the parent element.</p>
+</div>
+
+<div class="slide">
+	<pre><code>.menu { flex-wrap: <span id="wrap-display">nowrap</span>; }</code></pre>
+	<select id="wrap-select">
+		<option selected>nowrap</option>
+		<option>wrap</option>
+		<option>wrap-reverse</option>
+	</select>
+	<style>
+	#wrap { 
+		flex-wrap: nowrap;
+		/*height: 100px;*/
+	}
+	#wrap .menu-item {
+		background: plum;
+		margin: 5px;
+		padding: 5px;
+		width: 180px;
+	}
+	</style>
+	<div class="menu flex" id="wrap">
+		<div class="menu-item">Home</div>
+		<div class="menu-item">Profile</div>
+		<div class="menu-item">About</div>
+		<div class="menu-item">Users</div>
+		<div class="menu-item">Support</div>
+	</div>
+	<script>
+		get('wrap-select').addEventListener('input', ev => {
+			get('wrap').style.flexWrap = get('wrap-display').textContent = ev.currentTarget.value;
+		});
+	</script>
+</div>
+
+<div class="slide">
+	<p><code>align-content</code> is used to determine the alignment of all the content as a group within the parent container.</p>
+</div>
+
+<div class="slide">
+	<pre><code>.menu { align-content: <span id="align-content-display">flex-start</span>; }</code></pre>
+	<select id="align-content-select">
+		<option>stretch</option>
+		<option selected>flex-start</option>
+		<option>flex-end </option>
+		<option>center</option>
+		<option>space-between</option>
+		<option>space-around</option>
+	</select>
+	<style>
+	#align-content { 
+		flex-wrap: wrap;
+		height: 200px;
+	}
+	#align-content .menu-item {
+		background: plum;
+		margin: 5px;
+		padding: 5px;
+		width: 180px;
+	}
+	</style>
+	<div class="menu flex" id="align-content">
+		<div class="menu-item">Home</div>
+		<div class="menu-item">Profile</div>
+		<div class="menu-item">About</div>
+		<div class="menu-item">Users</div>
+		<div class="menu-item">Support</div>
+	</div>
+	<script>
+		get('align-content-select').addEventListener('input', ev => {
+			get('align-content').style.alignContent = get('align-content-display').textContent = ev.currentTarget.value;
+		});
+	</script>
+</div>
+
+<div class="slide">
+	<p>Most of the time Flex Box is used to layout items in horizontal space, but all of the same rules can be applied to a vertical layout by changing the <code>flex-direction</code>.  The default is <code>row</code>, which distributes elements left to right in the layout.  <code>column</code> distributes elements from top to bottom.</p>
+</div>
+
+<div class="slide">
+	<pre><code>.menu { flex-direction: <span id="direction-display">row</span>; }</code></pre>
+	<select id="direction-select">
+		<option>row</option>
+		<option>row-reverse</option>
+		<option>column</option>
+		<option>column-reverse</option>
+	</select>
+	<style>
+	#direction { 
+		flex-direction: row;
+	}
+	#align-content .menu-item {
+		background: plum;
+		margin: 5px;
+		padding: 5px;
+		width: 180px;
+	}
+	</style>
+	<div class="menu flex" id="direction">
+		<div class="menu-item">Home</div>
+		<div class="menu-item">Profile</div>
+		<div class="menu-item">About</div>
+		<div class="menu-item">Users</div>
+		<div class="menu-item">Support</div>
+	</div>
+	<script>
+		get('direction-select').addEventListener('input', ev => {
+			get('direction').style.flexDirection = get('direction-display').textContent = ev.currentTarget.value;
+		});
+	</script>
+</div>
+
+<div class="slide">
+	<p>With <code>flex-direction: column;</code> all of the rules apply, but in the opposite direction.
+</div>
+
+<div class="slide">
+	<pre><code>.menu { 
+	flex-direction: column;
+	flex-wrap: <span id="col-wrap-display">nowrap</span>; 
+	justify-content: <span id="col-justify-display">flex-start</span>; 
+	align-items: <span id="col-align-display">flex-start</span>; 
+	align-content: <span id="col-content-display">flex-start</span>; 
+}</code></pre>
+
+	<select id="col-wrap-select">
+		<option selected>nowrap</option>
+		<option>wrap</option>
+		<option>wrap-reverse</option>
+	</select>
+
+	<select id="col-justify-select">
+		<option selected>flex-start</option>
+		<option>flex-end</option>
+		<option>center</option>
+		<option>space-between</option>
+		<option>space-around</option>
+		<option>space-evenly</option>
+	</select>
+
+	<select id="col-align-select">
+		<option>stretch</option>
+		<option selected>flex-start</option>
+		<option>flex-end </option>
+		<option>center</option>
+		<option>baseline</option>
+	</select>
+
+	<select id="col-content-select">
+		<option>stretch</option>
+		<option selected>flex-start</option>
+		<option>flex-end </option>
+		<option>center</option>
+		<option>space-between</option>
+		<option>space-around</option>
+	</select>
+
+	<style>
+	#col { 
+		flex-direction: column;
+		height: 500px;
+	}
+	#col .menu-item {
+		background: plum;
+		margin: 5px;
+		padding: 5px;
+		width: 180px;
+	}
+	</style>
+	<div class="menu flex" id="col">
+		<div class="menu-item">Home</div>
+		<div class="menu-item">Profile</div>
+		<div class="menu-item">About</div>
+		<div class="menu-item">Users</div>
+		<div class="menu-item">Support</div>
+	</div>
+	<script>
+		get('col-wrap-select').addEventListener('input', ev => {
+			get('col').style.flexWrap = get('col-wrap-display').textContent = ev.currentTarget.value;
+		});
+		get('col-align-select').addEventListener('input', ev => {
+			get('col').style.alignItems = get('col-align-display').textContent = ev.currentTarget.value;
+		});
+		get('col-content-select').addEventListener('input', ev => {
+			get('col').style.alignContent = get('col-content-display').textContent = ev.currentTarget.value;
+		});
+		get('col-justify-select').addEventListener('input', ev => {
+			get('col').style.justifyContent = get('col-justify-display').textContent = ev.currentTarget.value;
+		});
+	</script>
+</div>
+
+<div class="slide">
+	<h2>flex items</h2>
+	<p>Flex Box rules can also apply to individual items within the children, although it is not necessary to set these rules for the flex box to work.</p>
+</div>
+
+<!-- grow / shrink -->
+<div class="slide">
+	<p><code>flex-grow</code> specifies how much space a menu item can take up in a layout relative to other menu items.  An item with the value <code>2</code> will get twice as much space as an item with the value <code>1</code>, if it's available.</p>
+</div>
+
+<div class="slide">
+	<pre><code>.menu-item { flex-grow: <span id="all-grow-display">1</span>; }
+#home { flex-grow: <span id="home-grow-display">1</span>; }</code></pre>
+	<select id="all-grow-select">
+		<option>0</option>
+		<option selected>1</option>
+		<option>2</option>
+		<option>3</option>
+		<option>4</option>
+	</select>
+	<select id="home-grow-select">
+		<option>0</option>
+		<option selected>1</option>
+		<option>2</option>
+		<option>3</option>
+		<option>4</option>
+	</select>
+	<style>
+	#grow .grow-menu-item {
+		background: plum;
+		margin: 5px;
+		padding: 5px;
+		flex-grow: 1;
+	}
+	</style>
+	<div class="menu flex" id="grow">
+		<div class="grow-menu-item" id="home">Home</div>
+		<div class="grow-menu-item">Profile</div>
+		<div class="grow-menu-item">About</div>
+		<div class="grow-menu-item">Users</div>
+	</div>
+	<script>
+		get('home-grow-select').addEventListener('input', ev => {
+			get('home').style.flexGrow = get('home-grow-display').textContent = ev.currentTarget.value;
+		});
+		get('all-grow-select').addEventListener('input', ev => {
+			get('all-grow-display').textContent = ev.currentTarget.value;
+			Array.from(getAll('grow-menu-item')).forEach(el => el.style.flexGrow = ev.currentTarget.value);
+		});
+	</script>
+</div>
+
+<!-- basis -->
+<div class="slide">
+	<p><code>flex-basis</code> specifies the default size of an element before space is distributed among all the elements.  The default is <code>auto</code> and any of the basic CSS units can be used, such as <code>px</code>, <code>em</code> or <code>%</code>.</p>
+</div>
+
+<div class="slide">
+	<pre><code>.menu-item { flex-basis: <span id="all-basis-display">auto</span>; }
+#home { flex-basis: <span id="home-basis-display">auto</span>; }</code></pre>
+	<select id="all-basis-select">
+		<option selected>auto</option>
+		<option>100px</option>
+		<option>200px</option>
+		<option>2em</option>
+		<option>50%</option>
+	</select>
+	<select id="home-basis-select">
+		<option selected>auto</option>
+		<option>100px</option>
+		<option>200px</option>
+		<option>2em</option>
+		<option>50%</option>
+	</select>
+	<style>
+	.menu { position: relative; }
+	.basis-menu-item {
+		background: plum;
+		margin: 5px;
+		padding: 5px;
+		flex-basis: auto;
+	}
+	</style>
+	<div class="menu flex">
+		<div class="basis-menu-item" id="basis-home">Home</div>
+		<div class="basis-menu-item">Profile</div>
+		<div class="basis-menu-item">About</div>
+		<div class="basis-menu-item">Users</div>
+	</div>
+	<script>
+		get('home-basis-select').addEventListener('input', ev => {
+			get('basis-home').style.flexBasis = get('home-basis-display').textContent = ev.currentTarget.value;
+		});
+		get('all-basis-select').addEventListener('input', ev => {
+			get('all-basis-display').textContent = ev.currentTarget.value;
+			Array.from(getAll('basis-menu-item')).forEach(el => el.style.flexBasis = ev.currentTarget.value);
+		});
+	</script>
+</div>
+
+<!-- order -->
+<div class="slide">
+	<p><code>flex-order</code> specifies the order of an item.  By default they are ordered by the order in the HTML document, but <code>flex-order</code> can be used to adjust the order.</p>
+	<p>Elements with the same order number will appear in the order of the HTML document as well.  If you have 4 elements with orders 2 1 1 1, they will appear as 1 1 1 2.</p>
+</div>
+
+<div class="slide">
+	<pre><code>.menu-item { order: 1; }
+#home { order: <span id="home-order-display">1</span>; }</code></pre>
+	<select id="home-order-select">
+		<option selected>1</option>
+		<option>2</option>
+		<option>-1</option>
+		<option>99</option>
+	</select>
+	<style>
+	.menu { position: relative; }
+	.order-menu-item {
+		background: plum;
+		margin: 5px;
+		padding: 5px;
+		order: 1;
+	}
+	</style>
+	<div class="menu flex">
+		<div class="order-menu-item" id="order-home">Home</div>
+		<div class="order-menu-item">Profile</div>
+		<div class="order-menu-item">About</div>
+		<div class="order-menu-item">Users</div>
+	</div>
+	<script>
+		get('home-order-select').addEventListener('input', ev => {
+			get('order-home').style.order = get('home-order-display').textContent = ev.currentTarget.value;
+		});
+	</script>
+</div>
+
+<!-- align self -->
+<div class="slide">
+	<p><code>align-self</code> is used to change the alignment of one item.</p>
+</div>
+
+<div class="slide">
+	<pre><code>.menu { align-items: <span id="align-self-display">flex-start</span>; }
+#home { align-self: <span id="home-align-display">auto</span>; }</code></pre>
+	<select id="align-self-select">
+		<option selected>flex-start</option>
+		<option>flex-end </option>
+		<option>center</option>
+		<option>baseline</option>
+		<option>stretch</option>
+	</select>
+	<select id="home-align-select">
+		<option selected>auto</option>
+		<option>flex-start</option>
+		<option>flex-end </option>
+		<option>center</option>
+		<option>baseline</option>
+		<option>stretch</option>
+	</select>
+	<style>
+	#align-self { 
+		align-items: flex-start; 
+		height: 100px;
+	}
+	#align-self .menu-item {
+		background: plum;
+		margin: 5px;
+		padding: 5px;
+		align-self: auto;
+	}
+	</style>
+	<div class="menu flex" id="align-self">
+		<div class="menu-item" id="home-align">Home</div>
+		<div class="menu-item">Profile</div>
+		<div class="menu-item">About</div>
+		<div class="menu-item">Users</div>
+	</div>
+	<script>
+		get('align-self-select').addEventListener('input', ev => {
+			get('align-self').style.alignItems = get('align-self-display').textContent = ev.currentTarget.value;
+		});
+		get('home-align-select').addEventListener('input', ev => {
+			get('home-align').style.alignSelf = get('home-align-display').textContent = ev.currentTarget.value;
+		});
+	</script>
+</div>
