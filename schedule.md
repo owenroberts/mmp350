@@ -42,6 +42,8 @@ title: Schedule
 - [Typographic Hierarchy](notes/typography/)
 - **Assignment 4**: Typographic Hierarchy
 	- Create 3 separate font pairings
+	- Apply font rules to posts as well as other template content
+	- Include media queries for responsive typography
 	- Use `typography.css` with different classes to apply each pairing
 
 ## Week 5 **Color**
