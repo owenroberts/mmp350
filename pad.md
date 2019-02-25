@@ -25,6 +25,7 @@ title: MMP 350 Public Pad
 		top: 0;
 		padding: 0;
 	}
+	.CodeMirror pre { font-size: 18px; }
 	.powered-by-firepad { display: none; }
 	.firepad-toolbar {
 		padding: 0;
@@ -55,7 +56,6 @@ title: MMP 350 Public Pad
 <script>
 
 	function init() {
-		console.log('init')
 		// Initialize Firebase.
 		// TODO: replace with your Firebase project configuration.
 		var config = {

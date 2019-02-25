@@ -47,7 +47,8 @@ title: Schedule
 	- Use `typography.css` with different classes to apply each pairing
 
 ## Week 5 **Color**
-- [Calculating Color](notes/color/) <!-- figure out how to refactor this -->
+- [CSS Custom Properties](notes/color/custom)
+- [Calculating Color](notes/color/calculating) <!-- figure out how to refactor this -->
 - **Assignment 6**: Color Scheme
 	- Create a `color.css` page
 	- Choose a color scheme (complementary, triad, monochromatic, analogous, or combination)
@@ -55,12 +56,13 @@ title: Schedule
 	- Use CSS custom properties to define two other colors
 	- Implement those colors for the typography, borders, backgrounds and any other colors in the app
 
-## Week 6
+## Week 6 **Web App Pitch**
 - [Creating a pitch deck](notes/pitch/)
 - [User interaction flow chart](notes/ui/)
 
 ## Week 7 **Midterm Workshop**
 - Pitch design for web application
+- Finished template design
 
 ## Week 8 **JavaScript**
 - [JavaScript input & variables](notes/javascript/input/)

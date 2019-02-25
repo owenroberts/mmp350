@@ -1,0 +1,144 @@
+---
+layout: slides
+title: CSS Custom Properties
+week: 6
+---
+<div class="slide">
+	<h2>CSS Custom Properties</h2>
+	<p>CSS Custom Properties are sort of like variables in JavaScript or another programming language.  They allow us to define CSS rules that can be reused for multiple selectors.</p>
+	<p>Using custom properties solves two issues that often come when writing CSS.</p>
+</div>
+
+<div class="slide">
+	<p>First is repeating values.</p>
+	<p>You have probably had the experience of using one color several times in various parts of you stylesheet and then deciding to change that color.  Then you have to read through all of the rules and find each time you used it.  With custom properties, you can just change the original property value.</p>
+</div>
+
+<div class="slide">
+	<p>Second is using calculations to set style values.</p>
+	<p>This week we're going to focus on creating a color scheme for the web app.  When designing a color scheme, the relationships between colors can be describes by number values.  We can't recreate this in CSS, at least not in the past, but now we can use CSS custom properties.
+</div>
+
+<div class="slide">
+	<h2>Custom property definition</h2>
+	<p>To create a custom property, the value is defined using a special CSS rule.</p>  
+	<p>These rules can be written inside of any CSS selector, but often they will be found in a selector called <code>:root</code>.</p>
+	<p>The <code>:root</code> is a shortcut to the highest level node in the document hierarchy.  For HTML, this will be the <code>&lt;html&gt;</code> node.</p>
+</div>
+
+<div class="slide">
+	<pre><code>:root {
+	--custom-prop: value;
+}
+
+div {
+	prop: var(--custom-prop);
+}</code></pre>
+</div>
+
+<div class="slide">
+	<p>The way to take advantage of a custom property is in cases where a color is used in multiple cases.</p>
+	<pre><code>:root {
+	--main-color: #05ea99;
+	--accent-color: #f277f0;
+}
+
+#site-title {
+	color: var(--main-color);
+	border-bottom: 1px solid var(--accent-color);
+}
+
+a {
+	color: var(--main-color);
+}
+
+a:hover {
+	color: var(--accent-color);
+}</code></pre>
+</div>
+
+<style>
+:root {
+	--main-color: #05ea99;
+	--accent-color: #f277f0;
+}
+.example {
+	padding: 1em;
+	border: 1px solid darkblue;
+	background: white;
+	margin: 1em 0;
+}
+
+.example h3 {
+	font-size: 1.5em;
+}
+
+#site-title {
+	color: var(--main-color);
+	border-bottom: 2px solid var(--accent-color);
+}
+
+.menu a {
+	color: var(--main-color);
+}
+
+.menu a:hover {
+	color: var(--accent-color);
+}
+</style>
+
+<div class="slide">
+	<div class="example">
+		<div id="site-title"><h3>Site Title</h3></div>
+		<div class="menu">
+			<a href="#">Home</a>
+			<a href="#">About</a>
+			<a href="#">Log In</a>
+			<a href="#">Sign Up</a>
+		</div>
+	</div>
+</div>
+
+<div class="slide">
+	<p>This setup makes it easier to make changes to the color scheme or to the way colors are applied.</p>
+	<p>This is a simple example, but imagine a more complex site with lots of rules applying colors to different components of the design.  The level of simplicity remains using custom properties.</p>
+</div>
+
+<div class="slide">
+	<pre><code>:root { --main-color: <span id="main-color-display">#05ea99</span>; }</code></pre>
+	<select id="main-color-select">
+		<option selected>#05ea99</option>
+		<option>darkblue</option>
+		<option>green</option>
+		<option>black</option>
+		<option>#ffddff</option>
+	</select>
+
+	<div id="main-color" class="example">
+		<div id="site-title"><h3>Site Title</h3></div>
+		<div class="menu">
+			<a href="#">Home</a>
+			<a href="#">About</a>
+			<a href="#">Log In</a>
+			<a href="#">Sign Up</a>
+		</div>
+	</div>
+	<script>
+		function get(id) { return document.getElementById(id); }
+		function getAll(className) { return document.getElementsByClassName(className); }
+		get('main-color-select').addEventListener('input', ev => {
+			get('main-color').style.setProperty('--main-color', ev.currentTarget.value);
+			get('main-color-display').textContent = ev.currentTarget.value;
+		});
+	</script>
+</div>
+
+
+<div class="slide">
+	<h2>Resources</h2>
+	<ul>
+		<li><a href="https://css-tricks.com/almanac/selectors/r/root/" target="blank">:root</a></li>
+		<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*" target="blank">Custom Properties on MDN</a></li>
+		<li><a href="https://www.smashingmagazine.com/2018/05/css-custom-properties-strategy-guide/" target="blank">Smashing CSS Custom Properties Strategy Guide</a></li>
+	</ul>
+</div>
