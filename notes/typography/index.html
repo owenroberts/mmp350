@@ -391,6 +391,38 @@ week: 5
 	</div>
 </div>
 
+<div class="slide">
+	<h2>Viewport sizing</h2>
+	<p>The above examples show an <em>adaptive</em> approach, meaning again that a rule changes between different values at specific size or breakpoints.</p>
+	<p>For a <em>responsive</em> approach, one way to approach <code>font-size</code> is using the relatively new <note>viewport</note> units: <code>vw</code> for viewport width, <code>vh</code> for viewport height.</p>
+	<p>These rules can also be used in conjunction with the adaptive breakpoints.</p>
+</div>
+
+<div class="slide">
+	<p><code>1vw</code> is <code>1%</code> of the viewport width.</p>
+	<p><code>1vh</code> is <code>1%</code> of the viewport height.</p>
+	<p><code>vmin</code> and <code>vmax</code> to refer to the larger dimension for either landscape or portrait view.</p>
+</div>
+
+<div class="slide">
+	<img src="vmax-vmin.png" alt="">
+</div>
+
+<div class="slide">
+	<p>These rules can be applied to different types of text.</p>
+	<pre><code>#title {
+	font-size: 4vw;
+}
+
+.post-text { 
+	font-size: 3vmax;
+}
+
+.post-info {
+	font-size: 2vmax;
+}</code></pre>
+</div>
+
 
 <div class="slide">
 	<h2>Google Fonts</h2>
@@ -417,8 +449,9 @@ week: 5
 		<li><a href="http://webdesign.tutsplus.com/articles/understanding-typographic-hierarchy--webdesign-11636" target="_blank">Typographic hierarchy</a></li>
 		<li><a href="http://webdesign.tutsplus.com/articles/the-anatomy-of-web-typography--webdesign-10533" target="_blank">Web typography</a></li>
 		<li><a href="http://webdesign.tutsplus.com/articles/typographic-readability-and-legibility--webdesign-12211" target="_blank">Readability & Legibility</a></li>
-		<li><a href="http://webdesign.tutsplus.com/articles/a-beginners-guide-to-pairing-fonts--webdesign-5706" target="_blank">pairing fonts</a></li>
+		<li><a href="http://webdesign.tutsplus.com/articles/a-beginners-guide-to-pairing-fonts--webdesign-5706" target="_blank">Pairing fonts</a></li>
 		<li><a href="http://ia.net/know-how/responsive-typography-the-basics" target="_blank">Responsive typography</a></li>
 		<li><a href="http://trentwalton.com/2012/06/19/fluid-type/" target="_blank">Fluid type</a></li>
+		<li><a href="https://css-tricks.com/viewport-sized-typography/" target="blank">Viewport sized typography</a></li>
 	</ul>
 </div>
