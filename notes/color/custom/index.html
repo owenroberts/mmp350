@@ -39,11 +39,13 @@ div {
 <div class="slide">
 	<p>The way to take advantage of a custom property is in cases where a color is used in multiple cases.</p>
 	<pre><code>:root {
-	--main-color: #05ea99;
+	--main-color: #0d6345;
 	--accent-color: #f277f0;
-}
+}</pre></code>
+</div>
 
-#site-title {
+<div class="slide">
+	<pre><code>#site-title {
 	color: var(--main-color);
 	border-bottom: 1px solid var(--accent-color);
 }
@@ -59,12 +61,12 @@ a:hover {
 
 <style>
 :root {
-	--main-color: #05ea99;
+	--main-color: #0d6345;
 	--accent-color: #f277f0;
 }
 .example {
 	padding: 1em;
-	border: 1px solid darkblue;
+	border: 1px solid gray;
 	background: white;
 	margin: 1em 0;
 }
@@ -73,7 +75,7 @@ a:hover {
 	font-size: 1.5em;
 }
 
-#site-title {
+#site-title, .title {
 	color: var(--main-color);
 	border-bottom: 2px solid var(--accent-color);
 }
@@ -89,7 +91,7 @@ a:hover {
 
 <div class="slide">
 	<div class="example">
-		<div id="site-title"><h3>Site Title</h3></div>
+		<div class="title"><h3>Site Title</h3></div>
 		<div class="menu">
 			<a href="#">Home</a>
 			<a href="#">About</a>
@@ -105,17 +107,28 @@ a:hover {
 </div>
 
 <div class="slide">
-	<pre><code>:root { --main-color: <span id="main-color-display">#05ea99</span>; }</code></pre>
+	<pre><code>:root { 
+	--main-color: <span id="main-color-display">#0d6345</span>;
+	--accent-color: <span id="accent-color-display">#f277f0</span>;
+}</code></pre>
+	<label>--main-color</label>
 	<select id="main-color-select">
-		<option selected>#05ea99</option>
+		<option selected>#0d6345</option>
 		<option>darkblue</option>
 		<option>green</option>
 		<option>black</option>
 		<option>#ffddff</option>
 	</select>
-
+	<label>--accent-color</label>
+	<select id="accent-color-select">
+		<option selected>#f277f0</option>
+		<option>darkblue</option>
+		<option>green</option>
+		<option>black</option>
+		<option>#ffddff</option>
+	</select>
 	<div id="main-color" class="example">
-		<div id="site-title"><h3>Site Title</h3></div>
+		<div class="title"><h3>Site Title</h3></div>
 		<div class="menu">
 			<a href="#">Home</a>
 			<a href="#">About</a>
@@ -130,9 +143,79 @@ a:hover {
 			get('main-color').style.setProperty('--main-color', ev.currentTarget.value);
 			get('main-color-display').textContent = ev.currentTarget.value;
 		});
+		get('accent-color-select').addEventListener('input', ev => {
+			get('main-color').style.setProperty('--accent-color', ev.currentTarget.value);
+			get('accent-color-display').textContent = ev.currentTarget.value;
+		});
 	</script>
 </div>
 
+<div class="slide">
+	<pre><code>#site-title {
+	color: var(<span id="swap-color">--main-color</span>);
+	border-bottom: 2px solid var(<span id="swap-border">--accent-color</span>);
+}</code></pre>
+	<button id="swap-button">Swap colors</button>
+	<div class="example">
+		<div class="title" id="swap-title"><h3>Site Title</h3></div>
+		<div class="menu">
+			<a href="#">Home</a>
+			<a href="#">About</a>
+			<a href="#">Log In</a>
+			<a href="#">Sign Up</a>
+		</div>
+	</div>
+	<script type="text/javascript">
+		get('swap-button').onclick = function() {
+			const color = get('swap-color').textContent;
+			const border = get('swap-border').textContent;
+			get('swap-color').textContent = border;
+			get('swap-border').textContent = color;
+			console.log(`var(${border})`, `var(${color})`);
+			get('swap-title').style.color = `var(${border})`;
+			get('swap-title').style.borderBottomColor = `var(${color})`;
+		};
+	</script>
+</div>
+
+<style>
+	a.swap { color: var(--accent-color); }
+	a.swap:hover { color: var(--main-color); }
+</style>
+
+<div class="slide">
+	<pre><code>.menu a {
+	color: var(<span id="link-swap-color">--main-color</span>);
+}
+
+.menu a:hover {
+	color: var(<span id="link-swap-hover">--accent-color</span>);
+}</code></pre>
+	<button id="swap-link-button">Swap colors</button>
+	<div class="example">
+		<div class="title"><h3>Site Title</h3></div>
+		<div class="menu">
+			<a class="link" href="#">Home</a>
+			<a class="link" href="#">About</a>
+			<a class="link" href="#">Log In</a>
+			<a class="link" href="#">Sign Up</a>
+		</div>
+	</div>
+	<script type="text/javascript">
+		get('swap-link-button').onclick = function() {
+			const color =  get('link-swap-color').textContent;
+			const hover = get('link-swap-hover').textContent;
+			get('link-swap-color').textContent = hover;
+			get('link-swap-hover').textContent = color;
+			Array.from(getAll('link')).forEach(el => {
+				if (el.classList.contains('swap'))
+					el.classList.remove('swap');
+				else
+					el.classList.add('swap');
+			});
+		};
+	</script>
+</div>
 
 <div class="slide">
 	<h2>Resources</h2>
