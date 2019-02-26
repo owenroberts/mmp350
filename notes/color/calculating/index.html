@@ -9,7 +9,7 @@ week: 6
 </div>
 
 <div class="slide">
-	<p>The main thing I want to take away from these concepts is the fact that color relationships can be described with numbers.</p>
+	<p>The main thing I want to take away from these concepts is the fact that color relationships can be described using numbers and relative numerical values.</p>
 	<p>Because all colors are mapped on the color wheel, we can set up basic relationships and apply them to different colors.</p>
 	<p>For a complementary color, we just have to move the color wheel 180 degrees.</p>
 </div>
@@ -31,21 +31,23 @@ week: 6
 	--hue: 0;
 	--sat: 50;
 	--lit: 50;
-	--primary: hsl(var(--hue), calc(var(--sat) * 1%), calc(var(--lit) * 1%));
+	--main: hsl(var(--hue), calc(var(--sat) * 1%), calc(var(--lit) * 1%));
 	--accent-one: hsl(calc(var(--hue) + 120), calc(var(--sat) * 1%), calc(var(--lit) * 1%));;
 	--accent-two: hsl(calc(var(--hue) - 120), calc(var(--sat) * 1%), calc(var(--lit) * 1%));;
 }
+.outline .post {font-size: 2em;}
+.slides .post {font-size: 1em;}
 .post {
 	background: white;
 	padding: 1em;
 	color: black;
-	
+
 	border: 1px solid lightgray;
 	padding: 0.5em;
 	margin: 0.25em 0;
 }
 .post-text {
-	color: var(--primary);
+	color: var(--main);
 }
 .post-author{
 	color: var(--accent-one);
@@ -67,13 +69,21 @@ week: 6
 	--saturation: <span id="sat-display">50</span>;
 	--lightness: <span id="lit-display">50</span>;
 }</code></pre>
-
-	<input class="ex-one" id="hue" type="range" min="0" max="360" value="0"></input>
-	<label for="hue">Hue</label>
-	<input class="ex-one" id="sat" type="range" min="0" max="100" value="50"></input>
-	<label for="sat">Saturation</label>
-	<input class="ex-one" id="lit" type="range" min="0" max="100" value="50"></input>
-	<label for="lit">Lightness</label>
+	<table class="sliders">
+		<tr>
+			<td><label for="hue">Hue</label></td>
+			<td><input class="ex-one" id="hue" type="range" min="0" max="360" value="0"></input></td>
+		</tr>
+		<tr>
+			<td><label for="sat">Saturation</label></td>
+			<td><input class="ex-one" id="sat" type="range" min="0" max="100" value="50"></input></td>
+		</tr>
+		<tr>
+			<td><label for="lit">Lightness</label></td>
+			<td><input class="ex-one" id="lit" type="range" min="0" max="100" value="50"></input></td>
+		</tr>
+	</table>
+	
 	<script type="text/javascript">
 		function get(id) { return document.getElementById(id); }
 		function getAll(className) { return Array.from(document.getElementsByClassName(className)); }
@@ -93,7 +103,7 @@ week: 6
 </div>
 
 <div class="slide">
-	<h2>var</h2>
+	<h2>Custom properties</h2>
 	<p>For the examples we'll focus on creating three color rules based on a main hue.</p>
 	<p>We start by defining a hue, which is just a number between 0 and 360.</p>
 	<pre><code>:root {
@@ -102,7 +112,8 @@ week: 6
 </div>
 
 <div class="slide">
-	<p>To use this value, we have to wrap it in a custom property <code>var()</code> and use it in an <code>hsl</code> rule.  This is a little complicated so let's look at an HSL rule first.</p>
+	<p>To use this value, we have to wrap it in a custom property <code>var()</code> and use it in an <code>hsl</code> rule.</p>  
+	<p>This is a little complicated so let's look at an HSL rule first.</p>
 </div>
 
 <div class="slide">
@@ -120,15 +131,19 @@ week: 6
 
 <div class="slide">
 	<p>HSL is a CSS color rule that creates a color using a hue between 0 and 360 along with a saturation value between 0% and 100% and a lightness value between 0% and 100%.</p>
-	<p>This is based on the HSL color wheel, and it's the easiest way to do color calculations with CSS.</p>
+	<p>This is based on the HSL color wheel, and it's a good way to do color calculations with CSS.</p>
 	<p>The saturation and lightness values can be adjusted as well, which we'll see in later examples.</p>
 </div>
 
 <div class="slide">
 	<p>Now we can construct and HSL value.</p>
-	<pre><code>:root{
+	<pre><code>:root {
 	--main-hue: 240;
 	--main-color: hsl(var(--main-hue), 50%, 50%);
+}
+
+.post-text {
+	color: var(--main-color);
 }</code></pre>
 </div>
 
@@ -141,11 +156,23 @@ week: 6
 </div>
 
 <div class="slide">
-	<pre><code>.post {
+	<p>Creating color values.</p>
+	<pre><code>:root {
 	--accent-one-hue: calc(var(--main-hue) - 120);
 	--accent-two-hue: calc(var(--main-hue) + 120);
 	--accent-one: hsl(var(--accent-one-hue), 50%, 50%);
 	--accent-two: hsl(var(--accent-two-hue), 50%, 50%);
+}</code></pre>
+</div>
+
+<div class="slide">
+	<p>Applying color values.</p>
+	<pre><code>.post-author {
+	color: var(--accent-one);
+}
+
+.post-date {
+	color: var(--accent-two);
 }</code></pre>
 </div>
 
@@ -162,16 +189,6 @@ week: 6
 	--accent-one: hsl(var(--accent-one-hue), 50%, 50%);
 	--accent-two: hsl(var(--accent-two-hue), 50%, 50%);
 }
-
-#triadic .post-text {
-	color: var(--main);
-}
-#triadic .post-author {
-	color: var(--accent-one);
-}
-#triadic .post-date {
-	color: var(--accent-two);
-}
 </style>
 
 <div class="slide">
@@ -179,8 +196,12 @@ week: 6
 	--main-hue: <span id="triadic-hue-display">240</span>;
 }</code></pre>
 
-	<label for="triadic-hue">Hue</label>
-	<input id="triadic-hue" type="range" min="0" max="360" value="240"></input>
+	<table class="sliders">
+		<tr>
+			<td><label for="triadic-hue">Hue</label></td>
+			<td><input id="triadic-hue" type="range" min="0" max="360" value="240"></input></td>
+		</tr>
+	</table>
 
 	<div id="triadic" class="post">
 		<div class="post-text">I skate to where the puck is going to be, not to where it has been.</div>
@@ -197,171 +218,198 @@ week: 6
 </div>
 
 <div class="slide">
-	<p>That covers creating a <note>complementary</note> scheme, with complementary color difference of 180 degrees.</p>
+	<p>That covers creating a <note>triadic</note> scheme, with a color difference of 120 degrees.</p>
 	<p>Let's take a look at a few other color schemes.</p>
 </div>
 
 <div class="slide">
-	<p><note>Analogous</note>, primary color, second and support colors hue in opposite directions at equal degrees, ie (30 and -30).</p>
+	<h2>Analagous</h2>
+	<p>Primary color, second and support colors hue in opposite directions at equal degrees, ie (30 and -30).</p>
+</div>
+
+<div class="slide">
+	<p>This will look almost exaclty like our triadic color scheme rules with a different offset.</p>
+	<pre><code>:root {
+	--accent-one-hue: calc(var(--main-hue) - 30);
+	--accent-two-hue: calc(var(--main-hue) + 30);
+
+	/* these are the same */
+	--accent-one: hsl(var(--accent-one-hue), 50%, 50%);
+	--accent-two: hsl(var(--accent-two-hue), 50%, 50%);
+}</code></pre>
+</div>
+
+<div class="slide">
+	<p>Because the offset should be the same for each, we can make the offset into a variable value as well to test different offset numbers.</p>
+	<pre><code>:root {
+	--offset: 30;
+	--accent-one-hue: calc(var(--main-hue) - var(--offset));
+	--accent-two-hue: calc(var(--main-hue) + var(--offset));
+}</code></pre>
+	<p>The larger the offset, the bigger differce between the three colors.  30 is usually a good staring point, because it divides the color wheel into 12 even steps (360 / 12 = 30).</p>
 </div>
 
 <style>
-.anal {
-	--anal-hue: 240;
-	--anal-sat: 50;
-	--anal-lit: 50;
-	--primary: hsl(var(--anal-hue), calc(var(--anal-sat) * 1%), calc(var(--anal-lit) * 1%));
-	--anal-one: hsl(calc(var(--anal-hue) + 30), calc(var(--anal-sat) * 1%), calc(var(--anal-lit) * 1%));;
-	--anal-two: hsl(calc(var(--anal-hue) - 30), calc(var(--anal-sat) * 1%), calc(var(--anal-lit) * 1%));;
-
-	background: white;
-	padding: 1em;
-	color: black;
-}
-.anal .post {
-	border: 2px solid var(--primary);
-	padding: 0.25em;
-	margin: 0.25em 0;
-}
-.anal .post-text {
-	color: var(--anal-one);
-}
-.anal .post-author, .anal .post-date {
-	color: var(--anal-two);
+#analogous {
+	--main-hue: 240;
+	--offset: 30;
+	--accent-one-hue: calc(var(--main-hue) - var(--offset));
+	--accent-two-hue: calc(var(--main-hue) + var(--offset));
+	--main: hsl(var(--main-hue), 50%, 50%);
+	--accent-one: hsl(var(--accent-one-hue), 50%, 50%);
+	--accent-two: hsl(var(--accent-two-hue), 50%, 50%);
 }
 </style>
 
 <div class="slide">
-	<div class="anal">
-		<div class="post">
-			<div class="post-text">I skate to where the puck is going to be, not to where it has been.</div>
-			by <span class="post-author">Wayne Gretzky</span>
-			on <span class="post-date">Jan 1, 1999</span>
-		</div>
+	<div class="post" id="analogous">
+		<div class="post-text">I skate to where the puck is going to be, not to where it has been.</div>
+		by <span class="post-author">Wayne Gretzky</span>
+		on <span class="post-date">Jan 1, 1999</span>
 	</div>
 
-	<pre><code>.posts {
-	--hue: <span id="anal-hue-display">240</span>;
-	--sat: <span id="anal-sat-display">50</span>;
-	--lit: <span id="anal-lit-display">50</span>;
+	<pre><code>:root {
+	--main-hue: <span id="main-hue-display">240</span>;
+	--offset: <span id="offset-display">30</span>
 }</code></pre>
 
-	<input class="ex-anal" id="anal-hue" type="range" min="0" max="360" value="240"></input>
-	<label for="hue">Hue</label>
-	<input class="ex-anal" id="anal-sat" type="range" min="0" max="100" value="50"></input>
-	<label for="sat">Saturation</label>
-	<input class="ex-anal" id="anal-lit" type="range" min="0" max="100" value="50"></input>
-	<label for="lit">Lightness</label>
+	<table class="sliders">
+		<tr>
+			<td><label for="hue">Hue</label></td>
+			<td><input class="ex-anal" id="main-hue" type="range" min="0" max="360" value="240"></input></td>
+		</tr>
+		<tr>
+			<td><label for="sat">Offset</label></td>
+			<td><input class="ex-anal" id="offset" type="range" min="0" max="120" value="30"></input></td>
+		</tr>
+	</table>
+
 	<script type="text/javascript">
-		Array.from(document.getElementsByClassName('ex-anal')).forEach(e => {
-			e.addEventListener('input', ev => {
-				document.getElementsByClassName('anal')[0].style.setProperty(`--${ev.target.id}`, ev.target.value);
-				document.getElementById(`${ev.target.id}-display`).textContent = ev.target.value;
-			});
-		});
-	</script>
-</div>
-
-
-
-
-<div class="slide">
-	<p><note>Monochromatic</note>, primary color, with other colors differing in saturation and lightness.</p>
-
-</div>
-
-
-<style>
-.mono {
-	--mono-hue: 240;
-	--mono-sat: 50;
-	--mono-lit: 50;
-	
-	--mono-main: hsl(var(--mono-hue), calc(var(--mono-sat) * 1%), calc(var(--mono-lit) * 1%));
-	
-	--mono-saturation: calc(var(--mono-sat) + 20);
-	--mono-lightness: calc(var(--mono-lit) - 20);
-	
-	--mono-one: hsl(calc(var(--mono-hue)), calc(var(--mono-saturation) * 1%), calc(var(--mono-lit) * 1%));;
-	--mono-two: hsl(calc(var(--mono-hue)), calc(var(--mono-sat) * 1%), calc(var(--mono-lightness) * 1%));;
-
-	background: white;
-	padding: 1em;
-	color: black;
-}
-.mono .post {
-	border: 2px solid var(--mono-main);
-	padding: 0.25em;
-	margin: 0.25em 0;
-}
-.mono .post-text {
-	color: var(--mono-one);
-}
-.mono .post-author, .mono .post-date {
-	color: var(--mono-two);
-}
-</style>
-
-<div class="slide">
-	<div class="mono">
-		<div class="post">
-			<div class="post-text">I skate to where the puck is going to be, not to where it has been.</div>
-			by <span class="post-author">Wayne Gretzky</span>
-			on <span class="post-date">Jan 1, 1999</span>
-		</div>
-	</div>
-
-	<pre><code>.posts {
-	--hue: <span id="mono-hue-display">240</span>;
-	--sat: <span id="mono-sat-display">50</span>;
-	--lit: <span id="mono-lit-display">50</span>;
-}</code></pre>
-
-	<input class="ex-mono" id="mono-hue" type="range" min="0" max="360" value="240"></input>
-	<label for="hue">Hue</label>
-	<input class="ex-mono" id="mono-sat" type="range" min="0" max="100" value="50"></input>
-	<label for="sat">Saturation</label>
-	<input class="ex-mono" id="mono-lit" type="range" min="0" max="100" value="50"></input>
-	<label for="lit">Lightness</label>
-	<script type="text/javascript">
-		Array.from(document.getElementsByClassName('ex-mono')).forEach(e => {
-			e.addEventListener('input', ev => {
-				document.getElementsByClassName('mono')[0].style.setProperty(`--${ev.target.id}`, ev.target.value);
-				document.getElementById(`${ev.target.id}-display`).textContent = ev.target.value;
+		getAll('ex-anal').forEach(el => {
+			el.addEventListener('input', ev => {
+				get('analogous').style.setProperty(`--${ev.target.id}`, ev.target.value);
+				get(`${ev.target.id}-display`).textContent = ev.target.value;
 			});
 		});
 	</script>
 </div>
 
 <div class="slide">
-	<p>The monochromatic CSS rules.</p>
-	<pre><code>.posts {
+	<h2>Complementary</h2>
+	<p>A complementary color scheme includes a primary color and it's exact opposite, 180 degrees away on the color wheel.</p>
+	<pre><code>:root {
+	--main-hue: 240;
+	--complementary-hue: calc(var(--main-hue) + 180);
+}</code></pre>
+	<p>Fortunately for us, CSS is sophisticated enough to do this math, circling around to the beginning of the color wheel.</p>
+</div>
+
+<div class="slide">
+	<p>In order to create a third color, we can adjust the saturation or lightess of the main color or the complimentary color.</p>
+	<pre><code>:root {
+	--accent-one: hsl(var(--complementary-hue), 50%, 50%);
+	--accent-two: hsl(var(--main-hue), 25%, 75%);
+}</code></pre>
+</div>
+
+
+<style>
+#comp {
+	--main-hue: 240;
+	--complementary-hue: calc(var(--main-hue) + 180);
+	--main: hsl(var(--main-hue), 50%, 50%);
+	--accent-one: hsl(var(--complementary-hue), 50%, 50%);
+	--accent-two: hsl(var(--main-hue), 25%, 75%);
+}
+</style>
+
+<div class="slide">
+	<div class="post" id="comp">
+		<div class="post-text">I skate to where the puck is going to be, not to where it has been.</div>
+		by <span class="post-author">Wayne Gretzky</span>
+		on <span class="post-date">Jan 1, 1999</span>
+	</div>
+
+	<pre><code>:root {
+	--main-hue: <span id="complementary-hue-display">240</span>;
+}</code></pre>
+
+	<table class="sliders">
+		<tr>
+			<td><label for="hue">Hue</label></td>
+			<td><input id="complementary-hue" type="range" min="0" max="360" value="240"></input></td>
+		</tr>
+	</table>
+
+	<script type="text/javascript">
+		get('complementary-hue').addEventListener('input', ev => {
+			get('comp').style.setProperty('--main-hue', ev.target.value);
+			get(`${ev.target.id}-display`).textContent = ev.target.value;
+		});
+	</script>
+</div>
+
+
+
+<div class="slide">
+	<h2>Monochromatic</h2>
+	<p>Colors differing only in saturation and lightness.</p>
+	<p>In this case the hue isn't changed at all, so we can use custom properties for saturation and lightness to see how the colors change.</p>
+</div>
+
+
+<style>
+#mono {
 	--hue: 240;
-	--sat: 50;
-	--lit: 50;
-	--main: hsl(var(--hue), calc(var(--sat) * 1%), calc(var(--lit) * 1%));
-	
-	/* update saturation in one */
-	--saturation: calc(var(--sat) + 20);
-	--one: hsl(calc(var(--hue)), calc(var(--saturation) * 1%), calc(var(--lit) * 1%));;
+	--saturation: 50;
+	--lightness: 50;
+	--main: hsl(var(--hue), 50%, 50%);
+	--accent-one: hsl(var(--hue), calc(var(--saturation) * 1%), 50%);
+	--accent-two: hsl(var(--hue), 25%, calc(var(--lightness) * 1%));
+}
+</style>
 
-	/* change lightness in two */
-	--lightness: calc(var(--lit) - 20);
-	--two: hsl(calc(var(--hue)), calc(var(--sat) * 1%), calc(var(--lightness) * 1%));;
-}
-.posts .post {
-	border: 2px solid var(--main);
-}
-.posts .post-text {
-	color: var(--one);
-}
-.posts .post-author, .posts .post-date {
-	color: var(--two);
+<div class="slide">
+	<div class="post" id="mono">
+		<div class="post-text">I skate to where the puck is going to be, not to where it has been.</div>
+		by <span class="post-author">Wayne Gretzky</span>
+		on <span class="post-date">Jan 1, 1999</span>
+	</div>
+
+	<pre><code>.posts {
+	--main-hue: <span id="mono-hue-display">240</span>;
+	--saturation: <span id="mono-saturation-display">240</span>;
+	--lightness: <span id="mono-lightness-display">240</span>;
 }</code></pre>
+
+	<table class="sliders">
+		<tr>
+			<td><label for="mono-hue">Hue</label></td>
+			<td><input class="mono" id="mono-hue" type="range" min="0" max="360" value="240"></input></td>
+		</tr>
+		<tr>
+			<td><label for="mono-saturation">Saturation</label></td>
+			<td><input class="mono" id="mono-saturation" type="range" min="0" max="100" value="50"></input></td>
+		</tr>
+		<tr>
+			<td><label for="mono-lightness">Lightness</label></td>
+			<td><input class="mono" id="mono-lightness" type="range" min="0" max="100" value="50"></input></td>
+		</tr>
+	</table>
+
+	<script type="text/javascript">
+		getAll('mono').forEach(el => {
+			el.addEventListener('input', ev => {
+				console.log(`--${ev.target.id.split('-')[1]}`)
+				get('mono').style.setProperty(`--${ev.target.id.split('-')[1]}`, ev.target.value);
+				get(`${ev.target.id}-display`).textContent = ev.target.value;
+			});
+		});
+	</script>
 </div>
 
 
-
 <div class="slide">
+	<h2>Resources</h2>
 	<p><a href="http://www.tigercolor.com/color-lab/color-theory/color-theory-intro.htm#analogous" target="_blank">More color schemes</a>.</p>
 </div>
