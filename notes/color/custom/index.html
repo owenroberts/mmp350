@@ -1,7 +1,7 @@
 ---
 layout: slides
 title: CSS Custom Properties
-week: 6
+week: 5
 ---
 <div class="slide">
 	<h2>CSS Custom Properties</h2>
@@ -39,8 +39,8 @@ div {
 <div class="slide">
 	<p>The way to take advantage of a custom property is in cases where a color is used in multiple cases.</p>
 	<pre><code>:root {
-	--main-color: #0d6345;
-	--accent-color: #f277f0;
+	--main-color: #0d6345; /* dark green */
+	--accent-color: #f277f0; /* pink */
 }</pre></code>
 </div>
 
@@ -107,26 +107,39 @@ a:hover {
 </div>
 
 <div class="slide">
+	<h3>Defining colors.</h3>
 	<pre><code>:root { 
 	--main-color: <span id="main-color-display">#0d6345</span>;
 	--accent-color: <span id="accent-color-display">#f277f0</span>;
 }</code></pre>
-	<label>--main-color</label>
-	<select id="main-color-select">
-		<option selected>#0d6345</option>
-		<option>darkblue</option>
-		<option>green</option>
-		<option>black</option>
-		<option>#ffddff</option>
-	</select>
-	<label>--accent-color</label>
-	<select id="accent-color-select">
-		<option selected>#f277f0</option>
-		<option>darkblue</option>
-		<option>green</option>
-		<option>black</option>
-		<option>#ffddff</option>
-	</select>
+	<table class="sliders">
+		<tr>
+			<td><label>--main-color</label></td>
+			<td><select id="main-color-select">
+				<option selected>#0d6345</option>
+				<option>#f277f0</option>
+				<option>darkblue</option>
+				<option>orange</option>
+				<option>black</option>
+				<option>gold</option>
+				<option>purple</option>
+			</select></td>
+		</tr>
+		<tr>
+			<td><label>--accent-color</label></td>
+			<td><select id="accent-color-select">
+				<option selected>#f277f0</option>
+				<option>#0d6345</option>
+				<option>darkblue</option>
+				<option>orange</option>
+				<option>gold</option>
+				<option>purple</option>
+				<option>black</option>
+			</select></td>
+		</tr>
+	</table>
+	
+	
 	<div id="main-color" class="example">
 		<div class="title"><h3>Site Title</h3></div>
 		<div class="menu">
@@ -151,6 +164,7 @@ a:hover {
 </div>
 
 <div class="slide">
+	<h3>Applying colors.</h3>
 	<pre><code>#site-title {
 	color: var(<span id="swap-color">--main-color</span>);
 	border-bottom: 2px solid var(<span id="swap-border">--accent-color</span>);

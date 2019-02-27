@@ -32,10 +32,16 @@ week: 3
 
 <div class="slide">
 	<pre><code>.menu { display: <span id="display-display">block</span>; }</code></pre>
-	<select id="display-select">
-		<option selected>block</option>
-		<option>flex</option>
-	</select>
+	<table class="sliders">
+		<tr>
+			<td>dislay</td>
+			<td><select id="display-select">
+				<option selected>block</option>
+				<option>flex</option>
+			</select></td>
+		</tr>
+	</table>
+	
 	<style type="text/css">
 		.menu { 
 			background: lightblue;
@@ -64,14 +70,19 @@ week: 3
 
 <div class="slide">
 	<pre><code>.menu { justify-content: <span id="justify-display">flex-start</span>; }</code></pre>
-	<select id="justify-select">
-		<option selected>flex-start</option>
-		<option>flex-end</option>
-		<option>center</option>
-		<option>space-between</option>
-		<option>space-around</option>
-		<option>space-evenly</option>
-	</select>
+	<table class="sliders">
+		<tr>
+			<td>justify-content</td>
+			<td><select id="justify-select">
+				<option selected>flex-start</option>
+				<option>flex-end</option>
+				<option>center</option>
+				<option>space-between</option>
+				<option>space-around</option>
+				<option>space-evenly</option>
+			</select></td>
+		</tr>
+	</table>
 	<style type="text/css">
 		.flex { display: flex; }
 	</style>
@@ -94,13 +105,19 @@ week: 3
 
 <div class="slide">
 	<pre><code>.menu { align-items: <span id="align-display">flex-start</span>; }</code></pre>
-	<select id="align-select">
-		<option>stretch</option>
-		<option selected>flex-start</option>
-		<option>flex-end </option>
-		<option>center</option>
-		<option>baseline</option>
-	</select>
+	<table class="sliders">
+		<tr>
+			<td>align-items</td>
+			<td><select id="align-select">
+				<option>stretch</option>
+				<option selected>flex-start</option>
+				<option>flex-end </option>
+				<option>center</option>
+				<option>baseline</option>
+			</select></td>
+		</tr>
+	</table>
+	
 	<style>
 	#align { 
 		align-items: flex-start; 
@@ -131,11 +148,16 @@ week: 3
 
 <div class="slide">
 	<pre><code>.menu { flex-wrap: <span id="wrap-display">nowrap</span>; }</code></pre>
-	<select id="wrap-select">
-		<option selected>nowrap</option>
-		<option>wrap</option>
-		<option>wrap-reverse</option>
-	</select>
+	<table class="sliders">
+		<tr>
+			<td>flex-wrap</td>
+			<td><select id="wrap-select">
+				<option selected>nowrap</option>
+				<option>wrap</option>
+				<option>wrap-reverse</option>
+			</select></td>
+		</tr>
+	</table>
 	<style>
 	#wrap { 
 		flex-wrap: nowrap;
@@ -168,26 +190,31 @@ week: 3
 
 <div class="slide">
 	<pre><code>.menu { align-content: <span id="align-content-display">flex-start</span>; }</code></pre>
-	<select id="align-content-select">
-		<option>stretch</option>
-		<option selected>flex-start</option>
-		<option>flex-end </option>
-		<option>center</option>
-		<option>space-between</option>
-		<option>space-around</option>
-	</select>
+	<table class="sliders">
+		<tr>
+			<td>align-content</td>
+			<td><select id="align-content-select">
+				<option>stretch</option>
+				<option selected>flex-start</option>
+				<option>flex-end </option>
+				<option>center</option>
+				<option>space-between</option>
+				<option>space-around</option>
+			</select></td>
+		</tr>
+	</table>
 	<style>
-	#align-content { 
-		flex-wrap: wrap;
-		align-content: flex-start;
-		height: 400px;
-	}
-	#align-content .menu-item {
-		background: plum;
-		margin: 5px;
-		padding: 5px;
-		width: 180px;
-	}
+		#align-content { 
+			flex-wrap: wrap;
+			align-content: flex-start;
+			height: 400px;
+		}
+		#align-content .menu-item {
+			background: plum;
+			margin: 5px;
+			padding: 5px;
+			width: 180px;
+		}
 	</style>
 	<div class="menu flex" id="align-content">
 		<div class="menu-item">Home</div>
@@ -209,22 +236,27 @@ week: 3
 
 <div class="slide">
 	<pre><code>.menu { flex-direction: <span id="direction-display">row</span>; }</code></pre>
-	<select id="direction-select">
-		<option>row</option>
-		<option>row-reverse</option>
-		<option>column</option>
-		<option>column-reverse</option>
-	</select>
+	<table class="sliders">
+		<tr>
+			<td>flex-direction</td>
+			<td><select id="direction-select">
+				<option>row</option>
+				<option>row-reverse</option>
+				<option>column</option>
+				<option>column-reverse</option>
+			</select></td>
+		</tr>
+	</table>
 	<style>
-	#direction { 
-		flex-direction: row;
-	}
-	#align-content .menu-item {
-		background: plum;
-		margin: 5px;
-		padding: 5px;
-		width: 180px;
-	}
+		#direction { 
+			flex-direction: row;
+		}
+		#align-content .menu-item {
+			background: plum;
+			margin: 5px;
+			padding: 5px;
+			width: 180px;
+		}
 	</style>
 	<div class="menu flex" id="direction">
 		<div class="menu-item">Home</div>
@@ -252,38 +284,55 @@ week: 3
 	align-items: <span id="col-align-display">flex-start</span>; 
 	align-content: <span id="col-content-display">flex-start</span>; 
 }</code></pre>
-
-	<select id="col-wrap-select">
-		<option selected>nowrap</option>
-		<option>wrap</option>
-		<option>wrap-reverse</option>
-	</select>
-
-	<select id="col-justify-select">
-		<option selected>flex-start</option>
-		<option>flex-end</option>
-		<option>center</option>
-		<option>space-between</option>
-		<option>space-around</option>
-		<option>space-evenly</option>
-	</select>
-
-	<select id="col-align-select">
-		<option>stretch</option>
-		<option selected>flex-start</option>
-		<option>flex-end </option>
-		<option>center</option>
-		<option>baseline</option>
-	</select>
-
-	<select id="col-content-select">
-		<option>stretch</option>
-		<option selected>flex-start</option>
-		<option>flex-end </option>
-		<option>center</option>
-		<option>space-between</option>
-		<option>space-around</option>
-	</select>
+	<table class="sliders">
+		<tr>
+			<td>flex-wrap</td>
+			<td>
+				<select id="col-wrap-select">
+					<option selected>nowrap</option>
+					<option>wrap</option>
+					<option>wrap-reverse</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>justify-content</td>
+			<td><select id="col-justify-select">
+					<option selected>flex-start</option>
+					<option>flex-end</option>
+					<option>center</option>
+					<option>space-between</option>
+					<option>space-around</option>
+					<option>space-evenly</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>align-items</td>
+			<td>
+				<select id="col-align-select">
+				<option>stretch</option>
+				<option selected>flex-start</option>
+				<option>flex-end </option>
+				<option>center</option>
+				<option>baseline</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>align-content</td>
+			<td>
+				<select id="col-content-select">
+					<option>stretch</option>
+					<option selected>flex-start</option>
+					<option>flex-end </option>
+					<option>center</option>
+					<option>space-between</option>
+					<option>space-around</option>
+				</select>
+			</td>
+		</tr>
+	</table>
 
 	<style>
 	#col { 
@@ -333,20 +382,34 @@ week: 3
 <div class="slide">
 	<pre><code>.menu-item { flex-grow: <span id="all-grow-display">1</span>; }
 #home { flex-grow: <span id="home-grow-display">1</span>; }</code></pre>
-	<select id="all-grow-select">
-		<option>0</option>
-		<option selected>1</option>
-		<option>2</option>
-		<option>3</option>
-		<option>4</option>
-	</select>
-	<select id="home-grow-select">
-		<option>0</option>
-		<option selected>1</option>
-		<option>2</option>
-		<option>3</option>
-		<option>4</option>
-	</select>
+	<table class="sliders">
+		<tr>
+			<td>.menu-item</td>
+			<td>
+				<select id="all-grow-select">
+					<option>0</option>
+					<option selected>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>#home</td>
+			<td>
+				<select id="home-grow-select">
+					<option>0</option>
+					<option selected>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+				</select>
+			</td>
+		</tr>
+	</table>
+	
+	
 	<style>
 	#grow .grow-menu-item {
 		background: plum;
@@ -380,28 +443,40 @@ week: 3
 <div class="slide">
 	<pre><code>.menu-item { flex-basis: <span id="all-basis-display">auto</span>; }
 #home { flex-basis: <span id="home-basis-display">auto</span>; }</code></pre>
-	<select id="all-basis-select">
-		<option selected>auto</option>
-		<option>100px</option>
-		<option>200px</option>
-		<option>2em</option>
-		<option>50%</option>
-	</select>
-	<select id="home-basis-select">
-		<option selected>auto</option>
-		<option>100px</option>
-		<option>200px</option>
-		<option>2em</option>
-		<option>50%</option>
-	</select>
+	<table class="sliders">
+		<tr>
+			<td>.menu-item</td>
+			<td>
+				<select id="all-basis-select">
+					<option selected>auto</option>
+					<option>100px</option>
+					<option>200px</option>
+					<option>2em</option>
+					<option>50%</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>#home</td>
+			<td>
+				<select id="home-basis-select">
+					<option selected>auto</option>
+					<option>100px</option>
+					<option>200px</option>
+					<option>2em</option>
+					<option>50%</option>
+				</select>
+			</td>
+		</tr>
+	</table>
 	<style>
-	.menu { position: relative; }
-	.basis-menu-item {
-		background: plum;
-		margin: 5px;
-		padding: 5px;
-		flex-basis: auto;
-	}
+		.menu { position: relative; }
+		.basis-menu-item {
+			background: plum;
+			margin: 5px;
+			padding: 5px;
+			flex-basis: auto;
+		}
 	</style>
 	<div class="menu flex">
 		<div class="basis-menu-item" id="basis-home">Home</div>
@@ -429,20 +504,27 @@ week: 3
 <div class="slide">
 	<pre><code>.menu-item { order: 1; }
 #home { order: <span id="home-order-display">1</span>; }</code></pre>
-	<select id="home-order-select">
-		<option selected>1</option>
-		<option>2</option>
-		<option>-1</option>
-		<option>99</option>
-	</select>
+	<table class="sliders">
+		<tr>
+			<td>#home</td>
+			<td>
+				<select id="home-order-select">
+					<option selected>1</option>
+					<option>2</option>
+					<option>-1</option>
+					<option>99</option>
+				</select>
+			</td>
+		</tr>
+	</table>
 	<style>
-	.menu { position: relative; }
-	.order-menu-item {
-		background: plum;
-		margin: 5px;
-		padding: 5px;
-		order: 1;
-	}
+		.menu { position: relative; }
+		.order-menu-item {
+			background: plum;
+			margin: 5px;
+			padding: 5px;
+			order: 1;
+		}
 	</style>
 	<div class="menu flex">
 		<div class="order-menu-item" id="order-home">Home</div>
@@ -463,23 +545,35 @@ week: 3
 </div>
 
 <div class="slide">
-	<pre><code>.menu { align-items: <span id="align-self-display">flex-start</span>; }
+	<pre><code>.menu-item { align-items: <span id="align-self-display">flex-start</span>; }
 #home { align-self: <span id="home-align-display">auto</span>; }</code></pre>
-	<select id="align-self-select">
-		<option selected>flex-start</option>
-		<option>flex-end </option>
-		<option>center</option>
-		<option>baseline</option>
-		<option>stretch</option>
-	</select>
-	<select id="home-align-select">
-		<option selected>auto</option>
-		<option>flex-start</option>
-		<option>flex-end </option>
-		<option>center</option>
-		<option>baseline</option>
-		<option>stretch</option>
-	</select>
+	<table class="sliders">
+		<tr>
+			<td>.menu-item</td>
+			<td>
+				<select id="align-self-select">
+					<option selected>flex-start</option>
+					<option>flex-end </option>
+					<option>center</option>
+					<option>baseline</option>
+					<option>stretch</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>#home</td>
+			<td>
+				<select id="home-align-select">
+					<option selected>auto</option>
+					<option>flex-start</option>
+					<option>flex-end </option>
+					<option>center</option>
+					<option>baseline</option>
+					<option>stretch</option>
+				</select>
+			</td>
+		</tr>
+	</table>
 	<style>
 	#align-self { 
 		align-items: flex-start; 
