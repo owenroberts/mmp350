@@ -5,13 +5,14 @@ week: 5
 ---
 
 <div class="slide">
-	<p>We've all looked at the <a href="https://color.adobe.com/create/color-wheel/" target="_blank">Adobe Kuler</a> site for making color schemes.  But what do the different Color Rules (analogous, monochromatic, triad, complementary) signify?  These are basic concepts in <a href="http://www.colormatters.com/color-and-design/basic-color-theory" target="_blank">color theory</a>.  Let's take a look.</p>
+	<p>You have probably used the <a href="https://color.adobe.com/create/color-wheel/" target="_blank">Adobe Color</a> site for creating color schemes.</p>
+	<p>Each of the selections in the Color Scheme or Color Harmony drop down represent different color schemes based on relationships on the color wheel.</p>  
+	<p>These are basic concepts in <a href="http://www.colormatters.com/color-and-design/basic-color-theory" target="_blank">color theory</a>.</p>
 </div>
 
 <div class="slide">
-	<p>The main thing I want to take away from these concepts is the fact that color relationships can be described using numbers and relative numerical values.</p>
+	<p>In each of these schemes, the colors can be described with relative numerical values.</p>
 	<p>Because all colors are mapped on the color wheel, we can set up basic relationships and apply them to different colors.</p>
-	<p>For a complementary color, we just have to move the color wheel 180 degrees.</p>
 </div>
 
 <div class="slide">
@@ -107,7 +108,7 @@ week: 5
 	<p>For the examples we'll focus on creating three color rules based on a main hue.</p>
 	<p>We start by defining a hue, which is just a number between 0 and 360.</p>
 	<pre><code>:root {
-	--main-hue: 240; /* 240 is a nice dark blue */
+	--main-hue: 240; /* 240 is a nice blue */
 }</code></pre>
 </div>
 
@@ -163,6 +164,8 @@ week: 5
 	--accent-one: hsl(var(--accent-one-hue), 50%, 50%);
 	--accent-two: hsl(var(--accent-two-hue), 50%, 50%);
 }</code></pre>
+	<p>The custom property <code>var(--main-hue)</code> is used first to calcuate the other color <code>calc(240 - 120)</code>.</p>
+	<p>Then the resulting hue <code>var(--accent-one-hue)</code> goes into the HSL rule where the hue value would be <code>hsl(120, 50%, 50%)</code>.</p>
 </div>
 
 <div class="slide">
@@ -218,13 +221,9 @@ week: 5
 </div>
 
 <div class="slide">
-	<p>That covers creating a <note>triadic</note> scheme, with a color difference of 120 degrees.</p>
-	<p>Let's take a look at a few other color schemes.</p>
-</div>
-
-<div class="slide">
 	<h2>Analagous</h2>
-	<p>Primary color, second and support colors hue in opposite directions at equal degrees, ie (30 and -30).</p>
+	<p>An analagous color scheme is a similar setup to the triadic color scheme but there are smaller jumps between colors.</p>
+	<p>Analagous color scheme tend to exist in natural settings and give a sense of simple harmony.</p>
 </div>
 
 <div class="slide">
