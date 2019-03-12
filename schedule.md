@@ -59,9 +59,10 @@ title: Schedule
 ## Week 6 **Web App Pitch**
 - [Creating a pitch deck](notes/pitch/)
 - [User interaction flow chart](notes/ui/)
+- Begin work on Midterm
 
 ## Week 7 **Midterm Workshop**
-- Pitch design for web application
+- Pitch for web application
 - Finished template design
 
 ## Week 8 **JavaScript**
