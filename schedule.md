@@ -67,7 +67,6 @@ title: Schedule
 
 ## Week 8 **JavaScript**
 - [JavaScript input & variables](notes/javascript/input/)
-- [Code Academy: Getting Started with JavaScript](https://www.codecademy.com/courses/getting-started-v2/0/1){:target="blank"}
 
 ## Week 9 **Logic**
 - [Data types: Number, String, Boolean](notes/data_types)
