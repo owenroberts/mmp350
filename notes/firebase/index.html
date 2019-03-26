@@ -1,0 +1,82 @@
+<div class="slide">
+	<h2>Adding data</h2>
+	<p>Today we're going to add some data manually just to see how it works and we'll write some code on the client side to update our webpage when new data is added.</p>
+	<p>One of the convenient aspects of Firebase is the ability to add and update data directly from the console.</p>
+	<img src="db.png">
+</div>
+
+<div class="slide">
+	<h2>Getting data</h2>
+	<p>After adding some data, we need to show it on the client side.</p>
+	<p>First let's add some HTML to render the data in and then we'll use JavaScript with some Firebase methods to grab the data from the database.</p>
+	<pre><code>&lt;div id="data"&gt;&lt;/div&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<p>Next we'll create an external JavaScript file to grab data from the database and populate our div.</p>
+	<pre><code>&lt;script type="text/javascript" src="js/data.js"&gt;&lt;/script&gt;</code></pre>
+</div>
+
+<div class="slide">
+	<p>First we'll create a reference to the <code>#data</code> so we can add new elements inside.</p>
+	<pre><code>const dataDiv = document.getElementById('data');</code></pre>
+	<p>We also need a reference to the database.</p>
+	<pre><code>const db = firebase.database().ref();</code></pre>
+</div>
+
+<div class="slide">
+	<h2>Firebase Events</h2>
+	<p>Because Firebase is a real-time database, there are events set up to fire whenever data is changed in the database.</p>
+	<p>These events are listened to with the <code>.on</code> method.  The <code>value</code> event occurs whenever data is changed.</p>
+	<p>We can also listen for specific updates to the data using the <code>child_added</code>, <code>child_changed</code> and <code>child_removed</code> events.</p>
+</div>
+
+<div class="slide">
+	<p>When any of those events occur, we grab the data and update our HTML.</p>
+	<div class="ex">db.on('value', function(snapshot) {
+	console.log(snap);
+});
+
+db.on('child_added', function(snapshot) {
+	const elem = document.createElement('div');
+	elem.textContent = snap.val();
+	elem.id = snap.key;
+	dataDiv.appendChild(elem);
+});
+
+db.on('child_changed', function(snapshot) {
+	const elem = document.getElementById(snap.key);
+	elem.textContent = snap.val();
+});
+
+db.on('child_removed', function(snapshot) {
+	const elem = document.getElementById(snap.key);
+	elem.remove();
+});</div>
+</div>
+
+<!--  -->
+
+<div class="slide">
+	<p><code>ref.set</code> and <code>credential.user.updateProfile</code> also return promises.  If there's something that needs to be updated those could be assigned to new promise objects.</p>
+	<p>This code will add a new user with a user display name.  Check the Firebase console database to see the updated user.</p>
+</div>
+
+
+<!--  -->
+
+<div class="slide">
+	<p>We can call this function from the promise returned when we sign in.</p>
+	<div class="ex">const signInPromise = auth.signInWithEmailAndPassword(email, password);
+signInPromise.then(displayUserInfo);</div>
+</div>
+
+<div class="slide">
+	<p>Then we have to go back and modify log out to do the opposite.</p>
+	<div class="ex">logOutBtn.addEventListener('click', function() {
+	firebase.auth().signOut();
+	document.getElementById('auth').style.display = 'block';
+	document.getElementById('user-info').style.display = 'none';
+});</div>
+</div>
+

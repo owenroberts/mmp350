@@ -67,6 +67,8 @@ title: Schedule
 
 ## Week 8 **JavaScript**
 - [JavaScript input & variables](notes/javascript/input/)
+- [Firebase Intro](notes/firebase/intro)
+- [Firebase Authentication](notes/firebase/auth)
 
 ## Week 9 **Logic**
 - [Data types: Number, String, Boolean](notes/data_types)
