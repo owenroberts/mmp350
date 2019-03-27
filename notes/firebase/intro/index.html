@@ -42,13 +42,18 @@ week: 8
 
 <div class="slide">
 	<p>We need to throw that code into an HTML page along with some references to the Firebase SDK so that we can use Firebase in our app.</p>
+	<p>New changes actually prefer Firebase to be loaded by specific modules, rather than all at once.</p>
+	<div class="ex" data-err>&lt;script src="https://www.gstatic.com/firebasejs/5.0.0/firebase.js"&gt;&lt;/script&gt;</div>
+	<p>This should be replaced with this.</p>
+	<div class="ex" data-err>&lt;script src="https://www.gstatic.com/firebasejs/5.0.0/firebase-app.js"&gt;&lt;/script&gt;
+&lt;script src="https://www.gstatic.com/firebasejs/5.0.0/firebase-auth.js"&gt;&lt;/script&gt;</div>
 </div>
 
 <div class="slide">
 	<div class="ex" data-lang="html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-	&lt;title&gt;firebase&lt;/title&gt;
+	&lt;title&gt;my app&lt;/title&gt;
 	&lt;meta charset="utf-8"&gt;
 	&lt;link href="style.css" rel="stylesheet" type="text/css"&gt;
 	&lt;script src="https://www.gstatic.com/firebasejs/5.0.0/firebase-app.js"&gt;&lt;/script&gt;

@@ -73,29 +73,42 @@ title: Schedule
 ## Week 9 **Logic**
 - [Data types: Number, String, Boolean](notes/data_types)
 - [Logic](notes/logic/)
+- [Firebase Database]()
+
+<!-- 
+ - [Publish & Display Posts](notes/firebase/post)
+- break publish into db
+- [JSON API](notes/javascript/json_api/) ?? 
+- display users
+- updating information ... 
+ -->
 
 ## Week 10 **Functions**
 - [Functions](notes/javascript/functions/)
 - [DOM & Events](notes/javascript/events)
+- [Firebase Display Data](notes/firebase/post)
 
 ## Week 11 **JSON Data & API**
 - [JSON](notes/javascript/json)
-- [JSON API](notes/javascript/json_api/)
-- [Google Maps API](notes/javascript/google_maps/)
+- [Interacting with posts](notes/firebase/likes)
 
-## Week 12 **Firebase**
-- [Firebase Intro](notes/firebase/intro)
-- [Firebase Authentication](notes/firebase/auth)
 
 ## Week 13 **Data**
-- [Publish & Display Posts](notes/firebase/post)
-- [Interacting with posts](notes/firebase/likes)
+- [Google Maps API](notes/javascript/google_maps/)
 - [Firebase Storage](notes/firebase/storage)
 
 ## Week 14 **Final**
 
 
 <!-- 
+
+	to do for app
+	- all users page
+	- all posts page
+	- user routes page
+	- post route page
+	- search function?
+	
 
 	other topics
 - debugging
