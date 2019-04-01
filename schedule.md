@@ -71,8 +71,8 @@ title: Schedule
 - [Firebase Authentication](notes/firebase/auth)
 
 ## Week 9 **Logic**
-- [Data types: Number, String, Boolean](notes/data_types)
-- [Logic](notes/logic/)
+- [Data types](notes/javascript/data_types)
+- [Logic](notes/javascript/logic)
 - [Firebase Database]()
 
 <!-- 

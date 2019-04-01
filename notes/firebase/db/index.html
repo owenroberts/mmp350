@@ -1,176 +1,190 @@
 ---
 layout: slides
 title: Firebase Database
-week: 6
+week: 9
 ---
 
 <div class="slide">
 	<p>Last week we created users for our app.  This week we will start connecting the users to our database.</p>
-	<p>In order to securely connect a user, we need to verify the user on the server side.  To do that we need to set up the Firebase Admin and authentication tools.</p>
-</div>
-
-<div class="slide">
-	<h2>Firebase Admin</h2>
-	<p>Start by installing the Firebase Admin.</p>
-	<pre><code class="javascript">$ npm install --save firebase-admin</code></pre>
-	<p>Add that to <code>server.js</code> with other packages.</p>
-	<pre><code>const admin = require('firebase-admin');</code></pre>
-</div>
-
-<div class="slide">
-	<p>We need to then initialize the Firebase admin.</p>
-	<pre><code>const firebaseAdmin = admin.initializeApp({
-	credential: admin.credential.cert(serviceAccount),
-	databaseURL: ''
-});</code></pre>
-	<p>We'll get the databaseURL shortly.</p>
-</div>
-
-<div class="slide">
-	<h2>Server side authentication</h2>
-	<p>Next we're going to create a <note>middleware</note> in our Express app to handle authentication on routes that require it.</p>
-	<p>In Express, middleware is basically functions that are used in the middle of <code>request</code> and <code>resopnse</code>.  They have access to those values but do not render a resopnse.</p>
-	<p>Instead, they call <code>next</code> to return to the route.</p>
-</div>
-
-<div class="slide">
-	<p>Our Firebase Admin middleware is called <code>isAuthenticated</code>.</p>
-	<pre><code>function isAuthenticated(request, response, next) {
-	
-}</code></pre>
-</div>
-
-<div class="slide">
-	<p>We use this to restrict access from non-authenticated users to the parts of our application that access the database.</p>
-	<p>Our app is going to allow users to make posts (like tweets).  We will create a <code>'/post'</code> route that requires authentication.</p>
-	<pre><code>app.get('/post', isAuthenticated, function(request, resopnse){
-	response.render('post.ejs');
-});</code></pre>
-	<p>Notice that <code>isAuthenticated</code> is inserted into the route arguments.</p>
-</div>
-
-<div class="slide">
-	<p>Now we need to get some info from the Firebase Console to make authentication work.</p>
-	<p>Return to <a href="https://console.firebase.google.com/" target="blank">console.firebase.google.com</a> and open the project you created.</p>
-	<p>From there go to Project Overview > Settings</p>
-	<img src="settings.png" alt="">
-</div>
-
-<div class="slide">
-	<p>From there click on "Service Accounts".</p>
-	<img src="firebase-admin.png" alt="">
-</div>
-
-<div class="slide">
-	<p>There you will see the <code>databaseURL</code>.  Copy that into your project code.</p>
-	<p>Next click the Generate Key button.</p>
-	<img src="generate.png" alt="">
-</div>
-
-<div class="slide">
-	<p>This will download a <code>json</code> file with your authentication key inside it.</p>  	
-	<p>Do not share this information with anyone or commit it to a public repo!  This is how you authenticate requests to your Firebase project and database.</p>
-	<p>Move that files to your project and copy the name of it into the line <code>const serviceAccount = require('');</code> starting with <code>./</code></p>
-</div>
-
-<div class="slide">
-	<p>Now to set this up on the client side.  On <code>home.ejs</code> we will add a link to the <code>'/post'</code> page.  To authenticate the user we will pass a <code>uid</code> from Firebase to tell the server the user is logged in.</p>
-	<p>We need to use a <code>&lt;form&gt;</code> element to pass the <code>uid</code>.</p>
-	<pre><code>&lt;form method="GET" action="/post"&gt;
-	&lt;input type="hidden" name="uid" id="userInput"&gt;
-	&lt;input type="submit" value="Write a new post"&gt;
-&lt;/form&gt;</code></pre>
-</div>
-
-<div class="slide">
-	<p>In JavaScript we can get the <code>uid</code> from the <code>user</code> user object:</p>
-	<pre><code>if (user) {
-	console.log('user', user);
-	const userInput = document.getElementById("userInput");
-	userInput.value = user.uid;
-} </code></pre>
-</div>
-
-<div class="slide">
-	<p>In the form the user value is <code>hidden</code> because the user doesn't need to see it or interact with it for it to work.</p>
-	<p>When the user clicks the button to add a new post it will pass the <code>uid</code> as a parameter into the <code>isAuthenticated</code> function:</p>
-	<pre><code>function isAuthenticated(request, response, next) {
-	const uid = request.query.uid;
-	firebaseAdmin.auth().getUser(uid)
-		.then(function(user){
-			next();
-		})
-		.catch(function(error){
-			response.redirect('/');
-		});
-}</code></pre>
-</div>
-
-<div class="slide">
-	<p>If the user exists, we go to the post page.  If not, redirect the user back to the home page.  You could also send them to a login or create user page or return a message asking them to login.</p>
-	<p>There is more authentication that could happen here, for example looking at the <code>emailVerified</code> field or using a custom token.  For now we just want to go over the basics, we can add more security if we have time later in the semester.</p>
-</div>
-
-<div class="slide">
-	<h2>localStorage</h2>
-	<p>You may be wondering at this point how the user stays signed in when the page is reloaded.</p>
-	<p>We wrote some code to allow the user to create an account, login and logout, and used some Firebase code to log the user when those events occur, but if we reload the page, that code shows the user info before the user actually does anything.</p>
-	<p>Firebase employs a feature of the browser called <code>localStorage</code> to keep the user logged in.  localStorage is a simple local database where web pages can store information to access later that is only used for that specific user.</p>
-</div>
-
-<div class="slide">
-	<p>You can view <code>localStorage</code> by going to the <note>Developer Tools</note> window in Chrome and opening the <note>Application</note> tab.  There you will see a drop down called <note>Local Storage</note> and if you click there you will see the <code>localhost:8000</code> address with a piece of data stored that starts with <code>firebase:authUser</code>.   Select this and you will see the data stored inside in the inspector window below.</p>
-	<img src="local_storage.png" alt="">
-</div>
-
-<div class="slide">
-	<h2>Post</h2>
-	<p>Now that our user is authenticated, they can make a new post, which we will add to the database.</p>
-	<p>Let's start by building <code>post.ejs</code>.  To get started, simply make a copy of <code>home.ejs</code> in the <code>views/</code> folder and rename it.</p>
-	<p>We can remove the <code>form</code> and links to <code>/create</code> and <code>login</code> as well as the <code>signOut</code> function and <code>button</code>.</p>
-	<p>Everything else should stay the same, and we'll add some HTML to make a post.</p>
-</div>
-
-<div class="slide">
-	<pre><code>&lt;div id="post"&gt;
-	&lt;textarea id="post-text"&gt;&lt;/textarea&gt;
-	&lt;br&gt;
-	&lt;button onclick={savePost()}&gt;Post&lt;/button&gt;
-&lt;/div&gt;</code></pre>
 </div>
 
 <div class="slide">
 	<h2>Firebase Database</h2>
 	<p>Next we'll make a function but first we have to set up the database in the Firebase Console.</p>
+	<p>Firebase has a new database called Cloud Store, but we want to work with the <note>Realtime Database</note> for our app, so scroll down and choose that one.</p>
+</div>
+
+<div class="slide">
 	<img src="database.png" alt="">
 </div>
 
 <div class="slide">
-	<p>In the Database tab, click "Get Started".</p>
+	<p>In the Database tab, click <note>Create Database</note>.</p>
 	<p>We can practice adding data manually here.  Firebase is awesome because we can see how the data is structured and watch it update in real time.</p>
+</div>
+
+<div class="slide">
 	<img src="data.png" alt="">
 </div>
 
 <div class="slide">
-	<p>That's where our data will appear.  Let's also take a quick look at the Rules tab.  This determines which users can access to read or write to the database.</p>
+	<h2>Rules</h2>
+	<p>Let's also take a quick look at the Rules tab.  This determines which users can access to read or write to the database.</p>
+</div>
+
+<div class="slide">
 	<img src="rules.png" alt="">
 </div>
 
 <div class="slide">
-	<h2>Save post</h2>
-	<p>Now we'll write some client side JavaScript to save a post.</p>
-	<p>We'll walk through each line in this code.  The basic steps are to get the user id (uid), get a reference to the database, store the text entered by the user and the current date in the database.</p>
+	<p>The default rules look like this.</p>
+	<div class="ex">{
+	"rules": {
+		".read": true,
+		".write": true
+	}
+}</div>
+	<p>This basically means anyone can access any part of the database.  That's not a good rule set.  Let's update the <code>".write"</code> rule.</p>
 </div>
 
 <div class="slide">
-	<pre><code>function savePost() {
-	const uid = firebase.auth().currentUser.uid;
-	const db = firebase.database();
-	const ref = db.ref('/users/' + uid + '/posts');
-	const post = {
-		text: document.getElementById('post-text').value,
-		date: new Date().toString()
+	<div class="ex">{
+	"rules": {
+		".read": true,
+		".write": "auth != null"
+	}
+}</div>
+	<p>This is a really basic rule that says if you are not authenticated you cannot write anything to the database, but you can still read content from the database.</p>
+</div>
+
+
+<div class="slide">
+	<p>We can update this further to restrict users from writing to other users profiles.</p>
+	<div class="ex">{
+	"rules": {
+		"users": {
+			".read": true,
+			".write": "$uid === auth.uid"
+		}
+	}
+}</div>
+</div>
+
+<div class="slide">
+	<p>Later when we add posting, we'll restrict these rules further based on different parts of the database.</p>
+	<p>Here is <a href="https://gist.github.com/codediodeio/6dbce1305b9556c2136492522e2100f6" target="_blank">a list</a> of some good default Firebase rules.</p>
+</div>
+
+
+<div class="slide">
+	<h2>Add a user to the database</h2>
+	<p>We're going to update the <code>updateUser</code> function in <note>auth.js</note> to add the new user to the database.</p>
+	<p>To do this we will use <code>credential.user.uid</code>, the unique user ID generated by the Firebase Authentication table, as the user key.</p>
+</div>
+
+<div class="slide">
+	<p>First, for this to work, we need to add the <code>firebase-database.js</code> module in our HTML file.</p>
+	<div class="ex" data-err>&lt;script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"&gt;&lt;/script&gt;
+&lt;script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"&gt;&lt;/script&gt;
+&lt;script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-database.js"&gt;&lt;/script&gt;</div>
+</div>
+
+<div class="slide">
+	<div class="ex">function updateUser(credential) {
+	const userInfo = {
+		displayName: signupUsername.value
 	};
-	return ref.push(post).key
-}</code></pre>
+	credential.user.updateProfile(userInfo);
+
+	/* add to database */
+	const db = firebase.database();
+	const ref = db.ref('users').child(credential.user.uid);
+	ref.update(userInfo);
+}</div>
+</div>
+
+<div class="slide">
+	<img src="user.png">
+</div>
+
+<div class="slide">
+	<h2>Display Data</h2>
+	<p>Now that we have stored a user in the database, we want to display the user information on their profile page.</p>
+	<p>We'll start by adding a link to the profile page.</p>
+</div>
+
+<div class="slide">
+	<p>Use an already existing profile link or create one and add an ID like <code>#profile-link</code>.</p>
+	<p>Then update the <code>authState</code> function in <note>auth.js</note> to add a link using the <code>uid</code>.</p>
+	<p>By adding the user id as a search term, with the <code>?</code> separator in the URL, we can retrieve the user info from the database by referencing the <code>uid</code>.</p>
+</div>
+
+<div class="slide">
+	<div class="ex" data-lang="html">&lt;div id="user-info"&gt;
+	&lt;div id="display-name"&gt;&lt;/div&gt;
+	&lt;ul id="user-menu"&gt;
+		&lt;li&gt;&lt;a id="profile-link" href=""&gt;Profile&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;button id="log-out"&gt;Log Out&lt;/button&gt;
+&lt;/div&gt;</div>
+</div>
+
+<div class="slide">
+	<div class="ex">function authState(user) {
+	if (user) {
+		displayName.textContent = 'Hello, ' + user.displayName;
+		document.getElementById('profile-link').href = "/user.html?=" + user.uid;
+		document.body.classList.add('logged-in');
+	} else {
+		document.body.classList.remove('logged-in');
+	}
+}</div>
+</div>
+
+<div class="slide">
+	<p>To create a profile page, let's make a new HTML file called <note>user.html</note>.  This page will show users profiles to be viewed by other users, or edited if the user views their own profile.</p>
+	<p>This page will be almost identical to <note>index.html</note> except we will add a new script, <note>js/profile.js</note> and a new HTML section for the profile information.</p>
+</div>
+
+<div class="slide">
+	<div class="ex" data-lang="html">&lt;div id="profile"&gt;
+	&lt;h1 id="profile-display-name"&gt;&lt;/h1&gt;
+&lt;/div&gt;</div>
+</div>
+
+<div class="slide">
+	<p>Our script will get the <code>uid</code> from the profile link, which looks something like this.</p>
+	<pre><code>http://localhost/user.html?=Ge8r8xjMCUZMhRUEIPf8xdxOcMy1</code></pre>
+	<p>That <code>uid</code> is used to reference the user's information from the database.</p>
+</div>
+
+<div class="slide">
+	<div class="ex">const uid = location.search.split('=')[1];
+const db = firebase.database();
+const ref = db.ref('users').child(uid);
+
+ref.on('value', updateUser);
+
+const profileDisplayName = document.getElementById('profile-display-name');
+
+function updateUser(snapshot) {
+	const user = snapshot.val();
+	profileDisplayName.textContent = user.displayName;
+}</div>
+</div>
+
+<div class="slide">
+	<p><code>ref.on('value')</code> is an event that triggers when the database detects data has been added or changed at this location.  Test this by changing the data manually in Firebase.</p>
+	<p>The data should update without reloading the page.  This is the <em>realtime</em> aspect of Firebase</p>
+	<p><code>ref.once('value')</code> can be used if the data should not be updated in realtime.</p>
+</div>
+
+<div class="slide">
+	<p>Firebase refers to the data returned by events as <note>snapshots</note>.  That's why the argument of <code>updateUser</code> is <code>snapshot</code>.</p>
+	<p><code>snapshot.val()</code> is used to get the actual data from the event.  The <code>snapshot</code> itself has more properties that can be used to add other events and responses. </p>
+</div>
+
+<div class="slide">
+	<p>Try adding more data to the user profile manually in the database and then displaying it on the page.</p>
+	<p>Later we'll add the ability to edit user profile information if the user is logged in.</p>
 </div>
