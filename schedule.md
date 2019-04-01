@@ -73,7 +73,7 @@ title: Schedule
 ## Week 9 **Logic**
 - [Data types](notes/javascript/data_types)
 - [Logic](notes/javascript/logic)
-- [Firebase Database](firebase/db)
+- [Firebase Database](notes/firebase/db)
 - **Assignment**
 	- Manually add data to users that is needed for profile
 	- Update profile display page to display information
