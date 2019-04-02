@@ -75,8 +75,8 @@ title: Schedule
 - [Logic](notes/javascript/logic)
 - [Firebase Database](notes/firebase/db)
 - **Assignment**
-	- Manually add data to users that is needed for profile
-	- Update profile display page to display information
+	- Make a list of information needed for the user profile
+	- Add inputs for the user to add information to the database
 
 <!-- 
  - [Publish & Display Posts](notes/firebase/post)

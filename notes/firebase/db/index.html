@@ -58,17 +58,7 @@ week: 9
 </div>
 
 
-<div class="slide">
-	<p>We can update this further to restrict users from writing to other users profiles.</p>
-	<div class="ex">{
-	"rules": {
-		"users": {
-			".read": true,
-			".write": "$uid === auth.uid"
-		}
-	}
-}</div>
-</div>
+
 
 <div class="slide">
 	<p>Later when we add posting, we'll restrict these rules further based on different parts of the database.</p>
@@ -105,6 +95,23 @@ week: 9
 
 <div class="slide">
 	<img src="user.png">
+</div>
+
+<div class="slide">
+	<p>Now that we have users, let's update our database rules to restrict users from writing to the users part of the database unless their login uid matches the page uid.</p>
+	<div class="ex">{
+	"rules": {
+		"users": {
+			"$uid": {
+				".read": true,
+				".write": "$uid === auth.uid"
+			}
+		}, 	
+		".read": true,
+		".write": false
+	}
+}</div>
+	<p>Here the <code>"$uid"</code> represents whichever user's profile is loaded, matching the reference inside the <code>"users"</code> part of the database.</p>
 </div>
 
 <div class="slide">
@@ -154,7 +161,7 @@ week: 9
 
 <div class="slide">
 	<p>Our script will get the <code>uid</code> from the profile link, which looks something like this.</p>
-	<pre><code>http://localhost/user.html?=Ge8r8xjMCUZMhRUEIPf8xdxOcMy1</code></pre>
+	<pre><code>http://localhost/user.html?uid=Ge8r8xjMCUZMhRUEIPf8xdxOcMy1</code></pre>
 	<p>That <code>uid</code> is used to reference the user's information from the database.</p>
 </div>
 
@@ -185,6 +192,87 @@ function updateUser(snapshot) {
 </div>
 
 <div class="slide">
-	<p>Try adding more data to the user profile manually in the database and then displaying it on the page.</p>
-	<p>Later we'll add the ability to edit user profile information if the user is logged in.</p>
+	<h2>Updating data</h2>
+	<p>Starting with the profile, our user should be able to edit their information after it has been added to the database.</p>
+	<p>We'll start with the username.</p>
+	<p>The user will only be able to edit this information if they are viewing their own profile page.</p>
+</div>
+
+<div class="slide">
+	<p>To start, we'll add a button to open the edit section and the the edit section itself.</p>
+	<div class="ex" data-lang="html">&lt;div id="profile"&gt;
+	&lt;h1 id="profile-display-name"&gt;&lt;/h1&gt;
+	&lt;div id="profile-edit"&gt;
+		&lt;input id="profile-display-name-edit" placeholder="username"&gt;
+		&lt;button id="profile-display-name-update"&gt;Update&lt;/button&gt;
+	&lt;/div&gt;
+	&lt;button id="edit"&gt;Edit&lt;/button&gt;
+&lt;/div&gt;</div>
+</div>
+
+<div class="slide">
+	<p>The edit button should only be visible if the user is logged in, so we can add to the CSS where we display content based on the <code>.logged-in</code> in class.</p>
+	<p>The <code>#profile-edit</code> section will not be displayed until the edit button is clicked.</p>
+</div>
+
+<div class="slide">
+	<div class="ex" data-lang="css">#edit, #profile-edit {
+	display: none;
+}
+.logged-in #edit {
+	display: block;
+}</div>
+</div>
+
+<div class="slide">
+	<p>Now we can update <note>js/profile.js</note> to open the edit section and then update the database.</p>
+	<p>Add this below the <code>updateUser</code> function.</p>
+</div>
+
+<div class="slide">
+	<div class="ex">/* edit profile */
+const editButton = document.getElementById('edit');
+const editProfile = document.getElementById('profile-edit');
+editButton.onclick = function() {
+	editProfile.style.display = 'block';
+};</div>
+</div>
+
+<div class="slide">
+	<p>This will open the <code>#profile-edit</code> div when the edit button is clicked.</p>
+	<p>Then we need to get the value from the username input.</p>
+	<p>Here will use a conditional statement to verify that the user has actually added information.  Unlike the Firebase Authenticaion, the database won't check anything like the length of data by default, so we can add some basic checks to make sure information was added.</p>
+</div>
+
+<div class="slide">
+	<div class="ex">// usernmae edit button
+const profileUpdate = document.getElementById('profile-display-name-update');
+profileUpdate.onclick = editUser;
+
+function editUser() {
+	const nameInput = document.getElementById('profile-display-name-edit');
+
+	// test if nameInput.value, the text entered by user, is at least three characters long
+	if (nameInput.value.length > 3) {
+		// update the database if so
+		ref.update({ displayName: nameInput.value });
+		editProfile.style.display = 'none';
+		nameInput.style.borderColor = 'gray';
+	} else {
+		// if not highlight the nameInput
+		nameInput.placeholder = "Name needs at least 3 characters";
+		nameInput.style.borderColor = 'red';
+	}
+}</div>
+</div>
+
+<div class="slide">
+	<p>The rule the a user name needs at least three characters is arbitrary, that number could be increased or a completely different rule could be added.</p>
+	<p>For other user data, the rules may be different.</p>
+</div>
+
+<div class="slide">
+	<p>To update your application, start by writing down all of the information you need for a user profile.</p>
+	<p>That does not include posts or updates users make generally.  For guidance, look at the profile pages of other web services, like GitHub or Twitter.</p>
+	<p>Once you have a list of the data you need, add those to the database and update the HTML and JavaScript so the user can add information and update it.</p>
 </div>
