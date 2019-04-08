@@ -1,7 +1,7 @@
 ---
 layout: slides
 title: Posting & Displaying Posts
-week: 4
+week: 10
 ---
 
 <div class="slide">
@@ -18,14 +18,6 @@ week: 4
 	&lt;br&gt;
 	&lt;button id="submit-post"&gt;Publish&lt;/button&gt;
 &lt;/div&gt;</div>
-</div>
-
-<div class="slide">
-	<p>Now we can add JavaScript to listen to when the user click the "Publish" button and save their content to our database.</p>
-	<p>As usual, we'll start with an event listener to make sure the HTML has loaded before running and JavaScript.</p>
-	<div class="ex">window.addEventListener('load', function() {
-	// post code
-});</div>
 </div>
 
 <div class="slide">
@@ -62,10 +54,6 @@ publishButton.addEventListener('click', publishPost);</div>
 <div class="slide">
 	<h2>Displaying posts</h2>
 	<p>Once we can save posts, we want to display them.  This is a separate function that will go in <note>js/posts.js</note>.  This way we can keep processes separate to be more modular.</p>
-	<p>Again start with the window load event listener.</p>
-	<div class="ex">window.addEventListener('load', function() {
-	// data code
-});</div>
 </div>
 
 <div class="slide">
@@ -110,10 +98,11 @@ const postRef = firebase.database().ref('posts');</div>
 	postInfo.innerHTML += " on ";
 	postInfo.appendChild(postDate);
 
-	/* chronological order */
-	// postsDiv.appendChild(postDiv); 
+	
 	/* reverse chronological order */
 	postsDiv.insertBefore(postDiv, postsDiv.firstElementChild); 
+
+	// postsDiv.appendChild(postDiv);  /* for chronological order */
 }</div>
 </div>
 

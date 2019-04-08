@@ -78,18 +78,33 @@ title: Schedule
 	- Make a list of information needed for the user profile
 	- Add inputs for the user to add information to the database
 
-<!-- 
- - [Publish & Display Posts](notes/firebase/post)
-- break publish into db
-- [JSON API](notes/javascript/json_api/) ?? 
-- display users
-- updating information ... 
- -->
 
 ## Week 10 **Functions**
 - [Functions](notes/javascript/functions/)
 - [DOM & Events](notes/javascript/events)
-- [Firebase Display Data](notes/firebase/post)
+- [Firebase Publish/Display](notes/firebase/post)
+
+
+## Final 
+- Check rubric on Blackboard
+- Design/CSS
+	- Layout with Grid
+	- Responsive
+	- Typographic Hierarchy
+	- Color Scheme
+- Firebase
+	- Authentication
+	- Users post to database
+	- Display users posts and profile
+	- Storage for image or media content
+- HTML/CSS/JavaScript Syntax
+
+<!-- 
+week 11 - storage
+week 12 - liking posts etc
+week 13 - google maps?
+week 14 - workshop
+week 15 - workshop
 
 ## Week 11 **JSON Data & API**
 - [JSON](notes/javascript/json)
@@ -101,10 +116,6 @@ title: Schedule
 - [Firebase Storage](notes/firebase/storage)
 
 ## Week 14 **Final**
-
-
-<!-- 
-
 	to do for app
 	- all users page
 	- all posts page
