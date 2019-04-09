@@ -78,12 +78,13 @@ title: Schedule
 	- Make a list of information needed for the user profile
 	- Add inputs for the user to add information to the database
 
-
 ## Week 10 **Functions**
 - [Functions](notes/javascript/functions/)
 - [DOM & Events](notes/javascript/events)
 - [Firebase Publish/Display](notes/firebase/post)
-
+- **Assignment**
+	- Users can post information to the database for the specific type of content
+	- Display users posts or data
 
 ## Final 
 - Check rubric on Blackboard
