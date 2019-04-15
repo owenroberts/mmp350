@@ -1,7 +1,7 @@
 ---
 layout: slides
 title: Storage
-week: 6
+week: 11
 ---
 
 <div class="slide">
@@ -34,7 +34,7 @@ week: 6
 	<p>We're going to start by giving our users the ability to add a Profile picture.  To do this we need to upload an image to Storage and then get the URL where the image is stored and save it in the database with the user.</p>
 </div>
 
-<div class="slide">
+<!-- <div class="slide">
 	<h2>Profile page</h2>
 	<p>We'll start by adding a profile page.  This is a separate page from the <note>index.html</note>, but it has a lot of similarities, so we can begin by duplicating <note>index.html</note> and renaming it <note>profile.html</note>.</p>
 </div>
@@ -57,7 +57,7 @@ week: 6
 	<p>For the HTML, we can delete the main content sections <code>#posts</code> and <code>#write-post</code>.</p>
 	<p>We'll replace that with the <code>#profile</code> section.</p>
 	<p>In the profile section we'll add a file input for the user to upload a photo.  That's all we'll add for now.</p>
-</div>
+</div> -->
 
 <div class="slide">
 	<div class="ex" data-lang="html">&lt;div id="profile"&gt;
@@ -79,95 +79,9 @@ week: 6
 </div>
 
 <div class="slide">
-	<h2>Authentication display</h2>
-	<p>Next we're going to make an update to the <note>js/auth.js</note> script to make it easier to hide and show content depending on whether the user is logged in.</p>
-	<p>Previously, we created a function, <code>displayUserInfo</code> which was triggered when the user logged in, and manually set various components to display or not display.</p>
-	<p>Let's make a more sophisticated version of this using CSS nested rules.</p>
-</div>
-
-<div class="slide">
-	<p>I'm going to add a CSS file called <note>interface.css</note> to handle the visibility of components in the layout when a user is logged in or not, using CSS nested selectors.</p>
-	<p>I'll define two classes, <code>.no-user</code> and <code>.user-logged-in</code> that can be updated with the Firebase authentication.</p>
-	<p>Then we'll nest the divs we want to display or hide for each.</p>
-</div>
-
-<div class="slide">
-	<div class="ex" data-lang="css">.user-logged-in { }
-.no-user { }</div>
-</div>
-
-<div class="slide">
-	<p>A nested rule uses a space between the parent and child elements and targets any element inside the parent.</p>
-	<div class="ex" data-lang="css">/* display when user is logged in */
-.user-logged-in #write-post {
-	display: block;
-}</div>	
-</div>
-
-<div class="slide">
-	<p>We can also use a comma to add more selectors to this rule.</p>
-	<div class="ex" data-lang="css">/* display when user is logged in */
-.user-logged-in #user-info,
-.user-logged-in #profile-photo,
-.user-logged-in #write-post {
-	display: block;
-}</div>	
-</div>
-
-<div class="slide">
-	<p>Then add the elements we don't want to see when user is logged in.</p>
-	<div class="ex" data-lang="css">/* hide when user is logged in */
-.user-logged-in #auth,
-.user-logged-in #add-photo {
-	display: none;
-}</div>	
-</div>
-
-<div class="slide">
-	<p>Now the inverse when no user is logged in.</p>
-	<div class="ex" data-lang="css">/* display when no user */
-.no-user #auth,
-.no-user #add-photo {
-	display: block;
-}
-
-/* hide when no user */
-.no-user #user-info,
-.no-user #profile-photo,
-.no-user #write-post {
-	display: none;
-}</div>
-</div>
-
-<div class="slide">
-	<p>Now we can update <code>onAuthStateChanged</code> to turn these classes on and off.</p>
-	<p>When the auth state changes we want to add the correct class and remove the other class in case it is currently in use.</p>
-</div>
-
-<div class="slide">
-	<div class="ex">firebase.auth().onAuthStateChanged(function(user) {
-	if (user) {
-		document.getElementById('display-name').textContent = "Welcome, " + firebase.auth().currentUser.displayName;
-		document.body.classList.add('user-logged-in');
-		document.body.classList.remove('no-user');
-	} else {
-		document.body.classList.add('no-user');
-		document.body.classList.remove('user-logged-in');
-	}
-});</div>
-</div>
-
-<div class="slide">
 	<h2>Upload image</h2>
 	<p>To upload the image, we need listen for when the user click the submit image button and then grab the file and put it in Firebase storage.</p>
 	<p>Once in storage, we can grab the URL for the image to add to the database and user account.</p>
-</div>
-
-<div class="slide">
-	<p>Start with the usual window load event listener.</p>
-	<div class="ex">window.addEventListener('load', function() {
-	// upload image
-});</div>
 </div>
 
 <div class="slide">
@@ -198,13 +112,15 @@ const filePromise = ref.put(file);</div>
 </div>
 
 <div class="slide">
-	<div class="ex">filePromise.then(function(photo) {
+	<div class="ex">function updatePhoto(url) {
+	user.updateProfile({url: photoURL});
+	document.getElementById('profile-photo').src = url;
+	firebase.database().ref('users').child(user.uid).update({profilePhoto: url});
+}
+
+filePromise.then(function(photo) {
 	return photo.ref.getDownloadURL();
-}).then(function(photoURL) {
-	user.updateProfile({photoURL: photoURL});
-	document.getElementById('profile-photo').src = photoURL;
-	firebase.database().ref('users').child(user.uid).update({profilePhoto: photoURL});
-});</div>
+}).then(updatePhoto);</div>
 </div>
 
 
@@ -221,22 +137,22 @@ const filePromise = ref.put(file);</div>
 <div class="slide">
 	<h2>Displaying the user image</h2>
 	<p>These reference will allow us to display the user photo when they're logged in and next to the posts that they write.</p>
-	<p>We already have some HTML to populate the user name and image on their profile.</p>
-	<div class="ex" data-lang="html">&lt;p id="profile-name"&gt;/p&gt;
-&lt;img id="profile-img" width="200"&gt;</div>
+	<p>We can create an image in the <code>createPost</code> function.</p>
+
 </div>
 
 <div class="slide">
-	<p>We can add another function to update the profile image and name when the user is logged in.</p>
-	<div class="ex">// display profile  
-firebase.auth().onAuthStateChanged(function(user) {
-	if (user) {
-		document.getElementById('profile-name').textContent = user.displayName;
-		if (user.photoURL) {
-			document.getElementById('profile-photo').src = user.photoURL;
-		} else {
-			document.getElementById('add-photo').style.display = 'block';
-		}
-	}
-});</div>
+	<div class="ex">function createPost(post) {
+	const postDiv = document.createElement('div');
+	postDiv.classList.add('post');
+	// rest of post ...
+	
+	const photoDiv = document.createElement('div');
+	photoDiv.classList.add('photo');
+	const photo = new Image();
+	photo.src = post.profilePhoto;
+
+	photoDiv.appendChild(photo);
+	postDiv.appendChild(photoDiv);
+}</div>
 </div>

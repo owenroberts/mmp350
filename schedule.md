@@ -86,6 +86,11 @@ title: Schedule
 	- Users can post information to the database for the specific type of content
 	- Display users posts or data
 
+## Week 11 **Storage**
+- [Firebase Storage](notes/firebase/storage)
+- [Interacting with posts](notes/firebase/likes)
+
+
 ## Final 
 - Check rubric on Blackboard
 - Design/CSS
@@ -107,14 +112,14 @@ week 13 - google maps?
 week 14 - workshop
 week 15 - workshop
 
+search
+
 ## Week 11 **JSON Data & API**
 - [JSON](notes/javascript/json)
-- [Interacting with posts](notes/firebase/likes)
 
 
 ## Week 13 **Data**
 - [Google Maps API](notes/javascript/google_maps/)
-- [Firebase Storage](notes/firebase/storage)
 
 ## Week 14 **Final**
 	to do for app

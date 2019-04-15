@@ -1,21 +1,43 @@
 ---
 layout: slides
 title: Interacting with user content
-week: 5
+week: 11
 ---
 
 <div class="slide">
 	<p>In many web applications we want to allow users to interact with one another's content.  This can take many forms, sharing, commenting, reposting.</p>
-	<p>This week we're going to introduce the ability for users to "Like" posts.</p>	
-	<p>To implement this feature, we need to add buttons for users to interact with and entries in the database to track the users who have "liked a post.</p>
+	<p>First we'll add links for each user and to individual posts.</p>
+	<p>We can also add buttons for other users to "like" a post.</p>
 </div>
 
 <div class="slide">
-	<p>To implement this feature we're going to add some more code to the <note>js/posts.js</note> script, in the <code>createPost</code> function.</p>
+	<h2>User link</h2>
+	<p>To add a link to each user, we can set the <code>.author</code> section of each post to include an <code>&lt;a&gt;</code> tag with a link to that user.</p>
+	<p>We'll use the <code>uid</code> from each post to link to the <code>user.html</code> page.</p>
+</div>
+
+<div class="slide">
+	<div class="ex">function createPost(post) {
+	const postDiv = document.createElement('div');
+	postDiv.classList.add('post');
+	// rest of post ...
+	
+	const author = document.createElement('div');
+	author.classList.add('author');
+	const link = document.createElement('a');
+	a.textContent = post.displayName;
+	a.href = 'user.html?uid=' + post.uid;
+	author.appendChild(link);
+}</div>
+</div>
+
+
+
+<div class="slide">
+	<h2>User likes</h2>
 	<p>In order to keep track of "likes" and prevent users from spamming likes, we're going to need to know both the user who liked the post as well as the user who posted the post.</p>
 	<p>Only signed in users will be able to like posts, and once they're signed in we'll use their <code>uid</code> as a way to track likes.</p>
 </div>
-
 
 <div class="slide">
 	<p>To start, we need to modify our <code>postRef</code> event and <code>createPost</code> function a little bit.</p>
@@ -122,3 +144,6 @@ unlikeBtn.addEventListener('click', function() {
 }</div>
 </div>
 
+<!-- 
+	linking to users and single posts
+ -->
