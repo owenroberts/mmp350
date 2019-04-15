@@ -73,15 +73,21 @@ week: 11
 </div>
 
 <div class="slide">
-	<p>Next, let's update the scripts in <note>profile.html</note>.</p>
-	<p>We still need <note>js/auth.js</note>, we'll leave that there.  But we can delete <note>js/posts.js</note> and <note>js/publish.js</note>.</p>
-	<p>We'll replace those with just <note>js/profile.js</note>.</p>
+	<p>Next, let's update the <note>js/profile.js</note>.</p>
 </div>
 
 <div class="slide">
 	<h2>Upload image</h2>
 	<p>To upload the image, we need listen for when the user click the submit image button and then grab the file and put it in Firebase storage.</p>
 	<p>Once in storage, we can grab the URL for the image to add to the database and user account.</p>
+</div>
+
+<div class="slide">
+	<p>We need to add the module for storage.</p>
+	<div class="ex" data-err>&lt;script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"&gt;&lt;/script&gt;
+&lt;script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"&gt;&lt;/script&gt;
+&lt;script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-database.js"&gt;&lt;/script&gt;
+&lt;script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-storage.js"&gt;&lt;/script&gt;</div>
 </div>
 
 <div class="slide">
@@ -95,7 +101,11 @@ submitButton.addEventListener('click', function() {
 
 <div class="slide">
 	<p>Get the file from the HTML input.</p>
-	<div class="ex">const file = document.getElementById('profile-photo-file').files[0];</div>
+	<div class="ex">const file = document.getElementById('profile-photo-file').files[0];
+// check file exists 
+if (file) {
+	// upload
+}</div>
 </div>
 
 <div class="slide">
@@ -112,15 +122,16 @@ const filePromise = ref.put(file);</div>
 </div>
 
 <div class="slide">
-	<div class="ex">function updatePhoto(url) {
-	user.updateProfile({url: photoURL});
-	document.getElementById('profile-photo').src = url;
-	firebase.database().ref('users').child(user.uid).update({profilePhoto: url});
-}
-
-filePromise.then(function(photo) {
+	<div class="ex">filePromise.then(function(photo) {
 	return photo.ref.getDownloadURL();
 }).then(updatePhoto);</div>
+
+	<div class="ex">function updatePhoto(url) {
+	const user = firebase.auth().currentUser
+	user.updateProfile({url: url});
+	document.getElementById('profile-photo').src = url;
+	firebase.database().ref('users').child(user.uid).update({profilePhoto: url});
+}</div>
 </div>
 
 
@@ -138,7 +149,6 @@ filePromise.then(function(photo) {
 	<h2>Displaying the user image</h2>
 	<p>These reference will allow us to display the user photo when they're logged in and next to the posts that they write.</p>
 	<p>We can create an image in the <code>createPost</code> function.</p>
-
 </div>
 
 <div class="slide">
@@ -150,9 +160,15 @@ filePromise.then(function(photo) {
 	const photoDiv = document.createElement('div');
 	photoDiv.classList.add('photo');
 	const photo = new Image();
-	photo.src = post.profilePhoto;
-
 	photoDiv.appendChild(photo);
 	postDiv.appendChild(photoDiv);
+
+	// get profile image from database 
+	const imgRef = firebase.database().ref('users').child(post.uid);
+	imgRef.on('child_added', function(snapshot) {
+		if (snapshot.key == 'profilePhoto') {
+			photo.src = snapshot.val();
+		}
+	});
 }</div>
 </div>
