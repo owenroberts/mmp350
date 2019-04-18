@@ -101,11 +101,18 @@ postDiv.appendChild(likeDiv);</div>
 		const uid = firebase.auth().currentUser.uid;
 		const postRef = firebase.database().ref('posts').child(key).child('likes').child(uid);
 		
-		// if user is already in likes, remove it
-		if (post.likes[uid]) {
-			postRef.remove();
+		// check if post has likes 
+		if (post.likes) {
+			// if user is already in likes, remove it
+			if (post.likes[uid]) {
+				likeRef.remove();
+			} else {
+				// user didn't like, add like
+				likeRef.set(true);
+			}
 		} else {
-			postRef.set(true);
+			// if no likes add a like
+			likeRef.set(true);
 		}
 	} else {
 		alert("Log in to like posts");
