@@ -1,0 +1,95 @@
+---
+layout: slides
+title: Firebase Query
+week: 12
+---
+
+<div class="slide">
+	<p>Now that we have some data in the database, we can give users the ability to search that data.</p>
+	<p>There's different ways to achieve a search depending on the information.  We'll look at a couple.</p>
+</div>
+
+<div class="slide">
+	<h2>Search query</h2>
+	<p>When a user searches a database for content, the input is called a <em>query</em>.</p>
+	<p>Before we can search the database we need to get the user's query.</p>
+	<p>Create a <strong>search.html</strong> page based on <strong>index.html</strong>.  We'll replace the <code>#write-post</code> section with a search section.</p>
+</div>
+
+<div class="slide">
+	<div class="ex" data-lang='html'>&lt;div id="search"&gt;
+	&lt;input id="query"&gt;
+	&lt;button id="submit-query"&gt;Search&lt;/button&gt;
+&lt;/div&gt;</div>
+</div>
+
+<div class="slide">
+	<p>Now create a new JavaScript file, <strong>js/query.js</strong> and attach it to the <strong>search.html</strong> page.</p>
+</div>
+
+<div class="slide">
+	<p>First get a reference to the database.</p>
+	<div class="ex">const db = firebase.database();</div>
+</div>
+
+<div class="slide">
+	<p>Then get the user's query.</p>
+	<div class="ex">submitButton.addEventListener('click', function() {
+	getQuery(query.value);
+});</div>
+</div>
+
+<div class="slide">
+	<h2>Search text</h2>
+	<p>To construct the query we can use <code>orderByChild</code> to select a specific child.</p>
+	<p>Then we can search the text to make sure if contains the query.</p>
+</div>
+
+<div class="slide">
+	<div class="ex">function getQuery(value) {
+	const ref = db.ref('posts').orderByChild('text');
+	ref.on('child_added', function(snapshot) {
+		const text = snapshot.val().text;
+		if (text.includes(value)) {
+			// create a post
+		}
+	});
+}</div>
+</div>
+
+<div class="slide">
+	<h2>Search by value</h2>
+	<p>If we want to search for posts with an existing tag, category, or status, we can compare values in our search.</p>
+</div>
+
+<div class="slide">
+	<p>For example if you have a status like <code>public</code> in the post, which could be true or false, we can search for the value and the compare it.</p>
+	<div class="ex">function getQuery(value) {
+	const ref = db.ref('posts').orderByChild('public').equalTo(true);
+	ref.on('child_added', function(snapshot) {
+		// create post
+	});
+}</div>
+</div>
+
+<div class="slide">
+	<p>Or, imagine a child object with tags, we can search specific tags and see if they're set to true.</p>
+	<p>The data might look like this:</p>
+	<pre><code>post {
+	text: "Hello world"
+	author: "Banana"
+	tags: {
+		"hello": true
+		"world": true
+	}
+}</code></pre>
+</div>
+
+<div class="slide">
+	<div class="ex"><div class="ex">function getQuery(value) {
+	const ref = db.ref('posts').orderByChild('tags/' + value).equalTo(true);
+	ref.on('child_added', function(snapshot) {
+		// create post
+	});
+}</div></div>
+</div>

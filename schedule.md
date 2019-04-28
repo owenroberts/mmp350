@@ -90,6 +90,9 @@ title: Schedule
 - [Firebase Storage](notes/firebase/storage)
 - [Interacting with posts](notes/firebase/likes)
 
+## Week 12 **Query**
+- [Database Query](notes/firebase/query)
+
 
 ## Final 
 - Check rubric on Blackboard
@@ -112,7 +115,9 @@ week 13 - google maps?
 week 14 - workshop
 week 15 - workshop
 
-search
+search/query
+- get text and then check for string
+- add tags, then search tags
 
 ## Week 11 **JSON Data & API**
 - [JSON](notes/javascript/json)
