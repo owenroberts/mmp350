@@ -109,9 +109,8 @@ title: Schedule
 - HTML/CSS/JavaScript Syntax
 
 <!-- 
-week 11 - storage
-week 12 - liking posts etc
-week 13 - google maps?
+query
+
 week 14 - workshop
 week 15 - workshop
 

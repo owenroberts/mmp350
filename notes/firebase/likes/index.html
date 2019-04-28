@@ -68,10 +68,6 @@ const likeBtn = document.createElement('button');
 likeBtn.classList.add('like-btn');
 likeBtn.textContent = "Like";
 
-const unlikeBtn = document.createElement('button');
-unlikeBtn.classList.add('unlike-btn');
-unlikeBtn.textContent = "Unlike";
-
 const displayLikes = document.createElement('span');
 displayLikes.classList.add('display-likes');</div>
 </div>
@@ -79,7 +75,6 @@ displayLikes.classList.add('display-likes');</div>
 <div class="slide">
 	<p>Next we add each of the elements to the likes div and then append that to the post div after everything else.</p>
 	<div class="ex">likeDiv.appendChild(likeBtn);
-likeDiv.appendChild(unlikeBtn);
 likeDiv.appendChild(displayLikes);
 // after adding <code>postText</code>, <code>postAuthor</code> and <code>postInfo</code>.
 postDiv.appendChild(likeDiv);</div>
@@ -89,11 +84,7 @@ postDiv.appendChild(likeDiv);</div>
 	<p>We also need to add event listeners to each button to call a function to like or unlike the post.</p>
 	<p>The like button will add the argument <code>true</code> to like and the unlike button will use <code>false</code> to unlike.</p>
 	<div class="ex">likeBtn.addEventListener('click', function() {
-	likeOrUnLikePost(true);
-});
-
-unlikeBtn.addEventListener('click', function() {
-	likeOrUnLikePost(false);
+	likeOrUnLikePost();
 });</div>
 </div>
 
@@ -109,15 +100,20 @@ unlikeBtn.addEventListener('click', function() {
 	if (firebase.auth().currentUser) {
 		const uid = firebase.auth().currentUser.uid;
 		const postRef = firebase.database().ref('posts').child(key).child('likes').child(uid);
-		let likePromise;
-		if (isLike) {
-			likePromise = postRef.set(true);
+		
+		// check if post has likes 
+		if (post.likes) {
+			// if user is already in likes, remove it
+			if (post.likes[uid]) {
+				likeRef.remove();
+			} else {
+				// user didn't like, add like
+				likeRef.set(true);
+			}
 		} else {
-			likePromise = postRef.remove();
+			// if no likes add a like
+			likeRef.set(true);
 		}
-		likePromise.then(function() {
-			location.reload();
-		});
 	} else {
 		alert("Log in to like posts");
 	}
