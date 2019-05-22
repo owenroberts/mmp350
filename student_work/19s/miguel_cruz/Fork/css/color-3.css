@@ -1,0 +1,61 @@
+/* color scheme */
+
+:root{
+    --main-color: #AD343E; /* red*/
+    --second-color: #DB5375; /* pink */
+    --third-color: #01295F; /* navy blue */
+    --fourth-color: white; /* White color for boxes forums*/
+}
+
+    #title {
+	color: var(--main-color);
+	text-shadow: 6px 4px 0 var(--third-color);
+}
+
+#login input, #sign-up input {
+	background: var(--fourth-color);
+	border: none;
+	padding: 0.25em;
+}
+input::placeholder {
+	color: var(--third-color);
+}
+	
+#login button, #sign-up button {
+	background: var(--third-color);
+	color: var(--main-color);
+	padding: 0.25em;
+}
+	
+#menu a {
+	color: var(--third-color);
+	transition: color 300ms ease-in;
+}
+	
+#menu a:hover {
+	color: var(--main-color);
+}
+	
+#write-post {
+	border: 1px solid var(--main-color);
+}
+#write-post::placeholder {
+	color: var(--second-color);
+}
+
+#submit-post {
+	background: var(--main-color);
+	color: var(--third-color);
+}
+
+.post-text {
+	border-bottom: 2px solid var(--third-color);
+}
+	
+.post .author {
+	color: var(--second-color);
+}
+	
+.post .date {
+	color: var(--second-color);
+}

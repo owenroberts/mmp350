@@ -10,7 +10,7 @@ The class notes, schedule and assignments are all found here.
 
 - [Schedule](schedule.html)
 - [Syllabus](https://docs.google.com/document/d/17oA-Wf_aaA4YDBx4mLUNwl9v4PptRPTs1NXP3i8uvJ0/edit?usp=sharing){:target="blank"}
-- [Student Work](studentwork/)
+- [Student Work](student_work/)
 - [Examples](examples/)
 - [Public Pad](pad)
 

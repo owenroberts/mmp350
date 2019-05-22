@@ -1,0 +1,26 @@
+/* interface elements */
+button, input {
+	font-size: 1.25em;
+	font-family: inherit;
+	border: none;
+	margin: 0.125em;
+	padding: 0.25em;
+	color: var(--third-color);
+	border: 1px solid var(--third-color);
+}
+
+button:focus, input:focus {
+	outline-color: var(--third-color);
+}
+
+button {
+	
+}
+
+#edit-display-name {
+	width: 320px;
+}
+
+input.error {
+	border-color: red;
+}

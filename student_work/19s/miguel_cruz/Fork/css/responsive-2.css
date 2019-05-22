@@ -1,0 +1,92 @@
+/* mobile style rule */
+@media (max-width: 400px) {
+    #container{
+        background-color: #F2AF29; /* Yellow */
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "menu"
+            "login"
+            "signup"
+            "post"
+            "main";
+    }
+    
+    #profile-layout #container{
+        background-color: #F2AF29; /* Yellow */
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "menu"
+            "post"
+            "login"
+            "signup"
+            "main"
+            ;
+    }
+    
+    #menu-list{
+        flex-direction: column;
+        align-items: center;
+        margin-top: -54px;
+    }
+    
+    #menu-list li{
+        flex-basis: 50px;
+    }
+    
+    button{
+	font-size: 1.25em;
+	font-family: inherit;
+	border: none;
+	margin: 0.125em;
+	padding: 0.125em;
+	color: var(--third-color);
+	border: 1px solid var(--third-color);
+    }
+        input{
+        width: 122px;
+        }
+    
+    #edit-display-name {
+        width: 200px;
+    }
+
+    input.error {
+        border-color: red;
+    }
+    
+    .post-text{
+    font-size: 20px;
+    }
+    
+    .post-info{
+    font-size: 13px;
+    }
+    
+    img{
+        width: 340px;
+    }
+
+}
+
+/* tablet style rule */
+@media (min-width: 401px) and (max-width: 800px) {
+	#container {
+        background-color: #F2AF29; /* Yellow */
+		width: 100%;
+		grid-template-areas: 
+			"header header login signup"
+            "menu menu menu menu"
+			"main main main main"
+			;
+	}
+    
+    #menu-list{
+        justify-content: space-evenly;
+    }
+    
+    #menu-list li{
+        flex-basis: 150px;
+    }
+}
