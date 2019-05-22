@@ -1,6 +1,3 @@
 [submodule "slides"]
 	path = slides
 	url = https://github.com/owenroberts/slides
-[submodule "jeks"]
-	path = jeks
-	url = https://github.com/owenroberts/jeks
