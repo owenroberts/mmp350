@@ -9,12 +9,12 @@ The class notes, schedule and assignments are all found here.
 
 
 - [Schedule](schedule.html)
-- [Syllabus](https://docs.google.com/document/d/17oA-Wf_aaA4YDBx4mLUNwl9v4PptRPTs1NXP3i8uvJ0/edit?usp=sharing){:target="blank"}
+- [Syllabus](https://docs.google.com/document/d/1zYNcHq67jB3UNWBWcKH_WSe1E55seC8nWHfTnBT5yjs/edit?usp=sharing){:target="blank"}
 - [Student Work](student_work/)
 - [Examples](examples/)
 - [Public Pad](pad)
 
-## Spring 2019
+## Fall 2019
 
 - Instructor: Owen Roberts
 - Email: oroberts AT bmcc DOT cuny  DOT edu
@@ -63,4 +63,6 @@ For MMP and MMA tutoring, please visit BMCC's [tutoring schedule](http://www.bmc
 - SASS and advanced CSS concepts
 - Wireframing and prototyping
 - Git and Github
+
+
 

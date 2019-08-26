@@ -83,3 +83,139 @@ title: MMP 350 Public Pad
 	}
 	window.addEventListener('load', init);
 </script>
+
+
+<!-- 
+
+	old pad 
+	
+// final project
+https://nemflores.github.io/mmp350/app/index
+https://moequinn.github.io/mmp350/gameforumapp/index.html
+https://miguelc210.github.io/MMP350/Fork/index.html
+https://sadate11.github.io/mmp350/midterm/index.html
+https://itsanerin.github.io/NannyAndMe/index.html
+https://tehcyfer.github.io/MMP350FInal/
+https://trinidawn.github.io/mmp350//thank-you-app/index.html
+
+
+template example
+https://owenbmcc.github.io/template/
+https://github.com/owenbmcc/template/
+
+rating system:
+https://codepen.io/owenroberts/pen/ZZKEvd
+
+midterm presentation links
+
+Nemesio Flores -
+https://nemflores.github.io/mmp350/midterm/index
+https://docs.google.com/presentation/d/1GGPKPZu9AQBWuXPhtZGS8YXlcpF8hSk1t33qUNnhgbw/edit?usp=sharing
+
+https://trinidawn.github.io/mmp350/thank-you-app/index.html
+
+Johnny Medina -
+https://docs.google.com/presentation/d/1Wb2KiBhy9IMdTdBc4Dy9FPu4mPEFUrTMy4d6MUBBrQs/edit?usp=sharing
+https://tehcyfer.github.io/MMP-350-Midterm/index.html
+
+moe
+https://moequinn.github.io/mmp350
+
+https://itsanerin.github.io/NannyAndMe/index.html
+
+web app
+
+- login
+- store information
+- ex
+  - video game forum - save user posts in different categories
+  - connect 4 game - save users moves, between two users
+  - student forum organized by class - social network within bmcc
+  - rate bmcc courses - user created courses + comments/ratings
+  - linked in for college - majors, skills, schedules, 
+  - astrology - what do users contribute?
+  - thank you app - design templates - design one and save in database - send to contacts
+   
+
+
+pitch deck example
+https://docs.google.com/presentation/d/1m0qY5KpIysaQY3o6T7_FgHi_TYEI5Y_RVBGEJlLb1jY/edit?usp=sharing
+
+
+
+
+color scheme
+https://nemflores.github.io/mmp350/week6/index
+https://miguelc210.github.io/MMP350/Fork/index.html
+https://moequinn.github.io/mmp350
+https://itsanerin.github.io/MMP350/color/
+
+typography
+https://nemflores.github.io/mmp350/week4/index
+https://miguelc210.github.io/MMP350/Fork/index.html
+https://moequinn.github.io/mmp350
+https://itsanerin.github.io/MMP350/typography/
+https://trinidawn.github.io/mmp350/template/index.html
+
+
+
+responsive design assignment
+https://nemflores.github.io/mmp350/week3.2/index.html
+https://trinidawn.github.io/mmp350/template/index.html
+https://miguelc210.github.io/MMP350/Fork/index.html
+https://moequinn.github.io/mmp350/
+
+
+
+week 2 css grid layout
+
+https://nemflores.github.io/mmp350/week2.2/index.html
+https://miguelc210.github.io/MMP350/Fork/index.html
+https://trinidawn.github.io/mmp350//template/index.html
+https://tehcyfer.github.io/cyfer-layout/
+https://moequinn.github.io/mmp350/
+https://duquea95.github.io/template/index.html
+https://itsanerin.github.io/template/
+https://sammy9811.github.io/template/
+
+week 1 website break down
+
+https://trinidawn.github.io/mmp350/website-breakdown-wk1/index.html
+https://nemflores.github.io/mmp350/week1.1/index.html
+https://miguelc210.github.io/MMP350/BackendWebsite/index.html
+https://duquea95.github.io/mmp-350/
+https://itsanerin.github.io/MMP350/back-end/index.html
+https://moequinn.github.io/mmp350/
+https://acexproject.github.io/mmp350/github-work/assgn1/
+https://tehcyfer.github.io/MMP350/
+https://sadate11.github.io/mmp350/weblogin/index.html0
+https://sammy9811.github.io/MMP350/
+https://krsmace.github.io/mmp350/website/
+
+layout assignment fork: https://github.com/owenbmcc/template
+
+html/css review
+https://owenbmcc.github.io/mmp350/review/index.html
+
+assignment 1 what web service are you using?
+Moises - Gamestop
+Joseph - Soundcloud
+Johnny - Pinterest
+Miguel - Spotify
+Erin - Code Academy
+Nemesio-Twitter
+Samuel-Tidal
+Bingpei - CodePen
+Dawn - Udemy
+El Sadate - Invision
+Khallid -Expo
+
+
+website breakdown example
+https://owenbmcc.github.io/mmp350/website/
+
+
+
+
+Welcome to MMP 350.
+ -->
