@@ -19,7 +19,7 @@ title: Schedule
 
 ## Week 2 **Grid**
 - [Grid Systems](notes/grid/)
-- [Forking a Project on GitHub](notes/github/fork)
+<!-- - [Forking a Project on GitHub](notes/github/fork) -->
 - [CSS Grid](notes/grid/css/)
 - **Assignment 2**: Layout
 	- Use `style.css` to import style sheets
