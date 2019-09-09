@@ -27,10 +27,19 @@ title: Schedule
 	- Use CSS grid rules, either with columns and rows or template areas, to implement three different possibilities for the website grid
 	- Choose the best version and make a copy as `layout.css`
 
-## Week 3 **Responsive Design**
+## Week 3 **JavaScript**
+- [JavaScript input & variables](notes/javascript/input/)
+- [Firebase Intro](notes/firebase/intro)
+- [Firebase Authentication](notes/firebase/auth)
+- **Assignment 3**: Authentication
+	- Add HTML elements for the Create User section
+	- Write JavaScript to get the user inputs
+	- Create a new user in Firebase Authentication
+
+## Week 4 **Responsive Design**
 - [Responsive Layouts](notes/responsive/media)
 - [Flex box](notes/responsive/flex)
-- **Assignment 3**: Responsive CSS
+- **Assignment 4**: Responsive CSS
 	- Add responsive layouts for mobile and to the `responsive.css` stylesheet
 	- Use media queries to update grid for mobile and tablet display
 	- Use Chrome mobile emulator for development/testing
@@ -38,7 +47,15 @@ title: Schedule
 	- Create three separate flex box layouts for the menu
 	- Media queries should also address flex box rules
 
-## Week 4 **Typography**
+## Week 5 **Logic**
+- [Data types](notes/javascript/data_types)
+- [Logic](notes/javascript/logic)
+- [Firebase Database](notes/firebase/db)
+- **Assignment**
+	- Make a list of information needed for the user profile
+	- Add inputs for the user to add information to the database
+
+## Week 6 **Typography**
 - [Typographic Hierarchy](notes/typography/)
 - **Assignment 4**: Typographic Hierarchy
 	- Create 3 separate font pairings
@@ -46,7 +63,15 @@ title: Schedule
 	- Include media queries for responsive typography
 	- Use `typography.css` with different classes to apply each pairing
 
-## Week 5 **Color**
+## Week 7 **Functions**
+- [Functions](notes/javascript/functions/)
+- [DOM & Events](notes/javascript/events)
+- [Firebase Publish/Display](notes/firebase/post)
+- **Assignment**
+	- Users can post information to the database for the specific type of content
+	- Display users posts or data
+
+## Week 8 **Color**
 - [CSS Custom Properties](notes/color/custom)
 - [Calculating Color](notes/color/calculating) <!-- figure out how to refactor this -->
 - **Assignment 6**: Color Scheme
@@ -56,43 +81,12 @@ title: Schedule
 	- Use CSS custom properties to define two other colors
 	- Implement those colors for the typography, borders, backgrounds and any other colors in the app
 
-## Week 6 **Web App Pitch**
-- [Creating a pitch deck](notes/pitch/)
-- [User interaction flow chart](notes/ui/)
-- Begin work on Midterm
-
-## Week 7 **Midterm Workshop**
-- Pitch for web application
-- Finished template design
-
-## Week 8 **JavaScript**
-- [JavaScript input & variables](notes/javascript/input/)
-- [Firebase Intro](notes/firebase/intro)
-- [Firebase Authentication](notes/firebase/auth)
-
-## Week 9 **Logic**
-- [Data types](notes/javascript/data_types)
-- [Logic](notes/javascript/logic)
-- [Firebase Database](notes/firebase/db)
-- **Assignment**
-	- Make a list of information needed for the user profile
-	- Add inputs for the user to add information to the database
-
-## Week 10 **Functions**
-- [Functions](notes/javascript/functions/)
-- [DOM & Events](notes/javascript/events)
-- [Firebase Publish/Display](notes/firebase/post)
-- **Assignment**
-	- Users can post information to the database for the specific type of content
-	- Display users posts or data
-
-## Week 11 **Storage**
+## Week 9 **Storage**
 - [Firebase Storage](notes/firebase/storage)
 - [Interacting with posts](notes/firebase/likes)
 
-## Week 12 **Query**
+## Week 10 **Query**
 - [Database Query](notes/firebase/query)
-
 
 ## Final 
 - Check rubric on Blackboard
@@ -110,6 +104,16 @@ title: Schedule
 
 <!-- 
 query
+
+## Week 6 **Web App Pitch**
+- [Creating a pitch deck](notes/pitch/)
+- [User interaction flow chart](notes/ui/)
+- Begin work on Midterm
+
+## Week 7 **Midterm Workshop**
+- Pitch for web application
+- Finished template design
+
 
 week 14 - workshop
 week 15 - workshop

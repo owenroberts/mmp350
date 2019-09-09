@@ -1,7 +1,7 @@
 ---
 layout: slides
 title: JavaScript input and variables
-week: 8
+week: 3
 ---
 
 <div class="slide">
@@ -19,7 +19,7 @@ week: 8
 
 <div class="slide">
 	<h2>console.log</h2>
-	<p><code>console.log()</code> is a special JavaScript function that can be used to report things that are happening in the program to the developer console.  Like all languages, we need a way to print things to the console to see what works and doesn't it.  It's extremely useful and easy to use, but you have to remember to be specific.</p>
+	<p><code>console.log()</code> is a JavaScript function that can be used to report things that are happening in the program to the developer console.  Like all languages, we need a way to print things to the console to see what works and doesn't it.  It's extremely useful and easy to use, but you have to remember to be specific.</p>
 </div>
 
 <div class="slide">
@@ -60,10 +60,10 @@ week: 8
 </div>
 
 <div class="slide">
-	<h2><code>var</code> review</h2>
+	<h2>Variables</h2>
 	<p>In Javascript, variables are declared with <code>var</code> regardless of what type of information it holds.</p>
 	<p>Variables are pieces of data stored in the computer memory that are referenced by the variable name created by the developer.</p>
-	<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var" target="blank">var on MDN</a></p>
+	<!-- <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var" target="blank">var on MDN</a></p> -->
 </div>
 
 <div class="slide">
@@ -72,12 +72,22 @@ week: 8
 </div>
 
 <div class="slide">
-	<p><code>const</code> is short for <note>constant</note> and it make prevents the rebinding of values.  This means you can't assign a constant the value of 7 and then change it to 20.  Using different types of data storage improves the efficiency of a programming language, which is something that has been criticized about JavaScript since it's creation.</p>
-	<p>More on <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const" target="blank">const</a>.</p>
+	<p><code>const</code> is short for <note>constant</note> and it make prevents the rebinding of values.  This means you can't assign a constant the value of 7 and then change it to 20. </p>
+	<!-- <p> Using different types of data storage improves the efficiency of a programming language, which is something that has been criticized about JavaScript since it's creation.</p> -->
+	<!-- <p>More on <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const" target="blank">const</a>.</p> -->
 </div>
 
 <div class="slide">
-	<p><code>let</code> is like <code>var</code> but block scoped.  This is a bit more complicated and we'll discuss it more later in the semester.  In theory, all JavaScript programs should be written using only <code>const</code> and <code>let</code>, but <code>var</code> is still acceptable in many cases and will work fine for many of the projects we do in class (plus I would have to rewrite all of my notes...)</p>
+	<div class="ex">let x = 0;
+x = 1; // ok
+
+const y = 0;
+y = 2; // Uncaught TypeError: Assignment to constant variable.</div>
+</div>
+
+<div class="slide">
+	<p><code>let</code> is like <code>var</code> but block scoped.  This is a bit more complicated and we'll discuss it more later in the semester.  </p>
+	<!-- <p>In theory, all JavaScript programs should be written using only <code>const</code> and <code>let</code>, but <code>var</code> is still acceptable in many cases and will work fine for many of the projects we do in class (plus I would have to rewrite all of my notes...)</p> -->
 </div>
 
 <div class="slide">
@@ -89,17 +99,17 @@ week: 8
 console.log(submitButton);</code></pre>
 </div>
 
-<div class="slide">
+<!-- <div class="slide">
 	<p>We can also create an element that doesn't exist using JavaScript:</p>
 	<pre><code>const newButton = document.createElement("button");
 document.body.appendChild(newButton);
 button.id = "new-button";
 button.innerText = "Click me too!";</code></pre>
-</div>
+</div> -->
 
 <div class="slide">
-	<p>There are a lot of ways we can writes scripts to detect when the button is clicked.  This is a type of event, and we'll talk more in depth about events next week.  For now, let's write a very simple <code>event handler</code> to tell our program the button is clicked.</p>
-	<pre><code>submit.onclick = function(event) {
+	<p>For now, let's write a very simple <code>event handler</code> to tell our program the button is clicked.</p>
+	<pre><code>submitButton.onclick = function(event) {
 	console.log(this);
 	console.log(event);
 	console.log("You clicked me :)");
@@ -126,7 +136,7 @@ submit.onclick = function() {
 };</code></pre>
 </div>
 
-<div class="slide">
+<!-- <div class="slide">
 	<h2>textarea</h2>
 	<p>A <code>textarea</code> is a resizable <code>input</code> for text.</p>
 	<pre><code>&lt;textarea id="bio" placeholder="Input Bio" &gt;</code></pre>
@@ -135,9 +145,9 @@ submit.onclick = function() {
 	console.log(nameInput.value);
 	console.log(bioText.value);
 };</code></pre>
-</div>
+</div> -->
 
-<div class="slide">
+<!-- <div class="slide">
 	<h2>select</h2>
 	<p>A <code>select</code> element creates a dropdown input using the <code>option</code> element.</p>
 	<pre><code>&lt;select id="borough"&gt;
@@ -151,14 +161,29 @@ submit.onclick = function() {
 submit.onclick = function() {
 	console.log(boroughSelect.value);
 };</code></pre>
-</div>
+</div> -->
 
 <div class="slide">
 	<h2>Add it all up</h2>
 	<p>We can get the users input and then give them a response.  This is one of the most fundamental basics of web interactions.  We can also create new HTML nodes do add that information.</p>
-	<pre><code>submit.onclick = function() {
-	var message = document.createElement("p");
-	message.innerHTML = "Hello " + input.value + " from " + borough.value + ", welcome to my website.";
-	document.body.appendChild(message);
-};</code></pre>
+	<p>Later we will grab this information and store it in a database.  For now, we can simply return a response to the user.</p>
+</div>
+
+<div class="slide">
+	<p>The HTML.</p>
+	<div class="ex" data-lang="html">&lt;input id="name" type="text" placeholder="Name"&gt;
+&lt;input id="password" type="password" placeholder="Password"&gt;
+&lt;button id="submit"&gt;Login&lt;/button&gt;
+&lt;p id="login-message"&gt;&lt;/p&gt;</div>
+</div>
+
+<div class="slide">
+	<p>JavaScript</p>
+	<div class="ex">const submitButton = document.getElementById("submit");
+const nameInput = document.getElementById("name");
+const passwordInput = document.getElementById("password");
+const message = document.getElementById("login-message");
+submitButton.onclick = function() {
+	message.textContent = "Welcome " + nameInput.value + ".";
+};</div>
 </div>
