@@ -1,0 +1,77 @@
+body {
+	margin: 0;
+	font-family: Helvetica;
+	/*text-align: center;*/
+	font-size: 20px;
+	background-color: gray;
+	color: darkblue;
+}
+
+#container {
+	width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#title {
+	text-align: center;
+}
+
+#login, #sign-up, #posts, #menu, #post {
+	margin-bottom: 1em;
+}
+
+
+input, button {
+	/*display: block;*/
+	font-size: 1em;
+	padding: 0.25em 0.5em;
+	color: white;
+}
+
+input {
+	background-color: transparent;
+	color: white;
+}
+
+input::placeholder {
+	color: white;
+}
+
+button {
+	background-color: blue;
+}
+
+input:focus, button:focus {
+	outline-color: blue;
+}
+
+.post-text {
+	font-size: 1.5em;
+}
+
+.author {
+	color: white;
+	font-weight: bold;
+}
+
+.date {
+	color: blue;
+}
+
+a {
+	color: aqua;
+	transition: color 300ms ease-in;
+}
+
+a:hover {
+	color: white;
+}
+
+
+
+
+
+
+
+
