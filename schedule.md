@@ -37,15 +37,15 @@ title: Schedule
 	- Create a new user in Firebase Authentication
 
 ## Week 4 **Responsive Design**
-- [Responsive Layouts](notes/responsive/media)
 - [Flex box](notes/responsive/flex)
+- [Responsive Layouts](notes/responsive/media)
 - **Assignment 4**: Responsive CSS
-	- Add responsive layouts for mobile and to the `responsive.css` stylesheet
+	- Add responsive layouts for mobile and tablet to the `responsive.css` stylesheet
 	- Use media queries to update grid for mobile and tablet display
 	- Use Chrome mobile emulator for development/testing
-	- Add flex box for header menu
-	- Create three separate flex box layouts for the menu
-	- Media queries should also address flex box rules
+	- Add a `menu.css` file using flex box
+	- Add a `create.css` with flex box for the create user section
+	- Media queries should also update flex box rules
 
 ## Week 5 **Logic**
 - [Data types](notes/javascript/data_types)
