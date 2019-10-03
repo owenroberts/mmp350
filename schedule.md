@@ -55,6 +55,12 @@ title: Schedule
 	- Make a list of information needed for the user profile
 	- Add inputs for the user to add information to the database
 
+<!-- 
+	functions
+	adding to the db
+	inputs for adding a post
+ -->
+
 ## Week 6 **Typography**
 - [Typographic Hierarchy](notes/typography/)
 - **Assignment 4**: Typographic Hierarchy
