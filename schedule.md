@@ -52,8 +52,9 @@ title: Schedule
 - [Logic](notes/javascript/logic)
 - [Firebase Database](notes/firebase/db)
 - **Assignment**
-	- Make a list of information needed for the user profile
-	- Add inputs for the user to add information to the database
+	- Add an input on `profile.html` for the user email and a link
+	- Save the email address and link in the database
+	- Display the email address and link on the profile page
 
 <!-- 
 	functions

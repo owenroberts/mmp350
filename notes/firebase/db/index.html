@@ -58,8 +58,6 @@ week: 5
 </div>
 
 
-
-
 <div class="slide">
 	<p>Later when we add posting, we'll restrict these rules further based on different parts of the database.</p>
 	<p>Here is <a href="https://gist.github.com/codediodeio/6dbce1305b9556c2136492522e2100f6" target="_blank">a list</a> of some good default Firebase rules.</p>
@@ -80,16 +78,25 @@ week: 5
 </div>
 
 <div class="slide">
-	<div class="ex">function updateUser(credential) {
-	const userInfo = {
-		displayName: signupUsername.value
-	};
-	credential.user.updateProfile(userInfo);
+	<div class="ex">createButton.onclick = function() {
+	const promise = firebase.auth().createUserWithEmailAndPassword(emailInput.value, passwordInput.value);
+	promise.catch(function(error) {
+		errorMessage.textContent = error.message;
+	});
+	promise.then(function(response) {
+		createUser(response.user);
+	});
+};
 
-	/* add to database */
+function createUser(user) {
 	const db = firebase.database();
-	const ref = db.ref('users').child(credential.user.uid);
-	ref.update(userInfo);
+	const ref = db.ref('users').child(user.uid);
+	const promise = ref.update({
+		userName: userInput.value
+	});
+	promise.then(function() {
+		location.href = 'index.html';
+	});
 }</div>
 </div>
 
@@ -121,31 +128,30 @@ week: 5
 </div>
 
 <div class="slide">
-	<p>Use an already existing profile link or create one and add an ID like <code>#profile-link</code>.</p>
 	<p>Then update the <code>authState</code> function in <note>auth.js</note> to add a link using the <code>uid</code>.</p>
 	<p>By adding the user id as a search term, with the <code>?</code> separator in the URL, we can retrieve the user info from the database by referencing the <code>uid</code>.</p>
 </div>
 
 <div class="slide">
-	<div class="ex" data-lang="html">&lt;div id="user-info"&gt;
-	&lt;div id="display-name"&gt;&lt;/div&gt;
-	&lt;ul id="user-menu"&gt;
-		&lt;li&gt;&lt;a id="profile-link" href=""&gt;Profile&lt;/a&gt;&lt;/li&gt;
-	&lt;/ul&gt;
-	&lt;button id="log-out"&gt;Log Out&lt;/button&gt;
-&lt;/div&gt;</div>
-</div>
+	<div class="ex">const displayName = document.getElementById("user-name");
+const profileButton = document.getElementById("profile-button");
 
-<div class="slide">
-	<div class="ex">function authState(user) {
+firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
-		displayName.textContent = 'Hello, ' + user.displayName;
-		document.getElementById('profile-link').href = "/user.html?=" + user.uid;
-		document.body.classList.add('logged-in');
+		document.body.classList.add('auth');
+		const userRef = firebase.database().ref('users').child(user.uid);
+		userRef.once('value', function(snapshot) {
+			const userInfo = snapshot.val();
+			displayName.textContent = "Welcome, " + userInfo.displayName;
+			profileButton.onclick = function() {
+				location.href = "profile.html";
+			};
+		});
 	} else {
-		document.body.classList.remove('logged-in');
+		document.body.classList.remove('auth');
+		displayName.textContent = "";
 	}
-}</div>
+});</div>
 </div>
 
 <div class="slide">
@@ -154,8 +160,10 @@ week: 5
 </div>
 
 <div class="slide">
-	<div class="ex" data-lang="html">&lt;div id="profile"&gt;
-	&lt;h1 id="profile-display-name"&gt;&lt;/h1&gt;
+	<div class="ex" data-lang="html">&lt;div id="main"&gt;
+	&lt;input id="profile-name" placeholder="User name"&gt;
+	&lt;textarea id="bio" placeholder="Write your bio."&gt;&lt;/textarea&gt;
+	&lt;button id="update-profile"&gt;Update Profile&lt;/button&gt;
 &lt;/div&gt;</div>
 </div>
 
@@ -166,18 +174,20 @@ week: 5
 </div>
 
 <div class="slide">
-	<div class="ex">const uid = location.search.split('=')[1];
-const db = firebase.database();
-const ref = db.ref('users').child(uid);
+	<div class="ex">const profileName = document.getElementById('profile-name');
+const bioInput = document.getElementById('bio');
+const updateButton = document.getElementById('update-profile');
 
-ref.on('value', updateUser);
+const uid = location.search.split('=')[1];
+const userRef = firebase.database().ref('users').child(uid);
 
-const profileDisplayName = document.getElementById('profile-display-name');
-
-function updateUser(snapshot) {
-	const user = snapshot.val();
-	profileDisplayName.textContent = user.displayName;
-}</div>
+userRef.on('value', function(snapshot) {
+	const userInfo = snapshot.val();
+	profileName.value = userInfo.userName;
+	if (userInfo.bio) {
+		bioInput.value = userInfo.bio;
+	}
+});</div>
 </div>
 
 <div class="slide">
@@ -199,20 +209,17 @@ function updateUser(snapshot) {
 </div>
 
 <div class="slide">
-	<p>To start, we'll add a button to open the edit section and the the edit section itself.</p>
-	<div class="ex" data-lang="html">&lt;div id="profile"&gt;
-	&lt;h1 id="profile-display-name"&gt;&lt;/h1&gt;
-	&lt;div id="profile-edit"&gt;
-		&lt;input id="profile-display-name-edit" placeholder="username"&gt;
-		&lt;button id="profile-display-name-update"&gt;Update&lt;/button&gt;
-	&lt;/div&gt;
-	&lt;button id="edit"&gt;Edit&lt;/button&gt;
-&lt;/div&gt;</div>
+	<div class="ex">updateButton.onclick = function() {
+	userRef.update({
+		userName: profileName.value,
+		bio: bioInput.value
+	});
+};</div>
 </div>
 
 <div class="slide">
 	<p>The edit button should only be visible if the user is logged in, so we can add to the CSS where we display content based on the <code>.logged-in</code> in class.</p>
-	<p>The <code>#profile-edit</code> section will not be displayed until the edit button is clicked.</p>
+	<p>The <code>#update-profile</code> section will not be displayed until the edit button is clicked.</p>
 </div>
 
 <div class="slide">
@@ -222,57 +229,4 @@ function updateUser(snapshot) {
 .logged-in #edit {
 	display: block;
 }</div>
-</div>
-
-<div class="slide">
-	<p>Now we can update <note>js/profile.js</note> to open the edit section and then update the database.</p>
-	<p>Add this below the <code>updateUser</code> function.</p>
-</div>
-
-<div class="slide">
-	<div class="ex">/* edit profile */
-const editButton = document.getElementById('edit');
-const editProfile = document.getElementById('profile-edit');
-editButton.onclick = function() {
-	editProfile.style.display = 'block';
-};</div>
-</div>
-
-<div class="slide">
-	<p>This will open the <code>#profile-edit</code> div when the edit button is clicked.</p>
-	<p>Then we need to get the value from the username input.</p>
-	<p>Here will use a conditional statement to verify that the user has actually added information.  Unlike the Firebase Authenticaion, the database won't check anything like the length of data by default, so we can add some basic checks to make sure information was added.</p>
-</div>
-
-<div class="slide">
-	<div class="ex">// usernmae edit button
-const profileUpdate = document.getElementById('profile-display-name-update');
-profileUpdate.onclick = editUser;
-
-function editUser() {
-	const nameInput = document.getElementById('profile-display-name-edit');
-
-	// test if nameInput.value, the text entered by user, is at least three characters long
-	if (nameInput.value.length > 3) {
-		// update the database if so
-		ref.update({ displayName: nameInput.value });
-		editProfile.style.display = 'none';
-		nameInput.style.borderColor = 'gray';
-	} else {
-		// if not highlight the nameInput
-		nameInput.placeholder = "Name needs at least 3 characters";
-		nameInput.style.borderColor = 'red';
-	}
-}</div>
-</div>
-
-<div class="slide">
-	<p>The rule the a user name needs at least three characters is arbitrary, that number could be increased or a completely different rule could be added.</p>
-	<p>For other user data, the rules may be different.</p>
-</div>
-
-<div class="slide">
-	<p>To update your application, start by writing down all of the information you need for a user profile.</p>
-	<p>That does not include posts or updates users make generally.  For guidance, look at the profile pages of other web services, like GitHub or Twitter.</p>
-	<p>Once you have a list of the data you need, add those to the database and update the HTML and JavaScript so the user can add information and update it.</p>
 </div>
