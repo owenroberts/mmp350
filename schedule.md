@@ -47,7 +47,7 @@ title: Schedule
 	- Add a `create.css` with flex box for the create user section
 	- Media queries should also update flex box rules
 
-## Week 5 **Logic**
+## Week 5 **Database**
 - [Data types](notes/javascript/data_types)
 - [Logic](notes/javascript/logic)
 - [Firebase Database](notes/firebase/db)
