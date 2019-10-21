@@ -56,19 +56,23 @@ title: Schedule
 	- Save the email address and link in the database
 	- Display the email address and link on the profile page
 
+## Week 6 **Color**
+- [CSS Custom Properties](notes/color/custom)
+- [Calculating Color](notes/color/calculating) <!-- figure out how to refactor this -->
+- **Assignment 6**: Color Scheme
+	- Create a `color.css` page
+	- Choose a color scheme (complementary, triad, monochromatic, analogous, or combination)
+	- Use one color as main color
+	- Use CSS custom properties to define two to four other colors
+	- Implement those colors for the text, buttons, links, and at least one background
+	- Create three color schemes in the page using the save custom variable names
+
+
 <!-- 
 	functions
 	adding to the db
 	inputs for adding a post
  -->
-
-## Week 6 **Typography**
-- [Typographic Hierarchy](notes/typography/)
-- **Assignment 4**: Typographic Hierarchy
-	- Create 3 separate font pairings
-	- Apply font rules to posts as well as other template content
-	- Include media queries for responsive typography
-	- Use `typography.css` with different classes to apply each pairing
 
 ## Week 7 **Functions**
 - [Functions](notes/javascript/functions/)
@@ -78,15 +82,13 @@ title: Schedule
 	- Users can post information to the database for the specific type of content
 	- Display users posts or data
 
-## Week 8 **Color**
-- [CSS Custom Properties](notes/color/custom)
-- [Calculating Color](notes/color/calculating) <!-- figure out how to refactor this -->
-- **Assignment 6**: Color Scheme
-	- Create a `color.css` page
-	- Choose a color scheme (complementary, triad, monochromatic, analogous, or combination)
-	- Use one color as main color
-	- Use CSS custom properties to define two other colors
-	- Implement those colors for the typography, borders, backgrounds and any other colors in the app
+## Week 8 **Typography**
+- [Typographic Hierarchy](notes/typography/)
+- **Assignment 4**: Typographic Hierarchy
+	- Create 3 separate font pairings
+	- Apply font rules to posts as well as other template content
+	- Include media queries for responsive typography
+	- Use `typography.css` with different classes to apply each pairing
 
 ## Week 9 **Storage**
 - [Firebase Storage](notes/firebase/storage)
