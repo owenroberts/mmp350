@@ -75,16 +75,19 @@ title: Schedule
  -->
 
 ## Week 7 **Functions**
-- [Functions](notes/javascript/functions/)
-- [DOM & Events](notes/javascript/events)
 - [Firebase Publish/Display](notes/firebase/post)
-- **Assignment**
-	- Users can post information to the database for the specific type of content
-	- Display users posts or data
+- [DOM & Events](notes/javascript/events)
+- [Functions](notes/javascript/functions/)
+- **Assignment 7: Style posts and post input**
+	- Create post.css and publish.css
+	- Add styles for the individual posts and publish section
+	- Use flex box and/or grid to change layout of posts
+	- Apply color sceme to posts 
+	- Update styles in responsive.css for mobile and tablet
 
 ## Week 8 **Typography**
 - [Typographic Hierarchy](notes/typography/)
-- **Assignment 4**: Typographic Hierarchy
+- **Assignment 8**: Typographic Hierarchy
 	- Create 3 separate font pairings
 	- Apply font rules to posts as well as other template content
 	- Include media queries for responsive typography

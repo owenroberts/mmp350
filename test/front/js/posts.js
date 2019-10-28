@@ -96,7 +96,7 @@ window.addEventListener('load', function() {
 		const key = snapshot.key;
 		const userPosts = document.getElementsByClassName('photo-' + key);
 		for (let i = 0; i < userPosts.length; i++) {
-			userPosts[i].src = user.profilePhoto
+			userPosts[i].src = user.profilePhoto;
 		}
 	});
 

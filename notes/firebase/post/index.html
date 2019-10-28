@@ -22,25 +22,33 @@ week: 7
 
 <div class="slide">
 	<p>We need references to the post <code>textarea</code> and Publish <code>button</code>, and an event listener for when the user click "Publish".</p>
-	<div class="ex">const publishButton = document.getElementById('submit-post');
-const postInput = document.getElementById('post-body');
-publishButton.addEventListener('click', publishPost);</div>
+	<div class="ex">const publishButton = document.getElementById('publish-post');
+const postInput = document.getElementById('post-text');
+publishButton.addEventListener('click', publishPost);
+publishButton.addEventListener('keyup', function(event) {
+	// user hits enter button
+	if (event.which == 13) {
+		publishPost();
+	}
+});</div>
 </div>
 
 <div class="slide">
 	<p>Finally, our <code>publishPost</code> function will get the user authentication info, find their part of the database and then grab the text from their post to publish.  We'll also record the current date to save along with the post to display.</p>
-	<div class="ex">function publishPost() {
-	const uid = firebase.auth().currentUser.uid;
-	const db = firebase.database();
-	const ref = db.ref('posts').child(uid);
-	const postInfo = {
-		text: postInput.value,
-		date: Date.now(),
-		author: firebase.auth().currentUser.displayName,
-		id: uid
-	};
-	ref.push(postInfo);
-	postInput.value = "";
+</div>
+
+<div class="slide">
+	<div class="ex">// reference to location of posts in database
+const ref = firebase.database().ref('posts');
+
+function publishPost() {
+	const post = {}; // object to store post information 
+	post.text = postInput.value;
+	post.date = Date.now();
+	post.uid = firebase.auth().currentUser.uid;
+	ref.push(post);
+	
+	postInput.value = ""; // reset post input
 }</div>
 </div>
 
@@ -58,8 +66,28 @@ publishButton.addEventListener('click', publishPost);</div>
 
 <div class="slide">
 	<p>First we need to get a reference to the <code>#posts</code> div in the HTML to add the post content to.  We'll also get a reference to the <note>posts</note> area of the database.</p>
-	<div class="ex">const postsDiv = document.getElementById('posts');
+	<div class="ex">const posts = document.getElementById('posts');
 const postRef = firebase.database().ref('posts');</div>
+</div>
+
+<div class="slide">
+	<p>Because we want to separate our user data and posts data, we need to load the users into the page before we can load there posts, to cross reference their user names, and later profile images.</p>
+</div>
+
+<div class="slide">
+	<div class="ex">/* get user data then load posts */
+let userCount = 0;
+const users = {};
+firebase.database().ref('users').on('child_added', function(snapshot) {
+	users[snapshot.key] = snapshot.val().displayName;
+	userCount++;
+});
+
+firebase.database().ref('users').once('value', function(snapshot) {
+	if (snapshot.numChildren() === userCount) {
+		loadPosts();
+	}
+});</div>
 </div>
 
 <div class="slide">
@@ -67,52 +95,52 @@ const postRef = firebase.database().ref('posts');</div>
 </div>
 
 <div class="slide">
-	<div class="ex">postRef.on('child_added', function(snapshot) {
-	createPost(snapshot.val());
-});</div>
+	<div class="ex">function loadPosts() {
+	postRef.on('child_added', function(snapshot) {
+		createPost(snapshot.val());
+	});
+}</div>
 </div>
 
 <div class="slide">
 	<p>Finally we need to create the HTML to render each post.  We'll make a <code>createPost</code> function in case we want to use it in other places later.  This is based on the structure of a post mocked up in class.</p>
-	<div class="ex">function createPost(post) {
-	const postDiv = document.createElement('div');
-	postDiv.classList.add('post');
-	const postText = document.createElement('div');
-	postText.classList.add('post-text');
-	const postInfo = document.createElement('div');
-	postInfo.classList.add('post-info');
-	
-	const postAuthor = document.createElement('span');
-	postAuthor.classList.add('post-author');
-	const postDate = document.createElement('span');
-	postDate.classList.add('post-date');
+	<p>This example also uses the <code>createDiv</code> function to make each div so we don't have to repeat writing <code>document.createElement('div')</code> for each element.</p>
+</div>
 
-	postText.textContent = post.text;
-	postAuthor.textContent = post.author;
-	postDate.textContent = new Date(post.date).toLocaleString('en-us', { month: 'long', year: 'numeric', weekday: 'long', day: 'numeric' })
+<div class="slide">
+	<div class="ex">function createDiv(_class, text) {
+	const div = document.createElement('div');
+	div.classList.add(_class);
+	div.textContent = text;
+	return div;
+}
 
-	postDiv.appendChild(postText);
-	postDiv.appendChild(postInfo);
-	postInfo.innerHTML += "by ";
-	postInfo.appendChild(postAuthor);
-	postInfo.innerHTML += " on ";
-	postInfo.appendChild(postDate);
+function createPost(data) {
+	const post = createDiv('post');
+	const text = createDiv('text', data.text);
+	const info = createDiv('info');
+	const author = createDiv('author', "by " + users[data.uid]);
 
-	
+	const d = new Date(data.date);
+	const date = createDiv('date', "on " + (d.getMonth() + 1) + '.' + d.getDate() + '.' + d.getFullYear());
+
+	post.appendChild(text);
+	post.appendChild(info);
+	info.appendChild(author);
+	info.appendChild(date);
+
 	/* reverse chronological order */
-	postsDiv.insertBefore(postDiv, postsDiv.firstElementChild); 
-
-	// postsDiv.appendChild(postDiv);  /* for chronological order */
+	posts.insertBefore(post, posts.firstElementChild); 
 }</div>
 </div>
 
 <div class="slide">
 	<p>The result will create some HTML like this:</p>
 	<div class="ex" data-lang="html">&lt;div class="post"&gt;
-	&lt;div class="post-text"&gt;Post text.&lt;/div&gt;
-	&lt;div class="post-info"&gt;
-		by &lt;span class="post-author"&gt;Author Name&lt;/span&gt; 
-		on &lt;span class="post-date"&gt;Post Date&lt;/span&gt;
+	&lt;div class="text"&gt;Post text.&lt;/div&gt;
+	&lt;div class="info"&gt;
+		&lt;div class="author"&gt;by  Author Name&lt;/div&gt; 
+		&lt;div class="date"&gt; on Post Date&lt;/div&gt;
 	&lt;/div&gt;
 &lt;/div&gt;</div>
 </div>
