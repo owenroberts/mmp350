@@ -87,6 +87,7 @@ title: Schedule
 
 ## Week 8 **Typography**
 - [Typographic Hierarchy](notes/typography/)
+- [Responsive Typography](notes/typography/responsive/)
 - **Assignment 8**: Typographic Hierarchy
 	- Create 3 separate font pairings
 	- Apply font rules to posts as well as other template content
