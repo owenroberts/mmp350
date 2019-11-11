@@ -1,7 +1,7 @@
 ---
 layout: slides
 title: Storage
-week: 11
+week: 9
 ---
 
 <div class="slide">
@@ -31,44 +31,21 @@ week: 11
 
 <div class="slide">
 	<h2>Profile</h2>
-	<p>We're going to start by giving our users the ability to add a Profile picture.  To do this we need to upload an image to Storage and then get the URL where the image is stored and save it in the database with the user.</p>
+	<p>We're going to start by giving our users the ability to add a Profile image.  To do this we need to upload an image to Storage and then get the URL where the image is stored and save it in the database with the user.</p>
 </div>
 
-<!-- <div class="slide">
-	<h2>Profile page</h2>
-	<p>We'll start by adding a profile page.  This is a separate page from the <note>index.html</note>, but it has a lot of similarities, so we can begin by duplicating <note>index.html</note> and renaming it <note>profile.html</note>.</p>
-</div>
-
-<div class="slide">
-	<p>Before leaving <note>index.html</note> let's update the menu with a link to the profile page.</p>
-	<div class="ex" data-lang="html">&lt;ul id="menu"&gt;
-	&lt;li&gt;&lt;a href="profile.html"&gt;Profile&lt;/a&gt;&lt;/li&gt;
-	&lt;li&gt;Friends&lt;/li&gt;
-	&lt;li&gt;All Users&lt;/li&gt;
-&lt;/ul&gt;</div>
-</div>
-
-<div class="slide">
-	<p>Over on <note>profile.html</note> remember to update this link to go back to the homepage.</p>
-	<div class="ex" data-lang="html">&lt;li&gt;&lt;a href="index.html"&gt;Home&lt;/a&gt;&lt;/li&gt;</div>
-</div>
-
-<div class="slide">
-	<p>For the HTML, we can delete the main content sections <code>#posts</code> and <code>#write-post</code>.</p>
-	<p>We'll replace that with the <code>#profile</code> section.</p>
-	<p>In the profile section we'll add a file input for the user to upload a photo.  That's all we'll add for now.</p>
-</div> -->
 
 <div class="slide">
 	<div class="ex" data-lang="html">&lt;div id="profile"&gt;
-	&lt;h2&gt;My Profile&lt;/h2&gt;
-	&lt;p id="profile-name"&gt;&lt;/p&gt;
+	&lt;input id="profile-name"&gt;
+	&lt;img id="profile-photo"&gt;
+	&lt;textarea id="bio" placeholder="Add your bio"&gt;&lt;/textarea&gt;
 	&lt;div id="add-photo"&gt;
 		&lt;p&gt;Add a profile image:&lt;/p&gt;
 		&lt;input id="profile-photo-file" type="file" name="profile-img" accept="image/gif, image/jpeg, image/png"&gt;
 		&lt;button id="submit-photo"&gt;Submit Image&lt;/button&gt;
 	&lt;/div&gt;
-	&lt;img id="profile-photo" width="200"&gt;
+	
 &lt;/div&gt;</div>
 </div>
 
@@ -83,7 +60,19 @@ week: 11
 </div>
 
 <div class="slide">
-	<p>We need to add the module for storage.</p>
+	<p>After initializing a new Storage bucket, the config values for the Firebase app will chance.  Go to settings and copy the new config and replace that in the <code>&lt;head&gt;</code> section of <note>profile.html</note>.</p>
+</div>
+
+<div class="slide">
+	<img src="settings.png">
+</div>
+
+<div class="slide">
+	<img src="config.png">
+</div>
+
+<div class="slide">
+	<p>Then add the module for storage.</p>
 	<div class="ex" data-err>&lt;script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"&gt;&lt;/script&gt;
 &lt;script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"&gt;&lt;/script&gt;
 &lt;script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-database.js"&gt;&lt;/script&gt;
@@ -91,8 +80,8 @@ week: 11
 </div>
 
 <div class="slide">
-	<p>Listen for the user click.</p>
-	<div class="ex">const submitButton = document.getElementById('submit-photo');
+	<p>In <note>js/profile.js</note>, first listen for the user click.</p>
+	<div class="ex">const submitButton = document.getElementById('submit-image');
 submitButton.addEventListener('click', function() {
 	// get file
 	// upload file
@@ -101,7 +90,7 @@ submitButton.addEventListener('click', function() {
 
 <div class="slide">
 	<p>Get the file from the HTML input.</p>
-	<div class="ex">const file = document.getElementById('profile-photo-file').files[0];
+	<div class="ex">const file = document.getElementById('profile-image-file').files[0];
 // check file exists 
 if (file) {
 	// upload
@@ -112,25 +101,26 @@ if (file) {
 	<p>The storage reference is structured the same way as the firebase database reference.</p>
 	<div class="ex">const storage = firebase.storage();
 const user = firebase.auth().currentUser;
-const ref = storage.ref('users').child(user.uid).child('profile-photo');
-const filePromise = ref.put(file);</div>
+const ref = storage.ref('users').child(user.uid).child('profile-image');
+const promise = ref.put(file);</div>
 </div>
 
 <div class="slide">
-	<p>With the <code>filePromise</code> we can add the photo URL and use it to update the database and user account.</p>
-	<p>To get the photo URL we need to use another method that returns a promise, <code>getDownloadURL()</code>.  To do this we can use a common structure with Promises.  We return the result of <code>photo.ref.getDownloadURL()</code> and add another <code>.then()</code> to deal with the new Promise created.</p>
+	<p>With the <code>filePromise</code> we can add the image URL and use it to update the database and user account.</p>
+	<p>To get the image URL we need to use another method that returns a promise, <code>getDownloadURL()</code>.  To do this we can use a common structure with Promises.  We return the result of <code>image.ref.getDownloadURL()</code> and add another <code>.then()</code> to deal with the new Promise created.</p>
 </div>
 
 <div class="slide">
-	<div class="ex">filePromise.then(function(photo) {
-	return photo.ref.getDownloadURL();
+	<div class="ex">promise.then(function(image) {
+	return image.ref.getDownloadURL();
 }).then(updatePhoto);</div>
 
 	<div class="ex">function updatePhoto(url) {
 	const user = firebase.auth().currentUser
-	user.updateProfile({url: url});
-	document.getElementById('profile-photo').src = url;
-	firebase.database().ref('users').child(user.uid).update({profilePhoto: url});
+	user.updateProfile({ url: url });
+	document.getElementById('profile-image').src = url;
+	document.getElementById('add-image').style.display = 'none';
+	firebase.database().ref('users').child(user.uid).update({ imageURL: url });
 }</div>
 </div>
 
@@ -146,29 +136,82 @@ const filePromise = ref.put(file);</div>
 </div>
 
 <div class="slide">
-	<h2>Displaying the user image</h2>
+	<h2>Display logged in user</h2>
+	<p>Now we can use the image for the logged in user.</p>
+	<p>First add an <code>id</code> for the image in the HTML.</p>
+</div>
+
+<div class="slide">
+	<div class="ex" data-err>&lt;div id="profile"&gt;
+	&lt;img id="edit-profile-image" alt=""&gt;
+	&lt;button id="edit-profile"&gt;Edit Profile&lt;/button&gt;
+&lt;/div&gt;</div>
+</div>
+
+<div class="slide">
+	<p>Then add the edit <note>js/auth.js</note> to display the user image from the database.</p>
+</div>
+
+<div class="slide">
+	<div class="ex">userRef.on('value', function(snapshot) {
+	const userInfo = snapshot.val();
+	displayName.textContent = "Welcome, " + userInfo.displayName;
+
+	// check for image and then add 
+	if (userInfo.imageURL) {
+		document.getElementById('edit-profile-image').src = userInfo.imageURL;
+	}
+});</div>
+</div>
+
+<div class="slide">
+	<h2>Displaying the user image next to posts</h2>
 	<p>These reference will allow us to display the user photo when they're logged in and next to the posts that they write.</p>
 	<p>We can create an image in the <code>createPost</code> function.</p>
 </div>
 
 <div class="slide">
-	<div class="ex">function createPost(post) {
-	const postDiv = document.createElement('div');
-	postDiv.classList.add('post');
-	// rest of post ...
-	
-	const photoDiv = document.createElement('div');
-	photoDiv.classList.add('photo');
-	const photo = new Image();
-	photoDiv.appendChild(photo);
-	postDiv.appendChild(photoDiv);
+	<p>First update the users section to save all of the info from the database.</p>
+</div>
 
-	// get profile image from database 
-	const imgRef = firebase.database().ref('users').child(post.uid);
-	imgRef.on('child_added', function(snapshot) {
-		if (snapshot.key == 'profilePhoto') {
-			photo.src = snapshot.val();
-		}
-	});
+<div class="slide">
+	<div class="ex">// change 
+users[snapshot.key] = snapshot.val().displayName;
+// to this
+users[snapshot.key] = snapshot.val();</div>
+</div>
+
+<div class="slide">
+	<p>Then update the line adding the user <code>displayName</code> to the post.</p>
+</div>
+
+<div class="slide">
+	<div class="ex">//  change
+const author = createElement('author', users[data.uid]);
+// to
+const author = createElement('author', users[data.uid].displayName);</div>
+</div>
+
+<div class="slide">
+	<p>Now we can reference the <code>imageURL</code> as well as the <code>displayName</code>.</p>
+</div>
+
+<div class="slide">
+	<div class="ex">function createPost(data) {
+	// ...
+	posts.insertBefore(post, posts.firstElementChild);
+
+	if (users[data.uid].imageURL) {
+		const userImage = new Image();
+		userImage.src = users[data.uid].imageURL;
+		userImage.classList.add('user-image');
+		post.appendChild(userImage);
+	}
+
 }</div>
+</div>
+
+<div class="slide">
+	<p>The HTML generated for each post will now include a user image if one is available.</p>
+	<p>Add styling in <note>posts.css</note> to include the image in the post layout.  This might be a good play to try using CSS Grid or Flexbox to change the layout of the post.</p>
 </div>
