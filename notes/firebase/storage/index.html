@@ -38,19 +38,14 @@ week: 9
 <div class="slide">
 	<div class="ex" data-lang="html">&lt;div id="profile"&gt;
 	&lt;input id="profile-name"&gt;
-	&lt;img id="profile-photo"&gt;
+	&lt;img id="profile-image"&gt;
 	&lt;textarea id="bio" placeholder="Add your bio"&gt;&lt;/textarea&gt;
-	&lt;div id="add-photo"&gt;
+	&lt;div id="add-image"&gt;
 		&lt;p&gt;Add a profile image:&lt;/p&gt;
-		&lt;input id="profile-photo-file" type="file" name="profile-img" accept="image/gif, image/jpeg, image/png"&gt;
-		&lt;button id="submit-photo"&gt;Submit Image&lt;/button&gt;
+		&lt;input id="profile-image-file" type="file" name="profile-img" accept="image/gif, image/jpeg, image/png"&gt;
+		&lt;button id="submit-image"&gt;Submit Image&lt;/button&gt;
 	&lt;/div&gt;
-	
 &lt;/div&gt;</div>
-</div>
-
-<div class="slide">
-	<p>Next, let's update the <note>js/profile.js</note>.</p>
 </div>
 
 <div class="slide">
@@ -106,22 +101,19 @@ const promise = ref.put(file);</div>
 </div>
 
 <div class="slide">
-	<p>With the <code>filePromise</code> we can add the image URL and use it to update the database and user account.</p>
+	<p>With the <code>promise</code> we can add the image URL and use it to update the database and user account.</p>
 	<p>To get the image URL we need to use another method that returns a promise, <code>getDownloadURL()</code>.  To do this we can use a common structure with Promises.  We return the result of <code>image.ref.getDownloadURL()</code> and add another <code>.then()</code> to deal with the new Promise created.</p>
 </div>
 
 <div class="slide">
 	<div class="ex">promise.then(function(image) {
 	return image.ref.getDownloadURL();
-}).then(updatePhoto);</div>
-
-	<div class="ex">function updatePhoto(url) {
-	const user = firebase.auth().currentUser
+}).then(function(url) {
 	user.updateProfile({ url: url });
 	document.getElementById('profile-image').src = url;
 	document.getElementById('add-image').style.display = 'none';
 	firebase.database().ref('users').child(user.uid).update({ imageURL: url });
-}</div>
+});</div>
 </div>
 
 
@@ -175,7 +167,7 @@ const promise = ref.put(file);</div>
 </div>
 
 <div class="slide">
-	<div class="ex">// change 
+	<div class="ex" data-err>// change 
 users[snapshot.key] = snapshot.val().displayName;
 // to this
 users[snapshot.key] = snapshot.val();</div>
@@ -186,7 +178,7 @@ users[snapshot.key] = snapshot.val();</div>
 </div>
 
 <div class="slide">
-	<div class="ex">//  change
+	<div class="ex" data-err>//  change
 const author = createElement('author', users[data.uid]);
 // to
 const author = createElement('author', users[data.uid].displayName);</div>
