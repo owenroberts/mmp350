@@ -105,7 +105,8 @@ title: Schedule
 	- Display image with posts
 
 ## Week 10 **Query**
-- [Database Query](notes/firebase/query)
+<!-- - [Database Query](notes/firebase/query) -->
+- User and post pages
 
 ## Final 
 - Check rubric on Blackboard
@@ -122,6 +123,18 @@ title: Schedule
 - HTML/CSS/JavaScript Syntax
 
 <!-- 
+
+users & likes
+
+working on different parts of the site week by week
+layout
+input elements
+posts styles
+profile style
+color
+typography
+
+
 query
 
 ## Week 6 **Web App Pitch**
