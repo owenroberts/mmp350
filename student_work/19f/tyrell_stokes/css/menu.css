@@ -1,0 +1,681 @@
+style.css
+/*inherited*/
+
+/* This page controls widgets,spacing, and various other things not directly linked to typography or colors */
+
+
+html {
+	font-size: 1.2em;
+	font-weight: 300;
+	line-height: 1.3em;
+}
+
+body {
+	border-style: inset;
+	padding: 1px;
+}
+
+#logo {
+	margin-top: 15px;
+	margin-bottom: 25px;
+	font-size: 4em;
+	text-align: center;
+	font-style: none;
+
+}
+
+#reviewlogo {
+	margin-top: 15px;
+	margin-bottom: 15px;
+	font-size: 3em;
+	text-align: center;
+	font-style: none;
+}
+
+.glow {
+	font-size: 50px;
+	text-align: center;
+	-webkit-animation: glow 1s ease-in-out infinite alternate;
+	-moz-animation: glow 1s ease-in-out infinite alternate;
+	animation: glow 1s ease-in-out infinite alternate;
+}
+
+h1 {
+	font-size: 2.00em;
+	font-style: none;
+	text-align: center;
+	text-transform: capitalize;
+
+}
+
+h2 {
+	font-size: 1.2em;
+	font-style: italic;
+	text-align: center;
+	align-items: center;
+	text-transform: capitalize;
+}
+
+h3 {
+	font-size: 1.2em;
+	font-style: italic;
+	text-transform: capitalize;
+	text-decoration: none;
+	text-transform: capitalize;
+}
+
+
+h4 {
+	font-size: 1em;
+	font-style: none;
+	text-transform: uppercase;
+	text-decoration: none;
+	text-align: center;
+	word-spacing: 0px;
+}
+
+p {
+	text-transform: none;
+}
+
+p.one,
+p.four {
+	line-height: 1.4em;
+	font-size: 1.2em;
+	margin-bottom: 5px;
+	margin-left: 0px;
+	text-align: left;
+}
+
+p.two {
+	font-style: italic;
+	line-height: 1.4em;
+	font-size: 1.2em;
+	margin-bottom: 50px;
+	margin-left: 1px;
+	margin-right: 0px;
+	text-align: left;
+}
+
+p.three {
+	font-size: 1.4em;
+	margin-left: 0px;
+}
+
+p.five {
+	line-height: 1.4em;
+	font-size: 1.1em;
+	margin-bottom: 5px;
+	text-align: center;
+	text-transform: capitalize;
+}
+
+
+figcaption img {
+	float: none;
+	clear: none;
+	margin-top: 3px;
+	margin-bottom: 1px;
+	border: double 3px;
+}
+
+figcaption {
+	line-height: 1em;
+	font-size: 1.2em;
+	text-align: center;
+	font-weight: 200;
+	letter-spacing: 2px;
+}
+
+.map {
+	margin: 30px;
+}
+
+span.highlight {}
+
+img,
+iframe {
+	border-radius: 10px;
+}
+
+.game {
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+.fa-social {
+	text-align: center;
+	align-items: center;
+	color: #000000;
+}
+
+.fa-skype {
+	background: #00aff0;
+	color: white;
+}
+
+.fa-rss {
+	background: #ff6600;
+	color: white;
+}
+
+.fa-vimeo {
+	background: #45bbff;
+	color: white;
+}
+
+.fa-pinterest {
+	background: #cb2027;
+	color: white;
+}
+
+.fa-youtube {
+	background: #bb0000;
+	color: white;
+}
+
+.fa {
+	padding: 8px;
+	font-size: 20px;
+	width: 20px;
+	text-align: center;
+	text-decoration: none;
+	margin: 5px;
+	border-radius: 0px;
+}
+
+.paypal {
+	margin-right: 0px;
+	margin-top: 0px;
+	border-radius: 0px;
+}
+
+ol {
+	font-size: 1.2em;
+	font-weight: 200;
+	text-align: center;
+	line-height: 1.3em;
+	border: none;
+	list-style: none;
+	counter-reset: li;
+	letter-spacing: 0.3px;
+}
+
+ol li::before {
+	content: counter(li);
+	display: inline-block;
+	width: 1.2em;
+	margin-left: 0em;
+	padding: 0px;
+}
+
+li {
+	counter-increment: li;
+}
+
+ul {
+	list-style: square;
+}
+
+review {
+	list-style: none;
+	text-align: justify;
+	font-variant-caps: small-caps;
+	font-size: 1.1em;
+
+}
+
+.quote {
+	text-align: center;
+	margin-top: 20px;
+	padding-bottom: 20px;
+	font-style: none;
+	padding-left: 3px;
+	padding-right: 3px;
+	line-height: 1.5em;
+	margin-bottom: 20px;
+
+}
+
+#sidebar {
+	font-size: 1.1em;
+}
+
+.checkout {
+	margin-top: 20px;
+	padding-top: 10px;
+}
+
+#login {
+	margin-top: 1px;
+	padding-top: 1px;
+}
+
+.giphy {}
+
+tr:nth-child(even) {}
+
+td,
+th {
+	border: 2px double;
+	text-align: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	text-transform: capitalize;
+	border-collapse: collapse;
+	width: 100px;
+	border-radius: 5px;
+}
+
+.table {
+	font-size: 1em;
+	margin-bottom: 20px;
+	float: right;
+	clear: left;
+}
+
+.table2 {
+	font-size: 1em;
+	margin-bottom: 20px;
+	float: right;
+	clear: left;
+}
+
+.table3 {
+	font-size: 1em;
+	margin-bottom: 20px;
+	float: left;
+	clear: right;
+}
+
+.table4 {
+	font-size: 1em;
+	margin-bottom: 20px;
+	float: right;
+	clear: left;
+}
+
+.table5 {
+	font-size: 1em;
+	margin-bottom: 20px;
+	float: left;
+	clear: right;
+}
+
+.table img {
+	float: left;
+	clear: right;
+	margin-top: 2px;
+	margin-right: 5px;
+}
+
+.table img.resize {
+	max-width: 40%;
+	max-height: 38%;
+}
+
+.table2 img {
+	float: right;
+	clear: left;
+	margin-right: 0px;
+}
+
+.table2 img.resize {
+	max-width: 55%;
+	max-height: 50%;
+	margin-right: 13%;
+}
+
+.table3 img {
+	float: left;
+	clear: right;
+	margin-right: 5px;
+	margin-top: 10px;
+}
+
+.table3 img.resize {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.table4 img {
+	float: right;
+	clear: left;
+	margin-top: 3px;
+}
+
+.table4 img.resize {
+	max-width: 48%;
+	max-height: 0%;
+	margin-right: 40px;
+}
+
+.table5 img {
+	float: left;
+	clear: right;
+	margin-right: 5px;
+	margin-top: 10px;
+}
+
+.table5 img.resize {
+	max-width: 50%;
+	max-height: 50%;
+}
+
+
+#write-post {
+	border: double;
+	margin-bottom: 50px;
+	text-align: center;
+	margin-top: 30px;
+	padding-bottom: 15px;
+
+}
+
+#publish {
+	align-items: center;
+}
+
+textarea {
+	text-align: center;
+}
+
+.update {
+	border: double;
+	text-align: center;
+	align-items: center;
+	margin-top: 30px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	word-spacing: 5px;
+	margin-bottom: 50px;
+
+}
+
+.bonus {
+	text-align: center;
+	align-items: center;
+	font-size: 1.1em;
+}
+
+#add-image {
+	font-size: 1em;
+	padding-bottom: 20px;
+	margin-top: 1px;
+
+}
+
+form {
+	font-size: 1.3em;
+	text-align: center;
+	align-items: center;
+	padding-bottom: 20px;
+	margin-top: 40px;
+}
+
+.authentication {
+	line-height: 1.3em;
+	font-size: 1.1em;
+	margin-bottom: 5px;
+	margin-left: 0px;
+	text-align: left;
+}
+
+.social {
+	font-size: 1em;
+	text-align: center;
+	margin-top: 10px;
+	word-spacing: 0px;
+
+}
+
+.disclaimer {
+	font-size: .9em;
+	text-align: justify;
+	word-spacing: 0px;
+	line-height: 1.2em;
+}
+
+.new {
+	text-decoration: underline;
+	line-height: 1.4em;
+	text-align: center;
+	font-size: 1.4em;
+	margin-bottom: 10px;
+	margin-top: 10px;
+
+}
+
+#profile {
+	text-align: center;
+	align-items: center;
+
+}
+
+.profileimg {
+	margin-top: 10px;
+	margin-bottom: px;
+	width: 100%;
+	height: auto;
+	border: double;
+	align-items: center;
+}
+
+
+#create {
+	border: double;
+	text-align: center;
+	margin-top: 20px;
+	padding-top: 25px;
+	padding-bottom: 25px;
+}
+
+
+.linkedList {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	letter-spacing: .2px;
+}
+
+#copyright {
+	font-style: none;
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-size: 1em;
+	font-style: none;
+	line-height: 1.2em;
+	letter-spacing: .2px;
+}
+
+.avatar {
+	vertical-align: middle;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+
+#footer {
+	font-style: none;
+	border: double;
+	text-align: center;
+	margin: 2px;
+	font-size: 1.1em;
+	letter-spacing: 2px;
+}
+
+.footerlist {
+	font-size: 1.1em;
+	letter-spacing: 2px;
+	word-spacing: 30px;
+}
+
+.toppage {
+	font-size: 1em;
+	text-align: right;
+	margin-bottom: 5px;
+	margin-top: 0px;
+	margin-right: 11px;
+}
+
+
+#user-name {
+	border: double;
+	height: 25px;
+	border-radius: 0em;
+}
+
+
+.blockquote {
+	text-align: justify;
+}
+
+/* mouse over link*/
+
+a:hover,
+a:active {}
+
+a {
+	text-transform: capitalize;
+	text-decoration: underline;
+}
+
+div {
+	clear: both;
+}
+
+.clearfix {
+	overflow: auto;
+}
+
+/* Basic Responsive Images and Video */
+
+img,
+video {
+	width: auto;
+	height: auto;
+	max-width: 100%;
+}
+
+
+/* Add a black background color to the top navigation */
+
+.topnav {
+	font-style: none;
+	overflow: hidden;
+	letter-spacing: 3px;
+	margin-top: 20px;
+
+}
+
+/* Remove default list styling: remove bullet points from the list and remove default margin */
+
+.topnav ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.topnav ul li {
+	margin: 0px;
+	padding: 0px;
+}
+
+/* Style the links inside the navigation bar */
+
+.topnav ul li {
+	float: center;
+	text-align: center;
+	border-style: double;
+	border-radius: 20px;
+
+}
+
+.topnav a {
+	display: block;
+	padding: 12px 15px;
+	text-decoration: none;
+	font-size: 30px;
+
+}
+
+/* Change the color of links on hover */
+
+.topnav a:hover {
+	border-radius: 20px;
+
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+
+.topnav .icon {
+	display: none;
+}
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home").
+Show the link that contains should open and close the topnav (.icon) */
+
+@media screen and (max-width: 600px) {
+	.topnav li:not(:first-child) {
+		display: none;
+	}
+
+	.topnav li.icon {
+		float: center;
+		display: block;
+	}
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon.
+This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+
+@media screen and (max-width: 600px) {
+	.topnav.responsive {
+		position: relative;
+	}
+
+	.topnav.responsive li.icon {
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+
+	.topnav.responsive li {
+		float: none;
+		display: block;
+		text-align: left;
+	}
+
+	@media only screen and (max-width: 414px) {
+		.boxflex {}
+
+	}
+
+	@media only screen and (max-width: 600px) {
+		.boxflex2 {}
+
+	}
+
+	/*
+  =====================================
+  CSS for <iframe> embedded Google Map
+  =====================================
+*/
+	.mapWrapper {
+		position: relative;
+		/*
+    Do math with the height of your iframe divided by the width, then converted to percent
+    In this example the height is 400 and the width is 600
+    400 / 600 = .66666667
+    which is 66.6666667% */
+		padding-bottom: 100%;
+		height: 0;
+	}
+
+	.mapWrapper iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}

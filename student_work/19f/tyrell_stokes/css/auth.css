@@ -1,0 +1,21 @@
+#user-info {
+    display: none;
+    text-align: center;
+    align-items: center;
+}
+
+.auth #user-info {
+    display: block;
+    font-family: var(--serious-font), sans-serif;
+
+}
+
+.auth #login {
+    display: none;
+}
+
+#profile {}
+
+.auth #profile {
+    display: block;
+}

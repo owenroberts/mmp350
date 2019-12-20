@@ -1,0 +1,291 @@
+/*
+	color scheme V-Professional
+	Black Grey and White (Monochromatic Colors)
+*/
+
+:root {
+	--main-color: #FAEBD7;
+	--complement: #E6E6E6;
+	--accent-one: #808080;
+	--accent-two: #CFCFCF;
+	--accent-three: #000000;
+	--text-color: var(--accent-two);
+	--main-bg-color: var(--accent-three);
+}
+
+
+/*
+	color scheme IV-Cotton Candy
+	lightblue pink grey (Triad Colors)
+*/
+
+
+:root {
+	--main-color: #FFACB5;
+	--complement: #78F7FF;
+	--accent-one: #779CFF;
+	--accent-two: #FFDFCF;
+	--accent-three: #424040;
+	--text-color: var(--accent-two);
+	--main-bg-color: var(--accent-three);
+}
+
+
+/*
+	Color Scheme III-Purple Flame
+	Orange Purple Black White (Secondary Complementary Colors)
+*/
+
+:root {
+	--main-color: #C297E6;
+	--complement: #FF8D54;
+	--accent-one: #E8A768;
+	--accent-two: #E8E8E8;
+	--accent-three: #1F1F1F;
+	--text-color: var(--accent-two);
+	--main-bg-color: var(--accent-three);
+}
+
+
+/*
+	Color Scheme II-Leaf and Log
+	Teal Lightgreen wood (Tertiary color)
+*/
+
+:root {
+	--main-color: #FFE0BF;
+	--complement: #B3FFBF;
+	--accent-one: #7bc9b4;
+	--accent-two: #E1BF8C;
+	--accent-three: #000000;
+	--text-color: var(--accent-two);
+	--main-bg-color: var(--accent-three);
+}*
+
+
+/* 
+	Color Scheme I
+    Gold and Silver (Analogous Colors)
+	
+*/
+
+:root {
+	--main-color: #7F7C83;
+	--complement: #DFDAE6;
+	--accent-one: #BAB6BF;
+	--accent-two: #DBC76E;
+	--accent-three: #000000;
+	--text-color: var(--accent-two);
+	--main-bg-color: var(--accent-three);
+}
+
+* {
+	color: var(--text-color);
+	background-color: var(--main-bg-color);
+}
+
+sup {
+	color: var(--main-color);
+}
+
+em,
+u,
+b,
+strong,
+small,
+cite,
+acronym {
+	color: var(--complement);
+}
+
+i {
+	color: var(--accent-one);
+}
+
+.topnav a {
+	text-shadow: -1px 0 var(--main-color), 1px 0 #424040, 1px 0 var(--accent-two), 0 -1px var(--complement);
+}
+
+.topnav li {
+	border-color: var(--main-color);
+	background-color: var(--complement);
+}
+
+.topnav a:hover {
+	color: var(--main-color);
+}
+
+#logo a {
+	text-shadow: -2px 0 var(--main-color), 0 2px #E8E8E8, 0 1px var(--accent-one), 0 -1px #424040;
+}
+
+a {
+	color: var(--complement);
+	text-shadow: -1px 0 var(--accent-three),
+		.5px 0 var(--accent-one),
+		.5px 0 var(--accent-two),
+		0 -1px var(--main-color);
+}
+
+a:hover,
+a:active {}
+
+a:hover,
+a:active {
+	color: var(--main-color);
+}
+
+button {
+	color: var(--complement);
+}
+
+button:hover,
+button:active {
+	color: var(--main-color);
+	border-color: var(--complement);
+}
+
+.linkedList {
+	border: double;
+	border-color: var(--main-color);
+}
+
+.quote {
+	border: double;
+	border-color: var(--main-color);
+}
+
+span.highlight {
+	background-color: var(--main-color);
+	color: var(--accent-three);
+}
+
+#social {
+	background-color: var(--accent-two);
+}
+
+.bonus {
+	color: var(--text-color);
+}
+
+p.three {
+	text-shadow: 0px .5px 0px var(--main-color);
+}
+
+h1,
+h2,
+h3,
+h4 {
+	color: var(--accent-one);
+}
+
+h1,
+h2,
+h3 {
+	text-shadow: -1px 0 var(--accent-three), 0 .2px var(--accent-two), .1px 0 var(--accent-one), 0 -1px var(--main-color);
+}
+
+.glow {
+	color: var(--accent-one);
+}
+
+@-webkit-keyframes glow {
+	from {
+		text-shadow: 0 0 10px var(--main-color), 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+	}
+
+	to {
+		text-shadow: 0 0 20px var(--accent-three), 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+	}
+}
+
+#login,
+#user-info {
+	color: var(--complement);
+}
+
+input {
+
+	color: var(--complement);
+}
+
+::placeholder {
+	color: var(--main-color);
+
+}
+
+#copyright {
+	color: var(--main-color);
+}
+
+figcaption img {
+	color: var(--accent-one);
+}
+
+figcaption,
+#reviewlogo {
+	text-shadow: -1px 0 var(--complement), 0 .2px var(--accent-two), .2px 0 var(--main-color), 0 -1px var(--accent-three);
+}
+
+.new {
+	color: var(--main-color);
+}
+
+textarea {
+	color: var(--complement);
+	border-color: var(--accent-two);
+}
+
+#login-message,
+#error-message {
+	color: indianred;
+}
+
+#user-name {
+	color: var(--main-color);
+	background-color: var(--accent-three);
+}
+
+#write-post {
+	border-color: var(--complement);
+}
+
+tr:nth-child(even) {
+	background-color: var (--accent-one);
+}
+
+.post {
+	background-color: var(--accent-three);
+}
+
+.post .author {
+	color: var(--accent-two);
+}
+
+.post .date::before {
+	content: " on ";
+	color: var(--main-color);
+}
+
+.post .author {
+	color: var(--accent-two);
+}
+
+.post .date::before {
+	content: " on ";
+	color: var(--main-color);
+}
+
+@media only screen and (max-width: 414px) {
+	.boxflex {
+		background-color: var(--accent-three);
+	}
+
+}
+
+@media only screen and (max-width: 600px) {
+	.boxflex2 {
+		background-color: var(--accent-three);
+	}
+
+}
