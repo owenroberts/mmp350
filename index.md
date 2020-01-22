@@ -9,12 +9,12 @@ The class notes, schedule and assignments are all found here.
 
 
 - [Schedule](schedule.html)
-- [Syllabus](https://docs.google.com/document/d/1zYNcHq67jB3UNWBWcKH_WSe1E55seC8nWHfTnBT5yjs/edit?usp=sharing){:target="blank"}
+- [Syllabus](https://docs.google.com/document/d/1NQKivq-7amlATFkmi0QNobWmg5QdkNZ8xS4Fl68ZTec/edit?usp=sharing){:target="_blank"}
 - [Student Work](student_work/)
 - [Examples](examples/)
 - [Public Pad](pad)
 
-## Fall 2019
+## Spring 2020
 
 - Instructor: Owen Roberts
 - Email: oroberts AT bmcc DOT cuny  DOT edu
@@ -36,18 +36,24 @@ Students will write HTML, CSS and JavaScript. They will use image editing progra
 
 ## Citations for code resources
 - Coding assignments must use citations for any code borrowed from resources outside of class, including Google, Stack Overflow, YouTube or any tutorial, even if it's as little as one line of code
-- This is good practice to keep track of resources as well
+- This is good practice to keep track of resources
 - In comments at the top of include a link to the resource
+```
+/*
+	example project
+	flower design from: https://p5js.org/examples/hello-p5-simple-shapes.html
+*/
+```
 
-## Grade Breakdown
+## Software
+- Text Editor: [Brackets](http://brackets.io/){:target="_blank"}
+- Text Editor: [Sublime](https://www.sublimetext.com/){:target="_blank"}
+- Browser: [Chrome](https://www.google.com/chrome/){:target="_blank"}
+- [GitHub](https://github.com/){:target="_blank"}
+- [GitHub Desktop](https://desktop.github.com/){:target="_blank"}
 
-10% | Teacher evaluation and attendance  
-40% | Assignments  
-20% | Midterm 
-30% | Final
 
 ## Computer Labs
-
 Computers are available for student usage in the locations listed on [http://www.bmcc.cuny.edu/it](http://www.bmcc.cuny.edu/it)
 
 ## Tutoring
@@ -55,14 +61,9 @@ Computers are available for student usage in the locations listed on [http://www
 For MMP and MMA tutoring, please visit BMCC's [tutoring schedule](http://www.bmcc.cuny.edu/lrc/schedule.jsp).  
 **Note**: This semester MMP 350 is covering material that has not been previously covered.  If you are interested in tutoring, please talk to me directly first.
 
-## Topics
-- Web site Project Planning
-- Content Management System
-- Interactivity with Client Side Scripting
-- Dynamic Web pages through Server-Side Scripting
-- SASS and advanced CSS concepts
-- Wireframing and prototyping
-- Git and Github
+## Statement of Inclusion
+This class room strives to be an inclusive learning community, respecting those of differing backgrounds and beliefs.  It is my intent to present materials and activities that are respectful of diversity: gender identity, sexuality, disability, age, socioeconomic status, ethnicity, race, nationality, religion, and culture.
 
+This course affirms people of all gender expressions and gender identities. If you go by a different name than what is on the class roster, please let me know. Using correct gender pronouns is important to me, so you are encouraged to share your pronouns with me and correct me if a mistake is made. 
 
-
+Your suggestions are encouraged and appreciated.  If you have any questions or concerns, please do not hesitate to contact me.

@@ -83,8 +83,8 @@ $ touch index.html</code></pre>
 <div class="slide">
 	<h2>Resources</h2>
 	<ul>
-		<li><a href="https://files.fosswire.com/2007/08/fwunixref.pdf" target="blank">Unix cheat sheet </a></li>
-		<li><a href="https://ss64.com/osx/" target="blank">Full reference </a></li>
-		<li><a href="https://www.lynda.com/Mac-OS-X-10-6-tutorials/Unix-for-Mac-OS-X-Users/78546-2.html" target="blank">Lynda: Unix for Mac OS X Users</a></li>
+		<li><a href="https://files.fosswire.com/2007/08/fwunixref.pdf" target="_blank">Unix cheat sheet </a></li>
+		<li><a href="https://ss64.com/osx/" target="_blank">Full reference </a></li>
+		<li><a href="https://www.lynda.com/Mac-OS-X-10-6-tutorials/Unix-for-Mac-OS-X-Users/78546-2.html" target="_blank">Lynda: Unix for Mac OS X Users</a></li>
 	</ul>
 </div>

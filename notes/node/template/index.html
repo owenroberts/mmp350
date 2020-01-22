@@ -9,7 +9,7 @@ week: 4
 </div>
 
 <div class="slide">
-	<p>We're going to start with a new package, <a href="https://github.com/expressjs/morgan" target="blank">Morgan.</a> Morgan is a middleware for logging to the node console.</p>
+	<p>We're going to start with a new package, <a href="https://github.com/expressjs/morgan" target="_blank">Morgan.</a> Morgan is a middleware for logging to the node console.</p>
 	<pre><code class="javascript">$ npm install --save morgan</code></pre>
 	<pre><code>// require the module
 const express = require('express');
@@ -26,7 +26,7 @@ GET /about 304 0.588 ms - -</code></pre>
 
 <div class="slide">
 	<h2>EJS</h2>
-	<p>For our template language this semester we are going to use <a href="http://ejs.co/" target="blank">EJS</a>.  There are a bunch of good template languages out there, like <a href="https://handlebarsjs.com/" target="blank">Handlebars</a> and <a href="https://pugjs.org/api/getting-started.html" target="blank">Pug</a> that I like to use.</p>
+	<p>For our template language this semester we are going to use <a href="http://ejs.co/" target="_blank">EJS</a>.  There are a bunch of good template languages out there, like <a href="https://handlebarsjs.com/" target="_blank">Handlebars</a> and <a href="https://pugjs.org/api/getting-started.html" target="_blank">Pug</a> that I like to use.</p>
 	<p>We're using EJS for class because it most closely resemble pure JavaScript, so we will have fewer new syntax structures to cover.</p>
 </div>
 
@@ -80,7 +80,7 @@ GET /about 304 0.588 ms - -</code></pre>
 <div class="slide">
 	<h2>POST</h2>
 	<p>Notice the <code>method="POST"</code> in the <code>form</code>?  On our server we will now need to make a separate route to handle the post request.</p>
-	<p>But first, for this to work, we need another package.  The <a href="https://github.com/expressjs/body-parser" target="blank">Body Parser</a> package reads a request from the client so we can use the information.</p>
+	<p>But first, for this to work, we need another package.  The <a href="https://github.com/expressjs/body-parser" target="_blank">Body Parser</a> package reads a request from the client so we can use the information.</p>
 	<p>Install the pacakge:</p>
 	<pre><code>$ npm install --save body-parser</code></pre>
 	<p>Then add it into <code>server.js</code>:</p>

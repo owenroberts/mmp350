@@ -1,0 +1,40 @@
+#posts {
+	
+}
+
+.post {
+	display: grid;
+	grid-template-columns: 3fr 1fr;
+}
+
+.post a {
+	text-decoration: none;
+	transition: color 300ms ease-in;
+}
+
+.post a:hover {
+	color: var(--accent-two);
+}
+
+.post .profile-image {
+	width: 100px;
+	grid-column: 2;
+}
+
+.post .text {
+	grid-column: 1;
+	grid-row: 1;
+}
+
+.post .author {
+	
+}
+
+.post .date {
+	grid-column: 2;
+	grid-row: 3
+}
+
+.post a {
+	grid-column: 1;
+}
