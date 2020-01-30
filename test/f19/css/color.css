@@ -1,0 +1,58 @@
+/* analogous color scheme */
+:root {
+	--main-hue: 240;
+	--offset: 30;
+
+	--main-color: hsl(var(--main-hue), 50%, 50%);
+		
+	--accent-one-hue: calc(var(--main-hue) - var(--offset));
+	--accent-two-hue: calc(var(--main-hue) + var(--offset));
+	--accent-one: hsl(var(--accent-one-hue), 50%, 75%);
+	--accent-two: hsl(var(--accent-two-hue), 50%, 50%);
+	
+	--complement: var(--accent-two);
+	--button-dark: hsl(var(--accent-one-hue), 60%, 25%);
+	
+	--link-color: var(--main-color);
+		
+	--special-button-color: white;
+}
+
+*::selection {
+	background-color: var(--accent-one);	
+}
+	
+* {
+	color: var(--text-color);
+}
+
+#title h1, h1, h2 {
+	color: var(--main-color);
+}
+
+#menu, #login, #user-info {
+	background-color: var(--accent-one);
+}
+
+button {
+	background-color: var(--main-color);
+	border: 2px solid var(--accent-two);
+	color: var(--accent-one);
+}
+
+a {
+	color: var(--link-color);
+}
+
+#social {
+	background-color: var(--complement);
+}
+	
+input {
+	border: none;
+	border-bottom: 1px solid var(--main-color);	
+}
+	
+#main input, #main textarea {
+	color: var(--main-color);
+}

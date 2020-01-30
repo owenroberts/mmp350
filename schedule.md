@@ -17,17 +17,7 @@ title: Schedule
 		- social interactions
 	- Make a simple HTML page with images and descriptions of the process
 
-## Week 2 **Grid**
-- [Grid Systems](notes/grid/)
-<!-- - [Forking a Project on GitHub](notes/github/fork) -->
-- [CSS Grid](notes/grid/css/)
-- **Assignment 2**: Layout
-	- Use `style.css` to import style sheets
-	- Create `layout-1.css`, `layout-2.css` and `layout-3.css` inside css/ folder
-	- Use CSS grid rules, either with columns and rows or template areas, to implement three different possibilities for the website grid
-	- Choose the best version and make a copy as `layout.css`
-
-## Week 3 **JavaScript**
+## Week 2 **JavaScript**
 - [JavaScript input & variables](notes/javascript/input/)
 - [Firebase Intro](notes/firebase/intro)
 - [Firebase Authentication](notes/firebase/auth)
@@ -36,18 +26,16 @@ title: Schedule
 	- Write JavaScript to get the user inputs
 	- Create a new user in Firebase Authentication
 
-## Week 4 **Responsive Design**
-- [Flex box](notes/responsive/flex)
-- [Responsive Layouts](notes/responsive/media)
-- **Assignment 4**: Responsive CSS
-	- Add responsive layouts for mobile and tablet to the `responsive.css` stylesheet
-	- Use media queries to update grid for mobile and tablet display
-	- Use Chrome mobile emulator for development/testing
-	- Add a `menu.css` file using flex box
-	- Add a `create.css` with flex box for the create user section
-	- Media queries should also update flex box rules
+## Week 3 **Typography**
+- [Typographic Hierarchy](notes/typography/)
+- [Responsive Typography](notes/typography/responsive/)
+- **Assignment 8**: Typographic Hierarchy
+	- Create 3 separate font pairings
+	- Apply font rules to posts as well as other template content
+	- Include media queries for responsive typography
+	- Use `typography.css` with different classes to apply each pairing
 
-## Week 5 **Database**
+## Week 4 **Database**
 - [Data types](notes/javascript/data_types)
 - [Logic](notes/javascript/logic)
 - [Firebase Database](notes/firebase/db)
@@ -56,7 +44,7 @@ title: Schedule
 	- Save the email address and link in the database
 	- Display the email address and link on the profile page
 
-## Week 6 **Color**
+## Week 5 **Color**
 - [CSS Custom Properties](notes/color/custom)
 - [Calculating Color](notes/color/calculating) <!-- figure out how to refactor this -->
 - **Assignment 6**: Color Scheme
@@ -67,14 +55,7 @@ title: Schedule
 	- Implement those colors for the text, buttons, links, and at least one background
 	- Create three color schemes in the page using the save custom variable names
 
-
-<!-- 
-	functions
-	adding to the db
-	inputs for adding a post
- -->
-
-## Week 7 **Functions**
+## Week 6 **Functions**
 - [Firebase Publish/Display](notes/firebase/post)
 - [DOM & Events](notes/javascript/events)
 - [Functions](notes/javascript/functions/)
@@ -85,16 +66,17 @@ title: Schedule
 	- Apply color sceme to posts 
 	- Update styles in responsive.css for mobile and tablet
 
-## Week 8 **Typography**
-- [Typographic Hierarchy](notes/typography/)
-- [Responsive Typography](notes/typography/responsive/)
-- **Assignment 8**: Typographic Hierarchy
-	- Create 3 separate font pairings
-	- Apply font rules to posts as well as other template content
-	- Include media queries for responsive typography
-	- Use `typography.css` with different classes to apply each pairing
+## Week 7 **Grid**
+- [Grid Systems](notes/grid/)
+<!-- - [Forking a Project on GitHub](notes/github/fork) -->
+- [CSS Grid](notes/grid/css/)
+- **Assignment 2**: Layout
+	- Use `style.css` to import style sheets
+	- Create `layout-1.css`, `layout-2.css` and `layout-3.css` inside css/ folder
+	- Use CSS grid rules, either with columns and rows or template areas, to implement three different possibilities for the website grid
+	- Choose the best version and make a copy as `layout.css`
 
-## Week 9 **Storage**
+## Week 8 **Storage**
 - [Firebase Storage](notes/firebase/storage)
 <!-- - [Interacting with posts](notes/firebase/likes) -->
 - **Assignment 9**: Add Images to Posts
@@ -104,8 +86,19 @@ title: Schedule
 	- Retrievew the image from storage with the URL from the database
 	- Display image with posts
 
+## Week 9 **Responsive Design**
+- [Flex box](notes/responsive/flex)
+- [Responsive Layouts](notes/responsive/media)
+- **Assignment 4**: Responsive CSS
+	- Add responsive layouts for mobile and tablet to the `responsive.css` stylesheet
+	- Use media queries to update grid for mobile and tablet display
+	- Use Chrome mobile emulator for development/testing
+	- Add a `menu.css` file using flex box
+	- Add a `create.css` with flex box for the create user section
+	- Media queries should also update flex box rules
+
 ## Week 10 **Query**
-<!-- - [Database Query](notes/firebase/query) -->
+- [Database Query](notes/firebase/query)
 - User and post pages
 
 ## Final 
