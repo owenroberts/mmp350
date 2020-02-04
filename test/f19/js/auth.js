@@ -1,58 +1,43 @@
-const loginButton = document.getElementById("login-button");
-const emailInput = document.getElementById("email");
-const passwordInput = document.getElementById("password");
-const message = document.getElementById("login-message");
+const loginButton = js.getEl("login-button");
+const emailInput = js.getEl("login-email");
+const passwordInput = js.getEl("login-password");
+const loginMessage = js.getEl("login-message");
+const logoutButton = js.getEl("logout-button");
+const displayName = js.getEl("user-name");
+const profileImage = js.getEl('profile-image');
 
-loginButton.onclick = function(event) {
-	const promise = firebase.auth().signInWithEmailAndPassword(emailInput.value, passwordInput.value);
-	promise.catch(function(error) {
-		message.textContent = error.message;
-	});
-};
+loginButton.onclick = login;
+logoutButton.onclick = logout;
 
-/* auth state */
-const displayName = document.getElementById("user-name");
+function login() {
+	fb.login(emailInput.value, passwordInput.value);
+}
 
-firebase.auth().onAuthStateChanged(function(user) {
-	
-	if (user) {
-		document.body.classList.add('auth');
+function logout() {
+	fb.logout();
+}
 
-		/* find user in database */
-		const userRef = firebase.database().ref('users').child(user.uid);
-		userRef.on('value', function(snapshot) {
-			const userInfo = snapshot.val();
-			displayName.textContent = "Welcome, " + userInfo.displayName;
-			
-			if (userInfo.imageURL) {
-				document.getElementById('edit-profile-image').src = userInfo.imageURL;
-			}
-		});
-		
-		const profileButton = document.getElementById("edit-profile");
-		profileButton.onclick = function() {
-			location.href = "profile.html?uid=" + user.uid;	
-		};
-				
-	} else {
-		document.body.classList.remove('auth');
-		displayName.textContent = "";
+function onError(errorMessage) {
+	loginMessage.textContent = errorMessage;
+}
+
+function userLoggedIn(id, name, profileImageURL) {
+	document.body.classList.add('auth');
+	displayName.textContent = "Welcome, " + name;
+
+	const profileButton = document.getElementById("edit-profile");
+	profileButton.onclick = goToProfile;
+
+	function goToProfile() {
+		location.href = "profile.html?uid=" + user.uid;	
+	};
+
+	if (profileImageURL) {
+		profileImage.src = profileImageURL;
 	}
-});
+}
 
-/* log out */
-const logoutButton = document.getElementById("logout-button");
-logoutButton.onclick = function() {
-	firebase.auth().signOut();
-};
-
-
-
-
-
-
-
-
-
-
-
+function noUser() {
+	document.body.classList.remove('auth');
+	displayName.textContent = "";
+}

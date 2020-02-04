@@ -1,11 +1,11 @@
-const userInput = document.getElementById("username");
-const emailInput = document.getElementById("email");
-const passwordInput = document.getElementById("password");
-const createButton = document.getElementById("create-button");
-const errorMessage = document.getElementById("error-message");
+const userInput = js.getEl("username");
+const emailInput = js.getEl("create-email");
+const passwordInput = js.getEl("create-password");
+const createButton = js.getEl("create-button");
+const errorMessage = js.getEl("error-message");
 
 createButton.onclick = function() {
-	const promise = firebase.auth().createUserWithEmailAndPassword(emailInput.value, passwordInput.value);
+	fb.create(emailInput.value, passwordInput.value);
 	promise.catch(function(error) {
 		errorMessage.textContent = error.message;
 	});
@@ -14,6 +14,10 @@ createButton.onclick = function() {
 		createUser(credential.user.uid);
 	});
 };
+
+function onError(errorMessage) {
+	errorMessage.textContent = errorMessage;
+}
 
 function createUser(uid) {
 	const db = firebase.database();

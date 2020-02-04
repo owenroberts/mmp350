@@ -7,7 +7,7 @@ title: Schedule
 - [Back end web](notes/backend)
 - [GitHub](notes/github/client)
 - [HTML/CSS Review](notes/review)
-- **Assignment 1**: Website breakdown
+- **Assignment**: Website breakdown
 	- Find a website that requires a login
 	- Use screen shots to capture 
 		- the process of registering and logging into the site
@@ -21,7 +21,7 @@ title: Schedule
 - [JavaScript input & variables](notes/javascript/input/)
 - [Firebase Intro](notes/firebase/intro)
 - [Firebase Authentication](notes/firebase/auth)
-- **Assignment 3**: Authentication
+- **Assignment**: Authentication
 	- Add HTML elements for the Create User section
 	- Write JavaScript to get the user inputs
 	- Create a new user in Firebase Authentication
@@ -29,7 +29,7 @@ title: Schedule
 ## Week 3 **Typography**
 - [Typographic Hierarchy](notes/typography/)
 - [Responsive Typography](notes/typography/responsive/)
-- **Assignment 8**: Typographic Hierarchy
+- **Assignment**: Typographic Hierarchy
 	- Create 3 separate font pairings
 	- Apply font rules to posts as well as other template content
 	- Include media queries for responsive typography
@@ -47,7 +47,7 @@ title: Schedule
 ## Week 5 **Color**
 - [CSS Custom Properties](notes/color/custom)
 - [Calculating Color](notes/color/calculating) <!-- figure out how to refactor this -->
-- **Assignment 6**: Color Scheme
+- **Assignment**: Color Scheme
 	- Create a `color.css` page
 	- Choose a color scheme (complementary, triad, monochromatic, analogous, or combination)
 	- Use one color as main color
@@ -59,7 +59,7 @@ title: Schedule
 - [Firebase Publish/Display](notes/firebase/post)
 - [DOM & Events](notes/javascript/events)
 - [Functions](notes/javascript/functions/)
-- **Assignment 7: Style posts and post input**
+- **Assignment**: Style posts and post input
 	- Create post.css and publish.css
 	- Add styles for the individual posts and publish section
 	- Use flex box and/or grid to change layout of posts
@@ -70,7 +70,7 @@ title: Schedule
 - [Grid Systems](notes/grid/)
 <!-- - [Forking a Project on GitHub](notes/github/fork) -->
 - [CSS Grid](notes/grid/css/)
-- **Assignment 2**: Layout
+- **Assignment**: Layout
 	- Use `style.css` to import style sheets
 	- Create `layout-1.css`, `layout-2.css` and `layout-3.css` inside css/ folder
 	- Use CSS grid rules, either with columns and rows or template areas, to implement three different possibilities for the website grid
@@ -79,7 +79,7 @@ title: Schedule
 ## Week 8 **Storage**
 - [Firebase Storage](notes/firebase/storage)
 <!-- - [Interacting with posts](notes/firebase/likes) -->
-- **Assignment 9**: Add Images to Posts
+- **Assignment**: Add Images to Posts
 	- On `index.html`, add input for the user to include an image with their post
 	- Add the image to storage
 	- Save the image URL as part of the post
@@ -89,7 +89,7 @@ title: Schedule
 ## Week 9 **Responsive Design**
 - [Flex box](notes/responsive/flex)
 - [Responsive Layouts](notes/responsive/media)
-- **Assignment 4**: Responsive CSS
+- **Assignment**: Responsive CSS
 	- Add responsive layouts for mobile and tablet to the `responsive.css` stylesheet
 	- Use media queries to update grid for mobile and tablet display
 	- Use Chrome mobile emulator for development/testing
