@@ -21,15 +21,15 @@ function onError(errorMessage) {
 	loginMessage.textContent = errorMessage;
 }
 
-function userLoggedIn(id, name, profileImageURL) {
+function userLoggedIn(uid, userName, profileImageURL) {
 	document.body.classList.add('auth');
-	displayName.textContent = "Welcome, " + name;
+	displayName.textContent = "Welcome, " + userName;
 
 	const profileButton = document.getElementById("edit-profile");
 	profileButton.onclick = goToProfile;
 
 	function goToProfile() {
-		location.href = "profile.html?uid=" + user.uid;	
+		location.href = "profile.html?uid=" + uid;	
 	};
 
 	if (profileImageURL) {

@@ -1,33 +1,26 @@
-function createElement(_class, text) {
-	const element = document.createElement('div');
-	element.classList.add(_class);
-	element.textContent = text;
-	return element;
-}
 
-function createPost(postData, _userData, postId) {
-	
-	const userData = _userData || { displayName: "Anonymous" };
-	
-	const post = createElement('post'); // container element
-	const text = createElement('text', postData.text);
-	const author = createElement('author', 'by ');
-	const authorLink = document.createElement('a');
+
+function createPost(postData, userInfo, postId) {
+
+	const post = js.createEl('div', 'post'); // container element
+	const text = js.createEl('div', 'text', postData.text);
+	const author = js.createEl('div', 'author', 'by ');
+	const authorLink = js.createEl('a');
 	authorLink.href = 'user.html?uid=' + postData.uid;
 	
-	authorLink.textContent = userData.displayName;
+	authorLink.textContent = userInfo.displayName;
 	author.appendChild(authorLink);
 	
-	var d = new Date(postData.date);
-	const date = createElement('date',(d.getMonth() + 1) + "." +  d.getDate() + "." + d.getFullYear());
+	
+	const date = js.createEl('div', 'date', js.formatDate(postData.date));
 	
 //	posts.appendChild(post);
 	posts.insertBefore(post, posts.firstElementChild);
 	
 	/* adding user profile image */
 	const img = new Image();
-	if (userData.imageURL) {
-		img.src = userData.imageURL;
+	if (userInfo.imageURL) {
+		img.src = userInfo.imageURL;
 	} else {
 		img.src = 'images/egg.jpg';
 	}

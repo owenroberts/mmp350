@@ -1,52 +1,41 @@
 const uid = location.search.split('=')[1];
-const userRef = firebase.database().ref('users').child(uid);
+const profileName = js.getEl('profile-name');
+const bioInput = js.getEl('bio');
+const updateButton = js.getEl('update-profile');
+// const profileImage = js.getEl('profile-image');
+const addImage = js.getEl('add-image');
+const imageButton = js.getEl('submit-image');
 
-const profileName = document.getElementById('profile-name');
-const bioInput = document.getElementById('bio');
-const updateButton = document.getElementById('update-profile');
+fb.getUserProfile(uid);
 
-userRef.on('value', function(snapshot) {
-	const userInfo = snapshot.val();
-	profileName.value = userInfo.displayName;
-	
-	if (userInfo.bio) {
-		bioInput.value = userInfo.bio;
+function displayProfile(displayName, bio, imageURL) {
+	profileName.value = displayName;
+
+	if (bio) {
+		bioInput.value = bio;
 	}
 	
-	if (userInfo.imageURL) {
-		document.getElementById('profile-image').src = userInfo.imageURL;
-		document.getElementById('add-image').style.display = 'none';
+	if (imageURL) {
+		js.getEl('profile-image').src = imageURL;
+		addImage.style.display = 'none';
 	}
-});
-
-updateButton.onclick = function() {
-	userRef.update({
-		displayName: profileName.value,
-		bio: bioInput.value
-	});
 };
 
-const imageButton = document.getElementById('submit-image');
-imageButton.addEventListener('click', function() {
-	// get the file
+updateButton.onclick = function() {
+	fb.updateProfile(uid, 'displayName', profileName.value);
+	fb.updateProfile(uid, 'bio', bioInput.value);
+};
+
+
+imageButton.onclick = function() {
 	const file = document.getElementById('image-file').files[0];
-	if (file) {
-		// upload the file
-		const storage = firebase.storage();
-		const user = firebase.auth().currentUser;
-		const ref = storage.ref('users').child(user.uid).child('profile-image');
-		const promise = ref.put(file);
-		
-		promise.then(function(image) {
-			return image.ref.getDownloadURL();
-		}).then(function(url) {
-			userRef.update({ imageURL: url });
-			document.getElementById('profile-image').src = url;
-			document.getElementById('add-image').style.display = 'none';
-		});
-	}
-	
-});
+	fb.uploadImage(file, uid, 'profile-image');
+};
+
+function onImageAdded(imageURL) {
+	profileImage.src = imageURL;
+	addImage.style.display = 'none';
+}
 
 
 

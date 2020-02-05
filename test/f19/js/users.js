@@ -1,28 +1,26 @@
-const usersDiv = document.getElementById('users');
-const usersRef = firebase.database().ref('users');
+const usersDiv = js.getEl('users');
+fb.getUsers(displayUser);
 
-usersRef.on('child_added', function(snapshot) {
-	const userInfo = snapshot.val();
-	
-	const userDiv = createElement('user');
+function displayUser(uid, displayName, bio, imageURL) {
+	const userDiv = js.createEl('div', 'user');
 	usersDiv.appendChild(userDiv);
-	
-	const userName = createElement('name');
+
+	const userName = js.createEl('div', 'userName');
 	userDiv.appendChild(userName);
-	
-	const userLink = document.createElement('a');
-	userLink.href = 'user.html?uid=' + snapshot.key;
-	userLink.textContent = userInfo.displayName;
+
+	const userLink = js.createEl('a');
+	userLink.href = 'user.html?uid=' + uid;
+	userLink.textContent = displayName;
 	userName.appendChild(userLink);
-	
-	if (userInfo.bio) {
-		const bio = createElement('bio', userInfo.bio);
-		userDiv.appendChild(bio);
+
+	if (bio) {
+		const bioDiv = js.createEl('div', 'bio', bio);
+		userDiv.appendChild(bioDiv);
 	}
-	
-	if (userInfo.imageURL) {
+
+	if (imageURL) {
 		const userImage = new Image();
-		userImage.src = userInfo.imageURL;
+		userImage.src = imageURL;
 		userDiv.appendChild(userImage);
 	}
-});
+}
