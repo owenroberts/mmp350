@@ -92,7 +92,7 @@ fb.publishPost = function(uid, text) {
 		uid: uid,
 		date: Date.now(),
 		text: text
-	}
+	};
 
 	const tags = postText.value.match(/#[a-z0-9]+/gi);
 	if (tags) {
@@ -103,8 +103,7 @@ fb.publishPost = function(uid, text) {
 		}
 	}
 
-	firebase.database().ref('posts')
-		.push(post);
+	firebase.database().ref('posts').push(post);
 };
 
 fb.getUID = function() {
@@ -135,6 +134,7 @@ fb.getUserPosts = function(uid) {
 
 /* runs to log in the user automatically, calls userLoggedIn or noUser */
 firebase.auth().onAuthStateChanged(user => {
+	console.log(user);
 	if (user) {
 		const userRef = firebase.database().ref('users').child(user.uid);
 		userRef.on('value', snapshot => {

@@ -1,5 +1,3 @@
-
-
 function createPost(postData, userInfo, postId) {
 
 	const post = js.createEl('div', 'post'); // container element

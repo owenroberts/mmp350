@@ -15,7 +15,7 @@ function publishPost() {
 }
 
 function onPost() {
-	
+	console.log('posted!')
 }
 
 

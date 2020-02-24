@@ -28,21 +28,21 @@ title: Schedule
 
 ## Week 3 **Typography**
 - [Typographic Hierarchy](notes/typography/)
-- [Responsive Typography](notes/typography/responsive/)
 - **Assignment**: Typographic Hierarchy
 	- Create 3 separate font pairings
 	- Apply font rules to posts as well as other template content
 	- Include media queries for responsive typography
-	- Use `typography.css` with different classes to apply each pairing
+	- Add three stylesheets starting with `typography-1.css`
 
-## Week 4 **Database**
-- [Data types](notes/javascript/data_types)
-- [Logic](notes/javascript/logic)
-- [Firebase Database](notes/firebase/db)
-- **Assignment**
-	- Add an input on `profile.html` for the user email and a link
-	- Save the email address and link in the database
-	- Display the email address and link on the profile page
+## Week 4 **Functions**
+- [Firebase Publish/Display](notes/firebase/post)
+- [DOM & Events](notes/javascript/events)
+- [Functions](notes/javascript/functions/)
+- **Assignment**: Style posts and post input
+	- Use JavaScript to create the structure for each post, including the post text, author and date
+	- Create `post.css` to add styles to each post
+	- Create `publish.css` to add styles to the post interface
+	- Add styles for the individual posts and publish section
 
 ## Week 5 **Color**
 - [CSS Custom Properties](notes/color/custom)
@@ -55,20 +55,17 @@ title: Schedule
 	- Implement those colors for the text, buttons, links, and at least one background
 	- Create three color schemes in the page using the save custom variable names
 
-## Week 6 **Functions**
-- [Firebase Publish/Display](notes/firebase/post)
-- [DOM & Events](notes/javascript/events)
-- [Functions](notes/javascript/functions/)
-- **Assignment**: Style posts and post input
-	- Create post.css and publish.css
-	- Add styles for the individual posts and publish section
-	- Use flex box and/or grid to change layout of posts
-	- Apply color sceme to posts 
-	- Update styles in responsive.css for mobile and tablet
+## Week 6 **Database**
+- [Data types](notes/javascript/data_types)
+- [Logic](notes/javascript/logic)
+- [Firebase Database](notes/firebase/db)
+- **Assignment**: User Profile
+	- Add an input on `profile.html` for the user email and a link
+	- Save the email address and link in the database
+	- Display the email address and link on the profile page
 
 ## Week 7 **Grid**
 - [Grid Systems](notes/grid/)
-<!-- - [Forking a Project on GitHub](notes/github/fork) -->
 - [CSS Grid](notes/grid/css/)
 - **Assignment**: Layout
 	- Use `style.css` to import style sheets
@@ -89,6 +86,7 @@ title: Schedule
 ## Week 9 **Responsive Design**
 - [Flex box](notes/responsive/flex)
 - [Responsive Layouts](notes/responsive/media)
+- [Responsive Typography](notes/typography/responsive/)
 - **Assignment**: Responsive CSS
 	- Add responsive layouts for mobile and tablet to the `responsive.css` stylesheet
 	- Use media queries to update grid for mobile and tablet display
