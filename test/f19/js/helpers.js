@@ -65,7 +65,7 @@ fb.loadPost = function(id) {
 fb.getUserProfile = function(uid) {
 	firebase.database().ref('users').child(uid).on('value', user => {
 		if (typeof displayProfile === "function") 
-			displayProfile(user.val().displayName, user.val().bio, user.val().imageURL);
+			displayProfile(user.val().displayName, user.val());
 	});
 };
 
@@ -134,7 +134,6 @@ fb.getUserPosts = function(uid) {
 
 /* runs to log in the user automatically, calls userLoggedIn or noUser */
 firebase.auth().onAuthStateChanged(user => {
-	console.log(user);
 	if (user) {
 		const userRef = firebase.database().ref('users').child(user.uid);
 		userRef.on('value', snapshot => {

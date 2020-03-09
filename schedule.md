@@ -60,6 +60,8 @@ title: Schedule
 - [Logic](notes/javascript/logic)
 - [Firebase Database](notes/firebase/db)
 - **Assignment**: User Profile
+	- Choose two new fields for users to add to their profile
+		- For example: link, email, social media handle, location, 
 	- Add an input on `profile.html` for the user email and a link
 	- Save the email address and link in the database
 	- Display the email address and link on the profile page
