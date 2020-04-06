@@ -1,12 +1,15 @@
 function createPost(postData, userInfo, postId) {
 
+	const displayName = userInfo ? userInfo.displayName : '';
+	const imageURL = userInfo ? userInfo.imageURL : undefined;
+
 	const post = js.createEl('div', 'post'); // container element
 	const text = js.createEl('div', 'text', postData.text);
 	const author = js.createEl('div', 'author', 'by ');
 	const authorLink = js.createEl('a');
 	authorLink.href = 'user.html?uid=' + postData.uid;
 	
-	authorLink.textContent = userInfo.displayName;
+	authorLink.textContent = displayName;
 	author.appendChild(authorLink);
 	
 	
@@ -17,12 +20,18 @@ function createPost(postData, userInfo, postId) {
 	
 	/* adding user profile image */
 	const img = new Image();
-	if (userInfo.imageURL) {
-		img.src = userInfo.imageURL;
+	if (imageURL) {
+		img.src = imageURL;
 	} else {
 		img.src = 'images/egg.jpg';
 	}
 	img.classList.add('profile-image');
+
+	if (postData.imageURL) {
+		const img = js.createEl('img', 'post-image');
+		img.src = postData.imageURL;
+		post.appendChild(img);
+	}
 	
 	/* link to the post - permanent link */
 	const postLink = document.createElement('a');

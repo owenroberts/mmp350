@@ -4,7 +4,9 @@ const passwordInput = js.getEl("login-password");
 const loginMessage = js.getEl("login-message");
 const logoutButton = js.getEl("logout-button");
 const displayName = js.getEl("user-name");
+
 const profileImage = js.getEl('profile-image');
+const profileLink = js.getEl("edit-profile-link");
 
 loginButton.onclick = login;
 logoutButton.onclick = logout;
@@ -25,12 +27,9 @@ function userLoggedIn(uid, userName, profileImageURL) {
 	document.body.classList.add('auth');
 	displayName.textContent = "Welcome, " + userName;
 
-	const profileButton = document.getElementById("edit-profile");
-	profileButton.onclick = goToProfile;
+	// add the link to the user profile
+	if (profileLink) profileLink.href = "profile.html?uid=" + uid;
 
-	function goToProfile() {
-		location.href = "profile.html?uid=" + uid;	
-	};
 
 	if (profileImageURL) {
 		profileImage.src = profileImageURL;

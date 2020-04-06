@@ -5,16 +5,16 @@ const linkInput = js.getEl('link');
 const updateButton = js.getEl('update-profile');
 // const profileImage = js.getEl('profile-image');
 const addImage = js.getEl('add-image');
+const imageInput = js.getEl('image-file');
 const imageButton = js.getEl('submit-image');
 
 fb.getUserProfile(profileUID);
 
-function userLoggedIn() {
-	if (profileUID == fb.getUID()) {
+function profileLoggedIn(uid) {
+	if (uid == profileUID) {
 		updateButton.style.display = 'block';
 	}
 }
-
 
 function displayProfile(displayName, userInfo) {
 	profileName.value = displayName;
@@ -25,7 +25,7 @@ function displayProfile(displayName, userInfo) {
 	
 	if (userInfo.imageURL) {
 		js.getEl('profile-image').src = userInfo.imageURL;
-		addImage.style.display = 'none';
+		// addImage.style.display = 'none';
 	}
 
 	if (userInfo.link) {
@@ -41,13 +41,18 @@ updateButton.onclick = function() {
 
 
 imageButton.onclick = function() {
-	const file = document.getElementById('image-file').files[0];
-	fb.uploadImage(file, profileUID, 'profile-image');
+	const file = imageInput.files[0];
+	if (file) {
+		fb.uploadImage(file, profileUID, 'profile-image')
+			.then(addProfileImage);
+	}
+	
 };
 
-function onImageAdded(imageURL) {
+function addProfileImage(imageURL) {
+	console.log(imageURL);
+	fb.updateProfile(profileUID, 'imageURL', imageURL);
 	profileImage.src = imageURL;
-	addImage.style.display = 'none';
 }
 
 

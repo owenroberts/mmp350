@@ -26,7 +26,7 @@ fb.logout = function() {
 };
 
 fb.onError = function(message) {
-	if (typeof onError === 'function') onError(error.message);
+	if (typeof onError === 'function') onError(message);
 };
 
 fb.getUsers = function(userCallback, callback) {
@@ -69,32 +69,31 @@ fb.getUserProfile = function(uid) {
 	});
 };
 
-fb.updateProfile = function(id, key, value) {
+fb.updateProfile = function(uid, key, value) {
 	const info = {};
 	info[key] = value;
 	firebase.database().ref('users').child(uid).update(info);
 };
 
-fb.uploadImage = function(file, uid) {
-	if (file) {
-		firebase.storage().ref('users').child(uid).child('profile-image')
-			.put(file)
-			.then(image => { return image.ref.getDownloadURL(); })
-			.then(url => {
-				firebase.database().ref('users').child(uid)
-					.update({ imageURL: url });
-			});
-	}
+fb.uploadImage = function(file, uid, location) {
+	return firebase.storage().ref('users').child(uid).child(`${location}.${file.name.split('.')[1]}`)
+		.put(file)
+		.then(image => { return image.ref.getDownloadURL(); });
+		// .then(url => {
+		// 	// firebase.database().ref('users').child(uid).update({ imageURL: url });
+
+		// });
 };
 
-fb.publishPost = function(uid, text) {
+fb.publishPost = function(uid, text, imageFile) {
 	const post = {
 		uid: uid,
 		date: Date.now(),
 		text: text
 	};
+	
 
-	const tags = postText.value.match(/#[a-z0-9]+/gi);
+	const tags = text.match(/#[a-z0-9]+/gi);
 	if (tags) {
 		post.tags = {};
 		for (let i = 0; i < tags.length; i++) {
@@ -103,7 +102,18 @@ fb.publishPost = function(uid, text) {
 		}
 	}
 
-	firebase.database().ref('posts').push(post);
+	firebase.database().ref('posts')
+		.push(post)
+		.then(response => { 
+			if (imageFile) {
+				fb.uploadImage(imageFile, uid, `${response.key}`)
+					.then(function(imageURL) {
+						firebase.database().ref('posts').child(response.key).update({
+								imageURL: imageURL
+							})
+					});
+			}
+		})
 };
 
 fb.getUID = function() {
@@ -140,6 +150,8 @@ firebase.auth().onAuthStateChanged(user => {
 			const userInfo = snapshot.val();
 			if (typeof userLoggedIn === 'function') 
 				userLoggedIn(user.uid, userInfo.displayName, userInfo.imageURL);
+			if (typeof profileLoggedIn === 'function') 
+				profileLoggedIn(user.uid);
 		});	
 	} else {
 		if (typeof noUser === 'function') noUser();
