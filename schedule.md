@@ -82,7 +82,7 @@ title: Schedule
 	- On `index.html`, add input for the user to include an image with their post
 	- Add the image to storage
 	- Save the image URL as part of the post
-	- Retrievew the image from storage with the URL from the database
+	- Retrieve the image from storage with the URL from the database
 	- Display image with posts
 
 ## Week 9 **Responsive Design**
