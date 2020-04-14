@@ -101,6 +101,25 @@ title: Schedule
 - [Database Query](notes/firebase/query)
 - User and post pages
 
+## Midterm
+- Pitch for the final project
+- Create a concept for you web application
+- Some examples:
+	- A forum for posting about a video game or another interest/hobby
+	- A social network (something like instagram would focus on images, something like Twitter focuses more on text)
+	- Site focused on user profiles and content (like LinkedIn or Pinterest)
+- Make a Google Presentation (or Power Point if you prefer)
+- Include
+	- Name of the site
+	- Once sentence description of the service
+	- Target audience
+	- "Problem" - what need does the app fill
+	- "Solution" - how the app fills the need
+	- Design and how it relates to the concept
+		- Color scheme
+		- Site layout
+		- Typographic hierarchy
+
 ## Final 
 - Check rubric on Blackboard
 - Design/CSS
