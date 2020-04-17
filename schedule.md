@@ -98,7 +98,8 @@ title: Schedule
 	- Media queries should also update flex box rules
 
 ## Week 10 **Query**
-- [Database Query](notes/firebase/query)
+<!-- - [Database Query](notes/firebase/query) -->
+- Database query
 - User and post pages
 
 ## Midterm
